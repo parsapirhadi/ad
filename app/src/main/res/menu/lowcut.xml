@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+    <item
+        android:id="@+id/lowcut1"
+        android:title="0.01Hz"
+      />
+    <item
+        android:id="@+id/lowcut2"
+        android:title="0.05Hz"/>
+    <item
+        android:id="@+id/lowcut3"
+        android:title="0.16Hz"/>
+    <item
+        android:id="@+id/lowcut4"
+        android:title="0.1Hz"/>
+    <item
+        android:id="@+id/lowcut5"
+        android:title="0.5Hz"/>
+    <item
+        android:id="@+id/lowcut6"
+        android:title="1.0Hz"/>
+    <item
+        android:id="@+id/lowcut7"
+        android:title="1.2Hz"/>
+    <item
+        android:id="@+id/lowcut8"
+        android:title="1.6Hz"/>
+    <item
+        android:id="@+id/lowcut9"
+        android:title="2.4Hz"/>
+    <item
+        android:id="@+id/lowcut10"
+        android:title="3.0Hz"/>
+    <item
+    android:id="@+id/lowcut11"
+    android:title="3.2Hz"/>
+    <item
+    android:id="@+id/lowcut12"
+    android:title="5.0Hz"/>
+    <item
+    android:id="@+id/lowcut13"
+    android:title="10.0"/>
+
+
+
+
+
+</menu>

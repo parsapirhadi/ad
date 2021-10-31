@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+    <item
+        android:id="@+id/eeg_sensivity1"
+        android:title="1µV per page"
+        />
+    <item
+        android:id="@+id/eeg_sensivity2"
+        android:title="2µV per page"/>
+    <item
+        android:id="@+id/eeg_sensivity3"
+        android:title="5µV per page"/>
+    <item
+        android:id="@+id/eeg_sensivity4"
+        android:title="10µV per page"/>
+    <item
+        android:id="@+id/eeg_sensivity5"
+        android:title="15µV per page"/>
+    <item
+        android:id="@+id/eeg_sensivity6"
+        android:title="20µV per page"/>
+    <item
+        android:id="@+id/eeg_sensivity7"
+        android:title="25µV per page"/>
+    <item
+        android:id="@+id/eeg_sensivity8"
+        android:title="30µV per page"/>
+    <item
+        android:id="@+id/eeg_sensivity9"
+        android:title="50µV per page"/>
+    <item
+        android:id="@+id/eeg_sensivity10"
+        android:title="70µV per page"/>
+    <item
+        android:id="@+id/eeg_sensivity11"
+        android:title="100µV per page"/>
+    <item
+        android:id="@+id/eeg_sensivity12"
+        android:title="150µV per page"/>
+    <item
+        android:id="@+id/eeg_sensivity13"
+        android:title="200µV per page"/>
+    <item
+        android:id="@+id/eeg_sensivity14"
+        android:title="250µV per page"/>
+    <item
+        android:id="@+id/eeg_sensivity15"
+        android:title="300µV per page"/>
+    <item
+        android:id="@+id/eeg_sensivity16"
+        android:title="400µV per page"/>
+    <item
+        android:id="@+id/eeg_sensivity17"
+        android:title="500µV per page"/>
+    <item
+        android:id="@+id/eeg_sensivity18"
+        android:title="1000µV per page"/>
+    <item
+        android:id="@+id/eeg_sensivity19"
+        android:title="2000µV per page"/>
+
+    <item
+        android:id="@+id/eeg_sensivity20"
+        android:title="3000µV per page"/>
+
+
+
+
+
+
+</menu>

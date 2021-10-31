@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.myapplication">
+
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE/" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:screenOrientation="userLandscape"
+        android:theme="@style/Theme.Design.Light.NoActionBar">
+        <activity android:name=".V.Activity.EightRecordActivity"
+            android:screenOrientation="userLandscape"
+            >
+
+        </activity>
+
+        <activity android:name=".V.Activity.MontageActivity"
+            android:screenOrientation="userLandscape">
+        </activity>
+
+        <activity android:name=".V.Activity.EightRootActivity"
+            android:screenOrientation="userLandscape">
+        </activity>
+
+        <activity android:name=".V.Activity.AdvancedSettingActivity"
+            android:screenOrientation="userLandscape">
+        </activity>
+
+        <activity android:name=".V.Activity.SingleRootActivity"
+            android:screenOrientation="userLandscape">
+        </activity>
+
+        <activity android:name=".V.Activity.SingleRecordActivity"
+            android:screenOrientation="userLandscape">
+
+        </activity>
+        <activity android:name=".V.Activity.SettingsActivity"
+            android:screenOrientation="userLandscape">
+
+        </activity>
+        <activity android:name=".V.Activity.ReplayActivity"
+            android:screenOrientation="userLandscape">
+
+        </activity>
+
+        <activity android:name=".V.Activity.ScaleActivity"
+            android:screenOrientation="userLandscape">
+        </activity>
+
+        <activity android:name=".V.Activity.FilterActivity"
+            android:screenOrientation="userLandscape">
+        </activity>
+        <activity android:name=".V.Activity.MainActivity"
+            android:screenOrientation="userLandscape">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

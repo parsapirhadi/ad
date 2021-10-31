@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:background="@drawable/drawer"
+    tools:context=".V.Activity.EightRecordActivity">
+
+ <androidx.constraintlayout.widget.ConstraintLayout
+     android:layout_width="match_parent"
+     android:layout_height="?attr/actionBarSize" >
+
+     <Button
+         android:background="@drawable/moon_foreground"
+         android:layout_width="50dp"
+         android:layout_height="50dp"
+         android:layout_gravity=""
+         app:layout_constraintEnd_toEndOf="parent"
+         tools:ignore="MissingConstraints" />
+
+
+
+
+ </androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:id="@+id/layoutnewrecord"
+        android:layout_height="?attr/actionBarSize"
+        >
+        <Button
+            android:layout_width="50dp"
+            android:id="@+id/icon_newpatient"
+            android:layout_height="50dp"
+            android:background="@drawable/record_foreground"
+            />
+<TextView
+    android:id="@+id/newrecord"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textColor="@color/black"
+    android:text="New Record"
+    />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:id="@+id/layoutloadrecord"
+
+        >
+<Button
+    android:id="@+id/icon_loadpatient"
+    android:layout_width="50dp"
+    android:layout_height="50dp"
+    android:background="@drawable/personal_foreground"
+    />
+        <TextView
+            android:id="@+id/loadpatient"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Load Record"
+            android:textColor="@color/black"
+            />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:id="@+id/layoutsetting"
+        >
+        <Button
+            android:id="@+id/icon_setting"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/setting_foreground"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Settings"
+            android:id="@+id/settings"
+            android:textColor="@color/black"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

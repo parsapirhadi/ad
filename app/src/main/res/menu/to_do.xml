@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+    <item
+        android:id="@+id/todo1"
+        android:title="0.005"
+        />
+    <item
+        android:id="@+id/todo2"
+        android:title="0.002"/>
+    <item
+        android:id="@+id/todo3"
+        android:title="0.001"/>
+
+
+</menu>

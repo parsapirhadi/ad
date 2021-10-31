@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#ffffff"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_margin="2dp"
+        android:background="@drawable/banda_tools_d"
+        tools:ignore="MissingConstraints" >
+
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:background="@drawable/notes_foreground"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="10dp" />
+
+        <Button
+            android:layout_marginLeft="70dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:background="@drawable/play_foreground"
+            tools:layout_editor_absoluteX="135dp"
+            tools:layout_editor_absoluteY="10dp" />
+
+        <ImageView
+            android:layout_marginLeft="70dp"
+
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:background="@mipmap/notch_off"
+            tools:layout_editor_absoluteX="490dp"
+            tools:layout_editor_absoluteY="10dp" />
+
+        <TextureView
+            android:layout_marginLeft="70dp"
+
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:background="#dcdcdc"
+            android:hint="Filter"
+            android:textColorHint="#bbbbbb"
+            tools:layout_editor_absoluteX="339dp"
+            tools:layout_editor_absoluteY="10dp" />
+
+        <Button
+            android:layout_width="70dp"
+
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="50dp"
+            android:background="@drawable/multi_line_foreground"
+            tools:layout_editor_absoluteX="564dp"
+            tools:layout_editor_absoluteY="10dp" />
+
+        <Button
+            android:layout_marginLeft="70dp"
+
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:background="@drawable/zoom_out_foreground"
+            tools:layout_editor_absoluteX="636dp"
+            tools:layout_editor_absoluteY="10dp" />
+
+        <Button
+            android:layout_marginLeft="70dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:background="@drawable/bluetooth_on_foreground"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="2dp"
+        android:layout_weight="1"
+        android:background="@drawable/main"
+        >
+
+    </LinearLayout>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

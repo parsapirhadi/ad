@@ -177,80 +177,83 @@
             android:layout_weight="1"
             android:background="@drawable/main"
             tools:ignore="MissingConstraints" >
-<LinearLayout
-    android:layout_width="30dp"
-    android:layout_height="match_parent"
-    android:background="#e6e6e6"
-    android:orientation="horizontal"
-    android:gravity="right"
+            <LinearLayout
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:background="#e6e6e6"
+                android:orientation="horizontal"
+                android:gravity="right"
 
-    >
+                >
 
-    <LinearLayout
-        android:layout_weight="1"
-        android:layout_width="0dp"
-        android:orientation="vertical"
-        android:layout_height="match_parent"
-        >
-        <LinearLayout
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            >
-<TextView
-    android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:text="100"
-    android:layout_weight="1"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:text="50"
-                android:layout_weight="1"
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
-    />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:text="0"
-                android:layout_weight="1"
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:text="100" />
 
-                />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:text="-50"
-                android:layout_weight="1"
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:text="50"
 
-                />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="bottom"
-                android:text="-100"
+                            />
 
-                />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:text="0"
 
-        </LinearLayout>
-    </LinearLayout>
+                            />
 
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:text="-50"
 
-    <Button
-        android:gravity="right"
-        android:layout_width="2dp"
-        android:layout_height="match_parent"
-        android:background="@color/black"
-        />
+                            />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="bottom"
+                            android:text="-100"
+
+                            />
+
+                    </LinearLayout>
+                </LinearLayout>
 
 
-</LinearLayout>
-<com.example.myapplication.P.BaseSurface
+                <Button
+                    android:gravity="right"
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/black"
+                    />
+
+
+            </LinearLayout>
+<com.example.myapplication.P.BaseSurfaceSingle
     android:layout_width="0dp"
     android:layout_weight="1"
     android:layout_height="match_parent"
-    android:id="@+id/singlegraphview"
+    android:id="@+id/singlesurfaceview"
     />
 
 
@@ -261,7 +264,7 @@
             android:layout_height="30dp"
             android:background="#e6e6e6"
             android:orientation="vertical"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="40dp"
             android:gravity="right"
 
             >

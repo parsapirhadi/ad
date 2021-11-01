@@ -33,7 +33,7 @@ public class FileReader {
     }
 
     public void read(){
-        String fileName =  "g8.txt";
+        String fileName =  "g32.txt";
         String s = "";
         String fileContent = "";
 

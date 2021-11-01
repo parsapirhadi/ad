@@ -1,12 +1,9 @@
 package com.example.myapplication.V.Activity;
 
 import android.app.Dialog;
-import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -14,13 +11,11 @@ import android.os.Vibrator;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
@@ -28,15 +23,12 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.myapplication.M.DataType.Counter;
 import com.example.myapplication.M.DataType.String1;
-import com.example.myapplication.P.BaseSurface;
+import com.example.myapplication.P.BaseSurfaceSingle;
 import com.example.myapplication.R;
-import com.example.myapplication.V.ConnectGraphview;
 import com.jjoe64.graphview.GraphView;
-import com.jjoe64.graphview.GridLabelRenderer;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
-import java.util.ArrayList;
 import java.util.Set;
 
 public class SingleRootActivity extends AppCompatActivity {
@@ -53,7 +45,7 @@ public class SingleRootActivity extends AppCompatActivity {
 
     float [] f= new float[8];
 
-    private BaseSurface surface;
+    private BaseSurfaceSingle surface;
 
     int notchcount;
     int playcount;
@@ -73,11 +65,28 @@ public class SingleRootActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+        surface.startDrawThread(0);
+    }
+
+    @Override
+    protected void onPause()
+    {
+
+        surface.stopDrawThread();
+        super.onPause();
+    }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.singleroot);
         Vibrator vibrator= (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        surface = (BaseSurfaceSingle) findViewById(R.id.singlesurfaceview);
         string1=new String1();
         Counter counter=new Counter();
        Intent intent=getIntent();
@@ -190,7 +199,7 @@ public class SingleRootActivity extends AppCompatActivity {
             public void onClick(View view) {
                 PopupMenu popup = new PopupMenu(SingleRootActivity.this,choose_channel);
                 popup.getMenuInflater().inflate(R.menu.choose_channel, popup.getMenu());
-                for(int v=0;v<string1.getChannel_count()-1;v++) {
+                for(int v=0;v<string1.getChannel_count();v++) {
                      popup.getMenu().add(string1.getPivote(v));
 
 
@@ -202,27 +211,25 @@ public class SingleRootActivity extends AppCompatActivity {
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem menuItem) {
-                        LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>();
-                        graphView.removeAllSeries();
 
-                        for(int v=0;v<string1.getChannel_count()-1;v++) {
+
+                        for(int v=0;v<string1.getChannel_count();v++) {
                          if(menuItem.getTitle()==string1.getPivote(v)){
 
 
-                             for (int j=0;j<string1.getLine_count();j++) {
-                                 series.appendData(new DataPoint(j, counter.getChannel(v,j)), false, 9000);
 
-                             }
-                             graphView.getViewport().setMaxX(4000);
-                             graphView.getViewport().setMinX(0);
-                             graphView.getViewport().setMaxY(100);
-                             graphView.getViewport().setMinY(-100);
-                             graphView.getViewport().setXAxisBoundsManual(true);
-                             graphView.getViewport().setYAxisBoundsManual(true);
-                             graphView.getViewport().setScrollable(true);
-                             graphView.getViewport().setScalableY(true);
-                             //// graphView.setTitleTextSize(9);
-                             graphView.addSeries(series);
+
+                             surface.startDrawThread(v);
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -233,7 +240,15 @@ public class SingleRootActivity extends AppCompatActivity {
                         }
                         choose_channel.setText(menuItem.getTitle());
 
-                        Log.e(">>>>>>>>",""+menuItem.getItemId());
+
+
+
+
+
+
+
+
+
                         return true;
                     }
                 });

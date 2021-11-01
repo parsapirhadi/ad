@@ -89,16 +89,20 @@ public class EightRootActivity extends AppCompatActivity {
 
 
 
-
         Display display=getWindowManager().getDefaultDisplay();
         Point size =new Point();
         display.getSize(size);
         int width=size.x;
         int height =size.y;
+        string1=new String1();
+        counter=new Counter();
 
-        Toast.makeText(getApplicationContext(),""+width,Toast.LENGTH_LONG).show();
-        Toast.makeText(getApplicationContext(),""+height,Toast.LENGTH_SHORT).show();
+        counter.setScreen_height(height);
+        counter.setSurface_width(width);
 
+
+        Log.e("Screen width",""+width);
+        Log.e("Screen height",""+height);
 
 
 
@@ -108,8 +112,7 @@ activity=this;
         Vibrator vibrator= (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         notchcount=0;
         playcount=0;
-        string1=new String1();
-        counter=new Counter();
+
         dialog=new Dialog(EightRootActivity.this);
         dialog.setContentView(R.layout.bluetooth_alert);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -282,7 +285,7 @@ new Thread(new Runnable() {
 
             // Log.e("is","null && 1");
             ConnectGraphview drawGraphview1=new ConnectGraphview(graphView1,counter,string1);
-            drawGraphview1.draw();
+           // drawGraphview1.draw();
         }
 
 
@@ -292,8 +295,8 @@ new Thread(new Runnable() {
                 public void run() {
                     FileReader fileReader = new FileReader(activity,string1, counter, namePivote, pivotValue);
                     fileReader.read();
-                    ConnectGraphview drawGraphview1=new ConnectGraphview(graphView1,counter,string1);
-                    drawGraphview1.draw();
+                   // ConnectGraphview drawGraphview1=new ConnectGraphview(graphView1,counter,string1);
+                   // drawGraphview1.draw();
                 }
             });
 
@@ -334,7 +337,8 @@ new Thread(new Runnable() {
         listView=dialog.findViewById(R.id.list);
         zoomout=findViewById(R.id.zoomout_eightroot);
         lineplay=findViewById(R.id.playline);
-        graphView1=findViewById(R.id.eightgraphview1);
+
+        //graphView1=findViewById(R.id.eightgraphview1);
     }
     private void Setlinebtnanim(){
 new Thread(new Runnable() {

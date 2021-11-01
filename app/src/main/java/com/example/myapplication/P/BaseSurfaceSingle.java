@@ -12,7 +12,9 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Toast;
 
-public class BaseSurface extends SurfaceView implements SurfaceHolder.Callback, View.OnTouchListener, Runnable
+import com.example.myapplication.M.DataType.Counter;
+
+public class BaseSurfaceSingle extends SurfaceView implements SurfaceHolder.Callback, View.OnTouchListener, Runnable
 {
 float  f[] =new float[5];
     private SurfaceHolder holder;
@@ -21,25 +23,29 @@ float  f[] =new float[5];
 
     private boolean surfaceReady = false;
 
+    int cannel_count=0;
 
     private boolean drawingActive = false;
 
     private Paint samplePaint = new Paint();
     private Paint samplePaint1 = new Paint();
-
+Counter counter;
 
 
     private static final int MAX_FRAME_TIME = (int) (1000.0 / 60.0);
 
     private static final String LOGTAG = "surface";
 
-    public BaseSurface(Context context, AttributeSet attrs)
+    public BaseSurfaceSingle(Context context, AttributeSet attrs)
     {
        super(context, attrs);
     SurfaceHolder holder = getHolder();
         holder.addCallback(this);
+        counter=new Counter();
     setOnTouchListener(this);
 
+        counter.setStep_x((float) counter.getSurface_width()/8000);
+        counter.setStep_y((float) counter.getSurface_height()/200);
 
 
         samplePaint.setColor(Color.BLACK);
@@ -79,7 +85,7 @@ float  f[] =new float[5];
         }
 
         surfaceReady = true;
-        startDrawThread();
+        startDrawThread(0);
         Log.d(LOGTAG, "Created");
     }
 
@@ -125,8 +131,10 @@ float  f[] =new float[5];
 
 
 
-    public void startDrawThread()
+    public void startDrawThread(int i)
     {
+
+        cannel_count=i;
         if (surfaceReady && drawThread == null)
         {
             drawThread = new Thread(this, "Draw thread");
@@ -163,9 +171,16 @@ float  f[] =new float[5];
                         int t=0;
 
 
-
-
                         canvas.drawColor(Color.rgb(230,230,230));
+
+                      //  canvas.drawColor(Color.rgb(230,230,230));
+
+                        Log.e("Surface width",""+getWidth());
+                        Log.e("Surface height",""+getHeight());
+
+
+
+
 
                         canvas.drawRect(0, ((getHeight() / 4)*1)-1, getWidth(), (getHeight() / 4)*1, samplePaint);
                         canvas.drawRect(0, ((getHeight() / 4)*2)-1, getWidth(), (getHeight() / 4)*2, samplePaint);
@@ -183,16 +198,17 @@ float  f[] =new float[5];
 
 
 
-
                         canvas.drawRect(0, 0 ,1500,1, samplePaint);
 
 
 
                         samplePaint1.setColor(Color.RED);
 
-                        canvas.drawRect((float) 100, (float)100 , (float)200,(float)200, samplePaint1);
 
-
+Log.e("++++++++++++++",""+counter.getStep_x());
+                        for (int i=0;i<8000;i++) {
+                            canvas.drawLine(i*counter.getStep_x(), (getHeight()/2)+counter.getChannel(cannel_count,i),(i+1)*counter.getStep_x(),(getHeight()/2)+counter.getChannel(cannel_count,i+1)+counter.getStep_y(),samplePaint1);
+                        }
 
 /*
 for (int j=0;j<1000;j+=50) {

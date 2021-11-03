@@ -164,7 +164,6 @@
 
 <LinearLayout
     android:id="@+id/left_linearlayout"
-    android:layout_marginTop="5dp"
     android:layout_width="40dp"
     android:orientation="vertical"
     android:background="#e6e6e6"

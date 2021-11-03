@@ -14,24 +14,43 @@ public class Counter implements Serializable {
 static float screen_width =0;
    static float screen_height=0;
 
-       static float step_y =0;
-         static float step_x =0;
+       static float single_step_y =0;
+         static float single_step_x =0;
 
-    public float getStep_y() {
-        return step_y;
+    static float eight_step_y =0;
+    static float eight_step_x =0;
+
+    public  float getEight_step_y() {
+        return eight_step_y;
     }
 
-   public void setStep_y(float step_y) {
-        this.step_y = step_y;
+    public  void setEight_step_y(float eight_step_y) {
+        Counter.eight_step_y = eight_step_y;
     }
 
-    public float getStep_x() {
-        return step_x;
+    public  float getEight_step_x() {
+        return eight_step_x;
     }
 
-    public void setStep_x(float step_x) {
-        this.step_x = step_x;
+    public  void setEight_step_x(float eight_step_x) {
+        Counter.eight_step_x = eight_step_x;
+    }
+
+    public float getSingle_step_y() {
+       return single_step_y;
    }
+
+    public void setSingle_step_y(float single_step_y) {
+       Counter.single_step_y = single_step_y;
+   }
+
+    public float getSingle_step_x() {
+        return single_step_x;
+    }
+
+    public  void setSingle_step_x(float single_step_x) {
+        Counter.single_step_x = single_step_x;
+    }
 
     static float surface_width =0;
    static float surface_height=0;

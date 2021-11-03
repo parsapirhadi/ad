@@ -21,6 +21,8 @@ float  f[] =new float[5];
 
     private Thread drawThread;
 
+    int positive=0;
+
     private boolean surfaceReady = false;
 
     int cannel_count=0;
@@ -44,8 +46,8 @@ Counter counter;
         counter=new Counter();
     setOnTouchListener(this);
 
-        counter.setStep_x((float) counter.getSurface_width()/8000);
-        counter.setStep_y((float) counter.getSurface_height()/200);
+        counter.setSingle_step_x((float) counter.getSurface_width()/8000);
+        counter.setSingle_step_y((float) counter.getSurface_height()/200);
 
 
         samplePaint.setColor(Color.BLACK);
@@ -202,12 +204,13 @@ Counter counter;
 
 
 
-                        samplePaint1.setColor(Color.RED);
+                        samplePaint1.setColor(Color.BLUE);
 
 
-Log.e("++++++++++++++",""+counter.getStep_x());
+Log.e("++++++++++++++",""+counter.getSurface_height());
                         for (int i=0;i<8000;i++) {
-                            canvas.drawLine(i*counter.getStep_x(), (getHeight()/2)+counter.getChannel(cannel_count,i),(i+1)*counter.getStep_x(),(getHeight()/2)+counter.getChannel(cannel_count,i+1)+counter.getStep_y(),samplePaint1);
+
+                            canvas.drawLine(i*counter.getSingle_step_x(), (getHeight()/2)+(counter.getChannel(cannel_count,i)*counter.getSingle_step_y()),(i+1)*counter.getSingle_step_x(),(getHeight()/2)+(counter.getChannel(cannel_count,i+1)*counter.getSingle_step_y()),samplePaint1);
                         }
 
 /*

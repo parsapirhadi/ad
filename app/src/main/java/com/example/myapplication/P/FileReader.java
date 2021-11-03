@@ -19,6 +19,8 @@ public class FileReader {
     BufferedReader myReader;
     String1 string1;
     Counter counter;
+    int y1=0;
+    String f1="";
     SetPivotName namePivote;
     SetPivotValue pivotValue;
     String patch;
@@ -33,7 +35,24 @@ public class FileReader {
     }
 
     public void read(){
-        String fileName =  "g32.txt";
+       // Log.e("%%%%%%%%%%%","4444");
+
+
+        for(y1=string1.getFilepatch().length()-1;y1>0;y1--){
+            if (string1.getFilepatch().charAt(y1)=='/')
+            {
+              //  Log.e("////////////////",""+y);
+
+                break;
+            }
+        }
+        for(int p=y1+1;p<string1.getFilepatch().length();p++){
+            f1+=string1.getFilepatch().charAt(p)+"";
+        }
+
+       // String d=string1.getFilepatch().
+        String fileName =  f1;
+        Log.e("%%%%%%%%%%%",f1);
         String s = "";
         String fileContent = "";
 
@@ -48,7 +67,9 @@ public class FileReader {
             }
 
             char[] charArray = fileContent.toCharArray();
-            Log.e("aaaaaaaaaaaaaa",""+fileContent);
+         //   Log.e("aaaaaaaaaaaaaa",""+fileContent);
+
+
 
 
             namePivote=new SetPivotName(fileContent,string1,counter);
@@ -83,5 +104,9 @@ public class FileReader {
 
       //  Log.e("{{{{{{{{{{{",""+counter.getAll(5));
 
+
+        counter.setEight_step_x((float) counter.getSurface_width()/8000);
+        counter.setEight_step_y((float) counter.getSurface_height()/200);
+        counter.setEight_step_y((counter.getEight_step_y()/string1.getChannel_count())/2);
     }
 }

@@ -183,8 +183,9 @@ public class SingleRootActivity extends AppCompatActivity {
 
                 Intent intent1=new Intent(getApplicationContext(),EightRootActivity.class);
                 startActivity(intent1);
-                counter.setLine_clecked(1);
+
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                counter.setLine_clecked(1);
                 finish();
 
             }
@@ -256,6 +257,7 @@ public class SingleRootActivity extends AppCompatActivity {
 
             }
         });
+        /*
         zoomout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -269,6 +271,8 @@ public class SingleRootActivity extends AppCompatActivity {
 
             }
         });
+
+         */
 //////////////////////////////////////////////////////////////////////////////////////////////
 
 

@@ -38,6 +38,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.myapplication.M.DataType.Counter;
 import com.example.myapplication.M.DataType.String1;
+import com.example.myapplication.P.BaseSurfaceEight;
 import com.example.myapplication.P.FileReader;
 import com.example.myapplication.P.SetPivotName;
 import com.example.myapplication.P.SetPivotValue;
@@ -64,6 +65,7 @@ public class EightRootActivity extends AppCompatActivity {
     SetPivotName namePivote;
     SetPivotValue pivotValue;
 
+    private BaseSurfaceEight surface;
     String1 string1;
     Counter counter;
     BufferedReader myReader;
@@ -74,6 +76,21 @@ public class EightRootActivity extends AppCompatActivity {
     Activity activity;
     GraphView graphView1,graphView2,graphView3,graphView4,graphView5,graphView6,graphView7,graphView8,graphView9;
     int playcount;
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+        surface.startDrawThread(-1);
+    }
+
+    @Override
+    protected void onPause()
+    {
+
+        surface.stopDrawThread();
+        super.onPause();
+    }
 
     @Override
     public void onBackPressed() {
@@ -97,7 +114,7 @@ public class EightRootActivity extends AppCompatActivity {
         string1=new String1();
         counter=new Counter();
 
-        counter.setScreen_height(height);
+        counter.setSurface_height(height);
         counter.setSurface_width(width);
 
 
@@ -222,6 +239,7 @@ lineplay.setVisibility(View.VISIBLE);
             }
         });
 
+        /*
         zoomout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -235,6 +253,8 @@ lineplay.setVisibility(View.VISIBLE);
 
             }
         });
+
+         */
 
     /////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -260,6 +280,7 @@ lineplay.setVisibility(View.VISIBLE);
  */
 ////////////////////////////////////////////////////////////////////////////////////////
       //  Log.e("is",""+string1.getLine_count());
+
 new Thread(new Runnable() {
     @Override
     public void run() {
@@ -328,6 +349,7 @@ new Thread(new Runnable() {
 
 
     private void FindViewById() {
+        surface = (BaseSurfaceEight) findViewById(R.id.eightsurfaceview);
         line=findViewById(R.id.line_eightroot);
         textplay=findViewById(R.id.eighttextplay);
         play=findViewById(R.id.plsy_eightroot);

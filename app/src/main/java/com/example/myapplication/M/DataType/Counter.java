@@ -3,15 +3,28 @@ package com.example.myapplication.M.DataType;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.databinding.BaseObservable;
+
 import java.io.Serializable;
 
-public class Counter implements Serializable {
+public class Counter {
 
 
      int count_of_set_i_channel=0;
      int count_of_set_j_channel=0;
 
-static float screen_width =0;
+     static int horizontal_scale=8;
+
+
+    public int getHorizontal_scale() {
+        return horizontal_scale;
+    }
+
+    public void setHorizontal_scale(int horizontal_scale) {
+        Counter.horizontal_scale = horizontal_scale;
+    }
+
+    static float screen_width =0;
    static float screen_height=0;
 
        static float single_step_y =0;

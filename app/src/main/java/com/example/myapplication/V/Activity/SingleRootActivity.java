@@ -1,5 +1,6 @@
 package com.example.myapplication.V.Activity;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.bluetooth.BluetoothDevice;
 import android.content.Context;
@@ -23,11 +24,9 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.myapplication.M.DataType.Counter;
 import com.example.myapplication.M.DataType.String1;
-import com.example.myapplication.P.BaseSurfaceSingle;
+import com.example.myapplication.V.BaseSurfaceSingle;
 import com.example.myapplication.R;
 import com.jjoe64.graphview.GraphView;
-import com.jjoe64.graphview.series.DataPoint;
-import com.jjoe64.graphview.series.LineGraphSeries;
 
 import java.util.Set;
 
@@ -37,11 +36,14 @@ public class SingleRootActivity extends AppCompatActivity {
     ListView listView;
     Set<BluetoothDevice> pared;
     Dialog dialog;
-    TextView textplay;
+    TextView textplay,row100,row50,row_100,row_50;
     ImageView notch;
+    TextView V1000,V2000,V3000,V4000,V5000,V6000,V7000,V8000;
     String1 string1;
     GraphView graphView;
-    Button line,btn,montage,zoomout,play,choose_channel;
+    Button line,btn,montage,zoomout,play,choose_channel,zoomin;
+
+    Counter counter;
 
     float [] f= new float[8];
 
@@ -50,6 +52,13 @@ public class SingleRootActivity extends AppCompatActivity {
     int notchcount;
     int playcount;
     int text_play=0;
+
+
+    float pivote50=50;
+    float pivote100=100;
+     float pivote_50=-50;
+    float pivote_100=-100;
+
 
     float d=2;
 
@@ -70,8 +79,24 @@ public class SingleRootActivity extends AppCompatActivity {
     @Override
     protected void onResume()
     {
+
+
         super.onResume();
         surface.startDrawThread(0);
+        counter.setSingle_step_x((float) counter.getSurface_width()/((500)*counter.getHorizontal_scale()));
+        counter.setSingle_step_y((float) counter.getSurface_height()/200);
+
+        V8000.setText(""+(counter.getHorizontal_scale()*1000));
+        V7000.setText(""+((counter.getHorizontal_scale()*1000)-(1*((counter.getHorizontal_scale()*1000)/8))));
+        V6000.setText(""+((counter.getHorizontal_scale()*1000)-(2*((counter.getHorizontal_scale()*1000)/8))));
+        V5000.setText(""+((counter.getHorizontal_scale()*1000)-(3*((counter.getHorizontal_scale()*1000)/8))));
+        V4000.setText(""+((counter.getHorizontal_scale()*1000)-(4*((counter.getHorizontal_scale()*1000)/8))));
+        V3000.setText(""+((counter.getHorizontal_scale()*1000)-(5*((counter.getHorizontal_scale()*1000)/8))));
+        V2000.setText(""+((counter.getHorizontal_scale()*1000)-(6*((counter.getHorizontal_scale()*1000)/8))));
+        V1000.setText(""+((counter.getHorizontal_scale()*1000)-(7*((counter.getHorizontal_scale()*1000)/8))));
+
+
+
     }
 
     @Override
@@ -88,7 +113,7 @@ public class SingleRootActivity extends AppCompatActivity {
         Vibrator vibrator= (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         surface = (BaseSurfaceSingle) findViewById(R.id.singlesurfaceview);
         string1=new String1();
-        Counter counter=new Counter();
+        counter=new Counter();
        Intent intent=getIntent();
       Log.e("{}LHFSZBNWN",""+string1.getLine_count());
 
@@ -100,6 +125,11 @@ public class SingleRootActivity extends AppCompatActivity {
         FindViewById();
 
      listView=dialog.findViewById(R.id.list);
+        choose_channel.setText(string1.getPivote(0));
+
+
+        counter.setSingle_step_x((float) counter.getSurface_width()/((500)*counter.getHorizontal_scale()));
+        counter.setSingle_step_y((float) counter.getSurface_height()/200);
 
         textplay.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -257,22 +287,63 @@ public class SingleRootActivity extends AppCompatActivity {
 
             }
         });
-        /*
+
         zoomout.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View view) {
-                graphView.getViewport().setMaxX(4000);
-                graphView.getViewport().setMinX(0);
-                LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>();
 
-                graphView.getViewport().setMaxY(100);
-                graphView.getViewport().setMinY(-100);
-                graphView.addSeries(series);
+                    counter.setSingle_step_y((float) (counter.getSingle_step_y()/(1.1)));
+                    pivote_50= (float) (pivote_50*1.1);
+                    pivote_100= (float) (pivote_100*1.1);
+                    pivote50= (float) (pivote50*1.1);
+                    pivote100= (float) (pivote100*1.1);
+
+
+
+                    row50.setText(""+(int)(pivote50));
+                    row100.setText(""+(int)(pivote100));
+                    row_50.setText(""+(int)(pivote_50));
+                    row_100.setText(""+(int)(pivote_100));
+
+
+
+
+
+
+
+
+
+            }
+        });
+        zoomin.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onClick(View view) {
+
+                if(Float.parseFloat(row50.getText().toString())>3) {
+                    counter.setSingle_step_y((float) (counter.getSingle_step_y() * (1.1)));
+
+                    pivote50 = (float) (pivote50 / 1.1);
+                    pivote100 = (float) (pivote100 / 1.1);
+                    pivote_100 = (float) (pivote_100 / 1.1);
+                    pivote_50 = (float) (pivote_50 / 1.1);
+
+
+                    row50.setText("" + (int) (pivote50));
+                    row100.setText("" + (int) (pivote100));
+                    row_50.setText("" + (int) (pivote_50));
+                    row_100.setText("" + (int) (pivote_100));
+
+
+                }
 
             }
         });
 
-         */
+
+
+
 //////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -295,6 +366,20 @@ public class SingleRootActivity extends AppCompatActivity {
         montage=findViewById(R.id.montage_singleroot);
         choose_channel=findViewById(R.id.choiosechannel);
         zoomout=findViewById(R.id.zoomout_singleroot);
+        zoomin=findViewById(R.id.zoomin_singleroot);
+        row100=findViewById(R.id.VS100);
+        row50=findViewById(R.id.VS50);
+        row_50=findViewById(R.id.VS_50);
+        row_100=findViewById(R.id.VS_100);
+V1000=findViewById(R.id.SS_1000);
+        V2000=findViewById(R.id.SS_2000);
+        V3000=findViewById(R.id.SS_3000);
+        V4000=findViewById(R.id.SS_4000);
+        V5000=findViewById(R.id.SS_5000);
+        V6000=findViewById(R.id.SS_6000);
+        V7000=findViewById(R.id.SS_7000);
+        V8000=findViewById(R.id.SS_8000);
+
 
     }
 

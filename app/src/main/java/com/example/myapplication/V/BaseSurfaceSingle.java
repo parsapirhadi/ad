@@ -1,4 +1,4 @@
-package com.example.myapplication.P;
+package com.example.myapplication.V;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -13,14 +13,15 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.myapplication.M.DataType.Counter;
-import com.example.myapplication.M.DataType.String1;
 
-public class BaseSurfaceEight extends SurfaceView implements SurfaceHolder.Callback, View.OnTouchListener, Runnable
+public class BaseSurfaceSingle extends SurfaceView implements SurfaceHolder.Callback, View.OnTouchListener, Runnable
 {
-    float  f[] =new float[5];
+float  f[] =new float[5];
     private SurfaceHolder holder;
 
     private Thread drawThread;
+
+    int positive=0;
 
     private boolean surfaceReady = false;
 
@@ -30,38 +31,22 @@ public class BaseSurfaceEight extends SurfaceView implements SurfaceHolder.Callb
 
     private Paint samplePaint = new Paint();
     private Paint samplePaint1 = new Paint();
-    Counter counter;
-    String1 string1;
+Counter counter;
 
 
     private static final int MAX_FRAME_TIME = (int) (1000.0 / 60.0);
 
     private static final String LOGTAG = "surface";
 
-    public BaseSurfaceEight(Context context, AttributeSet attrs)
+    public BaseSurfaceSingle(Context context, AttributeSet attrs)
     {
-        super(context, attrs);
-        SurfaceHolder holder = getHolder();
+       super(context, attrs);
+    SurfaceHolder holder = getHolder();
         holder.addCallback(this);
         counter=new Counter();
-        string1=new String1();
-        setOnTouchListener(this);
+    setOnTouchListener(this);
 
 
-
-        Log.e("....................",""+counter.getEight_step_y());
-
-     //  counter.setEight_step_y((float) (counter.getEight_step_y()/(string1.getChannel_count())*2));
-
-      //  Log.e("getSurface_width",""+(float) counter.getSurface_width()/8000);
-      //  Log.e("getSurface_height",""+(float) counter.getSurface_height()/200);
-
-
-        //counter.setSurface_height(getHeight());
-       // counter.setSurface_width(getWidth());
-
-       // counter.setEight_step_x(counter.getSurface_width()/8000);
-       // counter.setEight_step_y(counter.getSurface_height()/200);
 
 
         samplePaint.setColor(Color.BLACK);
@@ -69,7 +54,7 @@ public class BaseSurfaceEight extends SurfaceView implements SurfaceHolder.Callb
 
         samplePaint.setAntiAlias(true);
 
-    }
+}
 
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height)
@@ -189,45 +174,46 @@ public class BaseSurfaceEight extends SurfaceView implements SurfaceHolder.Callb
 
                         canvas.drawColor(Color.rgb(230,230,230));
 
-                        //  canvas.drawColor(Color.rgb(230,230,230));
+                      //  canvas.drawColor(Color.rgb(230,230,230));
 
-                      //  canvas.drawRect(0, ((getHeight() / 4)*1)-1, getWidth(), (getHeight() / 4)*1, samplePaint);
-                       // canvas.drawRect(0, ((getHeight() / 4)*2)-1, getWidth(), (getHeight() / 4)*2, samplePaint);
-                      //  canvas.drawRect(0, ((getHeight() / 4)*3)-1, getWidth(), (getHeight() / 4)*3, samplePaint);
-
+                        Log.e("Surface width",""+getWidth());
+                        Log.e("Surface height",""+getHeight());
 
 
-                        canvas.drawRect( ((getWidth() / 4)*1)-1,0, (getWidth() / 4)*1 , getHeight(), samplePaint);
+
+
+
+                        canvas.drawRect(0, ((getHeight() / 4)*1)-1, getWidth(), (getHeight() / 4)*1, samplePaint);
+                        canvas.drawRect(0, ((getHeight() / 4)*2)-1, getWidth(), (getHeight() / 4)*2, samplePaint);
+                        canvas.drawRect(0, ((getHeight() / 4)*3)-1, getWidth(), (getHeight() / 4)*3, samplePaint);
+
+
+
+                        canvas.drawRect( ((getWidth() / 4)*1)-1,0,(getWidth() / 4)*1 , getHeight(), samplePaint);
                         canvas.drawRect( ((getWidth() / 4)*2)-1,0, (getWidth() / 4)*2, getHeight(), samplePaint);
                         canvas.drawRect( ((getWidth() / 4)*3)-1,0, (getWidth() / 4)*3, getHeight(), samplePaint);
                         canvas.drawRect( ((getWidth() / 4)*4)-1,0, (getWidth() / 4)*4, getHeight(), samplePaint);
-                        canvas.drawRect( ((getWidth() / 4)*5)-1,0, (getWidth() / 4)*5 , getHeight(), samplePaint);
-                        canvas.drawRect( ((getWidth() / 4)*6)-1,0, (getWidth() / 4)*6 , getHeight(), samplePaint);
+                        canvas.drawRect( ((getWidth() / 4)*5)-1,0,(getWidth() / 4)*5 , getHeight(), samplePaint);
+                        canvas.drawRect( ((getWidth() / 4)*6)-1,0,(getWidth() / 4)*6 , getHeight(), samplePaint);
                         canvas.drawRect( ((getWidth() / 4)*7)-1,0, (getWidth() / 4)*7, getHeight(), samplePaint);
 
 
+                        canvas.drawRect( 0,getHeight()-4, getWidth(), getHeight(), samplePaint);
 
                         canvas.drawRect(0, 0 ,1500,1, samplePaint);
 
 
 
-                        samplePaint1.setColor(Color.RED);
-                          Log.e("getSurface_height",""+counter.getEight_step_y());
-                          Log.e("getSurface_width",""+counter.getEight_step_x());
+                        samplePaint1.setColor(Color.rgb(65, 148, 255));
+                        samplePaint1.setStrokeWidth(3);
 
 
-                        for (int j=0;j<string1.getChannel_count();j++) {
-                            for (int i = 0; i < 8000; i++) {
-                                //  canvas.drawLine(i, (getHeight()/2)+counter.getChannel(cannel_count,i),i+1,(getHeight()/2)+counter.getChannel(cannel_count,i+1),samplePaint1);
-                                canvas.drawLine(
-                                        (float) (i*counter.getEight_step_x()),
-                                        (float) (((float) ((float)(getHeight()/(float)(string1.getChannel_count()*2)))*(((2*j)+1)))+(counter.getChannel(j,i)*counter.getEight_step_y())),
-                                        (float) ((i+1)*counter.getEight_step_x()),
-                                        (float) (((float) ((float)(getHeight()/(float)(string1.getChannel_count()*2)))*(((2*j)+1)))+(counter.getChannel(j,i+1)*counter.getEight_step_y())),
-                                        samplePaint1);
+Log.e("++++++++++++++",""+counter.getSurface_height());
+                        for (int i=0;i<500*counter.getHorizontal_scale();i++) {
 
-                            }
+                            canvas.drawLine(i*counter.getSingle_step_x(), (getHeight()/2)+(counter.getChannel(cannel_count,i)*counter.getSingle_step_y()),(i+1)*counter.getSingle_step_x(),(getHeight()/2)+(counter.getChannel(cannel_count,i+1)*counter.getSingle_step_y()),samplePaint1);
                         }
+
 /*
 for (int j=0;j<1000;j+=50) {
     if (t==255){

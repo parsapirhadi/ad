@@ -1,29 +1,22 @@
 package com.example.myapplication.V.Activity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
-import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.graphics.Color;
-import android.graphics.PixelFormat;
 import android.graphics.Point;
 import android.graphics.drawable.ColorDrawable;
-import android.opengl.GLSurfaceView;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.util.Log;
 import android.view.Display;
 import android.view.MenuItem;
-import android.view.Surface;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -34,54 +27,93 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
+import androidx.databinding.DataBindingUtil;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.myapplication.M.DataType.Counter;
 import com.example.myapplication.M.DataType.String1;
-import com.example.myapplication.P.BaseSurfaceEight;
+import com.example.myapplication.V.BaseSurfaceEight;
 import com.example.myapplication.P.FileReader;
 import com.example.myapplication.P.SetPivotName;
 import com.example.myapplication.P.SetPivotValue;
 import com.example.myapplication.R;
 import com.example.myapplication.V.ConnectGraphview;
 import com.jjoe64.graphview.GraphView;
-import com.jjoe64.graphview.GridLabelRenderer;
-import com.jjoe64.graphview.series.DataPoint;
-import com.jjoe64.graphview.series.LineGraphSeries;
 
 import java.io.BufferedReader;
-import java.lang.ref.WeakReference;
-import java.util.ArrayList;
 import java.util.Set;
 
 public class EightRootActivity extends AppCompatActivity {
-    Button line,btn,bluetooth,montage,play,zoomout;
+    Button line,btn,bluetooth,montage,play,zoomout,zoomin;
     ImageView notch;
     TextView textplay;
     ListView listView;
+    TextView pivote8000;
     Set<BluetoothDevice> pared;
     Dialog dialog;
     Button lineplay;
     SetPivotName namePivote;
     SetPivotValue pivotValue;
 
+
+
+    TextView V1000,V2000,V3000,V4000,V5000,V6000,V7000,V8000;
     private BaseSurfaceEight surface;
     String1 string1;
     Counter counter;
+    Vibrator vibrator;
     BufferedReader myReader;
     int g=0;
 
     int text_play=0;
     int notchcount;
     Activity activity;
-    GraphView graphView1,graphView2,graphView3,graphView4,graphView5,graphView6,graphView7,graphView8,graphView9;
+    GraphView graphView1;
     int playcount;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onResume()
     {
         super.onResume();
         surface.startDrawThread(-1);
+//        pivote8000.setText(counter.getHorizontal_scale()*1000+"");
+        counter.setEight_step_x((float) counter.getSurface_width()/(500*counter.getHorizontal_scale()));
+        counter.setEight_step_y((float) counter.getSurface_height()/200);
+        counter.setEight_step_y((counter.getEight_step_y()/string1.getChannel_count())/2);
+
+        V8000.setText(""+(counter.getHorizontal_scale()*1000));
+        V7000.setText(""+((counter.getHorizontal_scale()*1000)-(((counter.getHorizontal_scale()*1000)/8))));
+        V6000.setText(""+((counter.getHorizontal_scale()*1000)-(2*((counter.getHorizontal_scale()*1000)/8))));
+        V5000.setText(""+((counter.getHorizontal_scale()*1000)-(3*((counter.getHorizontal_scale()*1000)/8))));
+        V4000.setText(""+((counter.getHorizontal_scale()*1000)-(4*((counter.getHorizontal_scale()*1000)/8))));
+       V3000.setText(""+((counter.getHorizontal_scale()*1000)-(5*((counter.getHorizontal_scale()*1000)/8))));
+        V2000.setText(""+((counter.getHorizontal_scale()*1000)-(6*((counter.getHorizontal_scale()*1000)/8))));
+        V1000.setText(""+((counter.getHorizontal_scale()*1000)-(7*((counter.getHorizontal_scale()*1000)/8))));
+
+        if (string1.getChannel_count()==8)
+        {
+
+            findViewById(R.id.layout_axis_textview_10).setVisibility(View.GONE);
+            findViewById(R.id.layout_axis_textview_11).setVisibility(View.GONE);
+            findViewById(R.id.layout_axis_textview_12).setVisibility(View.GONE);
+            findViewById(R.id.layout_axis_textview_13).setVisibility(View.GONE);
+            findViewById(R.id.layout_axis_textview_14).setVisibility(View.GONE);
+            findViewById(R.id.layout_axis_textview_15).setVisibility(View.GONE);
+            findViewById(R.id.layout_axis_textview_16).setVisibility(View.GONE);
+
+        }
+        if (string1.getChannel_count()>16)
+        {
+
+            findViewById(R.id.left_linearlayout).setVisibility(View.GONE);
+            findViewById(R.id.textview0).setVisibility(View.GONE);
+
+
+        }
+
+
+
     }
 
     @Override
@@ -106,6 +138,9 @@ public class EightRootActivity extends AppCompatActivity {
 
 
 
+
+
+
         Display display=getWindowManager().getDefaultDisplay();
         Point size =new Point();
         display.getSize(size);
@@ -113,6 +148,8 @@ public class EightRootActivity extends AppCompatActivity {
         int height =size.y;
         string1=new String1();
         counter=new Counter();
+
+
 
         counter.setSurface_height(height);
         counter.setSurface_width(width);
@@ -125,8 +162,8 @@ public class EightRootActivity extends AppCompatActivity {
 
 
         LinearLayout linearLayout=findViewById(R.id.left_linearlayout);
-activity=this;
-        Vibrator vibrator= (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        activity=this;
+        vibrator= (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         notchcount=0;
         playcount=0;
 
@@ -134,11 +171,20 @@ activity=this;
         dialog.setContentView(R.layout.bluetooth_alert);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
+
+
         FindViewById();
+
+
+
         lineplay.setVisibility(View.INVISIBLE);
 Intent intent=getIntent();
 
-Log.e("?????????",""+intent.getSerializableExtra("string1"));
+        counter.setEight_step_x((float) counter.getSurface_width()/(500*counter.getHorizontal_scale()));
+        counter.setEight_step_y((float) counter.getSurface_height()/200);
+        counter.setEight_step_y((counter.getEight_step_y()/string1.getChannel_count())/2);
+
+
 
         textplay.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -239,22 +285,26 @@ lineplay.setVisibility(View.VISIBLE);
             }
         });
 
-        /*
         zoomout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                graphView1.getViewport().setMaxX(4000);
-                graphView1.getViewport().setMinX(0);
-                graphView1.getViewport().setMaxY((string1.getChannel_count()*100)-100);
-                graphView1.getViewport().setMinY(-100);
-                LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>();
-                graphView1.addSeries(series);
 
+                if(counter.getEight_step_y()>0) {
+                    vibrator.vibrate(40);
+                    counter.setEight_step_y((float) ((float) (counter.getEight_step_y() -(string1.getChannel_count()*(counter.getEight_step_y()/100)))));
+                }
+            }
+
+        });
+        zoomin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                vibrator.vibrate(40);
+                    counter.setEight_step_y((float) (counter.getEight_step_y() +(string1.getChannel_count()*(counter.getEight_step_y()/50))));
 
             }
         });
 
-         */
 
     /////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -316,6 +366,33 @@ new Thread(new Runnable() {
                 public void run() {
                     FileReader fileReader = new FileReader(activity,string1, counter, namePivote, pivotValue);
                     fileReader.read();
+
+
+
+
+
+                    if (string1.getChannel_count()==8)
+                    {
+
+                        findViewById(R.id.layout_axis_textview_10).setVisibility(View.GONE);
+                        findViewById(R.id.layout_axis_textview_11).setVisibility(View.GONE);
+                        findViewById(R.id.layout_axis_textview_12).setVisibility(View.GONE);
+                        findViewById(R.id.layout_axis_textview_13).setVisibility(View.GONE);
+                        findViewById(R.id.layout_axis_textview_14).setVisibility(View.GONE);
+                        findViewById(R.id.layout_axis_textview_15).setVisibility(View.GONE);
+                        findViewById(R.id.layout_axis_textview_16).setVisibility(View.GONE);
+
+                    }
+                    if (string1.getChannel_count()>16)
+                    {
+                        findViewById(R.id.left_linearlayout).setVisibility(View.GONE);
+                        findViewById(R.id.textview0).setVisibility(View.GONE);
+
+
+
+
+
+                    }
                    // ConnectGraphview drawGraphview1=new ConnectGraphview(graphView1,counter,string1);
                    // drawGraphview1.draw();
                 }
@@ -358,7 +435,19 @@ new Thread(new Runnable() {
         montage=findViewById(R.id.montage_eightroot);
         listView=dialog.findViewById(R.id.list);
         zoomout=findViewById(R.id.zoomout_eightroot);
-        lineplay=findViewById(R.id.playline);
+        zoomin=findViewById(R.id.zoomin_eightroot);
+
+
+        V1000=findViewById(R.id.SM_1000);
+        V2000=findViewById(R.id.SM_2000);
+        V3000=findViewById(R.id.SM_3000);
+        V4000=findViewById(R.id.SM_4000);
+        V5000=findViewById(R.id.SM_5000);
+        V6000=findViewById(R.id.SM_6000);
+        V7000=findViewById(R.id.SM_7000);
+        V8000=findViewById(R.id.SM_8000);
+
+        lineplay=findViewById(R.id.eightroot_playline);
 
         //graphView1=findViewById(R.id.eightgraphview1);
     }

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+
+<FrameLayout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#81aa00"
     tools:context=".V.Activity.EightRootActivity">
 <androidx.drawerlayout.widget.DrawerLayout
@@ -142,10 +143,19 @@
                     android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:id="@+id/zoomout_eightroot"
-                    android:layout_marginRight="30dp"
                     android:background="@drawable/zoom_out_foreground"
                     tools:layout_editor_absoluteX="512dp"
                     tools:layout_editor_absoluteY="10dp" />
+                <Button
+
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:id="@+id/zoomin_eightroot"
+                    android:background="@drawable/zoom_in_foreground"
+                    tools:layout_editor_absoluteX="512dp"
+                    tools:layout_editor_absoluteY="10dp" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -170,113 +180,200 @@
     android:layout_height="match_parent"
 
     >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/layout_axis_textview_1"
+
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/axis_textview_1"
+            style="@style/axis_textview" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/layout_axis_textview_2"
+
+        android:layout_weight="1">
+        <TextView
+            style="@style/axis_textview"
+
+            android:id="@+id/axis_textview_2"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/layout_axis_textview_3"
+
+        android:layout_weight="1">
+        <TextView
+            style="@style/axis_textview"
+
+            android:id="@+id/axis_textview_3"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/layout_axis_textview_4"
+
+        android:layout_weight="1">
+        <TextView
+            style="@style/axis_textview"
+
+            android:id="@+id/axis_textview_4"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/layout_axis_textview_5"
+        android:layout_weight="1">
+
+        <TextView
+            style="@style/axis_textview"
+
+            android:id="@+id/axis_textview_5"/>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:id="@+id/layout_axis_textview_6"
+
         android:layout_weight="1">
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginTop="5dp"
-            android:textSize="4sp"
-            android:text="fp1-f7"
-            tools:ignore="MissingConstraints" />
+        <TextView
+            style="@style/axis_textview"
+
+            android:id="@+id/axis_textview_6"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:id="@+id/layout_axis_textview_7"
+
         android:layout_weight="1">
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:textSize="4sp"
-            android:text="fp1-f7"
-            tools:ignore="MissingConstraints" />
+        <TextView
+            style="@style/axis_textview"
+
+            android:id="@+id/axis_textview_7"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:id="@+id/layout_axis_textview_8"
+
         android:layout_weight="1">
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:textSize="4sp"
-            android:text="fp1-f7"
-            tools:ignore="MissingConstraints" />
+        <TextView
+            style="@style/axis_textview"
+
+            android:id="@+id/axis_textview_8"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+
+        android:id="@+id/layout_axis_textview_9"
         android:layout_weight="1">
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:textSize="4sp"
-            android:text="fp1-f7"
-            tools:ignore="MissingConstraints" />
+        <TextView
+           style="@style/axis_textview"
+
+            android:id="@+id/axis_textview_9"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+
+        android:id="@+id/layout_axis_textview_10"
         android:layout_weight="1">
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:textSize="4sp"
-            android:text="fp1-f7"
-            tools:ignore="MissingConstraints" />
+        <TextView
+            style="@style/axis_textview"
+
+            android:id="@+id/axis_textview_10"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+
+        android:id="@+id/layout_axis_textview_11"
         android:layout_weight="1">
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:textSize="4sp"
-            android:text="fp1-f7"
-            tools:ignore="MissingConstraints" />
+        <TextView
+            style="@style/axis_textview"
+
+            android:id="@+id/axis_textview_11"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+
+        android:id="@+id/layout_axis_textview_12"
         android:layout_weight="1">
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:textSize="4sp"
-            android:text="fp1-f7"
-            tools:ignore="MissingConstraints" />
+        <TextView
+            style="@style/axis_textview"
+
+            android:id="@+id/axis_textview_12"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+
+        android:id="@+id/layout_axis_textview_13"
         android:layout_weight="1">
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:textSize="4sp"
-            android:text="fp1-f7"
-            tools:ignore="MissingConstraints" />
+        <TextView
+            style="@style/axis_textview"
+
+            android:id="@+id/axis_textview_13"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+
+        android:id="@+id/layout_axis_textview_14"
+        android:layout_weight="1">
+        <TextView
+            style="@style/axis_textview"
+
+            android:id="@+id/axis_textview_14"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/layout_axis_textview_15"
+        android:layout_weight="1">
+        <TextView
+            style="@style/axis_textview"
+
+            android:id="@+id/axis_textview_15"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/layout_axis_textview_16"
+        android:layout_weight="1">
+        <TextView
+            style="@style/axis_textview"
+
+           android:id="@+id/axis_textview_16"/>
     </LinearLayout>
 </LinearLayout>
+
+            <Button
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/black"
+                android:id="@+id/eightroot_playline"
+                />
+
             <Button
                 android:layout_width="2dp"
                 android:layout_height="match_parent"
                 android:background="@color/black"
                 />
-            <Button
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:background="@color/black"
-                android:id="@+id/playline"
-                />
 
 
-
-
-    <com.example.myapplication.P.BaseSurfaceEight
+    <com.example.myapplication.V.BaseSurfaceEight
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="match_parent"
@@ -290,22 +387,24 @@
             android:layout_height="30dp"
             android:background="#e6e6e6"
             android:orientation="vertical"
-            android:layout_marginLeft="40dp"
             android:gravity="right"
 
             >
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="@color/black"
 
-                />
+
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:orientation="horizontal"
                 android:layout_weight="1"
                 >
+                <TextView
+                    android:id="@+id/textview0"
+                    android:layout_width="40dp"
+                    android:layout_height="25dp"
+
+                    />
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="25dp"
@@ -318,6 +417,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:text="1000"
+                    android:id="@+id/SM_1000"
                     android:layout_weight="1"
                     android:layout_height="25dp"
                     />
@@ -325,6 +425,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:text="2000"
+                    android:id="@+id/SM_2000"
                     android:layout_weight="1"
                     android:layout_height="25dp"
                     />
@@ -332,6 +433,8 @@
                 <TextView
                     android:layout_width="0dp"
                     android:text="3000"
+                    android:id="@+id/SM_3000"
+
                     android:layout_weight="1"
                     android:layout_height="25dp"
                     />
@@ -339,30 +442,39 @@
                 <TextView
                     android:layout_width="0dp"
                     android:text="4000"
+                    android:id="@+id/SM_4000"
+
                     android:layout_weight="1"
                     android:layout_height="25dp"
                     />
                 <TextView
                     android:layout_width="0dp"
                     android:text="5000"
+                    android:id="@+id/SM_5000"
+
                     android:layout_weight="1"
                     android:layout_height="25dp"
                     />
                 <TextView
                     android:layout_width="0dp"
                     android:text="6000"
+                    android:id="@+id/SM_6000"
+
                     android:layout_weight="1"
                     android:layout_height="25dp"
                     />
                 <TextView
                     android:layout_width="0dp"
                     android:text="7000"
+                    android:id="@+id/SM_7000"
+
                     android:layout_weight="1"
                     android:layout_height="25dp"
                     />
                 <TextView
                     android:layout_width="wrap_content"
                     android:text="8000"
+                    android:id="@+id/SM_8000"
                     android:layout_height="25dp"
                     />
 

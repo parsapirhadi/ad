@@ -105,8 +105,9 @@ public class FileReader {
       //  Log.e("{{{{{{{{{{{",""+counter.getAll(5));
 
 
-        counter.setEight_step_x((float) counter.getSurface_width()/8000);
+        counter.setEight_step_x((float) counter.getSurface_width()/(500*counter.getHorizontal_scale()));
         counter.setEight_step_y((float) counter.getSurface_height()/200);
         counter.setEight_step_y((counter.getEight_step_y()/string1.getChannel_count())/2);
+
     }
 }

@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapplication.M.DataType.Counter;
 import com.example.myapplication.M.Item.ItemScale;
 import com.example.myapplication.R;
 
@@ -20,6 +21,8 @@ import java.util.List;
 public class ItemScaleAdapter extends RecyclerView.Adapter<ItemScaleAdapter.MyViewHolder> {
     List<ItemScale> itwm;
     Context context;
+    Counter counter;
+
     public ItemScaleAdapter(List<ItemScale> itwm, Context context) {
         this.itwm = itwm;
         this.context=context;
@@ -28,7 +31,7 @@ public class ItemScaleAdapter extends RecyclerView.Adapter<ItemScaleAdapter.MyVi
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.item_scale,parent,false);
-
+        counter=new Counter();
         return new MyViewHolder(view);
     }
 
@@ -39,17 +42,39 @@ public class ItemScaleAdapter extends RecyclerView.Adapter<ItemScaleAdapter.MyVi
         holder.title.setText(item.getTitle());
 
 
+
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (position==0){
+
                 PopupMenu popup = new PopupMenu(context,view);
                 popup.getMenuInflater().inflate(R.menu.horizontal_menu, popup.getMenu());
 
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem menuItem) {
-                        holder.title.setText(menuItem.getTitle());
+
+
+                       String t=menuItem.getTitle().toString();
+                        holder.title.setText(t);
+                        int f=0;
+                        String r="";
+                        for(f=0;f<5;f++){
+                            if (t.charAt(f)==' '){
+                                break;
+                            }
+
+                        }
+                        for (int s=0;s<f;s++){
+                            r+=t.charAt(s)+"";
+
+                        }
+                            counter.setHorizontal_scale(Integer.parseInt(r));
+
+
+
+
 
                         return true;
                     }

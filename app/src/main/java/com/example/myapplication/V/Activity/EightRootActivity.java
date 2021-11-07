@@ -44,6 +44,7 @@ import java.io.BufferedReader;
 import java.util.Set;
 
 public class EightRootActivity extends AppCompatActivity {
+
     Button line,btn,bluetooth,montage,play,zoomout,zoomin;
     ImageView notch;
     TextView textplay;
@@ -57,7 +58,7 @@ public class EightRootActivity extends AppCompatActivity {
 
 
 
-    TextView V1000,V2000,V3000,V4000,V5000,V6000,V7000,V8000;
+  static TextView V0,V1000,V2000,V3000,V4000,V5000,V6000,V7000,V8000;
     private BaseSurfaceEight surface;
     String1 string1;
     Counter counter;
@@ -71,6 +72,30 @@ public class EightRootActivity extends AppCompatActivity {
     GraphView graphView1;
     int playcount;
 
+
+
+
+    public static TextView getV0() {
+        return V0;
+    }public static TextView getV1000() {
+        return V1000;
+    }public static TextView getV2000() {
+        return V2000;
+    } public static TextView getV3000() {
+        return V3000;
+    } public static TextView getV4000() {
+        return V4000;
+    } public static TextView getV5000() {
+        return V5000;
+    } public static TextView getV6000() {
+        return V6000;
+    } public static TextView getV7000() {
+        return V7000;
+    } public static TextView getV8000() {
+        return V8000;
+    }
+
+
     @SuppressLint("SetTextI18n")
     @Override
     protected void onResume()
@@ -82,7 +107,9 @@ public class EightRootActivity extends AppCompatActivity {
         counter.setEight_step_y((float) counter.getSurface_height()/200);
         counter.setEight_step_y((counter.getEight_step_y()/string1.getChannel_count())/2);
 
-        V8000.setText(""+(counter.getHorizontal_scale()*1000));
+        V0.setText(""+Integer.parseInt(""+counter.getStartdraw())*2);
+        V8000.setText(""+((Integer.parseInt(""+counter.getStartdraw()*2))+(counter.getHorizontal_scale()*1000)));
+
         V7000.setText(""+((counter.getHorizontal_scale()*1000)-(((counter.getHorizontal_scale()*1000)/8))));
         V6000.setText(""+((counter.getHorizontal_scale()*1000)-(2*((counter.getHorizontal_scale()*1000)/8))));
         V5000.setText(""+((counter.getHorizontal_scale()*1000)-(3*((counter.getHorizontal_scale()*1000)/8))));
@@ -271,6 +298,7 @@ lineplay.setVisibility(View.VISIBLE);
                 Intent intent=new Intent(getApplicationContext(),SingleRootActivity.class);
                 startActivity(intent);
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                vibrator.vibrate(70);
                 finish();
 
             }
@@ -437,7 +465,7 @@ new Thread(new Runnable() {
         zoomout=findViewById(R.id.zoomout_eightroot);
         zoomin=findViewById(R.id.zoomin_eightroot);
 
-
+        V0=findViewById(R.id.SM_0);
         V1000=findViewById(R.id.SM_1000);
         V2000=findViewById(R.id.SM_2000);
         V3000=findViewById(R.id.SM_3000);

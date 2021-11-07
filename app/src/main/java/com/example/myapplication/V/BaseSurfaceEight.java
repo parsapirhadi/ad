@@ -1,5 +1,7 @@
 package com.example.myapplication.V;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -14,9 +16,114 @@ import android.widget.Toast;
 
 import com.example.myapplication.M.DataType.Counter;
 import com.example.myapplication.M.DataType.String1;
+import com.example.myapplication.V.Activity.EightRootActivity;
+import com.example.myapplication.V.Activity.MainActivity;
 
 public class BaseSurfaceEight extends SurfaceView implements SurfaceHolder.Callback, View.OnTouchListener, Runnable
 {
+float x=0 ,y =0;
+float dy,dx;
+
+
+    @SuppressLint("SetTextI18n")
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        Log.e("................ :","touch");
+
+
+
+
+        if (event.getAction()==MotionEvent.ACTION_DOWN)
+        {
+            Log.e("................ :","down");
+
+            x=event.getX();
+            y=event.getY();
+
+
+
+
+        }
+
+
+
+        if (event.getAction()==MotionEvent.ACTION_UP)
+        {
+            Log.e("................ :","up");
+
+
+            dx= event.getX()- x;
+            dy=event.getY()-y;
+
+
+
+            ///////////////////////////////////////////////////////////////////////////////////////////
+
+
+            if(dx>100 ){
+                if (dx>dy || EightRootActivity.getV0().getText()!="0") {
+                      Toast.makeText(getContext(),""+EightRootActivity.getV0().getText(),Toast.LENGTH_LONG).show();
+
+                    counter.setStartdraw(counter.getStartdraw()-(500*counter.getHorizontal_scale()));
+                    counter.setEnddraw(counter.getEnddraw()-(500*counter.getHorizontal_scale()));
+
+                    EightRootActivity.getV0().setText(""+(Integer.parseInt(EightRootActivity.getV0().getText().toString())-(1000*counter.getHorizontal_scale())));
+
+                    // EightRootActivity.getV1000().setText(""+(Integer.parseInt(EightRootActivity.getV1000().getText().toString())-(counter.getHorizontal_scale()*1000)));
+                   // EightRootActivity.getV2000().setText(""+(Integer.parseInt(EightRootActivity.getV2000().getText().toString())-(counter.getHorizontal_scale()*1000)));
+                   // EightRootActivity.getV3000().setText(""+(Integer.parseInt(EightRootActivity.getV3000().getText().toString())-(counter.getHorizontal_scale()*1000)));
+                   // EightRootActivity.getV4000().setText(""+(Integer.parseInt(EightRootActivity.getV4000().getText().toString())-(counter.getHorizontal_scale()*1000)));
+                   // EightRootActivity.getV5000().setText(""+(Integer.parseInt(EightRootActivity.getV5000().getText().toString())-(counter.getHorizontal_scale()*1000)));
+                   // EightRootActivity.getV6000().setText(""+(Integer.parseInt(EightRootActivity.getV6000().getText().toString())-(counter.getHorizontal_scale()*1000)));
+                  //  EightRootActivity.getV7000().setText(""+(Integer.parseInt(EightRootActivity.getV7000().getText().toString())-(counter.getHorizontal_scale()*1000)));
+                    EightRootActivity.getV8000().setText(""+(Integer.parseInt(EightRootActivity.getV8000().getText().toString())-(1000*counter.getHorizontal_scale())));
+
+                }
+            }
+            else if (dx<-100)
+            {
+                if (dx<dy) {
+                    Toast.makeText(getContext(),"left",Toast.LENGTH_LONG).show();
+
+
+                    counter.setStartdraw(counter.getStartdraw()+(500*counter.getHorizontal_scale()));
+                    counter.setEnddraw(counter.getEnddraw()+(500*counter.getHorizontal_scale()));
+
+
+                    EightRootActivity.getV0().setText(""+(Integer.parseInt(EightRootActivity.getV0().getText().toString())+(1000*counter.getHorizontal_scale())));
+
+                   // EightRootActivity.getV1000().setText(""+(Integer.parseInt(EightRootActivity.getV1000().getText().toString())+(counter.getHorizontal_scale()*1000)));
+                   // EightRootActivity.getV2000().setText(""+(Integer.parseInt(EightRootActivity.getV2000().getText().toString())+(counter.getHorizontal_scale()*1000)));
+                   // EightRootActivity.getV3000().setText(""+(Integer.parseInt(EightRootActivity.getV3000().getText().toString())+(counter.getHorizontal_scale()*1000)));
+                   // EightRootActivity.getV4000().setText(""+(Integer.parseInt(EightRootActivity.getV4000().getText().toString())+(counter.getHorizontal_scale()*1000)));
+                   // EightRootActivity.getV5000().setText(""+(Integer.parseInt(EightRootActivity.getV5000().getText().toString())+(counter.getHorizontal_scale()*1000)));
+                    //EightRootActivity.getV6000().setText(""+(Integer.parseInt(EightRootActivity.getV6000().getText().toString())+(counter.getHorizontal_scale()*1000)));
+                    //EightRootActivity.getV7000().setText(""+(Integer.parseInt(EightRootActivity.getV7000().getText().toString())+(counter.getHorizontal_scale()*1000)));
+                    EightRootActivity.getV8000().setText(""+(Integer.parseInt(EightRootActivity.getV8000().getText().toString())+(1000*counter.getHorizontal_scale())));
+
+                }
+            }
+
+            else if(dy>100 && dy> dx ){
+
+
+                Toast.makeText(getContext(),"down",Toast.LENGTH_LONG).show();
+
+
+            }
+            else if (dy<-100 && dy<dx){
+                Toast.makeText(getContext(),"up",Toast.LENGTH_LONG).show();
+
+            }
+        }
+        return true;
+
+    }
+
+
+
+
+
     float  f[] =new float[5];
     private SurfaceHolder holder;
 
@@ -216,15 +323,16 @@ public class BaseSurfaceEight extends SurfaceView implements SurfaceHolder.Callb
 
 
                         for (int j=0;j<string1.getChannel_count();j++) {
-                            for (int i = 0; i < 500*counter.getHorizontal_scale(); i++) {
+                            int y=1;
+                            for (int i = counter.getStartdraw(); i < counter.getEnddraw(); i++) {
                                 //  canvas.drawLine(i, (getHeight()/2)+counter.getChannel(cannel_count,i),i+1,(getHeight()/2)+counter.getChannel(cannel_count,i+1),samplePaint1);
                                 canvas.drawLine(
-                                        (float) (i*counter.getEight_step_x()),
+                                        (float) (y*counter.getEight_step_x()),
                                         (float) (((float) ((float)(getHeight()/(float)(string1.getChannel_count()*2)))*(((2*j)+1)))+(counter.getChannel(j,i)*counter.getEight_step_y())),
-                                        (float) ((i+1)*counter.getEight_step_x()),
+                                        (float) ((y+1)*counter.getEight_step_x()),
                                         (float) (((float) ((float)(getHeight()/(float)(string1.getChannel_count()*2)))*(((2*j)+1)))+(counter.getChannel(j,i+1)*counter.getEight_step_y())),
                                         samplePaint1);
-
+                                      y++;
                             }
                         }
 /*

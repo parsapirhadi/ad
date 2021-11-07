@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import androidx.databinding.BaseObservable;
+import androidx.databinding.Bindable;
 
 import java.io.Serializable;
 
@@ -14,14 +15,32 @@ public class Counter {
      int count_of_set_j_channel=0;
 
      static int horizontal_scale=8;
+static int startdraw=0;
+    static int enddraw=8000;
 
+    public int getStartdraw() {
+        return startdraw;
+    }
+
+    public void setStartdraw(int startdraw) {
+        Counter.startdraw = startdraw;
+    }
+
+    public int getEnddraw() {
+        return enddraw;
+    }
+
+    public void setEnddraw(int enddraw) {
+        Counter.enddraw = enddraw;
+    }
 
     public int getHorizontal_scale() {
         return horizontal_scale;
-    }
 
+    }
     public void setHorizontal_scale(int horizontal_scale) {
         Counter.horizontal_scale = horizontal_scale;
+
     }
 
     static float screen_width =0;

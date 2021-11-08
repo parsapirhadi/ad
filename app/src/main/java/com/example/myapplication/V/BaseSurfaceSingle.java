@@ -1,5 +1,6 @@
 package com.example.myapplication.V;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -13,11 +14,17 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.myapplication.M.DataType.Counter;
+import com.example.myapplication.V.Activity.EightRootActivity;
+import com.example.myapplication.V.Activity.SingleRootActivity;
 
 public class BaseSurfaceSingle extends SurfaceView implements SurfaceHolder.Callback, View.OnTouchListener, Runnable
 {
 float  f[] =new float[5];
     private SurfaceHolder holder;
+
+    float x=0 ,y =0;
+    float dy,dx;
+
 
     private Thread drawThread;
 
@@ -37,6 +44,101 @@ Counter counter;
     private static final int MAX_FRAME_TIME = (int) (1000.0 / 60.0);
 
     private static final String LOGTAG = "surface";
+
+
+    @SuppressLint("SetTextI18n")
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        Log.e("................ :","touch");
+
+
+
+
+        if (event.getAction()==MotionEvent.ACTION_DOWN)
+        {
+            Log.e("................ :","down");
+
+            x=event.getX();
+            y=event.getY();
+
+
+
+
+        }
+
+
+
+        if (event.getAction()==MotionEvent.ACTION_UP)
+        {
+            Log.e("................ :","up");
+
+
+            dx= event.getX()- x;
+            dy=event.getY()-y;
+
+
+
+            ///////////////////////////////////////////////////////////////////////////////////////////
+
+            int f=Integer.parseInt( SingleRootActivity.getV0().getText().toString())-1;
+
+            if(dx>100 && f>-1){
+                if (dx>dy)
+                {
+
+                    counter.setStartdraw(counter.getStartdraw()-(500*counter.getHorizontal_scale()));
+                    counter.setEnddraw(counter.getEnddraw()-(500*counter.getHorizontal_scale()));
+
+                    int z=Integer.parseInt(SingleRootActivity.getV0().getText().toString())-(1000*counter.getHorizontal_scale());
+                    SingleRootActivity.getV0().setText(""+z);
+                    SingleRootActivity.getV1000().setText(""+(z+(125*counter.getHorizontal_scale())));
+                    SingleRootActivity.getV2000().setText(""+(z+(2*125*counter.getHorizontal_scale())));
+                    SingleRootActivity.getV3000().setText(""+(z+(3*125*counter.getHorizontal_scale())));
+                    SingleRootActivity.getV4000().setText(""+(z+(4*125*counter.getHorizontal_scale())));
+                    SingleRootActivity.getV5000().setText(""+(z+(5*125*counter.getHorizontal_scale())));
+                    SingleRootActivity.getV6000().setText(""+(z+(6*125*counter.getHorizontal_scale())));
+                    SingleRootActivity.getV7000().setText(""+(z+(7*125*counter.getHorizontal_scale())));
+                    SingleRootActivity.getV8000().setText(""+(z+(8*125*counter.getHorizontal_scale())));
+                }
+            }
+            else if (dx<-100)
+            {
+                if (dx<dy) {
+
+
+                    counter.setStartdraw(counter.getStartdraw()+(500*counter.getHorizontal_scale()));
+                    counter.setEnddraw(counter.getEnddraw()+(500*counter.getHorizontal_scale()));
+
+                    int z=Integer.parseInt(SingleRootActivity.getV0().getText().toString())+(1000*counter.getHorizontal_scale());
+                    SingleRootActivity.getV0().setText(""+z);
+
+                    SingleRootActivity.getV1000().setText(""+(z+(125*counter.getHorizontal_scale())));
+                    SingleRootActivity.getV2000().setText(""+(z+(2*125*counter.getHorizontal_scale())));
+                    SingleRootActivity.getV3000().setText(""+(z+(3*125*counter.getHorizontal_scale())));
+                    SingleRootActivity.getV4000().setText(""+(z+(4*125*counter.getHorizontal_scale())));
+                    SingleRootActivity.getV5000().setText(""+(z+(5*125*counter.getHorizontal_scale())));
+                    SingleRootActivity.getV6000().setText(""+(z+(6*125*counter.getHorizontal_scale())));
+                    SingleRootActivity.getV7000().setText(""+(z+(7*125*counter.getHorizontal_scale())));
+                    SingleRootActivity.getV8000().setText(""+(z+(8*125*counter.getHorizontal_scale())));
+                }
+            }
+
+            else if(dy>100 && dy> dx ){
+
+
+                Toast.makeText(getContext(),"down",Toast.LENGTH_LONG).show();
+
+
+            }
+            else if (dy<-100 && dy<dx){
+                Toast.makeText(getContext(),"up",Toast.LENGTH_LONG).show();
+
+            }
+        }
+        return true;
+
+    }
+
 
     public BaseSurfaceSingle(Context context, AttributeSet attrs)
     {
@@ -209,9 +311,11 @@ Counter counter;
 
 
 Log.e("++++++++++++++",""+counter.getSurface_height());
-                        for (int i=0;i<500*counter.getHorizontal_scale();i++) {
+int y=0;
+                        for (int i=counter.getStartdraw();i<counter.getEnddraw();i++) {
 
-                            canvas.drawLine(i*counter.getSingle_step_x(), (getHeight()/2)+(counter.getChannel(cannel_count,i)*counter.getSingle_step_y()),(i+1)*counter.getSingle_step_x(),(getHeight()/2)+(counter.getChannel(cannel_count,i+1)*counter.getSingle_step_y()),samplePaint1);
+                            canvas.drawLine(y*counter.getSingle_step_x(), (getHeight()/2)+(counter.getChannel(cannel_count,i)*counter.getSingle_step_y()),(y+1)*counter.getSingle_step_x(),(getHeight()/2)+(counter.getChannel(cannel_count,i+1)*counter.getSingle_step_y()),samplePaint1);
+                       y++;
                         }
 
 /*

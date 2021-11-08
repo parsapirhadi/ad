@@ -230,6 +230,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_weight="1"
+                            android:id="@+id/VS0"
                             android:text="0"
 
                             />
@@ -255,22 +256,23 @@
                     </LinearLayout>
                 </LinearLayout>
 
-                <Button
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/black"
-                    android:id="@+id/singleroot_playline"
-                    />
-                <Button
-                    android:gravity="right"
-                    android:layout_width="2dp"
-                    android:layout_marginStart="3dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/black"
-                    />
+
 
 
             </LinearLayout>
+            <Button
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/black"
+                android:id="@+id/singleroot_playline"
+                />
+            <Button
+                android:gravity="right"
+                android:layout_width="2dp"
+                android:layout_marginStart="3dp"
+                android:layout_height="match_parent"
+                android:background="@color/black"
+                />
 <com.example.myapplication.V.BaseSurfaceSingle
 
     android:layout_width="0dp"
@@ -301,6 +303,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="25dp"
+                    android:id="@+id/SS_0"
                     android:text="0"
                     android:layout_weight="1"
 

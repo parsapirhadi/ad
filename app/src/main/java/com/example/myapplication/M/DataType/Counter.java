@@ -43,8 +43,7 @@ static int startdraw=0;
 
     }
 
-    static float screen_width =0;
-   static float screen_height=0;
+
 
        static float single_step_y =0;
          static float single_step_x =0;
@@ -87,21 +86,7 @@ static int startdraw=0;
     static float surface_width =0;
    static float surface_height=0;
 
-    public  float getScreen_width() {
-        return screen_width;
-    }
 
-    public  void setScreen_width(float screen_width) {
-        Counter.screen_width = screen_width;
-    }
-
-    public  float getScreen_height() {
-        return screen_height;
-    }
-
-    public  void setScreen_height(float screen_height) {
-        Counter.screen_height = screen_height;
-    }
 
     public float getSurface_width() {
         return surface_width;

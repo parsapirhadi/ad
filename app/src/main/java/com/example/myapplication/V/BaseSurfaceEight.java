@@ -59,50 +59,48 @@ float dy,dx;
 
             ///////////////////////////////////////////////////////////////////////////////////////////
 
-int f=Integer.parseInt(EightRootActivity.getV0().getText().toString())-1;
+float f=Float.parseFloat(EightRootActivity.getV0().getText().toString())-1;
 
             if(dx>100 && f>-1){
                 if (dx>dy)
                 {
-                    Log.e("start :",""+(counter.getStartdraw()-(500*counter.getHorizontal_scale())));
 
                     counter.setStartdraw(counter.getStartdraw()-(500*counter.getHorizontal_scale()));
                     counter.setEnddraw(counter.getEnddraw()-(500*counter.getHorizontal_scale()));
 
-                  int z=Integer.parseInt(EightRootActivity.getV0().getText().toString())-(1000*counter.getHorizontal_scale());
+                  float z=Float.parseFloat(EightRootActivity.getV0().getText().toString())-(counter.getHorizontal_scale());
 
                     EightRootActivity.getV0().setText(""+z);
-                    EightRootActivity.getV1000().setText(""+(z+(125*counter.getHorizontal_scale())));
-                    EightRootActivity.getV2000().setText(""+(z+(2*125*counter.getHorizontal_scale())));
-                    EightRootActivity.getV3000().setText(""+(z+(3*125*counter.getHorizontal_scale())));
-                    EightRootActivity.getV4000().setText(""+(z+(4*125*counter.getHorizontal_scale())));
-                    EightRootActivity.getV5000().setText(""+(z+(5*125*counter.getHorizontal_scale())));
-                    EightRootActivity.getV6000().setText(""+(z+(6*125*counter.getHorizontal_scale())));
-                    EightRootActivity.getV7000().setText(""+(z+(7*125*counter.getHorizontal_scale())));
-                    EightRootActivity.getV8000().setText(""+(z+(8*125*counter.getHorizontal_scale())));
+                    EightRootActivity.getV1000().setText(""+(z+(0.125*counter.getHorizontal_scale())));
+                    EightRootActivity.getV2000().setText(""+(z+(2*0.125*counter.getHorizontal_scale())));
+                    EightRootActivity.getV3000().setText(""+(z+(3*0.125*counter.getHorizontal_scale())));
+                    EightRootActivity.getV4000().setText(""+(z+(4*0.125*counter.getHorizontal_scale())));
+                    EightRootActivity.getV5000().setText(""+(z+(5*0.125*counter.getHorizontal_scale())));
+                    EightRootActivity.getV6000().setText(""+(z+(6*0.125*counter.getHorizontal_scale())));
+                    EightRootActivity.getV7000().setText(""+(z+(7*0.125*counter.getHorizontal_scale())));
+                    EightRootActivity.getV8000().setText(""+(z+(8*0.125*counter.getHorizontal_scale())));
 
                 }
             }
             else if (dx<-100)
             {
                 if (dx<dy) {
-                    Toast.makeText(getContext(),"left",Toast.LENGTH_LONG).show();
 
 
                     counter.setStartdraw(counter.getStartdraw()+(500*counter.getHorizontal_scale()));
                     counter.setEnddraw(counter.getEnddraw()+(500*counter.getHorizontal_scale()));
 
-                      int z=Integer.parseInt(EightRootActivity.getV0().getText().toString())+(1000*counter.getHorizontal_scale());
+                      float z=Float.parseFloat(EightRootActivity.getV0().getText().toString())+(counter.getHorizontal_scale());
                     EightRootActivity.getV0().setText(""+z);
 
-                    EightRootActivity.getV1000().setText(""+(z+(125*counter.getHorizontal_scale())));
-                    EightRootActivity.getV2000().setText(""+(z+(2*125*counter.getHorizontal_scale())));
-                    EightRootActivity.getV3000().setText(""+(z+(3*125*counter.getHorizontal_scale())));
-                    EightRootActivity.getV4000().setText(""+(z+(4*125*counter.getHorizontal_scale())));
-                    EightRootActivity.getV5000().setText(""+(z+(5*125*counter.getHorizontal_scale())));
-                    EightRootActivity.getV6000().setText(""+(z+(6*125*counter.getHorizontal_scale())));
-                    EightRootActivity.getV7000().setText(""+(z+(7*125*counter.getHorizontal_scale())));
-                    EightRootActivity.getV8000().setText(""+(z+(8*125*counter.getHorizontal_scale())));
+                    EightRootActivity.getV1000().setText(""+(z+(0.125*counter.getHorizontal_scale())));
+                    EightRootActivity.getV2000().setText(""+(z+(2*0.125*counter.getHorizontal_scale())));
+                    EightRootActivity.getV3000().setText(""+(z+(3*0.125*counter.getHorizontal_scale())));
+                    EightRootActivity.getV4000().setText(""+(z+(4*0.125*counter.getHorizontal_scale())));
+                    EightRootActivity.getV5000().setText(""+(z+(5*0.125*counter.getHorizontal_scale())));
+                    EightRootActivity.getV6000().setText(""+(z+(6*0.125*counter.getHorizontal_scale())));
+                    EightRootActivity.getV7000().setText(""+(z+(7*0.125*counter.getHorizontal_scale())));
+                    EightRootActivity.getV8000().setText(""+(z+(8*0.125*counter.getHorizontal_scale())));
 
                 }
             }
@@ -110,12 +108,10 @@ int f=Integer.parseInt(EightRootActivity.getV0().getText().toString())-1;
             else if(dy>100 && dy> dx ){
 
 
-                Toast.makeText(getContext(),"down",Toast.LENGTH_LONG).show();
 
 
             }
             else if (dy<-100 && dy<dx){
-                Toast.makeText(getContext(),"up",Toast.LENGTH_LONG).show();
 
             }
         }

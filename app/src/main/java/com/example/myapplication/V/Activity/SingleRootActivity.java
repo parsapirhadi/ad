@@ -459,18 +459,17 @@ vibrator.vibrate(40);
                                     counter.setStartdraw(counter.getStartdraw()+(250*counter.getHorizontal_scale()));
                                     counter.setEnddraw(counter.getEnddraw()+(250*counter.getHorizontal_scale()));
 
-                                    int z=Integer.parseInt(V0.getText().toString())+(500*counter.getHorizontal_scale());
-
+                                    float z=Float.parseFloat(SingleRootActivity.getV0().getText().toString())+((counter.getHorizontal_scale()/2));
                                     V0.setText(""+z);
-                                    V1000.setText(""+(z+(125*counter.getHorizontal_scale())));
-                                    V2000.setText(""+(z+(2*125*counter.getHorizontal_scale())));
-                                    V3000.setText(""+(z+(3*125*counter.getHorizontal_scale())));
-                                    V4000.setText(""+(z+(4*125*counter.getHorizontal_scale())));
-                                    V5000.setText(""+(z+(5*125*counter.getHorizontal_scale())));
-                                    V6000.setText(""+(z+(6*125*counter.getHorizontal_scale())));
-                                    V7000.setText(""+(z+(7*125*counter.getHorizontal_scale())));
-                                    V8000.setText(""+(z+(8*125*counter.getHorizontal_scale())));
 
+                                    V1000.setText(""+(z+(0.125*counter.getHorizontal_scale())));
+                                    V2000.setText(""+(z+(2*0.125*counter.getHorizontal_scale())));
+                                    V3000.setText(""+(z+(3*0.125*counter.getHorizontal_scale())));
+                                    V4000.setText(""+(z+(4*0.125*counter.getHorizontal_scale())));
+                                    V5000.setText(""+(z+(5*0.125*counter.getHorizontal_scale())));
+                                    V6000.setText(""+(z+(6*0.125*counter.getHorizontal_scale())));
+                                    V7000.setText(""+(z+(7*0.125*counter.getHorizontal_scale())));
+                                    V8000.setText(""+(z+(8*0.125*counter.getHorizontal_scale())));
 
                                 }
                             }

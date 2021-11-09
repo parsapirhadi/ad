@@ -1,5 +1,7 @@
 package com.example.myapplication.V.Activity;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -112,16 +114,16 @@ public class EightRootActivity extends AppCompatActivity {
         counter.setEight_step_y((counter.getEight_step_y()/string1.getChannel_count())/2);
 
 
-        int z=Integer.parseInt(""+counter.getStartdraw())*2;
-        V0.setText(""+z);
-        V1000.setText(""+(z+(125*counter.getHorizontal_scale())));
-        V2000.setText(""+(z+(2*125*counter.getHorizontal_scale())));
-        V3000.setText(""+(z+(3*125*counter.getHorizontal_scale())));
-        V4000.setText(""+(z+(4*125*counter.getHorizontal_scale())));
-        V5000.setText(""+(z+(5*125*counter.getHorizontal_scale())));
-        V6000.setText(""+(z+(6*125*counter.getHorizontal_scale())));
-        V7000.setText(""+(z+(7*125*counter.getHorizontal_scale())));
-        V8000.setText(""+(z+(8*125*counter.getHorizontal_scale())));
+        float z=Float.parseFloat(""+counter.getStartdraw())*2;
+        V0.setText(""+z/1000);
+        V1000.setText(""+(z+(125*counter.getHorizontal_scale()))/1000);
+        V2000.setText(""+(z+(2*125*counter.getHorizontal_scale()))/1000);
+        V3000.setText(""+(z+(3*125*counter.getHorizontal_scale()))/1000);
+        V4000.setText(""+(z+(4*125*counter.getHorizontal_scale()))/1000);
+        V5000.setText(""+(z+(5*125*counter.getHorizontal_scale()))/1000);
+        V6000.setText(""+(z+(6*125*counter.getHorizontal_scale()))/1000);
+        V7000.setText(""+(z+(7*125*counter.getHorizontal_scale()))/1000);
+        V8000.setText(""+(z+(8*125*counter.getHorizontal_scale()))/1000);
 
 
 
@@ -226,6 +228,9 @@ public class EightRootActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 vibrator.vibrate(40);
+
+
+
                 if (text_play==0){
                     textplay.setText("×2");
                     text_play=1;
@@ -235,10 +240,15 @@ public class EightRootActivity extends AppCompatActivity {
                     textplay.setText("×0.5");
                     text_play=2;
 
+
+
                 }
                 else if (text_play==2){
                     textplay.setText("×1");
                     text_play=0;
+
+
+
 
                 }
 
@@ -259,6 +269,8 @@ public class EightRootActivity extends AppCompatActivity {
                     play.setBackgroundResource(R.drawable.play_foreground);
                     playcount=0;
                     set_stop_play=1;
+
+
 
                 }
 
@@ -488,6 +500,67 @@ new Thread(new Runnable() {
     }
     private void Setlinebtnanim(){
 
+        lineplay.setVisibility(View.VISIBLE);
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+
+                    lineplay.setTranslationX(0);
+                    ObjectAnimator animatorX = ObjectAnimator.ofFloat(lineplay, "x", counter.getSurface_width()-30);
+                    animatorX.setDuration(1000*counter.getHorizontal_scale());
+                    AnimatorSet animatorSet = new AnimatorSet();
+                    animatorSet.playTogether(animatorX);
+
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            animatorSet.start();
+
+                            counter.setStartdraw(counter.getStartdraw()+(250*counter.getHorizontal_scale()));
+                            counter.setEnddraw(counter.getEnddraw()+(250*counter.getHorizontal_scale()));
+
+                            float z=Float.parseFloat(EightRootActivity.getV0().getText().toString())+((counter.getHorizontal_scale()/2));
+                            V0.setText(""+z);
+
+                            V1000.setText(""+(z+(0.125*counter.getHorizontal_scale())));
+                            V2000.setText(""+(z+(2*0.125*counter.getHorizontal_scale())));
+                            V3000.setText(""+(z+(3*0.125*counter.getHorizontal_scale())));
+                            V4000.setText(""+(z+(4*0.125*counter.getHorizontal_scale())));
+                            V5000.setText(""+(z+(5*0.125*counter.getHorizontal_scale())));
+                            V6000.setText(""+(z+(6*0.125*counter.getHorizontal_scale())));
+                            V7000.setText(""+(z+(7*0.125*counter.getHorizontal_scale())));
+                            V8000.setText(""+(z+(8*0.125*counter.getHorizontal_scale())));
+
+
+
+
+
+
+                        }
+
+                    });
+
+                    try {
+                        Thread.sleep((counter.getHorizontal_scale()*1000)+40);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+
+                }
+
+
+            }
+        }).start();
+
+
+
+
+/*
+
 new Thread(new Runnable() {
     @Override
     public void run() {
@@ -506,6 +579,7 @@ new Thread(new Runnable() {
                     public void onAnimationStart(Animation animation) {
 
                         animation.setDuration(counter.getHorizontal_scale()*1000);
+
                     }
 
                     @SuppressLint("SetTextI18n")
@@ -517,17 +591,17 @@ if (set_stop_play==0) {
     counter.setStartdraw(counter.getStartdraw()+(250*counter.getHorizontal_scale()));
     counter.setEnddraw(counter.getEnddraw()+(250*counter.getHorizontal_scale()));
 
-    int z=Integer.parseInt(V0.getText().toString())+(500*counter.getHorizontal_scale());
-
+    float z=Float.parseFloat(EightRootActivity.getV0().getText().toString())+((counter.getHorizontal_scale()/2));
     V0.setText(""+z);
-    V1000.setText(""+(z+(125*counter.getHorizontal_scale())));
-    V2000.setText(""+(z+(2*125*counter.getHorizontal_scale())));
-    V3000.setText(""+(z+(3*125*counter.getHorizontal_scale())));
-    V4000.setText(""+(z+(4*125*counter.getHorizontal_scale())));
-    V5000.setText(""+(z+(5*125*counter.getHorizontal_scale())));
-    V6000.setText(""+(z+(6*125*counter.getHorizontal_scale())));
-    V7000.setText(""+(z+(7*125*counter.getHorizontal_scale())));
-    V8000.setText(""+(z+(8*125*counter.getHorizontal_scale())));
+
+    V1000.setText(""+(z+(0.125*counter.getHorizontal_scale())));
+    V2000.setText(""+(z+(2*0.125*counter.getHorizontal_scale())));
+    V3000.setText(""+(z+(3*0.125*counter.getHorizontal_scale())));
+    V4000.setText(""+(z+(4*0.125*counter.getHorizontal_scale())));
+    V5000.setText(""+(z+(5*0.125*counter.getHorizontal_scale())));
+    V6000.setText(""+(z+(6*0.125*counter.getHorizontal_scale())));
+    V7000.setText(""+(z+(7*0.125*counter.getHorizontal_scale())));
+    V8000.setText(""+(z+(8*0.125*counter.getHorizontal_scale())));
 
 
 }
@@ -546,6 +620,8 @@ if (set_stop_play==0) {
 }).start();
 
 
+
+ */
 
 
     }

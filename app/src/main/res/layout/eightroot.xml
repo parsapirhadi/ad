@@ -358,12 +358,33 @@
            android:id="@+id/axis_textview_16"/>
     </LinearLayout>
 </LinearLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+            <Button
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/black"
+                android:id="@+id/eightroot_playline1"
+                />
 
             <Button
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
                 android:background="@color/black"
-                android:id="@+id/eightroot_playline"
+                android:id="@+id/eightroot_playline2"
+                />
+            <Button
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/black"
+                android:id="@+id/eightroot_playline3"
+                />
+            <Button
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/black"
+                android:id="@+id/eightroot_playline4"
                 />
 
             <Button
@@ -373,12 +394,14 @@
                 />
 
 
+
     <com.example.myapplication.V.BaseSurfaceEight
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="match_parent"
         android:id="@+id/eightsurfaceview"
         />
+        </LinearLayout>
 
         </LinearLayout>
 

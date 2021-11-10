@@ -57,12 +57,17 @@ public class EightRootActivity extends AppCompatActivity {
     Animation animation;
     Set<BluetoothDevice> pared;
     Dialog dialog;
-   Button lineplay;
+   Button lineplay1,lineplay2,lineplay3,lineplay4;
     SetPivotName namePivote;
     SetPivotValue pivotValue;
 
-    int set_stop_play =0;
+    int acces_to_paly_animation =0;
 
+    int set_stop_play =0;
+    int one=0;
+
+
+    AnimatorSet animatorSet,animatorSet1,animatorSet3,animatorSet2;
 
   static TextView V0,V1000,V2000,V3000,V4000,V5000,V6000,V7000,V8000;
     private BaseSurfaceEight surface;
@@ -215,7 +220,44 @@ public class EightRootActivity extends AppCompatActivity {
         FindViewById();
 
 
-        lineplay.setVisibility(View.INVISIBLE);
+
+
+
+
+
+
+
+
+
+
+
+        lineplay1.setTranslationX(-1*(width/2));
+        ObjectAnimator animatorX = ObjectAnimator.ofFloat(lineplay1, "x", width+(width/2));
+        animatorX.setDuration(4000);
+        animatorX.setRepeatCount(5);
+        animatorSet = new AnimatorSet();
+        animatorSet.playTogether(animatorX);
+
+
+
+        lineplay2.setTranslationX(-1*(width/2));
+        ObjectAnimator animatorX1 = ObjectAnimator.ofFloat(lineplay2, "x", width+(width/2));
+        animatorX1.setDuration(4000);
+        animatorX1.setRepeatCount(5);
+        animatorSet1 = new AnimatorSet();
+        animatorSet1.playTogether(animatorX1);
+
+
+        ObjectAnimator animatorX2 = ObjectAnimator.ofFloat(lineplay3, "x", width+(width));
+        animatorX2.setDuration(4000);
+        animatorSet2 = new AnimatorSet();
+        animatorSet2.playTogether(animatorX2);
+
+
+        animatorSet3 = new AnimatorSet();
+
+
+
 
 
         counter.setEight_step_x((float) counter.getSurface_width()/(500*counter.getHorizontal_scale()));
@@ -494,37 +536,165 @@ new Thread(new Runnable() {
         V7000=findViewById(R.id.SM_7000);
         V8000=findViewById(R.id.SM_8000);
 
-        lineplay=findViewById(R.id.eightroot_playline);
+
+
+        lineplay1=findViewById(R.id.eightroot_playline1);
+        lineplay2=findViewById(R.id.eightroot_playline2);
+        lineplay3=findViewById(R.id.eightroot_playline3);
+        lineplay4=findViewById(R.id.eightroot_playline4);
+
+
 
         //graphView1=findViewById(R.id.eightgraphview1);
     }
     private void Setlinebtnanim(){
 
-        lineplay.setVisibility(View.VISIBLE);
+one=0;
+
+        acces_to_paly_animation=1;
+
+        Thread btn1= new Thread(new Runnable() {
+            @Override
+            public void run() {
+                if (acces_to_paly_animation==1) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            btn.setVisibility(View.VISIBLE);
+                            animatorSet2.start();
+                            Log.e("..............","btn1");
+
+                        }
+                    });
+                }
+            }
+        });
+
+
+        Thread btn2=new Thread(new Runnable() {
+            @Override
+            public void run() {
+                if (acces_to_paly_animation==1) {
+
+if (one==0) {
+    try {
+        Thread.sleep(500);
+    } catch (InterruptedException e) {
+        e.printStackTrace();
+    }
+    one=1;
+}
+else if (one==1){
+    try {
+        Thread.sleep(2);
+    } catch (InterruptedException e) {
+        e.printStackTrace();
+    }
+}
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (acces_to_paly_animation==1) {
+                                lineplay1.setVisibility(View.VISIBLE);
+                                animatorSet.start();
+                                Log.e("..............","btn2");
+
+
+                            }
+                        }
+                    });
+
+
+
+
+                }
+            }
+        });
+
+
+        Thread btn3=new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(1800);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (acces_to_paly_animation== 1) {
+                            if (acces_to_paly_animation==1) {
+                                lineplay2.setVisibility(View.VISIBLE);
+                                animatorSet1.start();
+                                Log.e("..............","btn3");
+
+                            }
+                        }
+                    }
+                });
+            }
+        });
+
+
+        Thread btn4 =new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                lineplay4.setTranslationX(-1*(counter.getSurface_width()/2));
+                ObjectAnimator animatorX3 = ObjectAnimator.ofFloat(lineplay4, "x", counter.getSurface_width()+(counter.getSurface_width()/2)-200);
+                animatorX3.setDuration(4000);
+                animatorX3.setRepeatCount(5);
+
+                animatorSet3.playTogether(animatorX3);
+
+
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        lineplay4.setVisibility(View.VISIBLE);
+                        animatorSet3.start();
+                        Log.e("..............","btn4");
+
+
+                    }
+                });
+
+            }
+        });
+
+        btn1.start();
+        btn2.start();
+        btn3.start();
+        btn4.start();
+
+
+
+
+
+
+
+
+
 
         new Thread(new Runnable() {
             @Override
             public void run() {
                 while (true) {
-
-                    lineplay.setTranslationX(0);
-                    ObjectAnimator animatorX = ObjectAnimator.ofFloat(lineplay, "x", counter.getSurface_width()-30);
-                    animatorX.setDuration(1000*counter.getHorizontal_scale());
-                    AnimatorSet animatorSet = new AnimatorSet();
-                    animatorSet.playTogether(animatorX);
-
-
                     runOnUiThread(new Runnable() {
+                        @SuppressLint("SetTextI18n")
                         @Override
                         public void run() {
-                            animatorSet.start();
-
                             counter.setStartdraw(counter.getStartdraw()+(250*counter.getHorizontal_scale()));
                             counter.setEnddraw(counter.getEnddraw()+(250*counter.getHorizontal_scale()));
-
                             float z=Float.parseFloat(EightRootActivity.getV0().getText().toString())+((counter.getHorizontal_scale()/2));
                             V0.setText(""+z);
-
                             V1000.setText(""+(z+(0.125*counter.getHorizontal_scale())));
                             V2000.setText(""+(z+(2*0.125*counter.getHorizontal_scale())));
                             V3000.setText(""+(z+(3*0.125*counter.getHorizontal_scale())));
@@ -533,28 +703,27 @@ new Thread(new Runnable() {
                             V6000.setText(""+(z+(6*0.125*counter.getHorizontal_scale())));
                             V7000.setText(""+(z+(7*0.125*counter.getHorizontal_scale())));
                             V8000.setText(""+(z+(8*0.125*counter.getHorizontal_scale())));
-
-
-
-
-
-
-                        }
-
-                    });
-
+  } });
                     try {
                         Thread.sleep((counter.getHorizontal_scale()*1000)+40);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-
-
                 }
-
-
             }
         }).start();
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

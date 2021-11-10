@@ -63,10 +63,13 @@ public class EightRootActivity extends AppCompatActivity {
 
     int acces_to_paly_animation =0;
 
+    int acces_to_set_change =0;
+
+
     int set_stop_play =0;
     int one=0;
 
-
+    ObjectAnimator animatorX3;
     AnimatorSet animatorSet,animatorSet1,animatorSet3,animatorSet2;
 
   static TextView V0,V1000,V2000,V3000,V4000,V5000,V6000,V7000,V8000;
@@ -160,6 +163,14 @@ public class EightRootActivity extends AppCompatActivity {
 
     }
 
+    public void restchannel(){
+        for (int i=0;i<32;i++) {
+            for (int j=0;j<800000;j++) {
+                counter.setChannel((float) 1000.0,i,j);
+            }
+        }
+    }
+
     @Override
     protected void onPause()
     {
@@ -175,6 +186,7 @@ public class EightRootActivity extends AppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -230,10 +242,9 @@ public class EightRootActivity extends AppCompatActivity {
 
 
 
-
         lineplay1.setTranslationX(-1*(width/2));
         ObjectAnimator animatorX = ObjectAnimator.ofFloat(lineplay1, "x", width+(width/2));
-        animatorX.setDuration(4000);
+        animatorX.setDuration(16000);
         animatorX.setRepeatCount(5);
         animatorSet = new AnimatorSet();
         animatorSet.playTogether(animatorX);
@@ -242,19 +253,24 @@ public class EightRootActivity extends AppCompatActivity {
 
         lineplay2.setTranslationX(-1*(width/2));
         ObjectAnimator animatorX1 = ObjectAnimator.ofFloat(lineplay2, "x", width+(width/2));
-        animatorX1.setDuration(4000);
+        animatorX1.setDuration(16000);
         animatorX1.setRepeatCount(5);
         animatorSet1 = new AnimatorSet();
         animatorSet1.playTogether(animatorX1);
 
 
         ObjectAnimator animatorX2 = ObjectAnimator.ofFloat(lineplay3, "x", width+(width));
-        animatorX2.setDuration(4000);
+        animatorX2.setDuration(16000);
         animatorSet2 = new AnimatorSet();
         animatorSet2.playTogether(animatorX2);
 
 
+        lineplay4.setTranslationX(-1*(counter.getSurface_width()/2));
+        animatorX3 = ObjectAnimator.ofFloat(lineplay4, "x", counter.getSurface_width()+(counter.getSurface_width()/2)-200);
+        animatorX3.setDuration(16000);
         animatorSet3 = new AnimatorSet();
+        animatorX3.setRepeatCount(5);
+        animatorSet3.playTogether(animatorX3);
 
 
 
@@ -302,15 +318,41 @@ public class EightRootActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 if(playcount==0) {
+                    lineplay1.setVisibility(View.VISIBLE);
+                    lineplay2.setVisibility(View.VISIBLE);
+                    lineplay3.setVisibility(View.VISIBLE);
+                    lineplay4.setVisibility(View.VISIBLE);
+
                     play.setBackgroundResource(R.drawable.pause_root_foreground);
                     playcount=1;
                     set_stop_play=0;
+                    acces_to_set_change=1;
                     Setlinebtnanim();
+                    acces_to_paly_animation=1;
+
+
+
+
                 }
                 else if(playcount==1) {
                     play.setBackgroundResource(R.drawable.play_foreground);
                     playcount=0;
                     set_stop_play=1;
+                    acces_to_set_change=0;
+                    acces_to_paly_animation=0;
+
+
+
+                        animatorX.start();
+                        animatorX1.start();
+                        animatorX2.start();
+                        animatorX3.start();
+
+
+                    animatorX.end();
+                    animatorX1.end();
+                    animatorX2.end();
+                    animatorX3.end();
 
 
 
@@ -397,7 +439,17 @@ public class EightRootActivity extends AppCompatActivity {
                 vibrator.vibrate(40);
                     counter.setEight_step_y((float) (counter.getEight_step_y() +(string1.getChannel_count()*(counter.getEight_step_y()/50))));
 
+                    Toast.makeText(getApplicationContext(),"animatorX"+animatorX.isRunning(),Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),"animatorX1"+animatorX1.isRunning(),Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),"animatorX2"+animatorX2.isRunning(),Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),"animatorX3"+animatorX3.isRunning(),Toast.LENGTH_LONG).show();
+
+
             }
+
+
+
+
         });
 
 
@@ -550,6 +602,13 @@ new Thread(new Runnable() {
     private void Setlinebtnanim(){
 
 one=0;
+lineplay1.setVisibility(View.VISIBLE);
+        lineplay2.setVisibility(View.VISIBLE);
+        lineplay3.setVisibility(View.VISIBLE);
+        lineplay4.setVisibility(View.VISIBLE);
+
+
+
 
         acces_to_paly_animation=1;
 
@@ -578,7 +637,7 @@ one=0;
 
 if (one==0) {
     try {
-        Thread.sleep(500);
+        Thread.sleep(2000);
     } catch (InterruptedException e) {
         e.printStackTrace();
     }
@@ -595,7 +654,6 @@ else if (one==1){
                         @Override
                         public void run() {
                             if (acces_to_paly_animation==1) {
-                                lineplay1.setVisibility(View.VISIBLE);
                                 animatorSet.start();
                                 Log.e("..............","btn2");
 
@@ -616,7 +674,7 @@ else if (one==1){
             @Override
             public void run() {
                 try {
-                    Thread.sleep(1800);
+                    Thread.sleep(7200);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -626,7 +684,6 @@ else if (one==1){
                     public void run() {
                         if (acces_to_paly_animation== 1) {
                             if (acces_to_paly_animation==1) {
-                                lineplay2.setVisibility(View.VISIBLE);
                                 animatorSet1.start();
                                 Log.e("..............","btn3");
 
@@ -642,30 +699,25 @@ else if (one==1){
             @Override
             public void run() {
                 try {
-                    Thread.sleep(3000);
+                    Thread.sleep(12000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                lineplay4.setTranslationX(-1*(counter.getSurface_width()/2));
-                ObjectAnimator animatorX3 = ObjectAnimator.ofFloat(lineplay4, "x", counter.getSurface_width()+(counter.getSurface_width()/2)-200);
-                animatorX3.setDuration(4000);
-                animatorX3.setRepeatCount(5);
 
-                animatorSet3.playTogether(animatorX3);
+                if (acces_to_paly_animation==1) {
 
-
-
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        lineplay4.setVisibility(View.VISIBLE);
-                        animatorSet3.start();
-                        Log.e("..............","btn4");
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
 
 
-                    }
-                });
+                            animatorSet3.start();
+                            Log.e("..............", "btn4");
+                        }
 
+
+                    });
+                }
             }
         });
 
@@ -686,13 +738,13 @@ else if (one==1){
         new Thread(new Runnable() {
             @Override
             public void run() {
-                while (true) {
+                while (acces_to_set_change==1) {
                     runOnUiThread(new Runnable() {
                         @SuppressLint("SetTextI18n")
                         @Override
                         public void run() {
-                            counter.setStartdraw(counter.getStartdraw()+(250*counter.getHorizontal_scale()));
-                            counter.setEnddraw(counter.getEnddraw()+(250*counter.getHorizontal_scale()));
+                            counter.setStartdraw(counter.getStartdraw()+(500*counter.getHorizontal_scale()));
+                            counter.setEnddraw(counter.getEnddraw()+(500*counter.getHorizontal_scale()));
                             float z=Float.parseFloat(EightRootActivity.getV0().getText().toString())+((counter.getHorizontal_scale()/2));
                             V0.setText(""+z);
                             V1000.setText(""+(z+(0.125*counter.getHorizontal_scale())));

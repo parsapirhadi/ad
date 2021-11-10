@@ -36,7 +36,11 @@ public class FileReader {
 
     public void read(){
        // Log.e("%%%%%%%%%%%","4444");
-
+        for (int i=0;i<32;i++) {
+            for (int j=0;j<800000;j++) {
+                counter.setChannel((float) 1000.0,i,j);
+            }
+        }
 
         for(y1=string1.getFilepatch().length()-1;y1>0;y1--){
             if (string1.getFilepatch().charAt(y1)=='/')
@@ -94,9 +98,7 @@ public class FileReader {
         } catch (IOException | NullPointerException e) {
             e.printStackTrace();
         }
-        for (int o=0;o<98;o++) {
 
-        }
 
 
         ///pivotValue.setvalueofeachchannel();

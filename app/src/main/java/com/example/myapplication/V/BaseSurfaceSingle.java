@@ -275,9 +275,6 @@ Counter counter;
 
                       //  canvas.drawColor(Color.rgb(230,230,230));
 
-                        Log.e("Surface width",""+getWidth());
-                        Log.e("Surface height",""+getHeight());
-
 
 
 
@@ -307,7 +304,6 @@ Counter counter;
                         samplePaint1.setStrokeWidth(3);
 
 
-Log.e("++++++++++++++",""+counter.getSurface_height());
 int y=0;
                         for (int i=counter.getStartdraw();i<counter.getEnddraw();i++) {
 

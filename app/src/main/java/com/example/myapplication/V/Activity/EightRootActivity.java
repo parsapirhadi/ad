@@ -115,6 +115,8 @@ public class EightRootActivity extends AppCompatActivity {
     protected void onResume()
     {
         super.onResume();
+        counter=new Counter();
+        string1=new String1();
         surface.startDrawThread(-1);
 //        pivote8000.setText(counter.getHorizontal_scale()*1000+"");
         counter.setEight_step_x((float) counter.getSurface_width()/(500*counter.getHorizontal_scale()));
@@ -438,11 +440,6 @@ public class EightRootActivity extends AppCompatActivity {
             public void onClick(View view) {
                 vibrator.vibrate(40);
                     counter.setEight_step_y((float) (counter.getEight_step_y() +(string1.getChannel_count()*(counter.getEight_step_y()/50))));
-
-                    Toast.makeText(getApplicationContext(),"animatorX"+animatorX.isRunning(),Toast.LENGTH_LONG).show();
-                Toast.makeText(getApplicationContext(),"animatorX1"+animatorX1.isRunning(),Toast.LENGTH_LONG).show();
-                Toast.makeText(getApplicationContext(),"animatorX2"+animatorX2.isRunning(),Toast.LENGTH_LONG).show();
-                Toast.makeText(getApplicationContext(),"animatorX3"+animatorX3.isRunning(),Toast.LENGTH_LONG).show();
 
 
             }

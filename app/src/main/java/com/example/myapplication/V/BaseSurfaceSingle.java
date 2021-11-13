@@ -80,9 +80,9 @@ Counter counter;
 
             ///////////////////////////////////////////////////////////////////////////////////////////
 
-            float f=Float.parseFloat( SingleRootActivity.getV0().getText().toString())-1;
+            float f=Float.parseFloat( SingleRootActivity.getV0().getText().toString())-counter.getHorizontal_scale();
 
-            if(dx>100 && f>-1){
+            if(dx>100 && f>=0){
                 if (dx>dy)
                 {
 

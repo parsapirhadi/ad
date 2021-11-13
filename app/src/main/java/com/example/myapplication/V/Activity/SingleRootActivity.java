@@ -1,5 +1,8 @@
 package com.example.myapplication.V.Activity;
 
+import android.animation.Animator;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.bluetooth.BluetoothDevice;
@@ -14,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -36,6 +40,9 @@ import java.util.Set;
 public class SingleRootActivity extends AppCompatActivity {
 
 int set_stop_play=0;
+
+int check_non_two_end=0;
+
     ListView listView;
     Set<BluetoothDevice> pared;
     Dialog dialog;
@@ -46,11 +53,15 @@ int set_stop_play=0;
     GraphView graphView;
     Button line,btn,montage,zoomout,play,choose_channel,zoomin,lineplay;
 
+    int is_change_text=0;
+
     Counter counter;
 
     float [] f= new float[8];
 
     private BaseSurfaceSingle surface;
+
+    ObjectAnimator animatorX;
 
     int notchcount;
     int playcount;
@@ -65,7 +76,7 @@ int set_stop_play=0;
 
     float d=2;
 
-
+    AnimatorSet animatorSet;
 
     public static TextView getV0() {
         return V0;
@@ -99,6 +110,7 @@ int set_stop_play=0;
 
 
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onResume()
     {
@@ -106,19 +118,38 @@ int set_stop_play=0;
 
         super.onResume();
         surface.startDrawThread(0);
-        counter.setSingle_step_x((float) counter.getSurface_width()/((500)*counter.getHorizontal_scale()));
+        counter.setStartdraw(1);
+        counter.setEnddraw(counter.getHorizontal_scale()*1000);
+
+        counter.setSingle_step_x((float) counter.getSurface_width()/(500*counter.getHorizontal_scale()));
         counter.setSingle_step_y((float) counter.getSurface_height()/200);
 
-        V8000.setText(EightRootActivity.getV8000().getText().toString());
-        V7000.setText(EightRootActivity.getV7000().getText().toString());
-        V6000.setText(EightRootActivity.getV6000().getText().toString());
-        V5000.setText(EightRootActivity.getV5000().getText().toString());
-        V4000.setText(EightRootActivity.getV4000().getText().toString());
-        V3000.setText(EightRootActivity.getV3000().getText().toString());
-        V2000.setText(EightRootActivity.getV2000().getText().toString());
-        V1000.setText(EightRootActivity.getV1000().getText().toString());
-        V0.setText(EightRootActivity.getV0().getText().toString());
+        Log.e("on resume.....",""+counter.getHorizontal_scale());
 
+        V0.setText(""+0);
+        V1000.setText(""+(float)(int)((125*counter.getHorizontal_scale()))/1000);
+        V2000.setText(""+(float)(int)((2*125*counter.getHorizontal_scale()))/1000);
+        V3000.setText(""+(float)(int)((3*125*counter.getHorizontal_scale()))/1000);
+        V4000.setText(""+(float)(int)((4*125*counter.getHorizontal_scale()))/1000);
+        V5000.setText(""+(float)(int)((5*125*counter.getHorizontal_scale()))/1000);
+        V6000.setText(""+(float)(int)((6*125*counter.getHorizontal_scale()))/1000);
+        V7000.setText(""+(float)(int)((7*125*counter.getHorizontal_scale()))/1000);
+        V8000.setText(""+(float)(int)((8*125*counter.getHorizontal_scale()))/1000);
+
+
+
+
+        animatorSet = new AnimatorSet();
+        lineplay.setTranslationX(0);
+        animatorX = ObjectAnimator.ofFloat(lineplay, "x", counter.getSurface_width()-10);
+        animatorX.setDuration(1000*counter.getHorizontal_scale());
+        animatorSet.playTogether(animatorX);
+
+        play.setBackgroundResource(R.drawable.play_foreground);
+        playcount=0;
+        set_stop_play=1;
+        is_change_text=0;
+        lineplay.setVisibility(View.INVISIBLE);
 
 
     }
@@ -126,9 +157,10 @@ int set_stop_play=0;
     @Override
     protected void onPause()
     {
-
+        animatorX.removeAllListeners();
         surface.stopDrawThread();
         super.onPause();
+
     }
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -188,12 +220,16 @@ int set_stop_play=0;
                     play.setBackgroundResource(R.drawable.pause_root_foreground);
                     playcount=1;
                     set_stop_play=0;
+                    lineplay.setVisibility(View.VISIBLE);
                     Setlinebtnanim();
                 }
                 else if(playcount==1) {
                     play.setBackgroundResource(R.drawable.play_foreground);
                     playcount=0;
                     set_stop_play=1;
+                    is_change_text=0;
+                    lineplay.setVisibility(View.INVISIBLE);
+                    animatorSet.end();
 
 
                 }
@@ -430,61 +466,61 @@ vibrator.vibrate(40);
 
     private void Setlinebtnanim(){
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
 
-                        Animation animation = AnimationUtils.loadAnimation(getApplicationContext(),
-                                R.anim.anim);
+is_change_text=1;
 
-                        animation.setDuration(counter.getHorizontal_scale()*1000);
+        lineplay.setVisibility(View.VISIBLE);
+        animatorSet.start();
 
-                        lineplay.startAnimation(animation);
-                        animation.setAnimationListener(new Animation.AnimationListener() {
-                            @Override
-                            public void onAnimationStart(Animation animation) {
+animatorSet.addListener(new Animator.AnimatorListener() {
+    @Override
+    public void onAnimationStart(Animator animator) {
+        Log.e("..............","on start");
 
-                                animation.setDuration(counter.getHorizontal_scale()*1000);
-                            }
+    }
 
-                            @SuppressLint("SetTextI18n")
-                            @Override
-                            public void onAnimationEnd(Animation animation) {
-                                if (set_stop_play==0) {
-                                    lineplay.startAnimation(animation);
+    @Override
+    public void onAnimationEnd(Animator animator) {
 
-                                    counter.setStartdraw(counter.getStartdraw()+(250*counter.getHorizontal_scale()));
-                                    counter.setEnddraw(counter.getEnddraw()+(250*counter.getHorizontal_scale()));
 
-                                    float z=Float.parseFloat(SingleRootActivity.getV0().getText().toString())+((counter.getHorizontal_scale()/2));
-                                    V0.setText(""+z);
+        Log.e("..............","on End");
 
-                                    V1000.setText(""+(z+(0.125*counter.getHorizontal_scale())));
-                                    V2000.setText(""+(z+(2*0.125*counter.getHorizontal_scale())));
-                                    V3000.setText(""+(z+(3*0.125*counter.getHorizontal_scale())));
-                                    V4000.setText(""+(z+(4*0.125*counter.getHorizontal_scale())));
-                                    V5000.setText(""+(z+(5*0.125*counter.getHorizontal_scale())));
-                                    V6000.setText(""+(z+(6*0.125*counter.getHorizontal_scale())));
-                                    V7000.setText(""+(z+(7*0.125*counter.getHorizontal_scale())));
-                                    V8000.setText(""+(z+(8*0.125*counter.getHorizontal_scale())));
+        if (is_change_text==1&&check_non_two_end==0) {
+            counter.setStartdraw(counter.getStartdraw() + (500 * counter.getHorizontal_scale()));
+            counter.setEnddraw(counter.getEnddraw() + (500 * counter.getHorizontal_scale()));
 
-                                }
-                            }
+            float z = Float.parseFloat(SingleRootActivity.getV0().getText().toString()) + ((counter.getHorizontal_scale()));
+            V0.setText("" + z);
 
-                            @Override
-                            public void onAnimationRepeat(Animation animation) {
 
-                            }
-                        });
+            V1000.setText("" + (z + (0.125 * counter.getHorizontal_scale())));
+            V2000.setText("" + (z + (2 * 0.125 * counter.getHorizontal_scale())));
+            V3000.setText("" + (z + (3 * 0.125 * counter.getHorizontal_scale())));
+            V4000.setText("" + (z + (4 * 0.125 * counter.getHorizontal_scale())));
+            V5000.setText("" + (z + (5 * 0.125 * counter.getHorizontal_scale())));
+            V6000.setText("" + (z + (6 * 0.125 * counter.getHorizontal_scale())));
+            V7000.setText("" + (z + (7 * 0.125 * counter.getHorizontal_scale())));
+            V8000.setText("" + (z + (8 * 0.125 * counter.getHorizontal_scale())));
 
-                    }
-                });
+            animatorSet.start();
+            animatorX.setDuration(1000*counter.getHorizontal_scale());
+        }
+    }
 
-            }
-        }).start();
+    @Override
+    public void onAnimationCancel(Animator animator) {
+    }
+
+    @Override
+    public void onAnimationRepeat(Animator animator) {
+        Log.e("..............","on repeat");
+    }
+});
+
+
+
+
+
 
 
 

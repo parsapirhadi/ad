@@ -3,7 +3,7 @@
 
     <translate
         android:fillAfter="true"
-        android:toXDelta="1250"
+        android:toXDelta="500"
 
         />
 

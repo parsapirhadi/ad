@@ -68,6 +68,7 @@ public class FileReader {
 
             if ((s = myReader.readLine()) != null) {
                 fileContent = s ;
+
             }
 
             char[] charArray = fileContent.toCharArray();
@@ -82,6 +83,7 @@ public class FileReader {
 
 
             while ((s = myReader.readLine()) != null) {
+                counter.setExist_in_secound(counter.getExist_in_secound()+1);
                 fileContent = s ;
                 string1.setLine_count(string1.getLine_count()+1);
                 pivotValue=new SetPivotValue(fileContent,string1,counter);

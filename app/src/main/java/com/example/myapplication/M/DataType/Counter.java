@@ -10,8 +10,17 @@ import java.io.Serializable;
 
 public class Counter {
 
+static int exist_in_secound=0;
 
-     int count_of_set_i_channel=0;
+    public int getExist_in_secound() {
+        return exist_in_secound;
+    }
+
+    public void setExist_in_secound(int exist_in_secound) {
+        this.exist_in_secound = exist_in_secound;
+    }
+
+    int count_of_set_i_channel=0;
      int count_of_set_j_channel=0;
 
      static int horizontal_scale=8;

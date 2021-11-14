@@ -18,7 +18,7 @@ import java.io.InputStreamReader;
 public class FileReader {
     BufferedReader myReader;
     String1 string1;
-    Counter counter;
+  Counter counter;
     int y1=0;
     String f1="";
     SetPivotName namePivote;

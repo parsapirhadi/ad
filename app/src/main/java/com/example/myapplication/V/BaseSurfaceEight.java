@@ -18,6 +18,7 @@ import com.example.myapplication.M.DataType.Counter;
 import com.example.myapplication.M.DataType.String1;
 import com.example.myapplication.V.Activity.EightRootActivity;
 import com.example.myapplication.V.Activity.MainActivity;
+import com.example.myapplication.V.Activity.SingleRootActivity;
 
 public class BaseSurfaceEight extends SurfaceView implements SurfaceHolder.Callback, View.OnTouchListener, Runnable
 {
@@ -84,7 +85,11 @@ float f=Float.parseFloat(EightRootActivity.getV0().getText().toString())-1;
             }
             else if (dx<-100)
             {
-                if (dx<dy) {
+                float t =(float)(counter.getExist_in_secound()*2)/1000;
+                float t1=Float.parseFloat(EightRootActivity.getV8000().getText().toString());
+
+                if (dx<dy && t>t1) {
+
 
 
                     counter.setStartdraw(counter.getStartdraw()+(500*counter.getHorizontal_scale()));
@@ -155,9 +160,8 @@ float f=Float.parseFloat(EightRootActivity.getV0().getText().toString())-1;
 
 
 
-        Log.e("....................",""+counter.getEight_step_y());
 
-     //  counter.setEight_step_y((float) (counter.getEight_step_y()/(string1.getChannel_count())*2));
+        //  counter.setEight_step_y((float) (counter.getEight_step_y()/(string1.getChannel_count())*2));
 
       //  Log.e("getSurface_width",""+(float) counter.getSurface_width()/8000);
       //  Log.e("getSurface_height",""+(float) counter.getSurface_height()/200);
@@ -208,7 +212,11 @@ float f=Float.parseFloat(EightRootActivity.getV0().getText().toString())-1;
 
         surfaceReady = true;
         startDrawThread(0);
-        Log.d(LOGTAG, "Created");
+
+
+        counter.setSurfaceviewheheight(getHeight());
+        counter.setSurfaceviewhewidth(getWidth());
+
     }
 
     @Override
@@ -221,7 +229,6 @@ float f=Float.parseFloat(EightRootActivity.getV0().getText().toString())-1;
 
         this.holder = null;
         surfaceReady = false;
-        Log.d(LOGTAG, "Destroyed");
     }
 
 
@@ -243,7 +250,6 @@ float f=Float.parseFloat(EightRootActivity.getV0().getText().toString())-1;
                 break;
             } catch (Exception e)
             {
-                Log.e(LOGTAG, "Could not join with draw thread");
             }
         }
         drawThread = null;
@@ -266,7 +272,6 @@ float f=Float.parseFloat(EightRootActivity.getV0().getText().toString())-1;
     @Override
     public void run()
     {
-        Log.d(LOGTAG, "Draw thread started");
         long frameStartTime;
         long frameTime;
 
@@ -365,9 +370,7 @@ for (int j=0;j<1000;j+=50) {
             }
         } catch (Exception e)
         {
-            Log.w(LOGTAG, "Exception while locking/unlocking");
         }
-        Log.d(LOGTAG, "Draw thread finished");
     }
 
     @Override

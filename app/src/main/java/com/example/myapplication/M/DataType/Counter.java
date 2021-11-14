@@ -23,9 +23,29 @@ static int exist_in_secound=0;
     int count_of_set_i_channel=0;
      int count_of_set_j_channel=0;
 
+     static int surfaceviewheheight=0;
+      static int surfaceviewhewidth=0;
+
      static int horizontal_scale=8;
 static int startdraw=0;
     static int enddraw=8000;
+
+
+    public int getSurfaceviewheheight() {
+        return surfaceviewheheight;
+    }
+
+    public void setSurfaceviewheheight(int surfaceviewheheight) {
+        this.surfaceviewheheight = surfaceviewheheight;
+    }
+
+    public int getSurfaceviewhewidth() {
+        return surfaceviewhewidth;
+    }
+
+    public void setSurfaceviewhewidth(int surfaceviewhewidth) {
+        this.surfaceviewhewidth = surfaceviewhewidth;
+    }
 
     public int getStartdraw() {
         return startdraw;

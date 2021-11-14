@@ -64,7 +64,7 @@ int check_non_two_end=0;
     private BaseSurfaceSingle surface;
 
     ObjectAnimator animatorX;
-
+    AnimatorSet animatorSet;
     int notchcount;
     int playcount;
     int text_play=0;
@@ -78,7 +78,7 @@ int check_non_two_end=0;
 
     float d=2;
 
-    AnimatorSet animatorSet;
+
 
     public static TextView getV0() {
         return V0;
@@ -159,7 +159,11 @@ int check_non_two_end=0;
     @Override
     protected void onPause()
     {
-        animatorX.removeAllListeners();
+
+        animatorSet.end();
+        animatorSet.removeAllListeners();
+        animatorSet.removeListener(animatorListener);
+        lineplay.setTranslationX(0);
         surface.stopDrawThread();
         super.onPause();
 
@@ -198,17 +202,52 @@ int check_non_two_end=0;
                 if (text_play==0){
                     textplay.setText("×2");
                     text_play=1;
+/*
+                    animatorSet.end();
+                    animatorSet.removeAllListeners();
+                    animatorSet.removeListener(animatorListener);
+                    animatorX.setDuration(500*counter.getHorizontal_scale());
+                    play.setBackgroundResource(R.drawable.pause_root_foreground);
+                    lineplay.setVisibility(View.VISIBLE);
+                    animatorSet.start();
+
+
+ */
 
                 }
                 else if (text_play==1){
                     textplay.setText("×0.5");
                     text_play=2;
+/*
+                    animatorSet.end();
+                    animatorSet.removeAllListeners();
+                    animatorSet.removeListener(animatorListener);
+                    animatorX.setDuration(2000*counter.getHorizontal_scale());
 
+                    play.setBackgroundResource(R.drawable.pause_root_foreground);
+
+                    lineplay.setVisibility(View.VISIBLE);
+                    animatorSet.start();
+
+
+ */
                 }
                 else if (text_play==2){
                     textplay.setText("×1");
                     text_play=0;
+/*
+                    animatorSet.end();
+                    animatorSet.removeAllListeners();
+                    animatorSet.removeListener(animatorListener);
+                    animatorX.setDuration(1000*counter.getHorizontal_scale());
 
+                    play.setBackgroundResource(R.drawable.pause_root_foreground);
+
+                    lineplay.setVisibility(View.VISIBLE);
+                    animatorSet.start();
+
+
+ */
                 }
 
 
@@ -223,6 +262,7 @@ int check_non_two_end=0;
                     playcount=1;
                     set_stop_play=0;
                     lineplay.setVisibility(View.VISIBLE);
+                    lineplay.setTranslationX(0);
                     Setlinebtnanim();
                 }
                 else if(playcount==1) {
@@ -488,11 +528,14 @@ is_change_text=1;
     @SuppressLint("SetTextI18n")
     @Override
     public void onAnimationEnd(Animator animator) {
+        float t =(float)(counter.getExist_in_secound()*2)/1000;
+        float t1=Float.parseFloat(SingleRootActivity.getV8000().getText().toString());
+
 
 
         Log.e("..............","on End");
 
-        if (is_change_text==1) {
+        if (is_change_text==1 && t>=t1) {
             counter.setStartdraw(counter.getStartdraw() + (500 * counter.getHorizontal_scale()));
             counter.setEnddraw(counter.getEnddraw() + (500 * counter.getHorizontal_scale()));
 
@@ -512,6 +555,16 @@ is_change_text=1;
 
             animatorSet.start();
             animatorX.setDuration(1000*counter.getHorizontal_scale());
+
+
+
+
+        }
+        if (t1>t){
+            play.setBackgroundResource(R.drawable.play_foreground);
+            playcount=0;
+            set_stop_play=1;
+            is_change_text=0;
         }
     }
 

@@ -103,8 +103,14 @@ Counter counter;
                 }
             }
             else if (dx<-100)
+
             {
-                if (dx<dy) {
+                float t =(float)(counter.getExist_in_secound()*2)/1000;
+                float t1=Float.parseFloat(SingleRootActivity.getV8000().getText().toString());
+
+                if (dx<dy && t>t1) {
+
+
 
 
                     counter.setStartdraw(counter.getStartdraw()+(500*counter.getHorizontal_scale()));
@@ -306,6 +312,7 @@ Counter counter;
 
 int y=0;
                         for (int i=counter.getStartdraw();i<counter.getEnddraw();i++) {
+
 
                             canvas.drawLine(y*counter.getSingle_step_x(), (getHeight()/2)+(counter.getChannel(cannel_count,i)*counter.getSingle_step_y()),(y+1)*counter.getSingle_step_x(),(getHeight()/2)+(counter.getChannel(cannel_count,i+1)*counter.getSingle_step_y()),samplePaint1);
                        y++;

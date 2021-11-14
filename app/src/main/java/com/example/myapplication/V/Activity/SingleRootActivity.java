@@ -53,6 +53,8 @@ int check_non_two_end=0;
     GraphView graphView;
     Button line,btn,montage,zoomout,play,choose_channel,zoomin,lineplay;
 
+    Animator.AnimatorListener animatorListener;
+
     int is_change_text=0;
 
     Counter counter;
@@ -230,6 +232,8 @@ int check_non_two_end=0;
                     is_change_text=0;
                     lineplay.setVisibility(View.INVISIBLE);
                     animatorSet.end();
+                    animatorSet.removeAllListeners();
+                    animatorSet.removeListener(animatorListener);
 
 
                 }
@@ -472,20 +476,23 @@ is_change_text=1;
         lineplay.setVisibility(View.VISIBLE);
         animatorSet.start();
 
-animatorSet.addListener(new Animator.AnimatorListener() {
+
+
+        animatorListener=new Animator.AnimatorListener() {
     @Override
     public void onAnimationStart(Animator animator) {
         Log.e("..............","on start");
 
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onAnimationEnd(Animator animator) {
 
 
         Log.e("..............","on End");
 
-        if (is_change_text==1&&check_non_two_end==0) {
+        if (is_change_text==1) {
             counter.setStartdraw(counter.getStartdraw() + (500 * counter.getHorizontal_scale()));
             counter.setEnddraw(counter.getEnddraw() + (500 * counter.getHorizontal_scale()));
 
@@ -502,6 +509,7 @@ animatorSet.addListener(new Animator.AnimatorListener() {
             V7000.setText("" + (z + (7 * 0.125 * counter.getHorizontal_scale())));
             V8000.setText("" + (z + (8 * 0.125 * counter.getHorizontal_scale())));
 
+
             animatorSet.start();
             animatorX.setDuration(1000*counter.getHorizontal_scale());
         }
@@ -509,14 +517,15 @@ animatorSet.addListener(new Animator.AnimatorListener() {
 
     @Override
     public void onAnimationCancel(Animator animator) {
+        Log.e("..............","on cancel");
     }
 
     @Override
     public void onAnimationRepeat(Animator animator) {
         Log.e("..............","on repeat");
     }
-});
-
+};
+animatorSet.addListener(animatorListener);
 
 
 

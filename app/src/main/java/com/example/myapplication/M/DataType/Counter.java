@@ -30,6 +30,15 @@ static int exist_in_secound=0;
 static int startdraw=0;
     static int enddraw=8000;
 
+static long anim_sleep=0;
+
+    public long getAnim_sleep() {
+        return anim_sleep;
+    }
+
+    public void setAnim_sleep(long anim_sleep) {
+        this.anim_sleep = anim_sleep;
+    }
 
     public int getSurfaceviewheheight() {
         return surfaceviewheheight;

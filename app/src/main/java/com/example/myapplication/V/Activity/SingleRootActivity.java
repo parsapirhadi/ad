@@ -53,9 +53,15 @@ int check_non_two_end=0;
     GraphView graphView;
     Button line,btn,montage,zoomout,play,choose_channel,zoomin,lineplay;
 
+
     Animator.AnimatorListener animatorListener;
 
     int is_change_text=0;
+    int acces_to_paly_animation =0;
+
+    float play_text = (float) 1.0;
+
+
 
     Counter counter;
 
@@ -68,6 +74,9 @@ int check_non_two_end=0;
     int notchcount;
     int playcount;
     int text_play=0;
+
+
+    int line_play=0;
 
 
     float pivote50=50;
@@ -199,9 +208,13 @@ int check_non_two_end=0;
             @Override
             public void onClick(View view) {
                 vibrator.vibrate(40);
+
+
+
                 if (text_play==0){
                     textplay.setText("×2");
                     text_play=1;
+                    play_text = (float) 0.5;
 /*
                     animatorSet.end();
                     animatorSet.removeAllListeners();
@@ -211,13 +224,13 @@ int check_non_two_end=0;
                     lineplay.setVisibility(View.VISIBLE);
                     animatorSet.start();
 
-
  */
 
                 }
                 else if (text_play==1){
                     textplay.setText("×0.5");
                     text_play=2;
+                    play_text=2;
 /*
                     animatorSet.end();
                     animatorSet.removeAllListeners();
@@ -235,6 +248,7 @@ int check_non_two_end=0;
                 else if (text_play==2){
                     textplay.setText("×1");
                     text_play=0;
+                    play_text=1;
 /*
                     animatorSet.end();
                     animatorSet.removeAllListeners();
@@ -248,9 +262,17 @@ int check_non_two_end=0;
 
 
  */
+
                 }
 
-
+                play.setBackgroundResource(R.drawable.play_foreground);
+                playcount=0;
+                set_stop_play=1;
+                acces_to_paly_animation=0;
+                lineplay.setVisibility(View.INVISIBLE);
+                lineplay.setTranslationX(0);
+                is_change_text=0;
+                lineplay.setTranslationX(0);
             }
         });
         play.setOnClickListener(new View.OnClickListener() {
@@ -261,16 +283,19 @@ int check_non_two_end=0;
                     play.setBackgroundResource(R.drawable.pause_root_foreground);
                     playcount=1;
                     set_stop_play=0;
-                    lineplay.setVisibility(View.VISIBLE);
+                    acces_to_paly_animation=1;
                     lineplay.setTranslationX(0);
+                    lineplay.setVisibility(View.VISIBLE);
                     Setlinebtnanim();
                 }
                 else if(playcount==1) {
                     play.setBackgroundResource(R.drawable.play_foreground);
                     playcount=0;
                     set_stop_play=1;
-                    is_change_text=0;
+                    acces_to_paly_animation=0;
                     lineplay.setVisibility(View.INVISIBLE);
+                    lineplay.setTranslationX(0);
+                    is_change_text=0;
                     animatorSet.end();
                     animatorSet.removeAllListeners();
                     animatorSet.removeListener(animatorListener);
@@ -509,84 +534,116 @@ vibrator.vibrate(40);
     }
 
     private void Setlinebtnanim(){
-
-
-is_change_text=1;
-
         lineplay.setVisibility(View.VISIBLE);
-        animatorSet.start();
+
+        new Thread(new Runnable() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void run() {
+                float width;
+                if (string1.getChannel_count()>31) {
+                    width = counter.getSurface_width();
+                }
+                else {
+                    width = counter.getSurfaceviewhewidth();
+                }
+                counter.setAnim_sleep((long) ((long) (( counter.getHorizontal_scale()*1000)/width)*play_text));
 
 
 
-        animatorListener=new Animator.AnimatorListener() {
-    @Override
-    public void onAnimationStart(Animator animator) {
-        Log.e("..............","on start");
+                float t =(float)(counter.getExist_in_secound()*2)/1000;
+                float t1=Float.parseFloat(SingleRootActivity.getV8000().getText().toString());
+
+                for (line_play = 0; line_play <= width; line_play++) {
+                    if (acces_to_paly_animation==0){
+                        lineplay.setTranslationX(0);
+                        break;
+                    }
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            lineplay.setTranslationX(line_play);
+                        }
+                    });
+                    try {
+                        Thread.sleep(counter.getAnim_sleep());
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+
+                while (t>t1)
+                {
+                    if (acces_to_paly_animation==0){
+                        lineplay.setTranslationX(0);
+
+                        break;
+                    }
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            counter.setStartdraw(counter.getStartdraw() + (500 * counter.getHorizontal_scale()));
+                            counter.setEnddraw(counter.getEnddraw() + (500 * counter.getHorizontal_scale()));
+
+                            float z = Float.parseFloat(SingleRootActivity.getV0().getText().toString()) + (counter.getHorizontal_scale());
+                            SingleRootActivity.getV0().setText("" + z);
+
+                            SingleRootActivity.getV1000().setText("" + (z + (0.125 * counter.getHorizontal_scale())));
+                            SingleRootActivity.getV2000().setText("" + (z + (2 * 0.125 * counter.getHorizontal_scale())));
+                            SingleRootActivity.getV3000().setText("" + (z + (3 * 0.125 * counter.getHorizontal_scale())));
+                            SingleRootActivity.getV4000().setText("" + (z + (4 * 0.125 * counter.getHorizontal_scale())));
+                            SingleRootActivity.getV5000().setText("" + (z + (5 * 0.125 * counter.getHorizontal_scale())));
+                            SingleRootActivity.getV6000().setText("" + (z + (6 * 0.125 * counter.getHorizontal_scale())));
+                            SingleRootActivity.getV7000().setText("" + (z + (7 * 0.125 * counter.getHorizontal_scale())));
+                            SingleRootActivity.getV8000().setText("" + (z + (8 * 0.125 * counter.getHorizontal_scale())));
+
+                        }
+                    });
+
+
+                    for (line_play = 0; line_play < width; line_play++) {
+                        if (acces_to_paly_animation==0){
+                            lineplay.setTranslationX(0);
+
+                            break;
+                        }
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                lineplay.setTranslationX(line_play);
+                            }
+                        });
+                        try {
+
+                            Thread.sleep(counter.getAnim_sleep());
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+
+
+
+                    t1=Float.parseFloat(SingleRootActivity.getV8000().getText().toString());
+
+
+                }
+                lineplay.setTranslationX(0);
+                play.setBackgroundResource(R.drawable.play_foreground);
+                playcount=0;
+                set_stop_play=1;
+                is_change_text=0;
+                lineplay.setVisibility(View.INVISIBLE);
+
+
+            }
+        }).start();
+
+
 
     }
 
-    @SuppressLint("SetTextI18n")
-    @Override
-    public void onAnimationEnd(Animator animator) {
-        float t =(float)(counter.getExist_in_secound()*2)/1000;
-        float t1=Float.parseFloat(SingleRootActivity.getV8000().getText().toString());
 
-
-
-        Log.e("..............","on End");
-
-        if (is_change_text==1 && t>=t1) {
-            counter.setStartdraw(counter.getStartdraw() + (500 * counter.getHorizontal_scale()));
-            counter.setEnddraw(counter.getEnddraw() + (500 * counter.getHorizontal_scale()));
-
-            float z = Float.parseFloat(SingleRootActivity.getV0().getText().toString()) + ((counter.getHorizontal_scale()));
-            V0.setText("" + z);
-
-
-            V1000.setText("" + (z + (0.125 * counter.getHorizontal_scale())));
-            V2000.setText("" + (z + (2 * 0.125 * counter.getHorizontal_scale())));
-            V3000.setText("" + (z + (3 * 0.125 * counter.getHorizontal_scale())));
-            V4000.setText("" + (z + (4 * 0.125 * counter.getHorizontal_scale())));
-            V5000.setText("" + (z + (5 * 0.125 * counter.getHorizontal_scale())));
-            V6000.setText("" + (z + (6 * 0.125 * counter.getHorizontal_scale())));
-            V7000.setText("" + (z + (7 * 0.125 * counter.getHorizontal_scale())));
-            V8000.setText("" + (z + (8 * 0.125 * counter.getHorizontal_scale())));
-
-
-            animatorSet.start();
-            animatorX.setDuration(1000*counter.getHorizontal_scale());
-
-
-
-
-        }
-        if (t1>t){
-            play.setBackgroundResource(R.drawable.play_foreground);
-            playcount=0;
-            set_stop_play=1;
-            is_change_text=0;
-        }
-    }
-
-    @Override
-    public void onAnimationCancel(Animator animator) {
-        Log.e("..............","on cancel");
-    }
-
-    @Override
-    public void onAnimationRepeat(Animator animator) {
-        Log.e("..............","on repeat");
-    }
-};
-animatorSet.addListener(animatorListener);
-
-
-
-
-
-
-
-
-    }
 
 }

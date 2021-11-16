@@ -127,6 +127,11 @@ Counter counter;
                     SingleRootActivity.getV6000().setText(""+(z+(6*0.125*counter.getHorizontal_scale())));
                     SingleRootActivity.getV7000().setText(""+(z+(7*0.125*counter.getHorizontal_scale())));
                     SingleRootActivity.getV8000().setText(""+(z+(8*0.125*counter.getHorizontal_scale())));
+
+
+
+
+
                 }
             }
 
@@ -310,13 +315,35 @@ Counter counter;
                         samplePaint1.setStrokeWidth(3);
 
 
-int y=0;
+                        int y=0;
                         for (int i=counter.getStartdraw();i<counter.getEnddraw();i++) {
 
-
-                            canvas.drawLine(y*counter.getSingle_step_x(), (getHeight()/2)+(counter.getChannel(cannel_count,i)*counter.getSingle_step_y()),(y+1)*counter.getSingle_step_x(),(getHeight()/2)+(counter.getChannel(cannel_count,i+1)*counter.getSingle_step_y()),samplePaint1);
+                            if (counter.getChannel(cannel_count,i)!=1000.0) {
+                                canvas.drawLine(y * counter.getSingle_step_x(), (getHeight() / 2) + (counter.getChannel(cannel_count, i) * counter.getSingle_step_y()), (y + 1) * counter.getSingle_step_x(), (getHeight() / 2) + (counter.getChannel(cannel_count, i + 1) * counter.getSingle_step_y()), samplePaint1);
+                            }
                        y++;
                         }
+
+                new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                for (int p=0;p<500;p++) {
+                                    try {
+                                        Thread.sleep(2);
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+                                    int h = 0;
+                                  //  canvas.drawLine(p, 0, p + 1, getHeight(), samplePaint1);
+                                    h++;
+                                }
+                            }
+                        }).start();
+
+
+
+
+
 
 /*
 for (int j=0;j<1000;j+=50) {

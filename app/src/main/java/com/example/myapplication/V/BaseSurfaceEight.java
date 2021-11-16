@@ -325,20 +325,19 @@ float f=Float.parseFloat(EightRootActivity.getV0().getText().toString())-1;
                         samplePaint1.setColor(Color.RED);
 
 
-
                         for (int j=0;j<string1.getChannel_count();j++) {
                             int y=0;
                             for (int i = counter.getStartdraw(); i < counter.getEnddraw(); i++) {
                                if (counter.getChannel(j,i)!=1000.0) {
-                                //  canvas.drawLine(i, (getHeight()/2)+counter.getChannel(cannel_count,i),i+1,(getHeight()/2)+counter.getChannel(cannel_count,i+1),samplePaint1);
-                                canvas.drawLine(
-                                        (float) (y * counter.getEight_step_x()),
-                                        (float) (((float) ((float) (getHeight() / (float) (string1.getChannel_count() * 2))) * (((2 * j) + 1))) + (counter.getChannel(j, i) * counter.getEight_step_y())),
-                                        (float) ((y + 1) * counter.getEight_step_x()),
-                                        (float) (((float) ((float) (getHeight() / (float) (string1.getChannel_count() * 2))) * (((2 * j) + 1))) + (counter.getChannel(j, i + 1) * counter.getEight_step_y())),
-                                        samplePaint1);
+                                   canvas.drawLine(
+                                           (float) (y * counter.getEight_step_x()),
+                                           (float) (((float) ((float) (getHeight() / (float) (string1.getChannel_count() * 2))) * (((2 * j) + 1))) + (counter.getChannel(j, i) * counter.getEight_step_y())),
+                                           (float) ((y + 1) * counter.getEight_step_x()),
+                                           (float) (((float) ((float) (getHeight() / (float) (string1.getChannel_count() * 2))) * (((2 * j) + 1))) + (counter.getChannel(j, i + 1) * counter.getEight_step_y())),
+                                           samplePaint1);
+                               }
                                 y++;
-                            }
+
                             }
                         }
 /*

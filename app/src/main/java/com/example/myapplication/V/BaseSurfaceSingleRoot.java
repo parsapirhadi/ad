@@ -17,7 +17,7 @@ import com.example.myapplication.M.DataType.Counter;
 import com.example.myapplication.V.Activity.EightRootActivity;
 import com.example.myapplication.V.Activity.SingleRootActivity;
 
-public class BaseSurfaceSingle extends SurfaceView implements SurfaceHolder.Callback, View.OnTouchListener, Runnable
+public class BaseSurfaceSingleRoot extends SurfaceView implements SurfaceHolder.Callback, View.OnTouchListener, Runnable
 {
 float  f[] =new float[5];
     private SurfaceHolder holder;
@@ -148,7 +148,7 @@ Counter counter;
     }
 
 
-    public BaseSurfaceSingle(Context context, AttributeSet attrs)
+    public BaseSurfaceSingleRoot(Context context, AttributeSet attrs)
     {
        super(context, attrs);
     SurfaceHolder holder = getHolder();

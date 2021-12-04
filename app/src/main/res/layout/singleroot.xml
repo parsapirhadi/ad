@@ -273,7 +273,7 @@
                 android:layout_height="match_parent"
                 android:background="@color/black"
                 />
-<com.example.myapplication.V.BaseSurfaceSingle
+<com.example.myapplication.V.BaseSurfaceSingleRoot
 
     android:layout_width="0dp"
     android:layout_weight="1"

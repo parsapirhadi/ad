@@ -15,15 +15,11 @@ import android.os.Vibrator;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
@@ -31,7 +27,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.myapplication.M.DataType.Counter;
 import com.example.myapplication.M.DataType.String1;
-import com.example.myapplication.V.BaseSurfaceSingle;
+import com.example.myapplication.V.BaseSurfaceSingleRoot;
 import com.example.myapplication.R;
 import com.jjoe64.graphview.GraphView;
 
@@ -67,7 +63,7 @@ int check_non_two_end=0;
 
     float [] f= new float[8];
 
-    private BaseSurfaceSingle surface;
+    private BaseSurfaceSingleRoot surface;
 
     ObjectAnimator animatorX;
     AnimatorSet animatorSet;
@@ -182,7 +178,7 @@ int check_non_two_end=0;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.singleroot);
         Vibrator vibrator= (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        surface = (BaseSurfaceSingle) findViewById(R.id.singlesurfaceview);
+        surface = (BaseSurfaceSingleRoot) findViewById(R.id.singlesurfaceview);
         string1=new String1();
         counter=new Counter();
        Intent intent=getIntent();

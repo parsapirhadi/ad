@@ -124,7 +124,15 @@ static long anim_sleep=0;
     static float surface_width =0;
    static float surface_height=0;
 
+    static int x=1;
 
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
 
     public float getSurface_width() {
         return surface_width;

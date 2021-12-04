@@ -20,7 +20,7 @@ import com.example.myapplication.V.Activity.EightRootActivity;
 import com.example.myapplication.V.Activity.MainActivity;
 import com.example.myapplication.V.Activity.SingleRootActivity;
 
-public class BaseSurfaceEight extends SurfaceView implements SurfaceHolder.Callback, View.OnTouchListener, Runnable
+public class BaseSurfaceEightRoot extends SurfaceView implements SurfaceHolder.Callback, View.OnTouchListener, Runnable
 {
 float x=0 ,y =0;
 float dy,dx;
@@ -149,7 +149,7 @@ float f=Float.parseFloat(EightRootActivity.getV0().getText().toString())-1;
 
     private static final String LOGTAG = "surface";
 
-    public BaseSurfaceEight(Context context, AttributeSet attrs)
+    public BaseSurfaceEightRoot(Context context, AttributeSet attrs)
     {
         super(context, attrs);
         SurfaceHolder holder = getHolder();

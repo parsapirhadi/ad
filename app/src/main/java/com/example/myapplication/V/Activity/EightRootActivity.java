@@ -3,7 +3,6 @@ package com.example.myapplication.V.Activity;
 import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
@@ -14,30 +13,26 @@ import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.Vibrator;
 import android.util.Log;
 import android.view.Display;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
-import androidx.databinding.DataBindingUtil;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.myapplication.M.DataType.Counter;
 import com.example.myapplication.M.DataType.String1;
-import com.example.myapplication.V.BaseSurfaceEight;
+import com.example.myapplication.V.BaseSurfaceEightRoot;
 import com.example.myapplication.P.FileReader;
 import com.example.myapplication.P.SetPivotName;
 import com.example.myapplication.P.SetPivotValue;
@@ -78,7 +73,7 @@ public class EightRootActivity extends AppCompatActivity {
 int line_play=0;
 
   static TextView V0,V1000,V2000,V3000,V4000,V5000,V6000,V7000,V8000;
-    private BaseSurfaceEight surface;
+    private BaseSurfaceEightRoot surface;
     String1 string1;
     Counter counter;
     Vibrator vibrator;
@@ -615,7 +610,7 @@ new Thread(new Runnable() {
 
 
     private void FindViewById() {
-        surface = (BaseSurfaceEight) findViewById(R.id.eightsurfaceview);
+        surface = (BaseSurfaceEightRoot) findViewById(R.id.eightrootsurfaceview);
         line=findViewById(R.id.line_eightroot);
         textplay=findViewById(R.id.eighttextplay);
         play=findViewById(R.id.plsy_eightroot);

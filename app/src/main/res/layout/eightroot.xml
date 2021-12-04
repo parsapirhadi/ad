@@ -377,11 +377,11 @@
 
 
 
-    <com.example.myapplication.V.BaseSurfaceEight
+    <com.example.myapplication.V.BaseSurfaceEightRoot
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="match_parent"
-        android:id="@+id/eightsurfaceview"
+        android:id="@+id/eightrootsurfaceview"
         />
         </LinearLayout>
 

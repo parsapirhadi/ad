@@ -564,7 +564,7 @@ new Thread(new Runnable() {
 
                     if (string1.getChannel_count()==8)
                     {
-
+                        findViewById(R.id.layout_axis_textview_9).setVisibility(View.GONE);
                         findViewById(R.id.layout_axis_textview_10).setVisibility(View.GONE);
                         findViewById(R.id.layout_axis_textview_11).setVisibility(View.GONE);
                         findViewById(R.id.layout_axis_textview_12).setVisibility(View.GONE);

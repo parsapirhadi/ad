@@ -80,6 +80,23 @@ xmlns:tools="http://schemas.android.com/tools"
             tools:layout_editor_absoluteX="623dp"
             tools:layout_editor_absoluteY="10dp" />
     </LinearLayout>
+        <LinearLayout
+            android:layout_height="50dp"
+            android:layout_width="50dp"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            >
+            <Button
+                android:id="@+id/line_eightrecord"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+
+                android:background="@drawable/multi_line_foreground"
+                android:layout_marginEnd="30dp"
+                tools:layout_editor_absoluteX="201dp"
+                tools:layout_editor_absoluteY="10dp" />
+        </LinearLayout>
     <LinearLayout
         android:layout_height="40dp"
         android:layout_width="40dp"
@@ -88,7 +105,7 @@ xmlns:tools="http://schemas.android.com/tools"
         android:layout_gravity="center"
         >
         <Button
-
+android:textSize="12sp"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_gravity="center"
@@ -101,27 +118,30 @@ xmlns:tools="http://schemas.android.com/tools"
             tools:layout_editor_absoluteY="10dp"
             tools:ignore="HardcodedText" />
     </LinearLayout>
-    <LinearLayout
-        android:layout_height="50dp"
-        android:layout_width="50dp"
-        android:layout_weight="1"
-        android:layout_gravity="center"
-        >
+
         <Button
-            android:id="@+id/line_eightrecord"
+
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
-
-            android:background="@drawable/multi_line_foreground"
-            android:layout_marginEnd="30dp"
-            tools:layout_editor_absoluteX="201dp"
+            android:id="@+id/zoomout_eightrecord"
+            android:background="@drawable/zoom_out_foreground"
+            tools:layout_editor_absoluteX="512dp"
             tools:layout_editor_absoluteY="10dp" />
-    </LinearLayout>
+        <Button
+
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:id="@+id/zoomin_eightrecord"
+            android:background="@drawable/zoom_in_foreground"
+            tools:layout_editor_absoluteX="512dp"
+            tools:layout_editor_absoluteY="10dp" />
     <LinearLayout
         android:layout_height="50dp"
         android:layout_width="50dp"
         android:layout_weight="1"
+        android:layout_marginLeft="30dp"
         android:layout_gravity="center"
         >
         <Button
@@ -159,27 +179,247 @@ xmlns:tools="http://schemas.android.com/tools"
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_margin="2dp"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:layout_weight="1"
-        android:background="@drawable/main"
-        tools:ignore="MissingConstraints" >
-        <com.example.myapplication.V.BaseSurfaceEightRecord
+        >
 
-            android:id="@+id/eightrecordsurfaceview"
+        <LinearLayout
+            android:id="@+id/left_linearlayout"
+            android:layout_width="44dp"
+            android:orientation="vertical"
+            android:background="#e6e6e6"
+            android:layout_height="match_parent"
+
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <TextView
+
+                    android:text="ch1"
+                    style="@style/axis_textview_root" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+
+                android:layout_weight="1">
+                <TextView
+                    style="@style/axis_textview_root"
+                    android:text="ch2"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+
+                android:layout_weight="1">
+                <TextView
+                    style="@style/axis_textview_root"
+                    android:text="ch3"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+
+
+                android:layout_weight="1">
+                <TextView
+                    style="@style/axis_textview_root"
+                    android:text="ch4"
+
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+
+                android:layout_weight="1">
+
+                <TextView
+                    style="@style/axis_textview_root"
+                    android:text="ch5"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+
+
+                android:layout_weight="1">
+                <TextView
+                    style="@style/axis_textview_root"
+                    android:text="ch6"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+
+
+                android:layout_weight="1">
+                <TextView
+                    style="@style/axis_textview_root"
+                    android:text="ch7"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+
+
+                android:layout_weight="1">
+                <TextView
+                    style="@style/axis_textview_root"
+                    android:text="ch8"
+                    />
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:textColor="#121212" />
+            android:layout_height="match_parent">
+            <Button
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/black"
+                android:id="@+id/eightroot_playline1"
+                />
 
+
+            <Button
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/black"
+                />
+
+
+
+            <com.example.myapplication.V.BaseSurfaceEightRecord
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:id="@+id/eightrootsurfaceview"
+                />
+        </LinearLayout>
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="#e6e6e6"
+        android:orientation="vertical"
+        android:gravity="right"
+
+        >
 
 
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            >
+            <TextView
+                android:id="@+id/textview0"
+                android:layout_width="40dp"
+                android:layout_height="25dp"
 
+                />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="25dp"
+
+                android:id="@+id/SM1_0"
+                android:text="0"
+                android:layout_weight="1"
+
+                />
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:text="1000"
+                android:layout_weight="1"
+                android:id="@+id/SM1_1000"
+                android:layout_height="25dp"
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:text="2000"
+                android:id="@+id/SM1_2000"
+
+                android:layout_weight="1"
+                android:layout_height="25dp"
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:text="3000"
+                android:id="@+id/SM1_3000"
+
+
+                android:layout_weight="1"
+                android:layout_height="25dp"
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:text="4000"
+
+                android:id="@+id/SM1_4000"
+
+                android:layout_weight="1"
+                android:layout_height="25dp"
+                />
+            <TextView
+                android:layout_width="0dp"
+                android:text="5000"
+                android:id="@+id/SM1_5000"
+
+
+                android:layout_weight="1"
+                android:layout_height="25dp"
+                />
+            <TextView
+                android:layout_width="0dp"
+                android:text="6000"
+
+                android:id="@+id/SM1_6000"
+
+                android:layout_weight="1"
+                android:layout_height="25dp"
+                />
+            <TextView
+                android:layout_width="0dp"
+                android:text="7000"
+                android:id="@+id/SM1_7000"
+
+
+                android:layout_weight="1"
+                android:layout_height="25dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="8000"
+                android:id="@+id/SM1_8000"
+
+
+                android:layout_height="25dp"
+                />
+
+        </LinearLayout>
+    </LinearLayout>
 </androidx.appcompat.widget.LinearLayoutCompat>
+
     <fragment
         android:id="@+id/fragment_eightrecord"
         android:layout_width="280dp"

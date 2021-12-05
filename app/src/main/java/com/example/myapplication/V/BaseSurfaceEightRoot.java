@@ -97,7 +97,6 @@ float f=Float.parseFloat(EightRootActivity.getV0().getText().toString())-1;
 
                       float z=Float.parseFloat(EightRootActivity.getV0().getText().toString())+(counter.getHorizontal_scale());
                     EightRootActivity.getV0().setText(""+z);
-
                     EightRootActivity.getV1000().setText(""+(z+(0.125*counter.getHorizontal_scale())));
                     EightRootActivity.getV2000().setText(""+(z+(2*0.125*counter.getHorizontal_scale())));
                     EightRootActivity.getV3000().setText(""+(z+(3*0.125*counter.getHorizontal_scale())));
@@ -212,6 +211,7 @@ float f=Float.parseFloat(EightRootActivity.getV0().getText().toString())-1;
 
         surfaceReady = true;
         startDrawThread(0);
+
 
 
         counter.setSurfaceviewheheight(getHeight());

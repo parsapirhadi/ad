@@ -1,5 +1,6 @@
 package com.example.myapplication.V.Activity;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -13,12 +14,15 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.Vibrator;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
@@ -33,6 +37,7 @@ import com.example.myapplication.M.DataType.Counter;
 import com.example.myapplication.M.DataType.String1;
 import com.example.myapplication.R;
 import com.example.myapplication.V.BaseSurfaceEightRecord;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -48,6 +53,8 @@ public class EightRecordActivity extends AppCompatActivity {
     Button line;
     ImageView notch;
     Button replay;
+    Button zoomout;
+    Button zoomin;
     Button record;
     Button resize;
     Button bluetooth;
@@ -64,9 +71,14 @@ public class EightRecordActivity extends AppCompatActivity {
     /////////////////////////////////////////////////
     Button listDevices;
 
+
+    static TextView V0,V1000,V2000,V3000,V4000,V5000,V6000,V7000,V8000;
+
+
     BaseSurfaceEightRecord msg_box;
     String tempMsg;
     TextView writeMsg;
+    Vibrator vibrator;
 
 
     int channel =-1;
@@ -90,6 +102,27 @@ public class EightRecordActivity extends AppCompatActivity {
 
     InputStream inputStream;
     OutputStream outputStream;
+
+    public static TextView getV0() {
+        return V0;
+    }public static TextView getV1000() {
+        return V1000;
+    }public static TextView getV2000() {
+        return V2000;
+    } public static TextView getV3000() {
+        return V3000;
+    } public static TextView getV4000() {
+        return V4000;
+    } public static TextView getV5000() {
+        return V5000;
+    } public static TextView getV6000() {
+        return V6000;
+    } public static TextView getV7000() {
+        return V7000;
+    } public static TextView getV8000() {
+        return V8000;
+    }
+
 
     int s;
     static final int STATE_LISTENING = 1;
@@ -128,7 +161,8 @@ public class EightRecordActivity extends AppCompatActivity {
                     break;
                 case STATE_CONNECTED:
                     bluetooth.setBackgroundResource(R.drawable.bluetooth_on_foreground);
-                    Toast.makeText(getApplicationContext(),"Connected To '"+bluetooth_name+"'", Toast.LENGTH_LONG).show();
+                    View parentLayout = findViewById(android.R.id.content);
+                    Snackbar.make(parentLayout, "Connected To '"+bluetooth_name+"'", Snackbar.LENGTH_LONG).show();
                     dialog.dismiss();
                     break;
                 case STATE_CONNECTION_FAILED:
@@ -144,6 +178,50 @@ public class EightRecordActivity extends AppCompatActivity {
         }
     });
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        record.setBackgroundResource(R.drawable.red_record_drawable);
+        bluetooth.setBackgroundResource(R.drawable.bluetooth_off_foreground);
+        String string = "NOP\r\n";
+        set_limit = 1;
+
+        sendReceive.write(string.getBytes());
+        try {
+            socket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        recordcount = 0;
+        i=0;
+    }
+
+    @SuppressLint("SetTextI18n")
+    @Override
+    protected void onResume() {
+        super.onResume();
+        counter.setStartdraw(1);
+
+        counter.setEnddraw(counter.getHorizontal_scale()*counter.getRate_in_s());
+        counter.setEight_step_x((float) counter.getSurface_width()/(counter.getRate_in_s()*counter.getHorizontal_scale()));
+
+        V0.setText(""+0);
+        V1000.setText(""+(float)(int)((125*counter.getHorizontal_scale()))/1000);
+        V2000.setText(""+(float)(int)((2*125*counter.getHorizontal_scale()))/1000);
+        V3000.setText(""+(float)(int)((3*125*counter.getHorizontal_scale()))/1000);
+        V4000.setText(""+(float)(int)((4*125*counter.getHorizontal_scale()))/1000);
+        V5000.setText(""+(float)(int)((5*125*counter.getHorizontal_scale()))/1000);
+        V6000.setText(""+(float)(int)((6*125*counter.getHorizontal_scale()))/1000);
+        V7000.setText(""+(float)(int)((7*125*counter.getHorizontal_scale()))/1000);
+        V8000.setText(""+(float)(int)((8*125*counter.getHorizontal_scale()))/1000);
+        for (int j2=0;j2<32;j2++){
+            for (int j1=0;j1<800000;j1++) {
+                counter.setChannel(1000, j2, j1);
+            }
+        }
+        i=0;
+
+    }
 
     @Override
     public void onBackPressed() {
@@ -162,8 +240,19 @@ public class EightRecordActivity extends AppCompatActivity {
         drawerLayout=findViewById(R.id.draver_eightrecord);
         counter=new Counter();
         string1=new String1();
+        i=0;
         FindViewBiId();
+        vibrator= (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         bluetoothAdapter=BluetoothAdapter.getDefaultAdapter();
+
+
+        counter.setEnddraw(counter.getHorizontal_scale()*counter.getRate_in_s());
+        counter.setEight_step_x((float) counter.getSurfaceviewhewidth()/(counter.getRate_in_s()*counter.getHorizontal_scale()));
+
+        counter.setEight_step_y((float) counter.getSurfaceviewhewidth()/200);
+        counter.setEight_step_y((counter.getEight_step_y()/counter.getDefault_channel())/2);
+
+
         for (int j2=0;j2<32;j2++){
             for (int j1=0;j1<800000;j1++) {
                 counter.setChannel(1000, j2, j1);
@@ -258,21 +347,31 @@ public class EightRecordActivity extends AppCompatActivity {
         record.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                try {
+
+
                 if(recordcount==0) {
                     record.setBackgroundResource(R.drawable.rect_stop_record);
                     String string= "CONTB\r\n";
                     set_limit=1;
                     sendReceive.write(string.getBytes());
                     recordcount=1;
+                    vibrator.vibrate(40);
                 }
                 else if(recordcount==1) {
                     record.setBackgroundResource(R.drawable.red_record_drawable);
-                    String string= "NOP\r\n";
-                    set_limit=1;
+                    String string = "NOP\r\n";
+                    set_limit = 1;
                     sendReceive.write(string.getBytes());
 
-                    recordcount=0;
-
+                    recordcount = 0;
+                }
+                }
+                catch (Exception e){
+                    set_limit=1;
+                    recordcount=1;
+                    record.setBackgroundResource(R.drawable.red_record_drawable);
+                    Toast.makeText(getApplicationContext(),"Please Connect With Bluetooth ",Toast.LENGTH_LONG).show();
                 }
             }
 
@@ -280,6 +379,8 @@ public class EightRecordActivity extends AppCompatActivity {
         notch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                vibrator.vibrate(40);
+
                 if(notchcount==0) {
                     notch.setBackgroundResource(R.mipmap.notch_);
                     notchcount=1;
@@ -293,8 +394,11 @@ public class EightRecordActivity extends AppCompatActivity {
             }
         });
         replay.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
+                vibrator.vibrate(40);
+
                 startActivity(new Intent(getApplicationContext(),EightRootActivity.class));
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
@@ -302,6 +406,7 @@ public class EightRecordActivity extends AppCompatActivity {
         line.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                vibrator.vibrate(70);
                 startActivity(new Intent(getApplicationContext(),SingleRecordActivity.class));
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 finish();
@@ -312,6 +417,7 @@ public class EightRecordActivity extends AppCompatActivity {
         montage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 PopupMenu popup = new PopupMenu(EightRecordActivity.this,montage);
                 popup.getMenuInflater().inflate(R.menu.montage, popup.getMenu());
 
@@ -328,6 +434,32 @@ public class EightRecordActivity extends AppCompatActivity {
 
             }
         });
+
+        zoomout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if(counter.getEight_step_y()>0) {
+                    vibrator.vibrate(40);
+                    counter.setEight_step_y((float) ((float) (counter.getEight_step_y() -(counter.getDefault_channel()*(counter.getEight_step_y()/100)))));
+                }
+            }
+
+        });
+        zoomin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                vibrator.vibrate(40);
+                counter.setEight_step_y((float) (counter.getEight_step_y() +(counter.getDefault_channel()*(counter.getEight_step_y()/50))));
+
+
+            }
+
+
+
+
+        });
+
         btn.setOnClickListener(view -> drawerLayout.openDrawer(GravityCompat.START));
 
     }
@@ -341,6 +473,20 @@ public class EightRecordActivity extends AppCompatActivity {
         montage=findViewById(R.id.montage_eightrecord);
         notch=findViewById(R.id.notch_eightrecord);
         listView=dialog.findViewById(R.id.list);
+
+        V0=findViewById(R.id.SM1_0);
+        V1000=findViewById(R.id.SM1_1000);
+        V2000=findViewById(R.id.SM1_2000);
+        V3000=findViewById(R.id.SM1_3000);
+        V4000=findViewById(R.id.SM1_4000);
+        V5000=findViewById(R.id.SM1_5000);
+        V6000=findViewById(R.id.SM1_6000);
+        V7000=findViewById(R.id.SM1_7000);
+        V8000=findViewById(R.id.SM1_8000);
+
+        zoomout=findViewById(R.id.zoomout_eightrecord);
+        zoomin=findViewById(R.id.zoomin_eightrecord);
+
     }
     private class ClientClass extends Thread
     {

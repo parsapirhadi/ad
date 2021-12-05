@@ -14,6 +14,8 @@ import android.view.SurfaceView;
 import android.view.View;
 
 import com.example.myapplication.M.DataType.Counter;
+import com.example.myapplication.V.Activity.EightRecordActivity;
+import com.example.myapplication.V.Activity.EightRootActivity;
 
 public class BaseSurfaceEightRecord extends SurfaceView implements SurfaceHolder.Callback, View.OnTouchListener, Runnable
 {
@@ -160,6 +162,7 @@ public class BaseSurfaceEightRecord extends SurfaceView implements SurfaceHolder
         }
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void run()
     {
@@ -214,53 +217,86 @@ public class BaseSurfaceEightRecord extends SurfaceView implements SurfaceHolder
                         canvas.drawRect( 0,getHeight()-4, getWidth(), getHeight(), samplePaint);
 
                         canvas.drawRect(0, 0 ,1500,1, samplePaint);
+
+
+
                         y0=0;
                         y1=0;  y2=0;  y3=0;  y4=0;  y5=0;  y6=0;  y7=0;
-                        if(counter.getChannel(0, (counter.getX()*7000))!=1000){
+                        if(counter.getChannel(0,counter.getEnddraw()-250)!=1000){
+
                             for (int j2=0;j2<9;j2++){
-                                for (int j1=0;j1<(counter.getX()*7000);j1++) {
+                                for (int j1=0;j1<(counter.getEnddraw());j1++) {
                                     counter.setChannel(1000, j2, j1);
                                 }
-                            }
 
+                         }
+
+                            counter.setStartdraw(counter.getStartdraw()+(500*counter.getHorizontal_scale()));
+                            counter.setEnddraw(counter.getEnddraw()+(500*counter.getHorizontal_scale()));
                             counter.setX(counter.getX()+1);
+
                         }
+                        float g=(float) getHeight()/16;
 
-
-                        for (int i=1+((counter.getX()-1)*7000);i<7000*counter.getX();i++) {
+                        for (int i=1+counter.getStartdraw();i<counter.getEnddraw();i++) {
 
                             if (counter.getChannel(0, i)!=1000 && counter.getChannel(0, i-1)!=1000) {
-                                canvas.drawLine(y0, (1*(getHeight() / 16)) +counter.getChannel(0, i-1), y0 + 2, (1*(getHeight() / 16) )+ counter.getChannel(0, i ), samplePaint0);
-                                y0+=0.2;
+                                canvas.drawLine((y0)*counter.getEight_step_x()
+                                        ,   (float) (((float) ((float) (g*1) + (counter.getChannel(0,i-1) * counter.getEight_step_y()))))
+                                        , (y0 + 1)*counter.getEight_step_x()
+                                        ,   (float) (((float) (g*1) + (counter.getChannel(0, i) * counter.getEight_step_y()))),samplePaint0);
+
+
+                                y0++;
 
                             }
                             if (counter.getChannel(1, i)!=1000 && counter.getChannel(1, i-1)!=1000) {
-                                canvas.drawLine(y1, (3*(getHeight() / 16)) + (counter.getChannel(1, i-1)), (float) (y1 + 2), (3*(getHeight() / 16)) + counter.getChannel(1, i), samplePaint1);
-                                y1+=0.2;
+                                canvas.drawLine((y1)*counter.getEight_step_x()
+                                        ,   (float) (((float) ((float) (g*3) + (counter.getChannel(1,i-1) * counter.getEight_step_y()))))
+                                        , (y1 + 1)*counter.getEight_step_x()
+                                        ,   (float) (((float) (g*3) + (counter.getChannel(1, i ) * counter.getEight_step_y()))),samplePaint1);
+                                y1++;
 
                             }  if (counter.getChannel(2, i)!=1000 && counter.getChannel(2, i-1)!=1000) {
-                                canvas.drawLine(y2, (5*(getHeight() / 16)) +(counter.getChannel(2, i-1)), (float) (y2 + 2), (5*(getHeight() / 16) )+ counter.getChannel(2, i ), samplePaint2);
-                                y2+=0.2;
+                                canvas.drawLine((y2)*counter.getEight_step_x()
+                                        ,   (float) (((float) ((float) (g*5) + (counter.getChannel(2,i-1) * counter.getEight_step_y()))))
+                                        , (y2 + 1)*counter.getEight_step_x()
+                                        ,   (float) (((float) (g*5) + (counter.getChannel(2, i ) * counter.getEight_step_y()))),samplePaint2);
+                                y2++;
 
                             }  if (counter.getChannel(3, i)!=1000 && counter.getChannel(3, i-1)!=1000) {
-                                canvas.drawLine(y3, (7*(getHeight() / 16)) + (counter.getChannel(3, i-1)), (float) (y3 + 2), (7*(getHeight() / 16)) + counter.getChannel(3, i ), samplePaint3);
-                                y3+=0.2;
+                                canvas.drawLine((y3)*counter.getEight_step_x()
+                                        ,   (float) (((float) ((float) (g*7) + (counter.getChannel(3,i-1) * counter.getEight_step_y()))))
+                                        , (y3 + 1)*counter.getEight_step_x()
+                                        ,   (float) (((float) (g*7) + (counter.getChannel(3, i ) * counter.getEight_step_y()))),samplePaint3);
+                                y3++;
 
                             }  if (counter.getChannel(4, i)!=1000 && counter.getChannel(4, i-1)!=1000) {
-                                canvas.drawLine(y4, (9*(getHeight() / 16)) +( counter.getChannel(4, i-1)), (float) (y4 + 2), (9*(getHeight() / 16)) + counter.getChannel(4, i ), samplePaint4);
-                                y4+=0.2;
+                                canvas.drawLine((y4)*counter.getEight_step_x()
+                                        ,   (float) (((float) ((float) (g*9) + (counter.getChannel(4,i-1) * counter.getEight_step_y()))))
+                                        , (y4 + 1)*counter.getEight_step_x()
+                                        ,   (float) (((float) (g*9) + (counter.getChannel(4, i) * counter.getEight_step_y()))),samplePaint4);
+                                y4++;
 
                             }  if (counter.getChannel(5, i)!=1000 && counter.getChannel(5, i-1)!=1000) {
-                                canvas.drawLine(y5, (11*(getHeight() / 16)) +( counter.getChannel(5, i-1)), (float) (y5 + 2), (11*(getHeight() / 16)) + counter.getChannel(5, i), samplePaint5);
-                                y5+=0.2;
-
+                                canvas.drawLine((y5)*counter.getEight_step_x()
+                                        ,   (float) (((float) ((float) (g*11) + (counter.getChannel(5,i-1) * counter.getEight_step_y()))))
+                                        , (y5 + 1)*counter.getEight_step_x()
+                                        ,   (float) (((float) (g*11) + (counter.getChannel(5, i ) * counter.getEight_step_y()))),samplePaint5);
+                                y5++;
                             }  if (counter.getChannel(6, i)!=1000 && counter.getChannel(6, i-1)!=1000) {
-                                canvas.drawLine(y6, (13*(getHeight() / 16)) +( counter.getChannel(6, i-1)), (float) (y6 + 2), (13*(getHeight() / 16)) + counter.getChannel(6, i), samplePaint6);
-                                y6+=0.2;
+                                canvas.drawLine((y6)*counter.getEight_step_x()
+                                        ,   (float) (((float) ((float) (g*13) + (counter.getChannel(6,i-1) * counter.getEight_step_y()))))
+                                        , (y6 + 1)*counter.getEight_step_x()
+                                        ,   (float) (((float) (g*13) + (counter.getChannel(6, i ) * counter.getEight_step_y()))),samplePaint6);
+                                y6++;
 
                             }  if (counter.getChannel(7, i)!=1000 && counter.getChannel(7, i-1)!=1000) {
-                                canvas.drawLine(y7, (15*(getHeight() / 16)) +( counter.getChannel(7, i-1)), (float) (y7 + 2), (15*(getHeight() / 16)) + counter.getChannel(7, i ), samplePaint7);
-                                y7+=0.2;
+                                canvas.drawLine((y7)*counter.getEight_step_x()
+                                        ,   (float) (((float) ((float) (g*15) + (counter.getChannel(7,i-1) * counter.getEight_step_y()))))
+                                        , (y7 + 1)*counter.getEight_step_x()
+                                        ,   (float) (((float) (g*15) + (counter.getChannel(3, i ) * counter.getEight_step_y()))),samplePaint7);
+                                y7++;
 
                             }
 

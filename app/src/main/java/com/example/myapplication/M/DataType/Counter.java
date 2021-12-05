@@ -64,6 +64,11 @@ static long anim_sleep=0;
         Counter.startdraw = startdraw;
     }
 
+    final static int rate_in_secound =512;
+    public int getRate_in_s() {
+        return rate_in_secound;
+    }
+
     public int getEnddraw() {
         return enddraw;
     }
@@ -88,6 +93,13 @@ static long anim_sleep=0;
 
     static float eight_step_y =0;
     static float eight_step_x =0;
+
+
+     static final int default_channel=8;
+
+    public  int getDefault_channel() {
+        return default_channel;
+    }
 
     public  float getEight_step_y() {
         return eight_step_y;

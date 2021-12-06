@@ -10,7 +10,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
+import android.graphics.Path;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -29,6 +31,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 //import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -216,7 +219,7 @@ public class EightRecordActivity extends AppCompatActivity {
         V8000.setText(""+(float)(int)((8*125*counter.getHorizontal_scale()))/1000);
         for (int j2=0;j2<32;j2++){
             for (int j1=0;j1<800000;j1++) {
-                counter.setChannel(1000, j2, j1);
+                counter.setChannel(counter.getPart_data(), j2, j1);
             }
         }
         i=0;
@@ -230,6 +233,7 @@ public class EightRecordActivity extends AppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -255,7 +259,7 @@ public class EightRecordActivity extends AppCompatActivity {
 
         for (int j2=0;j2<32;j2++){
             for (int j1=0;j1<800000;j1++) {
-                counter.setChannel(1000, j2, j1);
+                counter.setChannel(counter.getPart_data(), j2, j1);
             }
         }
 
@@ -305,6 +309,8 @@ public class EightRecordActivity extends AppCompatActivity {
 
         implementListeners();
 
+
+
        }
 
     private void implementListeners() {
@@ -349,14 +355,14 @@ public class EightRecordActivity extends AppCompatActivity {
             public void onClick(View view) {
                 try {
 
-
+                    vibrator.vibrate(40);
                 if(recordcount==0) {
                     record.setBackgroundResource(R.drawable.rect_stop_record);
                     String string= "CONTB\r\n";
                     set_limit=1;
                     sendReceive.write(string.getBytes());
                     recordcount=1;
-                    vibrator.vibrate(40);
+
                 }
                 else if(recordcount==1) {
                     record.setBackgroundResource(R.drawable.red_record_drawable);

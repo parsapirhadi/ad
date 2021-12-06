@@ -19,6 +19,11 @@ static int exist_in_secound=0;
     public void setExist_in_secound(int exist_in_secound) {
         this.exist_in_secound = exist_in_secound;
     }
+static final int part_data=100000;
+
+    public int getPart_data() {
+        return part_data;
+    }
 
     int count_of_set_i_channel=0;
      int count_of_set_j_channel=0;
@@ -202,6 +207,9 @@ static long anim_sleep=0;
 
     public float getChannel(int i,int j) {
         return channel[i][j];
+    }
+    public float[] getChannel(int i){
+        return channel[i];
     }
 
     public void setChannel(float f,int i,int j) {

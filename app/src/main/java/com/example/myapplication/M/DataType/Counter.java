@@ -12,6 +12,26 @@ public class Counter {
 
 static int exist_in_secound=0;
 
+static int count_buffer=1;
+
+static boolean refresh=true;
+
+    public boolean isRefresh() {
+        return refresh;
+    }
+
+    public void setRefresh(boolean refresh) {
+        Counter.refresh = refresh;
+    }
+
+    public int getCount_buffer() {
+        return count_buffer;
+    }
+
+    public void setCount_buffer(int count_buffer) {
+        Counter.count_buffer = count_buffer;
+    }
+
     public int getExist_in_secound() {
         return exist_in_secound;
     }
@@ -19,7 +39,7 @@ static int exist_in_secound=0;
     public void setExist_in_secound(int exist_in_secound) {
         this.exist_in_secound = exist_in_secound;
     }
-static final int part_data=100000;
+static final int part_data= 1000;
 
     public int getPart_data() {
         return part_data;
@@ -169,7 +189,27 @@ static long anim_sleep=0;
 
     public static float [][] channel=new float[32][800000];
 
+    public static float [][] buffer=new float[8][80000];
 
+    public static float [][] buffer_clone=new float[8][80000];
+
+
+    public float getBuffer_clone(int i,int j) {
+        return buffer_clone[i][j];
+    }
+
+
+    public void setBuffer_clone(float f,int i,int j) {
+        this.buffer_clone[i][j]=f;
+    }
+    public float getBuffere(int i,int j) {
+        return buffer[i][j];
+    }
+
+
+    public void setBuffer(float f,int i,int j) {
+        this.buffer[i][j]=f;
+    }
 
     static int line_clecked=0;
 

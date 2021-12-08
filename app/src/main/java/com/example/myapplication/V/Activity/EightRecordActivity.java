@@ -257,9 +257,10 @@ public class EightRecordActivity extends AppCompatActivity {
         counter.setEight_step_y((counter.getEight_step_y()/counter.getDefault_channel())/2);
 
 
-        for (int j2=0;j2<32;j2++){
-            for (int j1=0;j1<800000;j1++) {
-                counter.setChannel(counter.getPart_data(), j2, j1);
+        for (int j2=0;j2<8;j2++){
+            for (int j1=0;j1<8000;j1++) {
+                counter.setBuffer(counter.getPart_data(), j2, j1);
+                counter.setBuffer_clone(counter.getPart_data(), j2, j1);
             }
         }
 
@@ -459,6 +460,7 @@ public class EightRecordActivity extends AppCompatActivity {
                 counter.setEight_step_y((float) (counter.getEight_step_y() +(counter.getDefault_channel()*(counter.getEight_step_y()/50))));
 
 
+
             }
 
 
@@ -582,42 +584,42 @@ public class EightRecordActivity extends AppCompatActivity {
                                if (zarib<255){
                                 if (channel==0) {
                                     channel=1;
-                                    counter.setChannel((float) ((float) ((data - 2048) / 1.4)), 0, i/8);
+                                    counter.setBuffer((float) ((float) ((data - 2048) / 1.4)), 0, i/8);
                                 }
                                 else if (channel==1) {
                                     //    Log.e("gggggg",""+s);
 
                                     channel=2;
 
-                                    counter.setChannel((float) ((float)  ((data - 2048) / 1.4)), 1, i/8);
+                                    counter.setBuffer((float) ((float)  ((data - 2048) / 1.4)), 1, i/8);
                                 } else if (channel==2) {
                                     channel=3;
 
-                                    counter.setChannel((float) ((float)  ((data - 2048) / 1.4)), 2, i/8);
+                                    counter.setBuffer((float) ((float)  ((data - 2048) / 1.4)), 2, i/8);
 
                                 } else if (channel==3) {
                                     channel=4;
 
-                                    counter.setChannel((float) ((float) ((data - 2048) / 1.4)), 3, i/8);
+                                    counter.setBuffer((float) ((float) ((data - 2048) / 1.4)), 3, i/8);
 
                                 } else if (channel==4) {
                                     channel=5;
 
-                                    counter.setChannel((float) ((float)  ((data - 2048) / 1.4)), 4, i/8);
+                                    counter.setBuffer((float) ((float)  ((data - 2048) / 1.4)), 4, i/8);
 
                                 }else if (channel==5) {
                                     channel=6;
 
-                                    counter.setChannel((float) ((float) ((data - 2048) / 1.4)), 5, i/8);
+                                    counter.setBuffer((float) ((float) ((data - 2048) / 1.4)), 5, i/8);
                                 } else if (channel==6) {
                                     channel=7;
 
-                                    counter.setChannel((float) ((float)  ((data - 2048) / 1.4)), 6, i/8);
+                                    counter.setBuffer((float) ((float)  ((data - 2048) / 1.4)), 6, i/8);
 
                                 }else if (channel==7) {
                                     channel=0;
-
-                                    counter.setChannel((float) ((float)  ((data - 2048) / 1.4)), 7, i/8);
+                                    counter.setRefresh(true);
+                                    counter.setBuffer((float) ((float)  ((data - 2048) / 1.4)), 7, i/8);
 
                                 }
                                 i++;

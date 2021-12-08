@@ -1,6 +1,8 @@
 package com.example.myapplication.V;
 
 
+
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -29,11 +31,11 @@ public class BaseSurfaceEightRecord extends SurfaceView implements SurfaceHolder
 
     private Thread drawThread;
 
-float [] o={
-           11,11 , 500,500 ///////////////////////////////////////////////
-        ,500,500 , 500,11//////////////////////////////////////////////////////
-         ,500,11 , 800,11/////////////////////////////////////////////////////
-};
+    float [] o={
+            11,11 , 500,500 ///////////////////////////////////////////////
+            ,500,500 , 500,11//////////////////////////////////////////////////////
+            ,500,11 , 800,11/////////////////////////////////////////////////////
+    };
 
     int positive=0;
 
@@ -54,6 +56,8 @@ float [] o={
     private Paint samplePaint7 = new Paint();
 
     Canvas canvas;
+
+    int i=1;
 
     private static final int MAX_FRAME_TIME = (int) (1000.0 / 60.0);
 
@@ -98,7 +102,7 @@ float [] o={
 
         if (drawThread != null)
         {
-           // Log.d(LOGTAG, "draw thread still active..");
+            // Log.d(LOGTAG, "draw thread still active..");
             drawingActive = false;
             try
             {
@@ -110,7 +114,7 @@ float [] o={
 
         surfaceReady = true;
         startDrawThread(0);
-       // Log.d(LOGTAG, "Created");
+        // Log.d(LOGTAG, "Created");
         counter =new Counter();
         samplePaint0.setStrokeWidth(4);
         samplePaint1.setStrokeWidth(4);
@@ -157,8 +161,9 @@ float [] o={
         this.holder = null;
         surfaceReady = false;
         Log.d(LOGTAG, "Destroyed");
-    }
 
+
+    }
 
 
 
@@ -210,11 +215,43 @@ float [] o={
             // Log.d(LOGTAG, "Draw thread started");
             long frameStartTime;
             long frameTime;
-            if (holder == null) {
+             canvas=holder.lockCanvas();
+
+            if (holder != null) {
+
+                canvas.drawColor(Color.rgb(0, 0, 0));
+
+                //  canvas.drawColor(Color.rgb(230,230,230));
+
+
+                canvas.drawRect(0, ((getHeight() / 4) * 1) - 1, getWidth(), (getHeight() / 4) * 1, samplePaint);
+                canvas.drawRect(0, ((getHeight() / 4) * 2) - 1, getWidth(), (getHeight() / 4) * 2, samplePaint);
+                canvas.drawRect(0, ((getHeight() / 4) * 3) - 1, getWidth(), (getHeight() / 4) * 3, samplePaint);
+
+
+
+                canvas.drawRect(((getWidth() / 4) * 1) - 1, 0, (getWidth() / 4) * 1, getHeight(), samplePaint);
+                canvas.drawRect(((getWidth() / 4) * 2) - 1, 0, (getWidth() / 4) * 2, getHeight(), samplePaint);
+                canvas.drawRect(((getWidth() / 4) * 3) - 1, 0, (getWidth() / 4) * 3, getHeight(), samplePaint);
+                canvas.drawRect(((getWidth() / 4) * 4) - 1, 0, (getWidth() / 4) * 4, getHeight(), samplePaint);
+                canvas.drawRect(((getWidth() / 4) * 5) - 1, 0, (getWidth() / 4) * 5, getHeight(), samplePaint);
+                canvas.drawRect(((getWidth() / 4) * 6) - 1, 0, (getWidth() / 4) * 6, getHeight(), samplePaint);
+                canvas.drawRect(((getWidth() / 4) * 7) - 1, 0, (getWidth() / 4) * 7, getHeight(), samplePaint);
+
+
+                canvas.drawRect(0, getHeight() - 4, getWidth(), getHeight(), samplePaint);
+
+
+
+                canvas.drawRect(0, 0, 1500, 1, samplePaint);
+
+holder.unlockCanvasAndPost(canvas);
+
 
             }
             try {
-                while (drawingActive) {
+                while (true) {
+                    Log.e("ppppppppppp","ppppppppppppppp");
                     if (holder == null) {
                         return;
                     }
@@ -227,38 +264,15 @@ float [] o={
                             int t = 0;
 
 
-                            canvas.drawColor(Color.rgb(230, 230, 230));
 
-                            //  canvas.drawColor(Color.rgb(230,230,230));
-
-
-                            canvas.drawRect(0, ((getHeight() / 4) * 1) - 1, getWidth(), (getHeight() / 4) * 1, samplePaint);
-                            canvas.drawRect(0, ((getHeight() / 4) * 2) - 1, getWidth(), (getHeight() / 4) * 2, samplePaint);
-                            canvas.drawRect(0, ((getHeight() / 4) * 3) - 1, getWidth(), (getHeight() / 4) * 3, samplePaint);
-
-
-                            canvas.drawRect(((getWidth() / 4) * 1) - 1, 0, (getWidth() / 4) * 1, getHeight(), samplePaint);
-                            canvas.drawRect(((getWidth() / 4) * 2) - 1, 0, (getWidth() / 4) * 2, getHeight(), samplePaint);
-                            canvas.drawRect(((getWidth() / 4) * 3) - 1, 0, (getWidth() / 4) * 3, getHeight(), samplePaint);
-                            canvas.drawRect(((getWidth() / 4) * 4) - 1, 0, (getWidth() / 4) * 4, getHeight(), samplePaint);
-                            canvas.drawRect(((getWidth() / 4) * 5) - 1, 0, (getWidth() / 4) * 5, getHeight(), samplePaint);
-                            canvas.drawRect(((getWidth() / 4) * 6) - 1, 0, (getWidth() / 4) * 6, getHeight(), samplePaint);
-                            canvas.drawRect(((getWidth() / 4) * 7) - 1, 0, (getWidth() / 4) * 7, getHeight(), samplePaint);
-
-
-                            canvas.drawRect(0, getHeight() - 4, getWidth(), getHeight(), samplePaint);
-
-                            canvas.drawRect(0, 0, 1500, 1, samplePaint);
-
-
-                            y0 = 0;
-                            y1 = 0;
-                            y2 = 0;
-                            y3 = 0;
-                            y4 = 0;
-                            y5 = 0;
-                            y6 = 0;
-                            y7 = 0;
+                          //  y0 = 0;
+                          //  y1 = 0;
+                           // y2 = 0;
+                           // y3 = 0;
+                           // y4 = 0;
+                           // y5 = 0;
+                          ///  y6 = 0;
+                          //  y7 = 0;
                             if (counter.getChannel(0, counter.getEnddraw() - 250) != counter.getPart_data()) {
 
                                 for (int j2 = 0; j2 < 9; j2++) {
@@ -267,6 +281,8 @@ float [] o={
                                     }
 
                                 }
+
+
 
                                 counter.setStartdraw(counter.getStartdraw() + (500 * counter.getHorizontal_scale()));
                                 counter.setEnddraw(counter.getEnddraw() + (500 * counter.getHorizontal_scale()));
@@ -277,87 +293,95 @@ float [] o={
 
 
                             //canvas.drawLine(0,0,getWidth(),getHeight(),samplePaint4);
-                            canvas.drawLines(o,samplePaint4);
+                          //  canvas.drawLines(o,samplePaint4);
 
 
-                            for (int i = 1 + counter.getStartdraw(); i < counter.getEnddraw(); i++) {
-                                //if (counter.getChannel(0, i)!=1000 ) {
-                                canvas.drawPoint((y0) * counter.getEight_step_x(), (float) (((float) ((float) (g * 1) + (counter.getChannel(0, i) * counter.getEight_step_y())))), samplePaint0);
-                                //canvas.drawLine((y0)*counter.getEight_step_x()
-                                //   ,   (float) (((float) ((float) (g*1) + (counter.getChannel(0,i-1) * counter.getEight_step_y()))))
-                                //   , (y0 + 1)*counter.getEight_step_x()
-                                //   ,   (float) (((float) (g*1) + (counter.getChannel(0, i) * counter.getEight_step_y()))),samplePaint0);
+for (int s=0;s<7;s++) {
+    if (counter.getBuffere(0, i) != 1000) {
+       // canvas.drawPoint((y0) * counter.getEight_step_x(), (float) (((float) ((float) (g * 1) + (counter.getBuffere(0, i) * counter.getEight_step_y())))), samplePaint0);
+        canvas.drawLine((y0)*counter.getEight_step_x()
+           ,   (float) (((float) ((float) (g*1) + (counter.getBuffere(0,i-1) * counter.getEight_step_y()))))
+           , (y0 + 1)*counter.getEight_step_x()
+           ,   (float) (((float) (g*1) + (counter.getBuffere(0, i) * counter.getEight_step_y()))),samplePaint0);
 
 
-                                y0++;
+        y0++;
 
-                                //  }
-                                // if (counter.getChannel(1, i)!=1000 ) {
-                                canvas.drawPoint((y1) * counter.getEight_step_x(), (float) (((float) ((float) (g * 3) + (counter.getChannel(1, i) * counter.getEight_step_y())))), samplePaint1);
+    }
+    if (counter.getBuffere(1, i) != 1000) {
+       // canvas.drawPoint((y1) * counter.getEight_step_x(), (float) (((float) ((float) (g * 3) + (counter.getBuffere(1, i) * counter.getEight_step_y())))), samplePaint1);
 
-                                // canvas.drawLine((y1)*counter.getEight_step_x()
-                                //    ,   (float) (((float) ((float) (g*3) + (counter.getChannel(1,i-1) * counter.getEight_step_y()))))
-                                //   , (y1 + 1)*counter.getEight_step_x()
-                                //   ,   (float) (((float) (g*3) + (counter.getChannel(1, i ) * counter.getEight_step_y()))),samplePaint1);
-                                y1++;
+         canvas.drawLine((y1)*counter.getEight_step_x()
+            ,   (float) (((float) ((float) (g*3) + (counter.getBuffere(1,i-1) * counter.getEight_step_y()))))
+          , (y1 + 1)*counter.getEight_step_x()
+          ,   (float) (((float) (g*3) + (counter.getBuffere(1, i ) * counter.getEight_step_y()))),samplePaint1);
+        y1++;
 
-                                // }  if (counter.getChannel(2, i)!=1000 ) {
-                                canvas.drawPoint((y2) * counter.getEight_step_x(), (float) (((float) ((float) (g * 5) + (counter.getChannel(2, i) * counter.getEight_step_y())))), samplePaint2);
+    }
+    if (counter.getBuffere(2, i) != 1000) {
+        //canvas.drawPoint((y2) * counter.getEight_step_x(), (float) (((float) ((float) (g * 5) + (counter.getBuffere(2, i) * counter.getEight_step_y())))), samplePaint2);
 
-                                //  canvas.drawLine((y2)*counter.getEight_step_x()
-                                //     ,   (float) (((float) ((float) (g*5) + (counter.getChannel(2,i-1) * counter.getEight_step_y()))))
-                                //     , (y2 + 1)*counter.getEight_step_x()
-                                //    ,   (float) (((float) (g*5) + (counter.getChannel(2, i ) * counter.getEight_step_y()))),samplePaint2);
-                                y2++;
+          canvas.drawLine((y2)*counter.getEight_step_x()
+            ,   (float) (((float) ((float) (g*5) + (counter.getBuffere(2,i-1) * counter.getEight_step_y()))))
+           , (y2 + 1)*counter.getEight_step_x()
+           ,   (float) (((float) (g*5) + (counter.getBuffere(2, i ) * counter.getEight_step_y()))),samplePaint2);
+        y2++;
 
-                                // }  if (counter.getChannel(3, i)!=1000 ) {
-                                canvas.drawPoint((y3) * counter.getEight_step_x(), (float) (((float) ((float) (g * 7) + (counter.getChannel(3, i) * counter.getEight_step_y())))), samplePaint3);
+    }
+    if (counter.getBuffere(3, i) != 1000) {
+       // canvas.drawPoint((y3) * counter.getEight_step_x(), (float) (((float) ((float) (g * 7) + (counter.getBuffere(3, i) * counter.getEight_step_y())))), samplePaint3);
 
-                                //   canvas.drawLine((y3)*counter.getEight_step_x()
-                                // ,   (float) (((float) ((float) (g*7) + (counter.getChannel(3,i-1) * counter.getEight_step_y()))))
-                                //  , (y3 + 1)*counter.getEight_step_x()
-                                //   ,   (float) (((float) (g*7) + (counter.getChannel(3, i ) * counter.getEight_step_y()))),samplePaint3);
-                                y3++;
+           canvas.drawLine((y3)*counter.getEight_step_x()
+        ,   (float) (((float) ((float) (g*7) + (counter.getBuffere(3,i-1) * counter.getEight_step_y()))))
+        , (y3 + 1)*counter.getEight_step_x()
+          ,   (float) (((float) (g*7) + (counter.getBuffere(3, i ) * counter.getEight_step_y()))),samplePaint3);
+        y3++;
 
-                                //  }  if (counter.getChannel(4, i)!=1000 ) {
-                                canvas.drawPoint((y4) * counter.getEight_step_x(), (float) (((float) ((float) (g * 9) + (counter.getChannel(4, i) * counter.getEight_step_y())))), samplePaint4);
+    }
+    if (counter.getBuffere(4, i) != 1000) {
+       // canvas.drawPoint((y4) * counter.getEight_step_x(), (float) (((float) ((float) (g * 9) + (counter.getBuffere(4, i) * counter.getEight_step_y())))), samplePaint4);
 
-                                // canvas.drawLine((y4)*counter.getEight_step_x()
-                                //     ,   (float) (((float) ((float) (g*9) + (counter.getChannel(4,i-1) * counter.getEight_step_y()))))
-                                //   , (y4 + 1)*counter.getEight_step_x()
-                                //   ,   (float) (((float) (g*9) + (counter.getChannel(4, i) * counter.getEight_step_y()))),samplePaint4);
-                                y4++;
+         canvas.drawLine((y4)*counter.getEight_step_x()
+            ,   (float) (((float) ((float) (g*9) + (counter.getBuffere(4,i-1) * counter.getEight_step_y()))))
+          , (y4 + 1)*counter.getEight_step_x()
+          ,   (float) (((float) (g*9) + (counter.getBuffere(4, i) * counter.getEight_step_y()))),samplePaint4);
+        y4++;
 
-                                //  }  if (counter.getChannel(5, i)!=1000 ) {
-                                canvas.drawPoint((y5) * counter.getEight_step_x(), (float) (((float) ((float) (g * 11) + (counter.getChannel(5, i) * counter.getEight_step_y())))), samplePaint5);
+    }
+    if (counter.getBuffere(5, i) != 1000) {
+       // canvas.drawPoint((y5) * counter.getEight_step_x(), (float) (((float) ((float) (g * 11) + (counter.getBuffere(5, i) * counter.getEight_step_y())))), samplePaint5);
 
-                                // canvas.drawLine((y5)*counter.getEight_step_x()
-                                //     ,   (float) (((float) ((float) (g*11) + (counter.getChannel(5,i-1) * counter.getEight_step_y()))))
-                                //    , (y5 + 1)*counter.getEight_step_x()
-                                //     ,   (float) (((float) (g*11) + (counter.getChannel(5, i ) * counter.getEight_step_y()))),samplePaint5);
-                                y5++;
-                                // }  if (counter.getChannel(6, i)!=1000 ) {
-                                canvas.drawPoint((y6) * counter.getEight_step_x(), (float) (((float) ((float) (g * 13) + (counter.getChannel(6, i) * counter.getEight_step_y())))), samplePaint6);
+         canvas.drawLine((y5)*counter.getEight_step_x()
+            ,   (float) (((float) ((float) (g*11) + (counter.getBuffere(5,i-1) * counter.getEight_step_y()))))
+          , (y5 + 1)*counter.getEight_step_x()
+            ,   (float) (((float) (g*11) + (counter.getBuffere(5, i ) * counter.getEight_step_y()))),samplePaint5);
+        y5++;
+    }
+    if (counter.getBuffere(6, i) != 1000) {
+       // canvas.drawPoint((y6) * counter.getEight_step_x(), (float) (((float) ((float) (g * 13) + (counter.getBuffere(6, i) * counter.getEight_step_y())))), samplePaint6);
 
-                                //canvas.drawLine((y6)*counter.getEight_step_x()
-                                //    ,   (float) (((float) ((float) (g*13) + (counter.getChannel(6,i-1) * counter.getEight_step_y()))))
-                                //    , (y6 + 1)*counter.getEight_step_x()
-                                //    ,   (float) (((float) (g*13) + (counter.getChannel(6, i ) * counter.getEight_step_y()))),samplePaint6);
-                                y6++;
+        canvas.drawLine((y6)*counter.getEight_step_x()
+            ,   (float) (((float) ((float) (g*13) + (counter.getBuffere(6,i-1) * counter.getEight_step_y()))))
+          , (y6 + 1)*counter.getEight_step_x()
+            ,   (float) (((float) (g*13) + (counter.getBuffere(6, i ) * counter.getEight_step_y()))),samplePaint6);
+        y6++;
 
-                                //  }  if (counter.getChannel(7, i)!=1000 ) {
-                                canvas.drawPoint((y7) * counter.getEight_step_x(), (float) (((float) ((float) (g * 15) + (counter.getChannel(7, i) * counter.getEight_step_y())))), samplePaint0);
+    }
+    if (counter.getBuffere(7, i) != 1000) {
+       // canvas.drawPoint((y7) * counter.getEight_step_x(), (float) (((float) ((float) (g * 15) + (counter.getBuffere(7, i) * counter.getEight_step_y())))), samplePaint0);
 
-                                //canvas.drawLine((y7)*counter.getEight_step_x()
-                                //  ,   (float) (((float) ((float) (g*15) + (counter.getChannel(7,i-1) * counter.getEight_step_y()))))
-                                //  , (y7 + 1)*counter.getEight_step_x()
-                                //  ,   (float) (((float) (g*15) + (counter.getChannel(7, i ) * counter.getEight_step_y()))),samplePaint7);
-                                y7++;
+        canvas.drawLine((y7)*counter.getEight_step_x()
+        ,   (float) (((float) ((float) (g*15) + (counter.getBuffere(7,i-1) * counter.getEight_step_y()))))
+        , (y7 + 1)*counter.getEight_step_x()
+         ,   (float) (((float) (g*15) + (counter.getBuffere(7, i ) * counter.getEight_step_y()))),samplePaint7);
+        y7++;
+        i++;
 
-                                // }
 
-                            }
+    }
 
+
+}
 
 
 
@@ -367,22 +391,20 @@ for (int j=0;j<1000;j+=50) {
         t=0;
     }
     for (float i = 0; i < 1400; i += 0.05) {
-
-
-
         canvas.drawRect(i+(j*10), j, (float) (i+0.04), (float) (j+10), samplePaint);
         t++;
     }
 }
-
  */
 
                         } finally {
-
+                            invalidate();
+                            postInvalidate();
                             holder.unlockCanvasAndPost(canvas);
                         }
                     }
-
+//holder.unlockCanvasAndPost(canvas);
+  //     canvas=holder.lockCanvas();
 
                     //  frameTime = (System.nanoTime() - frameStartTime) / 1000000;
 

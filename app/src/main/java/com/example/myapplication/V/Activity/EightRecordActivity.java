@@ -9,7 +9,10 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
@@ -19,6 +22,7 @@ import android.os.Message;
 import android.os.Vibrator;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.SurfaceView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -37,6 +41,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.myapplication.M.DataType.Counter;
+import com.example.myapplication.M.DataType.Objects;
 import com.example.myapplication.M.DataType.String1;
 import com.example.myapplication.R;
 import com.example.myapplication.V.BaseSurfaceEightRecord;
@@ -61,7 +66,6 @@ public class EightRecordActivity extends AppCompatActivity {
     Button record;
     Button resize;
     Button bluetooth;
-    BluetoothAdapter bluetoothAdapter;
     ListView listView;
     Set<BluetoothDevice> pared;
     Dialog dialog;
@@ -70,6 +74,7 @@ public class EightRecordActivity extends AppCompatActivity {
     String bluetooth_name="";
     DrawerLayout drawerLayout;
     String1 string1 ;
+    Objects objects;
     Counter counter;
     /////////////////////////////////////////////////
     Button listDevices;
@@ -90,7 +95,7 @@ public class EightRecordActivity extends AppCompatActivity {
 
     BluetoothDevice[] btArray;
 
-    SendReceive sendReceive;
+     static SendReceive sendReceive;
     int q=0;
     int set_limit=0;
 
@@ -140,7 +145,7 @@ public class EightRecordActivity extends AppCompatActivity {
     OutputStream tempOut=null;
 
     private BluetoothDevice device;
-    private BluetoothSocket socket;
+
 
     int y=0;
 
@@ -184,17 +189,31 @@ public class EightRecordActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
+
+
+        for (int j2=0;j2<8;j2++){
+            for (int j1=0;j1<80000;j1++) {
+                counter.setBuffer(counter.getPart_data(), j2, j1);
+                counter.setBuffer_clone(counter.getPart_data(), j2, j1);
+            }
+        }
         record.setBackgroundResource(R.drawable.red_record_drawable);
-        bluetooth.setBackgroundResource(R.drawable.bluetooth_off_foreground);
+
+
         String string = "NOP\r\n";
         set_limit = 1;
 
-        sendReceive.write(string.getBytes());
-        try {
-            socket.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+
+
+        if (objects.getSocket()!=null){
+            try {
+                sendReceive.write(string.getBytes());
+              //  objects.getSocket().close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
+
         recordcount = 0;
         i=0;
     }
@@ -202,7 +221,13 @@ public class EightRecordActivity extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     @Override
     protected void onResume() {
+
         super.onResume();
+       if (objects.getSocket()!=null){
+           if (objects.getSocket().isConnected()){
+               bluetooth.setBackgroundResource(R.drawable.bluetooth_on_foreground);
+           }
+       }
         counter.setStartdraw(1);
 
         counter.setEnddraw(counter.getHorizontal_scale()*counter.getRate_in_s());
@@ -217,9 +242,10 @@ public class EightRecordActivity extends AppCompatActivity {
         V6000.setText(""+(float)(int)((6*125*counter.getHorizontal_scale()))/1000);
         V7000.setText(""+(float)(int)((7*125*counter.getHorizontal_scale()))/1000);
         V8000.setText(""+(float)(int)((8*125*counter.getHorizontal_scale()))/1000);
-        for (int j2=0;j2<32;j2++){
-            for (int j1=0;j1<800000;j1++) {
-                counter.setChannel(counter.getPart_data(), j2, j1);
+        for (int j2=0;j2<8;j2++){
+            for (int j1=0;j1<80000;j1++) {
+                counter.setBuffer(counter.getPart_data(), j2, j1);
+                counter.setBuffer_clone(counter.getPart_data(), j2, j1);
             }
         }
         i=0;
@@ -244,11 +270,12 @@ public class EightRecordActivity extends AppCompatActivity {
         drawerLayout=findViewById(R.id.draver_eightrecord);
         counter=new Counter();
         string1=new String1();
+        objects=new Objects();
+
         i=0;
         FindViewBiId();
         vibrator= (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        bluetoothAdapter=BluetoothAdapter.getDefaultAdapter();
-
+objects.setBluetoothAdapter(BluetoothAdapter.getDefaultAdapter());
 
         counter.setEnddraw(counter.getHorizontal_scale()*counter.getRate_in_s());
         counter.setEight_step_x((float) counter.getSurfaceviewhewidth()/(counter.getRate_in_s()*counter.getHorizontal_scale()));
@@ -258,13 +285,13 @@ public class EightRecordActivity extends AppCompatActivity {
 
 
         for (int j2=0;j2<8;j2++){
-            for (int j1=0;j1<8000;j1++) {
+            for (int j1=0;j1<80000;j1++) {
                 counter.setBuffer(counter.getPart_data(), j2, j1);
                 counter.setBuffer_clone(counter.getPart_data(), j2, j1);
             }
         }
 
-        if(!bluetoothAdapter.isEnabled())
+        if(!objects.getBluetoothAdapter().isEnabled())
         {
             Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(enableIntent,REQUEST_ENABLE_BLUETOOTH);
@@ -300,15 +327,21 @@ public class EightRecordActivity extends AppCompatActivity {
         registerReceiver(scanmodereceiver,scanintentFilter);
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        bluetoothAdapter= BluetoothAdapter.getDefaultAdapter();
-        if (bluetoothAdapter==null){
+
+        objects.setBluetoothAdapter(BluetoothAdapter.getDefaultAdapter());
+        if (objects.getBluetoothAdapter()==null){
             Toast.makeText(getApplicationContext(),"null",Toast.LENGTH_LONG).show();
             finish();
         }
-        if (bluetoothAdapter.isEnabled()){
+        if (objects.getBluetoothAdapter().isEnabled()){
         }
 
         implementListeners();
+
+
+
+
+
 
 
 
@@ -320,7 +353,7 @@ public class EightRecordActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Set<BluetoothDevice> bt=bluetoothAdapter.getBondedDevices();
+                Set<BluetoothDevice> bt=objects.getBluetoothAdapter().getBondedDevices();
                 String[] strings=new String[bt.size()];
                 btArray=new BluetoothDevice[bt.size()];
                 int index=0;
@@ -354,13 +387,14 @@ public class EightRecordActivity extends AppCompatActivity {
         record.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                try {
+
 
                     vibrator.vibrate(40);
                 if(recordcount==0) {
                     record.setBackgroundResource(R.drawable.rect_stop_record);
                     String string= "CONTB\r\n";
                     set_limit=1;
+                    sendReceive=new SendReceive(objects.getSocket());
                     sendReceive.write(string.getBytes());
                     recordcount=1;
 
@@ -373,13 +407,8 @@ public class EightRecordActivity extends AppCompatActivity {
 
                     recordcount = 0;
                 }
-                }
-                catch (Exception e){
-                    set_limit=1;
-                    recordcount=1;
-                    record.setBackgroundResource(R.drawable.red_record_drawable);
-                    Toast.makeText(getApplicationContext(),"Please Connect With Bluetooth ",Toast.LENGTH_LONG).show();
-                }
+
+
             }
 
         });
@@ -504,7 +533,7 @@ public class EightRecordActivity extends AppCompatActivity {
             device=device1;
 
             try {
-                socket=device.createRfcommSocketToServiceRecord(MY_UUID);
+                objects.setSocket(device.createRfcommSocketToServiceRecord(MY_UUID));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -514,14 +543,14 @@ public class EightRecordActivity extends AppCompatActivity {
         {
             try {
 
-                socket.connect();
+                objects.getSocket().connect();
 
                 Message message=Message.obtain();
                 message.what=STATE_CONNECTED;
                 handler.sendMessage(message);
 
 
-                sendReceive=new SendReceive(socket);
+                sendReceive=new SendReceive(objects.getSocket());
 
                 sendReceive.start();
 
@@ -584,42 +613,42 @@ public class EightRecordActivity extends AppCompatActivity {
                                if (zarib<255){
                                 if (channel==0) {
                                     channel=1;
-                                    counter.setBuffer((float) ((float) ((data - 2048) / 1.4)), 0, i/8);
+                                    counter.setBuffer(((float) ((data - 2048) / 1.4)), 0, i/8);
                                 }
                                 else if (channel==1) {
                                     //    Log.e("gggggg",""+s);
 
                                     channel=2;
 
-                                    counter.setBuffer((float) ((float)  ((data - 2048) / 1.4)), 1, i/8);
+                                    counter.setBuffer(((float)  ((data - 2048) / 1.4)), 1, i/8);
                                 } else if (channel==2) {
                                     channel=3;
 
-                                    counter.setBuffer((float) ((float)  ((data - 2048) / 1.4)), 2, i/8);
+                                    counter.setBuffer( ((float)  ((data - 2048) / 1.4)), 2, i/8);
 
                                 } else if (channel==3) {
                                     channel=4;
 
-                                    counter.setBuffer((float) ((float) ((data - 2048) / 1.4)), 3, i/8);
+                                    counter.setBuffer(((float) ((data - 2048) / 1.4)), 3, i/8);
 
                                 } else if (channel==4) {
                                     channel=5;
 
-                                    counter.setBuffer((float) ((float)  ((data - 2048) / 1.4)), 4, i/8);
+                                    counter.setBuffer(((float)  ((data - 2048) / 1.4)), 4, i/8);
 
                                 }else if (channel==5) {
                                     channel=6;
 
-                                    counter.setBuffer((float) ((float) ((data - 2048) / 1.4)), 5, i/8);
+                                    counter.setBuffer( ((float) ((data - 2048) / 1.4)), 5, i/8);
                                 } else if (channel==6) {
                                     channel=7;
 
-                                    counter.setBuffer((float) ((float)  ((data - 2048) / 1.4)), 6, i/8);
+                                    counter.setBuffer(((float)  ((data - 2048) / 1.4)), 6, i/8);
 
                                 }else if (channel==7) {
                                     channel=0;
                                     counter.setRefresh(true);
-                                    counter.setBuffer((float) ((float)  ((data - 2048) / 1.4)), 7, i/8);
+                                    counter.setBuffer( ((float)  ((data - 2048) / 1.4)), 7, i/8);
 
                                 }
                                 i++;

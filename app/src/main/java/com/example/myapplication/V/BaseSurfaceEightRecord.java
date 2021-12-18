@@ -5,6 +5,8 @@ package com.example.myapplication.V;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -16,6 +18,7 @@ import android.view.SurfaceView;
 import android.view.View;
 
 import com.example.myapplication.M.DataType.Counter;
+import com.example.myapplication.R;
 import com.example.myapplication.V.Activity.EightRecordActivity;
 import com.example.myapplication.V.Activity.EightRootActivity;
 
@@ -24,10 +27,12 @@ public class BaseSurfaceEightRecord extends SurfaceView implements SurfaceHolder
     float  f[] =new float[5];
     private SurfaceHolder holder;
 
-    float x=0 ,y=0;
+    int x=1,y=0;
     float y0 =0,y1=0,y2=0,y3=0,y4=0,y5=0,y6=0,y7=0;
     float dy,dx;
     Counter counter;
+
+
 
     private Thread drawThread;
 
@@ -38,7 +43,7 @@ public class BaseSurfaceEightRecord extends SurfaceView implements SurfaceHolder
     };
 
     int positive=0;
-
+Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher_background);
     private boolean surfaceReady = false;
 
     int cannel_count=0;
@@ -54,6 +59,8 @@ public class BaseSurfaceEightRecord extends SurfaceView implements SurfaceHolder
     private Paint samplePaint5 = new Paint();
     private Paint samplePaint6 = new Paint();
     private Paint samplePaint7 = new Paint();
+
+    private Paint samplePaintW = new Paint();
 
     Canvas canvas;
 
@@ -126,27 +133,23 @@ public class BaseSurfaceEightRecord extends SurfaceView implements SurfaceHolder
         samplePaint7.setStrokeWidth(4);
 
 
-        samplePaint0.setColor(Color.rgb(189, 95, 130));
-        samplePaint1.setColor(Color.rgb(156, 1, 150));
-        samplePaint2.setColor(Color.rgb(225, 32, 32));
-        samplePaint3.setColor(Color.rgb(190, 2, 130));
-        samplePaint4.setColor(Color.rgb(137, 32, 28));
-        samplePaint5.setColor(Color.rgb(189, 95, 14));
-        samplePaint6.setColor(Color.rgb(220, 40, 50));
-        samplePaint7.setColor(Color.rgb(237, 38, 154));
+        samplePaint0.setColor(Color.GREEN);
+        samplePaint1.setColor(Color.GREEN);
+        samplePaint2.setColor(Color.GREEN);
+        samplePaint3.setColor(Color.GREEN);
+        samplePaint4.setColor(Color.GREEN);
+        samplePaint5.setColor(Color.GREEN);
+        samplePaint6.setColor(Color.GREEN);
+        samplePaint7.setColor(Color.GREEN);
 
+        samplePaintW.setColor(Color.WHITE);
 
         samplePaint1.setStrokeWidth(3);
 
-        samplePaint0.setDither(true);
-        samplePaint1.setDither(true);
-        samplePaint2.setDither(true);
-        samplePaint3.setDither(true);
-        samplePaint4.setDither(true);
-        samplePaint5.setDither(true);
-        samplePaint6.setDither(true);
-        samplePaint7.setDither(true);
+        Canvas c = holder.lockCanvas(null);
 
+        ondraw(c);
+        holder.unlockCanvasAndPost(c);
 
     }
 
@@ -211,179 +214,84 @@ public class BaseSurfaceEightRecord extends SurfaceView implements SurfaceHolder
     @SuppressLint("SetTextI18n")
     Runnable runnable1=new Runnable() {
         @Override
-        public void run() {
-            // Log.d(LOGTAG, "Draw thread started");
+        public void run()
+        {
             long frameStartTime;
             long frameTime;
-             canvas=holder.lockCanvas();
-
-            if (holder != null) {
-
-                canvas.drawColor(Color.rgb(0, 0, 0));
-
-                //  canvas.drawColor(Color.rgb(230,230,230));
-
-
-                canvas.drawRect(0, ((getHeight() / 4) * 1) - 1, getWidth(), (getHeight() / 4) * 1, samplePaint);
-                canvas.drawRect(0, ((getHeight() / 4) * 2) - 1, getWidth(), (getHeight() / 4) * 2, samplePaint);
-                canvas.drawRect(0, ((getHeight() / 4) * 3) - 1, getWidth(), (getHeight() / 4) * 3, samplePaint);
 
 
 
-                canvas.drawRect(((getWidth() / 4) * 1) - 1, 0, (getWidth() / 4) * 1, getHeight(), samplePaint);
-                canvas.drawRect(((getWidth() / 4) * 2) - 1, 0, (getWidth() / 4) * 2, getHeight(), samplePaint);
-                canvas.drawRect(((getWidth() / 4) * 3) - 1, 0, (getWidth() / 4) * 3, getHeight(), samplePaint);
-                canvas.drawRect(((getWidth() / 4) * 4) - 1, 0, (getWidth() / 4) * 4, getHeight(), samplePaint);
-                canvas.drawRect(((getWidth() / 4) * 5) - 1, 0, (getWidth() / 4) * 5, getHeight(), samplePaint);
-                canvas.drawRect(((getWidth() / 4) * 6) - 1, 0, (getWidth() / 4) * 6, getHeight(), samplePaint);
-                canvas.drawRect(((getWidth() / 4) * 7) - 1, 0, (getWidth() / 4) * 7, getHeight(), samplePaint);
-
-
-                canvas.drawRect(0, getHeight() - 4, getWidth(), getHeight(), samplePaint);
-
-
-
-                canvas.drawRect(0, 0, 1500, 1, samplePaint);
-
-holder.unlockCanvasAndPost(canvas);
-
-
-            }
-            try {
-                while (true) {
-                    Log.e("ppppppppppp","ppppppppppppppp");
-                    if (holder == null) {
+            try
+            {
+                while (drawingActive)
+                {
+                    if (holder == null)
+                    {
                         return;
                     }
 
                     frameStartTime = System.nanoTime();
-                    canvas = holder.lockCanvas();
-                    if (canvas != null) {
+                    Canvas canvas = holder.lockCanvas();
+                    if (canvas != null)
+                    {
 
-                        try {
-                            int t = 0;
+                        try
+                        {
+                            int t=0;
+
+
+                            canvas.drawColor(Color.rgb(230,230,230));
+
+                            //  canvas.drawColor(Color.rgb(230,230,230));
+
+                            //  canvas.drawRect(0, ((getHeight() / 4)*1)-1, getWidth(), (getHeight() / 4)*1, samplePaint);
+                            // canvas.drawRect(0, ((getHeight() / 4)*2)-1, getWidth(), (getHeight() / 4)*2, samplePaint);
+                            //  canvas.drawRect(0, ((getHeight() / 4)*3)-1, getWidth(), (getHeight() / 4)*3, samplePaint);
 
 
 
-                          //  y0 = 0;
-                          //  y1 = 0;
-                           // y2 = 0;
-                           // y3 = 0;
-                           // y4 = 0;
-                           // y5 = 0;
-                          ///  y6 = 0;
-                          //  y7 = 0;
-                            if (counter.getChannel(0, counter.getEnddraw() - 250) != counter.getPart_data()) {
+                            canvas.drawRect( ((getWidth() / 4)*1)-1,0, (getWidth() / 4)*1 , getHeight(), samplePaint);
+                            canvas.drawRect( ((getWidth() / 4)*2)-1,0, (getWidth() / 4)*2, getHeight(), samplePaint);
+                            canvas.drawRect( ((getWidth() / 4)*3)-1,0, (getWidth() / 4)*3, getHeight(), samplePaint);
+                            canvas.drawRect( ((getWidth() / 4)*4)-1,0, (getWidth() / 4)*4, getHeight(), samplePaint);
+                            canvas.drawRect( ((getWidth() / 4)*5)-1,0, (getWidth() / 4)*5 , getHeight(), samplePaint);
+                            canvas.drawRect( ((getWidth() / 4)*6)-1,0, (getWidth() / 4)*6 , getHeight(), samplePaint);
+                            canvas.drawRect( ((getWidth() / 4)*7)-1,0, (getWidth() / 4)*7, getHeight(), samplePaint);
 
-                                for (int j2 = 0; j2 < 9; j2++) {
-                                    for (int j1 = 0; j1 < (counter.getEnddraw()); j1++) {
-                                        counter.setChannel(counter.getPart_data(), j2, j1);
+
+
+
+                            canvas.drawRect(0, 0 ,getWidth(),1, samplePaint);
+                            canvas.drawRect( 0,getHeight()-4, getWidth(), getHeight(), samplePaint);
+
+                            if ( counter.getBuffere(0,counter.getHorizontal_scale()*500*x)!=1000.0 ){
+
+                             counter.setEnddraw(counter.getEnddraw()+(counter.getHorizontal_scale()*500));
+                              counter.setStartdraw(counter.getStartdraw()+(counter.getHorizontal_scale()*500));
+                              x++;
+                          }
+
+                            samplePaint1.setColor(Color.RED);
+
+
+
+
+                            for (int j=0;j<counter.getDefault_channel();j++) {
+                                int y=0;
+                                for (int i = counter.getStartdraw(); i < counter.getEnddraw(); i++) {
+                                    if (counter.getBuffere(j,i+1)!=1000.0  ) {
+                                        canvas.drawLine(
+                                                (float) (y * counter.getEight_step_x()),
+                                                (float) (((float) ((float) (getHeight() / (float) (counter.getDefault_channel() * 2))) * (((2 * j) + 1))) + (counter.getBuffere(j, i) * counter.getEight_step_y())),
+                                                (float) ((y+1) * counter.getEight_step_x()),
+                                                (float) (((float) ((float) (getHeight() / (float) (counter.getDefault_channel() * 2))) * (((2 * j) + 1))) + (counter.getBuffere(j, (i+1)) * counter.getEight_step_y())),
+                                               samplePaint1);
+
                                     }
+                                    y++;
 
                                 }
-
-
-
-                                counter.setStartdraw(counter.getStartdraw() + (500 * counter.getHorizontal_scale()));
-                                counter.setEnddraw(counter.getEnddraw() + (500 * counter.getHorizontal_scale()));
-                                counter.setX(counter.getX() + 1);
-
                             }
-                            float g = (float) getHeight() / 16;
-
-
-                            //canvas.drawLine(0,0,getWidth(),getHeight(),samplePaint4);
-                          //  canvas.drawLines(o,samplePaint4);
-
-
-for (int s=0;s<7;s++) {
-    if (counter.getBuffere(0, i) != 1000) {
-       // canvas.drawPoint((y0) * counter.getEight_step_x(), (float) (((float) ((float) (g * 1) + (counter.getBuffere(0, i) * counter.getEight_step_y())))), samplePaint0);
-        canvas.drawLine((y0)*counter.getEight_step_x()
-           ,   (float) (((float) ((float) (g*1) + (counter.getBuffere(0,i-1) * counter.getEight_step_y()))))
-           , (y0 + 1)*counter.getEight_step_x()
-           ,   (float) (((float) (g*1) + (counter.getBuffere(0, i) * counter.getEight_step_y()))),samplePaint0);
-
-
-        y0++;
-
-    }
-    if (counter.getBuffere(1, i) != 1000) {
-       // canvas.drawPoint((y1) * counter.getEight_step_x(), (float) (((float) ((float) (g * 3) + (counter.getBuffere(1, i) * counter.getEight_step_y())))), samplePaint1);
-
-         canvas.drawLine((y1)*counter.getEight_step_x()
-            ,   (float) (((float) ((float) (g*3) + (counter.getBuffere(1,i-1) * counter.getEight_step_y()))))
-          , (y1 + 1)*counter.getEight_step_x()
-          ,   (float) (((float) (g*3) + (counter.getBuffere(1, i ) * counter.getEight_step_y()))),samplePaint1);
-        y1++;
-
-    }
-    if (counter.getBuffere(2, i) != 1000) {
-        //canvas.drawPoint((y2) * counter.getEight_step_x(), (float) (((float) ((float) (g * 5) + (counter.getBuffere(2, i) * counter.getEight_step_y())))), samplePaint2);
-
-          canvas.drawLine((y2)*counter.getEight_step_x()
-            ,   (float) (((float) ((float) (g*5) + (counter.getBuffere(2,i-1) * counter.getEight_step_y()))))
-           , (y2 + 1)*counter.getEight_step_x()
-           ,   (float) (((float) (g*5) + (counter.getBuffere(2, i ) * counter.getEight_step_y()))),samplePaint2);
-        y2++;
-
-    }
-    if (counter.getBuffere(3, i) != 1000) {
-       // canvas.drawPoint((y3) * counter.getEight_step_x(), (float) (((float) ((float) (g * 7) + (counter.getBuffere(3, i) * counter.getEight_step_y())))), samplePaint3);
-
-           canvas.drawLine((y3)*counter.getEight_step_x()
-        ,   (float) (((float) ((float) (g*7) + (counter.getBuffere(3,i-1) * counter.getEight_step_y()))))
-        , (y3 + 1)*counter.getEight_step_x()
-          ,   (float) (((float) (g*7) + (counter.getBuffere(3, i ) * counter.getEight_step_y()))),samplePaint3);
-        y3++;
-
-    }
-    if (counter.getBuffere(4, i) != 1000) {
-       // canvas.drawPoint((y4) * counter.getEight_step_x(), (float) (((float) ((float) (g * 9) + (counter.getBuffere(4, i) * counter.getEight_step_y())))), samplePaint4);
-
-         canvas.drawLine((y4)*counter.getEight_step_x()
-            ,   (float) (((float) ((float) (g*9) + (counter.getBuffere(4,i-1) * counter.getEight_step_y()))))
-          , (y4 + 1)*counter.getEight_step_x()
-          ,   (float) (((float) (g*9) + (counter.getBuffere(4, i) * counter.getEight_step_y()))),samplePaint4);
-        y4++;
-
-    }
-    if (counter.getBuffere(5, i) != 1000) {
-       // canvas.drawPoint((y5) * counter.getEight_step_x(), (float) (((float) ((float) (g * 11) + (counter.getBuffere(5, i) * counter.getEight_step_y())))), samplePaint5);
-
-         canvas.drawLine((y5)*counter.getEight_step_x()
-            ,   (float) (((float) ((float) (g*11) + (counter.getBuffere(5,i-1) * counter.getEight_step_y()))))
-          , (y5 + 1)*counter.getEight_step_x()
-            ,   (float) (((float) (g*11) + (counter.getBuffere(5, i ) * counter.getEight_step_y()))),samplePaint5);
-        y5++;
-    }
-    if (counter.getBuffere(6, i) != 1000) {
-       // canvas.drawPoint((y6) * counter.getEight_step_x(), (float) (((float) ((float) (g * 13) + (counter.getBuffere(6, i) * counter.getEight_step_y())))), samplePaint6);
-
-        canvas.drawLine((y6)*counter.getEight_step_x()
-            ,   (float) (((float) ((float) (g*13) + (counter.getBuffere(6,i-1) * counter.getEight_step_y()))))
-          , (y6 + 1)*counter.getEight_step_x()
-            ,   (float) (((float) (g*13) + (counter.getBuffere(6, i ) * counter.getEight_step_y()))),samplePaint6);
-        y6++;
-
-    }
-    if (counter.getBuffere(7, i) != 1000) {
-       // canvas.drawPoint((y7) * counter.getEight_step_x(), (float) (((float) ((float) (g * 15) + (counter.getBuffere(7, i) * counter.getEight_step_y())))), samplePaint0);
-
-        canvas.drawLine((y7)*counter.getEight_step_x()
-        ,   (float) (((float) ((float) (g*15) + (counter.getBuffere(7,i-1) * counter.getEight_step_y()))))
-        , (y7 + 1)*counter.getEight_step_x()
-         ,   (float) (((float) (g*15) + (counter.getBuffere(7, i ) * counter.getEight_step_y()))),samplePaint7);
-        y7++;
-        i++;
-
-
-    }
-
-
-}
-
-
 
 /*
 for (int j=0;j<1000;j+=50) {
@@ -391,38 +299,30 @@ for (int j=0;j<1000;j+=50) {
         t=0;
     }
     for (float i = 0; i < 1400; i += 0.05) {
+
+
+
         canvas.drawRect(i+(j*10), j, (float) (i+0.04), (float) (j+10), samplePaint);
         t++;
     }
 }
+
  */
 
-                        } finally {
-                            invalidate();
-                            postInvalidate();
+                        } finally
+                        {
+
                             holder.unlockCanvasAndPost(canvas);
                         }
                     }
-//holder.unlockCanvasAndPost(canvas);
-  //     canvas=holder.lockCanvas();
 
-                    //  frameTime = (System.nanoTime() - frameStartTime) / 1000000;
 
-                    //  if (frameTime < MAX_FRAME_TIME) // faster than the max fps - limit the FPS
-                    //  {
-                    //    try
-                    //    {
-                    //     Thread.sleep(MAX_FRAME_TIME - frameTime);
-                    //    } catch (InterruptedException e)
-                    //   {
-                    // ignore
-                    //   }
-                    //  }
+
+
                 }
-            } catch (Exception e) {
-                //  Log.w(LOGTAG, "Exception while locking/unlocking");
+            } catch (Exception e)
+            {
             }
-            //    Log.d(LOGTAG, "Draw thread finished");
         }
     };
 
@@ -431,5 +331,11 @@ for (int j=0;j<1000;j+=50) {
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
         return false;
+    }
+
+
+    public void ondraw(Canvas canvas) {
+
+
     }
 }

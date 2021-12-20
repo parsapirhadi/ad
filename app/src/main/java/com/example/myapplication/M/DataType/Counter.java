@@ -13,8 +13,17 @@ public class Counter {
 static int exist_in_secound=0;
 
 static int count_buffer=1;
+static int show_record_ch=0;
 
-static boolean refresh=true;
+    public int getShow_record_ch() {
+        return show_record_ch;
+    }
+
+    public void setShow_record_ch(int show_record_ch) {
+        this.show_record_ch = show_record_ch;
+    }
+
+    static boolean refresh=true;
 
     public boolean isRefresh() {
         return refresh;

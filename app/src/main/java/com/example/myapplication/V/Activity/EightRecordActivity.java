@@ -9,26 +9,22 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Path;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Vibrator;
-import android.util.Log;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.MenuItem;
-import android.view.SurfaceView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
@@ -50,12 +46,15 @@ import com.google.android.material.snackbar.Snackbar;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.ArrayList;
 import java.util.Set;
 import java.util.UUID;
 
 
 public class EightRecordActivity extends AppCompatActivity {
+    static TextView  ch1,ch2,ch3,ch4,ch5,ch6,ch7,ch8;
+    EditText ech1,ech2,ech3,ech4,ech5,ech6,ech7,ech8;
+    Button bch1,bch2,bch3,bch4,bch5,bch6,bch7,bch8;
+
     Button btn;
     Button montage;
     Button line;
@@ -64,11 +63,15 @@ public class EightRecordActivity extends AppCompatActivity {
     Button zoomout;
     Button zoomin;
     Button record;
+    String text_ch1="";
     Button resize;
     Button bluetooth;
     ListView listView;
+
     Set<BluetoothDevice> pared;
-    Dialog dialog;
+    Dialog dialog,dialog1,dialog2,dialog3,dialog4,dialog5,dialog6,dialog7,dialog8;
+
+
     int recordcount=0;
     int notchcount=0;
     String bluetooth_name="";
@@ -103,6 +106,7 @@ public class EightRecordActivity extends AppCompatActivity {
     int g;
 
     int i=0;
+    int o;
 
     boolean bb=false;
     boolean ggg=false;
@@ -131,6 +135,37 @@ public class EightRecordActivity extends AppCompatActivity {
         return V8000;
     }
 
+    public static TextView getCh1() {
+        return ch1;
+    }
+
+    public static TextView getCh2() {
+        return ch2;
+    }
+
+    public static TextView getCh3() {
+        return ch3;
+    }
+
+    public static TextView getCh4() {
+        return ch4;
+    }
+
+    public static TextView getCh5() {
+        return ch5;
+    }
+
+    public static TextView getCh6() {
+        return ch6;
+    }
+
+    public static TextView getCh7() {
+        return ch7;
+    }
+
+    public static TextView getCh8() {
+        return ch8;
+    }
 
     int s;
     static final int STATE_LISTENING = 1;
@@ -171,6 +206,15 @@ public class EightRecordActivity extends AppCompatActivity {
                     bluetooth.setBackgroundResource(R.drawable.bluetooth_on_foreground);
                     View parentLayout = findViewById(android.R.id.content);
                     Snackbar.make(parentLayout, "Connected To '"+bluetooth_name+"'", Snackbar.LENGTH_LONG).show();
+
+                    record.setBackgroundResource(R.drawable.red_record_drawable);
+                    String string = "NOP\r\n";
+                    set_limit = 1;
+                    if (objects.getSocket()!=null){
+                    sendReceive.write(string.getBytes());
+}
+                    recordcount = 0;
+
                     dialog.dismiss();
                     break;
                 case STATE_CONNECTION_FAILED:
@@ -197,7 +241,6 @@ public class EightRecordActivity extends AppCompatActivity {
                 counter.setBuffer_clone(counter.getPart_data(), j2, j1);
             }
         }
-        record.setBackgroundResource(R.drawable.red_record_drawable);
 
 
         String string = "NOP\r\n";
@@ -233,6 +276,8 @@ public class EightRecordActivity extends AppCompatActivity {
         counter.setEnddraw(counter.getHorizontal_scale()*counter.getRate_in_s());
         counter.setEight_step_x((float) counter.getSurface_width()/(counter.getRate_in_s()*counter.getHorizontal_scale()));
 
+
+
         V0.setText(""+0);
         V1000.setText(""+(float)(int)((125*counter.getHorizontal_scale()))/1000);
         V2000.setText(""+(float)(int)((2*125*counter.getHorizontal_scale()))/1000);
@@ -249,6 +294,27 @@ public class EightRecordActivity extends AppCompatActivity {
             }
         }
         i=0;
+
+if (string1.getPivote(0)!=null)
+{
+    ch1.setText(string1.getPivote(0));
+    ch2.setText(string1.getPivote(1));
+    ch3.setText(string1.getPivote(2));
+    ch4.setText(string1.getPivote(3));
+    ch5.setText(string1.getPivote(4));
+    ch6.setText(string1.getPivote(5));
+    ch7.setText(string1.getPivote(6));
+    ch8.setText(string1.getPivote(7));
+}
+if (objects.getSocket()!=null){
+    record.setBackgroundResource(R.drawable.rect_stop_record);
+    String string = "CONTB\r\n";
+    set_limit = 1;
+    sendReceive = new EightRecordActivity.SendReceive(objects.getSocket());
+    sendReceive.write(string.getBytes());
+    recordcount = 1;
+}
+
 
     }
 
@@ -267,6 +333,41 @@ public class EightRecordActivity extends AppCompatActivity {
         dialog=new Dialog(EightRecordActivity.this);
         dialog.setContentView(R.layout.bluetooth_alert);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        dialog1=new Dialog(EightRecordActivity.this);
+        dialog1.setContentView(R.layout.rename_ch1);
+        dialog1.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        dialog2=new Dialog(EightRecordActivity.this);
+        dialog2.setContentView(R.layout.rename_ch2);
+        dialog2.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        dialog3=new Dialog(EightRecordActivity.this);
+        dialog3.setContentView(R.layout.rename_ch3);
+        dialog3.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        dialog4=new Dialog(EightRecordActivity.this);
+        dialog4.setContentView(R.layout.rename_ch4);
+        dialog4.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        dialog5=new Dialog(EightRecordActivity.this);
+        dialog5.setContentView(R.layout.rename_ch5);
+        dialog5.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        dialog6=new Dialog(EightRecordActivity.this);
+        dialog6.setContentView(R.layout.rename_ch6);
+        dialog6.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        dialog7=new Dialog(EightRecordActivity.this);
+        dialog7.setContentView(R.layout.rename_ch7);
+        dialog7.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        dialog8=new Dialog(EightRecordActivity.this);
+        dialog8.setContentView(R.layout.rename_ch8);
+        dialog8.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+
+
         drawerLayout=findViewById(R.id.draver_eightrecord);
         counter=new Counter();
         string1=new String1();
@@ -388,18 +489,17 @@ objects.setBluetoothAdapter(BluetoothAdapter.getDefaultAdapter());
             @Override
             public void onClick(View view) {
 
-
-                    vibrator.vibrate(40);
-                if(recordcount==0) {
+                if (objects.getSocket() != null ){
+                vibrator.vibrate(40);
+                if (recordcount == 0) {
                     record.setBackgroundResource(R.drawable.rect_stop_record);
-                    String string= "CONTB\r\n";
-                    set_limit=1;
-                    sendReceive=new SendReceive(objects.getSocket());
+                    String string = "CONTB\r\n";
+                    set_limit = 1;
+                    sendReceive = new SendReceive(objects.getSocket());
                     sendReceive.write(string.getBytes());
-                    recordcount=1;
+                    recordcount = 1;
 
-                }
-                else if(recordcount==1) {
+                } else if (recordcount == 1) {
                     record.setBackgroundResource(R.drawable.red_record_drawable);
                     String string = "NOP\r\n";
                     set_limit = 1;
@@ -408,7 +508,11 @@ objects.setBluetoothAdapter(BluetoothAdapter.getDefaultAdapter());
                     recordcount = 0;
                 }
 
+            }
+                else {
+                    Toast.makeText(getApplicationContext(),"Please Connect With Bluetooth",Toast.LENGTH_LONG).show();
 
+                }
             }
 
         });
@@ -499,6 +603,129 @@ objects.setBluetoothAdapter(BluetoothAdapter.getDefaultAdapter());
 
         btn.setOnClickListener(view -> drawerLayout.openDrawer(GravityCompat.START));
 
+
+        ch1.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                vibrator.vibrate(30);
+                dialog1.show();
+                return false;
+            }
+        });
+        ch2.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                vibrator.vibrate(30);
+                dialog2.show();
+                return false;
+            }
+        });
+        ch3.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                vibrator.vibrate(30);
+                dialog3.show();
+                return false;
+            }
+        });
+        ch4.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                vibrator.vibrate(30);
+                dialog4.show();
+                return false;
+            }
+        });
+        ch5.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                vibrator.vibrate(30);
+                dialog5.show();
+                return false;
+            }
+        });
+        ch6.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                vibrator.vibrate(30);
+                dialog6.show();
+                return false;
+            }
+        });
+        ch7.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                vibrator.vibrate(30);
+                dialog7.show();
+                return false;
+            }
+        });
+        ch8.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                vibrator.vibrate(30);
+                dialog8.show();
+                return false;
+            }
+        });
+
+
+bch1.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+        ch1.setText(ech1.getText().toString());
+        dialog1.dismiss();
+    }
+});
+        bch2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ch2.setText(ech2.getText().toString());
+                dialog2.dismiss();
+            }
+        });
+        bch3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ch3.setText(ech3.getText().toString());
+                dialog3.dismiss();
+            }
+        });
+        bch4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ch4.setText(ech4.getText().toString());
+                dialog4.dismiss();
+            }
+        });
+        bch5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ch5.setText(ech5.getText().toString());
+                dialog5.dismiss();
+            }
+        });
+        bch6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ch6.setText(ech6.getText().toString());
+                dialog6.dismiss();
+            }
+        });
+        bch7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ch7.setText(ech7.getText().toString());
+                dialog7.dismiss();
+            }
+        });
+        bch8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ch8.setText(ech8.getText().toString());
+                dialog8.dismiss();
+            }
+        });
     }
 
     private void FindViewBiId() {
@@ -509,7 +736,29 @@ objects.setBluetoothAdapter(BluetoothAdapter.getDefaultAdapter());
         bluetooth=findViewById(R.id.bluetoooth_eightrecord);
         montage=findViewById(R.id.montage_eightrecord);
         notch=findViewById(R.id.notch_eightrecord);
-        listView=dialog.findViewById(R.id.list);
+
+        listView=dialog.findViewById(R.id.list_device);
+
+        ech1=dialog1.findViewById(R.id.edittext1);
+        ech2=dialog2.findViewById(R.id.edittext2);
+        ech3=dialog3.findViewById(R.id.edittext3);
+        ech4=dialog4.findViewById(R.id.edittext4);
+        ech5=dialog5.findViewById(R.id.edittext5);
+        ech6=dialog6.findViewById(R.id.edittext6);
+        ech7=dialog7.findViewById(R.id.edittext7);
+        ech8=dialog8.findViewById(R.id.edittext8);
+
+
+        bch1=dialog1.findViewById(R.id.save_renamech1);
+        bch2=dialog2.findViewById(R.id.save_renamech2);
+        bch3=dialog3.findViewById(R.id.save_renamech3);
+        bch4=dialog4.findViewById(R.id.save_renamech4);
+        bch5=dialog5.findViewById(R.id.save_renamech5);
+        bch6=dialog6.findViewById(R.id.save_renamech6);
+        bch7=dialog7.findViewById(R.id.save_renamech7);
+        bch8=dialog8.findViewById(R.id.save_renamech8);
+
+
 
         V0=findViewById(R.id.SM1_0);
         V1000=findViewById(R.id.SM1_1000);
@@ -520,6 +769,17 @@ objects.setBluetoothAdapter(BluetoothAdapter.getDefaultAdapter());
         V6000=findViewById(R.id.SM1_6000);
         V7000=findViewById(R.id.SM1_7000);
         V8000=findViewById(R.id.SM1_8000);
+
+
+        ch1=findViewById(R.id.ch1);
+        ch2=findViewById(R.id.ch2);
+        ch3=findViewById(R.id.ch3);
+        ch4=findViewById(R.id.ch4);
+        ch5=findViewById(R.id.ch5);
+        ch6=findViewById(R.id.ch6);
+        ch7=findViewById(R.id.ch7);
+        ch8=findViewById(R.id.ch8);
+
 
         zoomout=findViewById(R.id.zoomout_eightrecord);
         zoomin=findViewById(R.id.zoomin_eightrecord);
@@ -611,44 +871,46 @@ objects.setBluetoothAdapter(BluetoothAdapter.getDefaultAdapter());
                             next_is_zarib=true;
                             data=(zarib*256)+s;
                                if (zarib<255){
-                                if (channel==0) {
+                                   o=(i/8)%80000;
+
+                                   if (channel==0) {
                                     channel=1;
-                                    counter.setBuffer(((float) ((data - 2048) / 1.4)), 0, i/8);
+                                    counter.setBuffer(((float) ((data - 2048) / 1.4)), 0, o);
                                 }
                                 else if (channel==1) {
                                     //    Log.e("gggggg",""+s);
 
                                     channel=2;
 
-                                    counter.setBuffer(((float)  ((data - 2048) / 1.4)), 1, i/8);
+                                    counter.setBuffer(((float)  ((data - 2048) / 1.4)), 1, o);
                                 } else if (channel==2) {
                                     channel=3;
 
-                                    counter.setBuffer( ((float)  ((data - 2048) / 1.4)), 2, i/8);
+                                    counter.setBuffer( ((float)  ((data - 2048) / 1.4)), 2, o);
 
                                 } else if (channel==3) {
                                     channel=4;
 
-                                    counter.setBuffer(((float) ((data - 2048) / 1.4)), 3, i/8);
+                                    counter.setBuffer(((float) ((data - 2048) / 1.4)), 3, o);
 
                                 } else if (channel==4) {
                                     channel=5;
 
-                                    counter.setBuffer(((float)  ((data - 2048) / 1.4)), 4, i/8);
+                                    counter.setBuffer(((float)  ((data - 2048) / 1.4)), 4, o);
 
                                 }else if (channel==5) {
                                     channel=6;
 
-                                    counter.setBuffer( ((float) ((data - 2048) / 1.4)), 5, i/8);
+                                    counter.setBuffer( ((float) ((data - 2048) / 1.4)), 5, o);
                                 } else if (channel==6) {
                                     channel=7;
 
-                                    counter.setBuffer(((float)  ((data - 2048) / 1.4)), 6, i/8);
+                                    counter.setBuffer(((float)  ((data - 2048) / 1.4)), 6, o);
 
                                 }else if (channel==7) {
                                     channel=0;
                                     counter.setRefresh(true);
-                                    counter.setBuffer( ((float)  ((data - 2048) / 1.4)), 7, i/8);
+                                    counter.setBuffer( ((float)  ((data - 2048) / 1.4)), 7, o);
 
                                 }
                                 i++;

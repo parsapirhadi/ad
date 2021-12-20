@@ -19,7 +19,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:screenOrientation="userLandscape"
-        android:theme="@style/Theme.Design.Light.NoActionBar">
+        android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
         <activity android:name=".V.Activity.EightRecordActivity"
             android:screenOrientation="userLandscape"
             >

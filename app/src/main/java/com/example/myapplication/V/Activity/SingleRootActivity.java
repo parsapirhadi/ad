@@ -193,7 +193,7 @@ int check_non_two_end=0;
 
         lineplay.setVisibility(View.INVISIBLE);
 
-     listView=dialog.findViewById(R.id.list);
+     listView=dialog.findViewById(R.id.list_device);
         choose_channel.setText(string1.getPivote(0));
 
 
@@ -504,7 +504,7 @@ vibrator.vibrate(40);
         textplay=findViewById(R.id.singletextplay);
         notch=findViewById(R.id.notch_singleroot);
         montage=findViewById(R.id.montage_singleroot);
-        choose_channel=findViewById(R.id.choiosechannel);
+        choose_channel=findViewById(R.id.choise_channel_root);
         zoomout=findViewById(R.id.zoomout_singleroot);
         zoomin=findViewById(R.id.zoomin_singleroot);
 

@@ -9,163 +9,373 @@
     android:layout_width="match_parent"
     android:id="@+id/draver_singlerecord"
     >
-
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:background="#ffffff"
+        android:background="#e6e6e6"
         android:orientation="vertical"
         android:layout_height="match_parent">
 
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:layout_margin="2dp"
-            android:orientation="horizontal"
-            android:background="@drawable/banda_tools"
-            tools:ignore="MissingConstraints" >
+
+
+
             <LinearLayout
-                android:layout_height="50dp"
-                android:layout_width="50dp"
-                android:layout_weight="1"
-                android:layout_gravity="center"
-                >
-                <Button
-                    android:layout_width="50dp"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_margin="2dp"
+                android:orientation="horizontal"
+                android:background="@drawable/banda_tools"
+                tools:ignore="MissingConstraints"
+                android:baselineAligned="false">
+                <LinearLayout
                     android:layout_height="50dp"
-                    android:id="@+id/note_singlerecord"
-                    android:layout_marginRight="30dp"
+                    android:layout_width="50dp"
+                    android:layout_weight="1"
                     android:layout_gravity="center"
-                    android:background="@drawable/notes_foreground"
-                    app:layout_constraintStart_toStartOf="parent"
-                    tools:layout_editor_absoluteY="10dp" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_height="50dp"
-                android:layout_width="50dp"
-                android:layout_weight="1"
-                android:layout_gravity="center"
-                >
-                <Button
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:id="@+id/record_singlerecord"
-                    android:layout_marginRight="30dp"
+                    >
+                    <Button
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:id="@+id/note_singlerecord"
+                        android:layout_marginEnd="30dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/notes_foreground"
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:layout_editor_absoluteY="10dp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_height="50dp"
+                    android:layout_width="50dp"
+                    android:layout_weight="1"
                     android:layout_gravity="center"
-                    android:background="@drawable/red_record_drawable"
-                    tools:layout_editor_absoluteX="91dp"
-                    tools:layout_editor_absoluteY="10dp" />
-            </LinearLayout>
+                    >
+                    <Button
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:id="@+id/record_singlerecord"
+                        android:layout_marginEnd="30dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/red_record_drawable"
+                        tools:layout_editor_absoluteX="91dp"
+                        tools:layout_editor_absoluteY="10dp"
+                        />
+                </LinearLayout>
 
-            <LinearLayout
-                android:layout_height="50dp"
-                android:layout_width="50dp"
-                android:layout_weight="1"
-                android:layout_gravity="center"
-                >
-
-                <ImageView
-
-                    android:id="@+id/notch_singlerecord"
-                    android:layout_marginBottom="2dp"
-                    android:layout_width="42dp"
-                    android:layout_height="42dp"
+                <LinearLayout
+                    android:layout_height="50dp"
+                    android:layout_width="50dp"
+                    android:layout_weight="1"
                     android:layout_gravity="center"
-                    android:layout_marginRight="30dp"
-                    android:background="@mipmap/notch_off_"
-                    tools:layout_editor_absoluteX="623dp"
-                    tools:layout_editor_absoluteY="10dp" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_height="40dp"
-                android:layout_width="40dp"
-                android:layout_weight="1"
-                android:background="#dcdcdc"
-                android:layout_gravity="center"
-                >
-                <Button
+                    >
+                    <ImageView
 
-                    android:layout_width="wrap_content"
+                        android:layout_marginBottom="2dp"
+                        android:layout_width="42dp"
+                        android:layout_height="42dp"
+                        android:layout_gravity="center"
+                        android:id="@+id/notch_singlerecord"
+                        android:layout_marginEnd="30dp"
+                        android:background="@mipmap/notch_off_"
+                        tools:layout_editor_absoluteX="623dp"
+                        tools:layout_editor_absoluteY="10dp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_height="50dp"
+                    android:layout_width="50dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    >
+                    <Button
+                        android:id="@+id/line_singlerecord"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/one_line_foreground"
+                        android:layout_marginEnd="30dp"
+                        tools:layout_editor_absoluteX="201dp"
+                        tools:layout_editor_absoluteY="10dp" />
+                </LinearLayout>
+                <LinearLayout
                     android:layout_height="40dp"
+                    android:layout_width="40dp"
+                    android:layout_weight="1"
+                    android:background="#dcdcdc"
                     android:layout_gravity="center"
-                    android:id="@+id/montage_singlerecord"
-                    android:background="@drawable/banda_tools"
-                    android:layout_marginEnd="30dp"
-                    android:text="Mono"
-                    android:textColorHint="#bbbbbb"
-                    tools:layout_editor_absoluteX="356dp"
-                    tools:layout_editor_absoluteY="10dp"
-                    tools:ignore="HardcodedText" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_height="50dp"
-                android:layout_width="50dp"
-                android:layout_weight="1"
-                android:layout_gravity="center"
-                >
-                <Button
-                    android:id="@+id/line_singlerecord"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center"
+                    >
+                    <Button
+                        android:textSize="12sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:id="@+id/montage_singlerecord"
+                        android:background="@drawable/banda_tools"
+                        android:layout_marginEnd="30dp"
+                        android:text="Mono"
+                        android:textColorHint="#bbbbbb"
+                        tools:layout_editor_absoluteX="356dp"
+                        tools:layout_editor_absoluteY="10dp"
+                        tools:ignore="HardcodedText" />
+                </LinearLayout>
 
-                    android:background="@drawable/one_line_foreground"
-                    android:layout_marginRight="30dp"
-                    tools:layout_editor_absoluteX="201dp"
-                    tools:layout_editor_absoluteY="10dp" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_height="50dp"
-                android:layout_width="50dp"
-                android:layout_weight="1"
-                android:layout_gravity="center"
-                >
                 <Button
-                    android:id="@+id/replay_singlerecord"
+
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
-                    android:layout_marginRight="30dp"
-                    android:background="@drawable/replay_root_foreground"
+                    android:id="@+id/zoomout_singlerecord"
+                    android:background="@drawable/zoom_out_foreground"
                     tools:layout_editor_absoluteX="512dp"
                     tools:layout_editor_absoluteY="10dp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_height="50dp"
-                android:layout_width="50dp"
-                android:layout_weight="1"
-                android:layout_gravity="center"
-                >
-
                 <Button
 
-                    android:id="@+id/bluetooth_singlerecord"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:layout_marginRight="30dp"
                     android:layout_gravity="center"
-                    android:background="@drawable/bluetooth_off_foreground"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    android:id="@+id/zoomin_singlerecord"
+                    android:background="@drawable/zoom_in_foreground"
+                    tools:layout_editor_absoluteX="512dp"
                     tools:layout_editor_absoluteY="10dp" />
+                <LinearLayout
+                    android:layout_height="50dp"
+                    android:layout_width="50dp"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="30dp"
+                    android:layout_gravity="center"
+                    >
+                    <Button
+
+                        android:id="@+id/choise_channel_record"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="30dp"
+                        android:background="@drawable/banda_tools"
+                        android:hint="CHOOSE"
+                        android:textColorHint="#bbbbbb"
+                        tools:ignore="HardcodedText"
+                        tools:layout_editor_absoluteX="356dp"
+                        tools:layout_editor_absoluteY="10dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_height="50dp"
+                    android:layout_width="50dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    >
+
+                    <Button
+
+                        android:id="@+id/bluetoooth_singlerecord"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginEnd="30dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/bluetooth_off_foreground"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:layout_editor_absoluteY="10dp" />
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
+
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_margin="2dp"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:layout_weight="1"
             android:background="@drawable/main"
             tools:ignore="MissingConstraints" >
+            <LinearLayout
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:background="#e6e6e6"
+                android:orientation="horizontal"
+                android:gravity="right"
 
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:id="@+id/VS100rec"
+                            android:layout_weight="1"
+                            android:text="100" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:id="@+id/VS50rec"
+                            android:text="50"
+
+                            />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:id="@+id/VS0rec"
+                            android:text="0"
+
+                            />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:id="@+id/VS_50rec"
+                            android:text="-50"
+
+                            />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="bottom"
+                            android:id="@+id/VS_100rec"
+                            android:text="-100"
+
+                            />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+
+
+            </LinearLayout>
+
+
+            <Button
+                android:gravity="right"
+                android:layout_width="2dp"
+                android:layout_marginStart="3dp"
+                android:layout_height="match_parent"
+                android:background="@color/black"
+                />
+            <com.example.myapplication.V.BaseSurfaceSingleRecord
+
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:id="@+id/singlesurfaceviewRecord"
+                />
 
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="28dp"
+            android:background="#e6e6e6"
+            android:orientation="vertical"
+            android:layout_marginLeft="40dp"
+            android:gravity="right"
+
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="horizontal"
+                android:layout_weight="1"
+                >
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="25dp"
+                    android:id="@+id/SS_0rec"
+                    android:text="0"
+                    android:layout_weight="1"
+
+                    />
+
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:text="1000"
+                    android:layout_weight="1"
+                    android:id="@+id/SS_1000rec"
+                    android:layout_height="25dp"
+                    />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:text="2000"
+                    android:id="@+id/SS_2000rec"
+
+                    android:layout_weight="1"
+                    android:layout_height="25dp"
+                    />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:text="3000"
+                    android:id="@+id/SS_3000rec"
+
+                    android:layout_weight="1"
+                    android:layout_height="25dp"
+                    />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:text="4000"
+                    android:id="@+id/SS_4000rec"
+
+                    android:layout_weight="1"
+                    android:layout_height="25dp"
+                    />
+                <TextView
+                    android:layout_width="0dp"
+                    android:text="5000"
+                    android:id="@+id/SS_5000rec"
+
+                    android:layout_weight="1"
+                    android:layout_height="25dp"
+                    />
+                <TextView
+                    android:layout_width="0dp"
+                    android:text="6000"
+                    android:id="@+id/SS_6000rec"
+
+                    android:layout_weight="1"
+                    android:layout_height="25dp"
+                    />
+                <TextView
+                    android:layout_width="0dp"
+                    android:text="7000"
+                    android:id="@+id/SS_7000rec"
+
+                    android:layout_weight="1"
+                    android:layout_height="25dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="8000"
+                    android:id="@+id/SS_8000rec"
+                    android:layout_height="25dp"
+                    />
+
+            </LinearLayout>
+        </LinearLayout>
+
     </androidx.appcompat.widget.LinearLayoutCompat>
+
 
     <fragment
         android:id="@+id/fragment_singlerecord"
@@ -183,4 +393,7 @@
 
 
         />
+
+
+
 </androidx.drawerlayout.widget.DrawerLayout>

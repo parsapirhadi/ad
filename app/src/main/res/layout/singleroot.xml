@@ -26,7 +26,6 @@
             android:layout_marginRight="2dp"
             android:layout_marginTop="2dp"
             android:layout_marginBottom="0dp"
-
             android:orientation="horizontal"
             android:background="@drawable/banda_tools"
             tools:ignore="MissingConstraints" >
@@ -36,7 +35,6 @@
                 android:layout_weight="1"
                 android:layout_gravity="center"
                 >
-
                 <Button
                     android:layout_width="50dp"
                     android:layout_height="50dp"
@@ -167,7 +165,7 @@
 
                 <Button
 
-                    android:id="@+id/choiosechannel"
+                    android:id="@+id/choise_channel_root"
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:layout_gravity="center"

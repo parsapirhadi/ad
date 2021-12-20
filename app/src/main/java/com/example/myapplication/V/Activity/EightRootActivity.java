@@ -617,7 +617,7 @@ new Thread(new Runnable() {
         btn=findViewById(R.id.note_eightroot);
         notch=findViewById(R.id.notch_eightroot);
         montage=findViewById(R.id.montage_eightroot);
-        listView=dialog.findViewById(R.id.list);
+        listView=dialog.findViewById(R.id.list_device);
         zoomout=findViewById(R.id.zoomout_eightroot);
         zoomin=findViewById(R.id.zoomin_eightroot);
 

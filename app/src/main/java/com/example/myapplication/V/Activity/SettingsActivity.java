@@ -27,7 +27,7 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
         recyclerView = findViewById(R.id.recyclesetting);
-        itemAdapter = new ItemSettingAdapter(list, getApplicationContext());
+        itemAdapter = new ItemSettingAdapter(list, SettingsActivity.this);
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL));
         recyclerView.setAdapter(itemAdapter);
 

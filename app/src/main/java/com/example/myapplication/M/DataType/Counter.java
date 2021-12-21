@@ -57,7 +57,18 @@ static final int part_data= 1000;
     int count_of_set_i_channel=0;
      int count_of_set_j_channel=0;
 
-     static int surfaceviewheheight=0;
+
+     static boolean bluetooth_drawabe =false;
+
+    public boolean isBluetooth_drawabe() {
+        return bluetooth_drawabe;
+    }
+
+    public void setBluetooth_drawabe(boolean bluetooth_drawabe) {
+        this.bluetooth_drawabe = bluetooth_drawabe;
+    }
+
+    static int surfaceviewheheight=0;
       static int surfaceviewhewidth=0;
 
      static int horizontal_scale=8;

@@ -62,7 +62,7 @@ public class BaseSurfaceSingleRecord extends SurfaceView implements SurfaceHolde
 
 
 
-    int i1;
+    int i1=1;
     int g;
 
 
@@ -269,7 +269,11 @@ public class BaseSurfaceSingleRecord extends SurfaceView implements SurfaceHolde
                                 int j=counter.getShow_record_ch();
                                 for (i1 = counter.getStartdraw(); i1 < counter.getEnddraw(); i1++) {
                                     if (counter.getBuffere(j,i1+1)!=1000.0  ) {
-                                        if (i1%80000==0){
+                                        if (i1%70000==79990-(counter.getHorizontal_scale()*counter.getRate_in_s()*3)){
+
+                                            Log.e("start=", "" +counter.getStartdraw() );
+                                            Log.e("i=end", "" + counter.getEnddraw() );
+
 
                                             for (int j2=0;j2<8;j2++){
                                                 for (int j1=0;j1<80000;j1++) {
@@ -279,13 +283,13 @@ public class BaseSurfaceSingleRecord extends SurfaceView implements SurfaceHolde
                                             }
 
                                             counter.setStartdraw(1);
-                                            x=1;
-                                            for (int j2=0;j2<8;j2++){
-                                                for (int j1=0;j1<80000;j1++) {
-                                                    counter.setBuffer(counter.getPart_data(), j2, j1);
-                                                    counter.setBuffer_clone(counter.getPart_data(), j2, j1);
-                                                }
-                                            }
+                                            counter.setEnddraw(counter.getHorizontal_scale()*counter.getRate_in_s());
+                                            i1=1;
+
+
+                                           x=1;
+
+
 
 
 
@@ -293,12 +297,15 @@ public class BaseSurfaceSingleRecord extends SurfaceView implements SurfaceHolde
 
 
                                         }
-                                        g=(i1%80000)-1;
+                                        g=(i1%70000)-1;
+
+
+
                                         canvas.drawLine(
                                                 (float) (y * counter.getSingle_step_x()),
-                                                (float) (((float) ((float) (getHeight() / 2 ))) + (counter.getBuffere(j, g) * counter.getSingle_step_y()/2)),
+                                                (float) (((float) ((float) (getHeight() / 2 ))) + (counter.getBuffere(j, g) * counter.getSingle_step_y())),
                                                 (float) ((y+1) * counter.getSingle_step_x()),
-                                                (float) (((float) ((float) (getHeight() / 2))) + (counter.getBuffere(j, (g+1)) * counter.getSingle_step_y()/2)),
+                                                (float) (((float) ((float) (getHeight() / 2))) + (counter.getBuffere(j, (g+1)) * counter.getSingle_step_y())),
                                                 samplePaint1);
 
                                     }

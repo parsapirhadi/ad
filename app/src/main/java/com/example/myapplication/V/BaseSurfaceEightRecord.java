@@ -33,6 +33,9 @@ public class BaseSurfaceEightRecord extends SurfaceView implements SurfaceHolder
     Counter counter;
 
 
+    int i1=1;
+    int g;
+
 
     private Thread drawThread;
 
@@ -41,7 +44,7 @@ public class BaseSurfaceEightRecord extends SurfaceView implements SurfaceHolder
             ,500,500 , 500,11//////////////////////////////////////////////////////
             ,500,11 , 800,11/////////////////////////////////////////////////////
     };
-
+   int no_limit;
     int positive=0;
 Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher_background);
     private boolean surfaceReady = false;
@@ -150,6 +153,8 @@ Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher
 
         ondraw(c);
         holder.unlockCanvasAndPost(c);
+
+        no_limit=79990-(counter.getHorizontal_scale()*counter.getRate_in_s()*3);
 
     }
 
@@ -278,13 +283,47 @@ Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher
 
                             for (int j=0;j<counter.getDefault_channel();j++) {
                                 int y=0;
-                                for (int i = counter.getStartdraw(); i < counter.getEnddraw(); i++) {
-                                    if (counter.getBuffere(j,i+1)!=1000.0  ) {
+                                for (i1 = counter.getStartdraw(); i1 < counter.getEnddraw(); i1++) {
+                                    if (counter.getBuffere(j,i1+1)!=1000.0  ) {
+
+
+
+                                        if (i1%70000==no_limit){
+                                            Log.e("start=", "" +counter.getStartdraw() );
+                                            Log.e("i=end", "" + counter.getEnddraw() );
+
+
+                                            for (int j2=0;j2<8;j2++){
+                                                for (int j1=0;j1<80000;j1++) {
+                                                    counter.setBuffer(counter.getPart_data(), j2, j1);
+                                                    counter.setBuffer_clone(counter.getPart_data(), j2, j1);
+                                                }
+                                            }
+
+                                            counter.setStartdraw(1);
+                                            counter.setEnddraw(counter.getHorizontal_scale()*counter.getRate_in_s());
+                                            i1=1;
+
+
+                                            x=1;
+
+
+
+
+
+
+
+
+                                        }
+
+                                        g=(i1%70000)-1;
+                                        //Log.e("i=", "" + g);
+
                                         canvas.drawLine(
                                                 (float) (y * counter.getEight_step_x()),
-                                                (float) (((float) ((float) (getHeight() / (float) (counter.getDefault_channel() * 2))) * (((2 * j) + 1))) + (counter.getBuffere(j, i) * counter.getEight_step_y())),
+                                                (float) (((float) ((float) (getHeight() / (float) (counter.getDefault_channel() * 2))) * (((2 * j) + 1))) + (counter.getBuffere(j, g) * counter.getEight_step_y())),
                                                 (float) ((y+1) * counter.getEight_step_x()),
-                                                (float) (((float) ((float) (getHeight() / (float) (counter.getDefault_channel() * 2))) * (((2 * j) + 1))) + (counter.getBuffere(j, (i+1)) * counter.getEight_step_y())),
+                                                (float) (((float) ((float) (getHeight() / (float) (counter.getDefault_channel() * 2))) * (((2 * j) + 1))) + (counter.getBuffere(j, (g+1)) * counter.getEight_step_y())),
                                                samplePaint1);
 
                                     }

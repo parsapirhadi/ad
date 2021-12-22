@@ -383,7 +383,7 @@ if (objects.getSocket()!=null){
         i=0;
         FindViewBiId();
         vibrator= (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-objects.setBluetoothAdapter(BluetoothAdapter.getDefaultAdapter());
+        objects.setBluetoothAdapter(BluetoothAdapter.getDefaultAdapter());
 
         counter.setEnddraw(counter.getHorizontal_scale()*counter.getRate_in_s());
         counter.setEight_step_x((float) counter.getSurfaceviewhewidth()/(counter.getRate_in_s()*counter.getHorizontal_scale()));
@@ -449,15 +449,7 @@ objects.setBluetoothAdapter(BluetoothAdapter.getDefaultAdapter());
         }
 
         implementListeners();
-
-
-
-
-
-
-
-
-       }
+    }
 
     private void implementListeners() {
 

@@ -289,13 +289,6 @@ public class BaseSurfaceSingleRecord extends SurfaceView implements SurfaceHolde
 
                                            x=1;
 
-
-
-
-
-
-
-
                                         }
                                         g=(i1%70000)-1;
 

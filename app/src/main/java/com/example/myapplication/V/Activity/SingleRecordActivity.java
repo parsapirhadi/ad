@@ -76,6 +76,14 @@ public class SingleRecordActivity extends AppCompatActivity {
     Button bluetooth;
     ListView listView;
 
+boolean is_activity_on=true;
+    int data_count=0;
+    int conter=0;
+    int data_count_clone=0;
+
+
+
+
     Set<BluetoothDevice> pared;
 
     TextView textplay,row100,row50,row_100,row_50,row0;
@@ -221,7 +229,7 @@ public class SingleRecordActivity extends AppCompatActivity {
             }
         }
 
-
+is_activity_on=false;
         String string = "NOP\r\n";
         set_limit = 1;
 
@@ -403,6 +411,36 @@ counter.setShow_record_ch(0);
                bluetooth.setBackgroundResource(R.drawable.bluetooth_on_foreground);
         }
 
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (is_activity_on){
+                    Log.e("i=",""+i);
+                    if ((i-data_count)<1000 && recordcount == 1 && objects.getSocket().isConnected()) {
+                        conter++;
+                       if (conter>3){
+                           runOnUiThread(new Runnable() {
+                               @Override
+                               public void run() {
+
+                                   Toast.makeText(getApplicationContext(),"is....",Toast.LENGTH_SHORT).show();
+ }
+                           });
+                    }
+                    }
+                    data_count=i;
+                    try {
+
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }).start();
+
+
+
         bluetooth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -479,6 +517,11 @@ counter.setShow_record_ch(0);
         montage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
+
+
+
                 PopupMenu popup = new PopupMenu(SingleRecordActivity.this,montage);
                 popup.getMenuInflater().inflate(R.menu.montage, popup.getMenu());
 
@@ -498,6 +541,20 @@ counter.setShow_record_ch(0);
         notch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
+
+
+                    record.setBackgroundResource(R.drawable.red_record_drawable);
+                    String string = "NOP\r\n";
+                    set_limit = 1;
+                    sendReceive.write(string.getBytes());
+                    recordcount = 0;
+                    Toast.makeText(getApplicationContext(),"is....",Toast.LENGTH_SHORT).show();
+               objects.getBluetoothAdapter().disable();
+
+
+
                 if(notchcount==0) {
                     notch.setBackgroundResource(R.mipmap.notch_);
                     notchcount=1;

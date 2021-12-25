@@ -14,7 +14,7 @@ xmlns:tools="http://schemas.android.com/tools"
 
 <androidx.appcompat.widget.LinearLayoutCompat
     android:layout_width="match_parent"
-    android:background="#ffffff"
+    android:background="#e6e6e6"
     android:orientation="vertical"
     tools:context=".V.Activity.MainActivity"
     android:layout_height="match_parent">

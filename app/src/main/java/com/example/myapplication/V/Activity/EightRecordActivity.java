@@ -180,6 +180,9 @@ public class EightRecordActivity extends AppCompatActivity {
 
     InputStream tempIn=null;
     OutputStream tempOut=null;
+    boolean is_avtivity_on =true;
+
+
 
     private BluetoothDevice device;
 
@@ -236,7 +239,7 @@ public class EightRecordActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-
+     is_avtivity_on=false;
 
         for (int j2=0;j2<8;j2++){
             for (int j1=0;j1<80000;j1++) {
@@ -269,6 +272,7 @@ public class EightRecordActivity extends AppCompatActivity {
     protected void onResume() {
 
         super.onResume();
+        is_avtivity_on=true;
        if (objects.getSocket()!=null){
            if (objects.getSocket().isConnected()){
 
@@ -449,6 +453,24 @@ if (objects.getSocket()!=null){
         }
 
         implementListeners();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (is_avtivity_on) {
+
+                    if (objects.getSocket()!=null) {
+                        if (!objects.getSocket().isConnected()) {
+                            Log.e("===========","channel =-1");
+                            channel = -1;
+                        }
+                    }
+                }
+            }
+        }).start();
+
+
+
     }
 
     private void implementListeners() {
@@ -873,6 +895,7 @@ no_limit=80001-(counter.getHorizontal_scale()*counter.getRate_in_s()*3);
 
                     if (channel!=-1)
                     {
+                        y=0;
                         if (next_is_zarib){
                             zarib=s;
                             next_is_zarib=false;
@@ -931,10 +954,15 @@ no_limit=80001-(counter.getHorizontal_scale()*counter.getRate_in_s()*3);
   }
  if (s==255)
                     {
+
  y++;
+ }
+ if (y==1 && s<255){
+     y=0;
  }
                     if (y==2)
                     {
+                        Log.e("255","255");
                         channel=0;
                         next_is_zarib=true;
                     }

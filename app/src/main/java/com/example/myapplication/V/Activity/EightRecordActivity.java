@@ -17,7 +17,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.Vibrator;
 import android.text.Editable;
-import android.text.TextWatcher;
+
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -460,9 +460,12 @@ if (objects.getSocket()!=null){
                 while (is_avtivity_on) {
 
                     if (objects.getSocket()!=null) {
+                        //Log.e("===========","socket is null");
+
                         if (!objects.getSocket().isConnected()) {
-                            Log.e("===========","channel =-1");
+                           // Log.e("===========","channel =-1");
                             channel = -1;
+                            y=0;
                         }
                     }
                 }
@@ -883,19 +886,25 @@ bch1.setOnClickListener(new View.OnClickListener() {
             byte[] buffer=new byte[512];
 
 no_limit=80001-(counter.getHorizontal_scale()*counter.getRate_in_s()*3);
-            while (true)
+            while (is_avtivity_on)
             {
 
                 try {
 
                     s=inputStream.read();
+
+                } catch (IOException e) {
+
+                    e.printStackTrace();
+                    break;
+                }
                     // bytes =s;
                     handler.obtainMessage(STATE_MESSAGE_RECEIVED, s, -1, buffer).sendToTarget();
 
 
                     if (channel!=-1)
                     {
-                        y=0;
+
                         if (next_is_zarib){
                             zarib=s;
                             next_is_zarib=false;
@@ -908,6 +917,7 @@ no_limit=80001-(counter.getHorizontal_scale()*counter.getRate_in_s()*3);
                                    o=(i/8)%(no_limit);
 
                                    if (channel==0) {
+
                                     channel=1;
                                     counter.setBuffer(((float) ((data - 2048) / 1.4)), 0, o);
                                 }
@@ -955,20 +965,24 @@ no_limit=80001-(counter.getHorizontal_scale()*counter.getRate_in_s()*3);
  if (s==255)
                     {
 
- y++;
+
+                        y++;
  }
- if (y==1 && s<255){
+
+                    Log.e("channel"+channel,"data="+s);
+                    if (y==1 && s<255){
+
      y=0;
  }
                     if (y==2)
                     {
-                        Log.e("255","255");
+                        y=0;
+                        Log.e(".......................","255");
+
                         channel=0;
                         next_is_zarib=true;
                     }
- } catch (IOException e) {
-                    e.printStackTrace();
-                }
+
 
 
             }

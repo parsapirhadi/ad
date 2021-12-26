@@ -464,9 +464,9 @@ new Thread(new Runnable() {
             public void run() {
                 while (is_activity_on){
                   //  Log.e("i=",""+i);
-                    if ((i-data_count)<300 && recordcount == 1 && objects.getSocket().isConnected()) {
+                    if ((i-data_count)<500 && recordcount == 1 && objects.getSocket().isConnected()) {
                         conter++;
-                       if (conter>2){
+                       if (conter>1){
                            runOnUiThread(new Runnable() {
                                @Override
                                public void run() {
@@ -1002,18 +1002,28 @@ if (!objects.getSocket().isConnected()){
             byte[] buffer=new byte[512];
 
 
-            while (true)
+            while (is_activity_on)
             {
 
                 try {
 
-                    s=inputStream.read();
-                    // bytes =s;
+                    s = inputStream.read();
+
+                }
+                catch (IOException e){
+
+                    e.printStackTrace();
+break;
+
+                }
+
+                // bytes =s;
                     handler.obtainMessage(STATE_MESSAGE_RECEIVED, s, -1, buffer).sendToTarget();
 
 
                     if (channel!=-1)
                     {
+
                         if (next_is_zarib){
                             zarib=s;
                             next_is_zarib=false;
@@ -1074,14 +1084,22 @@ if (!objects.getSocket().isConnected()){
                     {
                         y++;
                     }
+                if (y==1 && s<255){
+
+                    y=0;
+                }
+                Log.e("channel"+channel,"data="+s);
+
+
                     if (y==2)
                     {
+                        Log.e(".......................","255");
+                        y=0;
                         channel=0;
                         next_is_zarib=true;
                     }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+
+
 
 
             }

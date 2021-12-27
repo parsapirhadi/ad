@@ -12,6 +12,8 @@ import com.example.myapplication.P.FileReader;
 import com.example.myapplication.P.SetPivotName;
 import com.example.myapplication.R;
 
+import java.util.Locale;
+
 public class MainActivity extends AppCompatActivity {
 String1 string1;
 SetPivotName namePivote;
@@ -24,6 +26,8 @@ Counter counter;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Locale locale_us = new Locale("en", "US");
+        getResources().getConfiguration().setLocale(locale_us);
         string1=new String1();
         counter=new Counter();
         Intent intent=new Intent(this,EightRootActivity.class);

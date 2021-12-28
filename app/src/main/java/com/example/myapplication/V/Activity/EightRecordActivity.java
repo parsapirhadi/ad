@@ -43,6 +43,8 @@ import com.example.myapplication.M.DataType.String1;
 import com.example.myapplication.R;
 import com.example.myapplication.V.BaseSurfaceEightRecord;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -53,9 +55,12 @@ import java.util.UUID;
 
 public class EightRecordActivity extends AppCompatActivity {
     static TextView  ch1,ch2,ch3,ch4,ch5,ch6,ch7,ch8;
-    EditText ech1,ech2,ech3,ech4,ech5,ech6,ech7,ech8;
+    EditText ech2,ech3,ech4,ech5,ech6,ech7,ech8;
     Button bch1,bch2,bch3,bch4,bch5,bch6,bch7,bch8;
 
+    TextInputEditText ech1;
+
+    TextInputLayout lch1;
 
 
     Button btn;
@@ -877,60 +882,93 @@ if (string1.getPivote(0)!=null)
         });
 
 
+
 bch1.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
-        ch1.setText(ech1.getText().toString());
-        dialog1.dismiss();
+
+
+        if (ech1.getText().toString().length()<6){
+
+           ch1.setText(ech1.getText().toString());
+           dialog1.dismiss();
+        }
+        else
+        {
+            lch1.setError("min 5");
+        }
+
+
     }
 });
         bch2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ch2.setText(ech2.getText().toString());
-                dialog2.dismiss();
+                if (ech2.getText().toString().length()<6) {
+
+                    ch2.setText(ech2.getText().toString());
+                    dialog2.dismiss();
+                }
             }
         });
         bch3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ch3.setText(ech3.getText().toString());
-                dialog3.dismiss();
+                if (ech3.getText().toString().length()<6) {
+
+                    ch3.setText(ech3.getText().toString());
+                    dialog3.dismiss();
+                }
             }
         });
         bch4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ch4.setText(ech4.getText().toString());
-                dialog4.dismiss();
+                if (ech4.getText().toString().length()<6) {
+
+                    ch4.setText(ech4.getText().toString());
+                    dialog4.dismiss();
+                }
             }
         });
         bch5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ch5.setText(ech5.getText().toString());
-                dialog5.dismiss();
+                if (ech5.getText().toString().length()<6) {
+
+                    ch5.setText(ech5.getText().toString());
+                    dialog5.dismiss();
+                }
             }
         });
         bch6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ch6.setText(ech6.getText().toString());
-                dialog6.dismiss();
+                if (ech6.getText().toString().length()<6) {
+
+                    ch6.setText(ech6.getText().toString());
+                    dialog6.dismiss();
+                }
             }
         });
         bch7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ch7.setText(ech7.getText().toString());
-                dialog7.dismiss();
+                if (ech7.getText().toString().length()<6) {
+
+                    ch7.setText(ech7.getText().toString());
+                    dialog7.dismiss();
+                }
             }
         });
         bch8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ch8.setText(ech8.getText().toString());
-                dialog8.dismiss();
+                if (ech8.getText().toString().length()<6) {
+
+                    ch8.setText(ech8.getText().toString());
+                    dialog8.dismiss();
+                }
             }
         });
     }
@@ -946,7 +984,10 @@ bch1.setOnClickListener(new View.OnClickListener() {
 
         listView=dialog.findViewById(R.id.list_device);
 
-        ech1=dialog1.findViewById(R.id.edittext1);
+        ech1=dialog1.findViewById(R.id.textinputedittext1);
+
+        lch1=dialog1.findViewById(R.id.textinputeditlayout1);
+
         ech2=dialog2.findViewById(R.id.edittext2);
         ech3=dialog3.findViewById(R.id.edittext3);
         ech4=dialog4.findViewById(R.id.edittext4);

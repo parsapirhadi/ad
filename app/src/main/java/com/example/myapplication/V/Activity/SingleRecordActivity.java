@@ -894,14 +894,39 @@ myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         choise.setText(myStringArray1.get(i));
         counter.setShow_record_ch(i);
-dialog1.dismiss();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        dialog1.dismiss();
+                    }
+                });
+
+            }
+        }).start();
+
        // myStringArray1.clear();
 
 
     }
 });
 
-  dialog1.show();
+
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                dialog1.show();
+                            }
+                        });
+
+                    }
+                }).start();
 
 //////////////
             }

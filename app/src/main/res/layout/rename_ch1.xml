@@ -3,44 +3,53 @@
     xmlns:tools="http://schemas.android.com/tools"
 
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <LinearLayout
         android:layout_width="200dp"
-        android:layout_height="50dp"
+        android:layout_height="110dp"
         android:background="@drawable/main"
-        tools:ignore="MissingConstraints" >
+        tools:ignore="MissingConstraints"
+        android:orientation="vertical">
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:endIconCheckable="true"
+            app:counterEnabled="true"
+            android:id="@+id/textinputeditlayout1"
 
-        <EditText
-            android:id="@+id/edittext1"
+            app:counterMaxLength="5"
+            >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textinputedittext1"
             android:layout_width="match_parent"
             android:layout_margin="5dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            app:counterEnabled="true"
+            app:counterMaxLength="5"
             android:layout_gravity="center"
+
             />
 
 
 
+        </com.google.android.material.textfield.TextInputLayout>
+
+
         <Button
-            android:layout_marginRight="10dp"
-            android:layout_width="50dp"
             android:id="@+id/save_renamech1"
+            android:layout_width="50dp"
             android:layout_height="20dp"
             android:layout_gravity="end|bottom"
+            android:layout_margin="3dp"
+            android:layout_marginRight="10dp"
             android:background="@drawable/save"
             android:text="Save"
             android:textColor="@color/white"
             android:textSize="12dp"
-            android:layout_margin="3dp"
 
             />
-
-
-
-
-
-
-
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

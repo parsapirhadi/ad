@@ -106,8 +106,8 @@ xmlns:tools="http://schemas.android.com/tools"
         android:layout_gravity="center"
         >
         <Button
-android:textSize="12sp"
-            android:layout_width="wrap_content"
+            android:textSize="12sp"
+            android:layout_width="70dp"
             android:layout_height="40dp"
             android:layout_gravity="center"
             android:id="@+id/montage_eightrecord"

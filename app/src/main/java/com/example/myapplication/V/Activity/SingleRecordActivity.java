@@ -25,6 +25,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupMenu;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,7 +44,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Set;
+import java.util.TimeZone;
 import java.util.UUID;
 
 public class SingleRecordActivity extends AppCompatActivity {
@@ -79,6 +82,8 @@ public class SingleRecordActivity extends AppCompatActivity {
     Button bluetooth;
     ListView listView;
 
+
+    ProgressBar bluetooth_progress;
 
    ListView choice_listview;
 
@@ -204,14 +209,15 @@ boolean is_activity_on=true;
                     // status.setText("Connecting");
                     break;
                 case STATE_CONNECTED:
-                  //  bluetooth.setBackgroundResource(R.drawable.bluetooth_on_foreground);
+                    bluetooth.setBackgroundResource(R.drawable.bluetooth_on_foreground);
+                    bluetooth_progress.setVisibility(View.INVISIBLE);
                     parentLayout = findViewById(android.R.id.content);
                     Snackbar.make(parentLayout, "Connected To '"+bluetooth_name+"'", Snackbar.LENGTH_LONG).show();
                     is_open=false;
                     is_connected=true;
                     is_disconnected=false;
                     counter.setBluetooth_drawabe(true);
-                    bluetooth.setBackgroundResource(R.drawable.bluetooth_on_foreground);
+
                     record.setBackgroundResource(R.drawable.red_record_drawable);
                     String string = "NOP\r\n";
                     set_limit = 1;
@@ -270,6 +276,7 @@ is_activity_on=false;
 
         super.onResume();
 
+
         is_disconnected=false;
 
         is_activity_on=true;
@@ -281,7 +288,8 @@ is_activity_on=false;
 
         if (objects.getSocket()!=null){
             if (objects.getSocket().isConnected()){
-             //   bluetooth.setBackgroundResource(R.drawable.bluetooth_on_foreground);
+                bluetooth.setBackgroundResource(R.drawable.bluetooth_on_foreground);
+                bluetooth_progress.setVisibility(View.INVISIBLE);
             }
         }
         i=0;
@@ -290,7 +298,11 @@ is_activity_on=false;
 
 
         if (counter.isBluetooth_drawabe()){
+
+
           bluetooth.setBackgroundResource(R.drawable.bluetooth_on_foreground);
+            bluetooth_progress.setVisibility(View.INVISIBLE);
+
         }
         counter.setSingle_step_x((float) counter.getSurface_width()/(500*counter.getHorizontal_scale()));
         counter.setSingle_step_y((float) counter.getSurface_height()/200);
@@ -314,6 +326,7 @@ is_activity_on=false;
 counter.setShow_record_ch(0);
 
         bluetooth.setBackgroundResource(R.drawable.bluetooth_off_foreground);
+        bluetooth_progress.setVisibility(View.VISIBLE);
 
 ///////////////////////////////
 
@@ -532,6 +545,7 @@ Log.e("SonCreate","SonCreate");
 
 
                                     bluetooth.setBackgroundResource(R.drawable.bluetooth_off_foreground);
+                                    bluetooth_progress.setVisibility(View.VISIBLE);
                                    /*
 
                                    while (true)
@@ -951,6 +965,8 @@ myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
         V6000_=findViewById(R.id.SS_6000rec);
         V7000_=findViewById(R.id.SS_7000rec);
         V8000_=findViewById(R.id.SS_8000rec);
+
+       bluetooth_progress=findViewById(R.id.bluetooth_progressbar_single);
 
 
         row100=findViewById(R.id.VS100rec);

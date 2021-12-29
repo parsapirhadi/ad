@@ -2,8 +2,12 @@ package com.example.myapplication.V.Activity;
 
 import android.content.pm.PackageInfo;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
@@ -20,7 +24,7 @@ public class SettingsActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     List<ItemSetting> list = new ArrayList<>();
     ItemSettingAdapter itemAdapter;
-    PackageInfo info;
+    Button back;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,6 +44,18 @@ public class SettingsActivity extends AppCompatActivity {
 
 
 
+
         itemAdapter.notifyDataSetChanged();
+
+
+
+        back=findViewById(R.id.back_pointer_settings);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                onBackPressed();
+            }
+        });
     }
 }

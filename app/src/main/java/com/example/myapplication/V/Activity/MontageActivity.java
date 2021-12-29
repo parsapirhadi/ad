@@ -1,6 +1,8 @@
 package com.example.myapplication.V.Activity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,6 +21,7 @@ public class MontageActivity extends AppCompatActivity {
     RecyclerView recyclerView1;
     List<ItemMontage> list1 = new ArrayList<>();
     ItemMontageAdapter itemAdapter1;
+    Button back;
 
 
     @Override
@@ -39,7 +42,14 @@ public class MontageActivity extends AppCompatActivity {
 
 
 
+        back=findViewById(R.id.back_pointer_montage);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                onBackPressed();
+            }
+        });
 
 
 

@@ -9,6 +9,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
@@ -18,6 +19,7 @@ import android.os.Message;
 import android.os.Vibrator;
 import android.text.Editable;
 
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,6 +30,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupMenu;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 //import android.widget.Toast;
@@ -60,8 +63,11 @@ public class EightRecordActivity extends AppCompatActivity {
 
     TextInputEditText ech1;
 
-    TextInputLayout lch1;
+    TextInputLayout lch1,lch2,lch3,lch4,lch5,lch6,lch7,lch8;
 
+
+
+    ProgressBar bluetooth_progress;
 
     Button btn;
     Button montage;
@@ -73,8 +79,11 @@ public class EightRecordActivity extends AppCompatActivity {
     Button record;
     String text_ch1="";
     Button resize;
-    Button bluetooth;
+   Button bluetooth;
     ListView listView;
+
+    Button check_circle1,check_circle2,check_circle3,check_circle4,check_circle5,check_circle6,check_circle7,check_circle8;
+
 
     Set<BluetoothDevice> pared;
     Dialog dialog,dialog1,dialog2,dialog3,dialog4,dialog5,dialog6,dialog7,dialog8;
@@ -227,7 +236,9 @@ public class EightRecordActivity extends AppCompatActivity {
 
                     View parentLayout = findViewById(android.R.id.content);
                     Snackbar.make(parentLayout, "Connected To '"+bluetooth_name+"'", Snackbar.LENGTH_LONG).show();
+
                     bluetooth.setBackgroundResource(R.drawable.bluetooth_on_foreground);
+                    bluetooth_progress.setVisibility(View.INVISIBLE);
                     counter.setBluetooth_drawabe(true);
                     is_open=false;
                     is_connected=true;
@@ -312,6 +323,7 @@ public class EightRecordActivity extends AppCompatActivity {
 
         if (counter.isBluetooth_drawabe()){
             bluetooth.setBackgroundResource(R.drawable.bluetooth_on_foreground);
+            bluetooth_progress.setVisibility(View.INVISIBLE);
         }
 
         counter.setEnddraw(counter.getHorizontal_scale()*counter.getRate_in_s());
@@ -348,6 +360,7 @@ if (string1.getPivote(0)!=null)
     ch8.setText(string1.getPivote(7));
 }
         bluetooth.setBackgroundResource(R.drawable.bluetooth_off_foreground);
+bluetooth_progress.setVisibility(View.VISIBLE);
 
 
     }
@@ -474,6 +487,7 @@ if (string1.getPivote(0)!=null)
 
         if (counter.isBluetooth_drawabe()){
             bluetooth.setBackgroundResource(R.drawable.bluetooth_on_foreground);
+            bluetooth_progress.setVisibility(View.INVISIBLE);
         }
 
 /*
@@ -533,6 +547,7 @@ if (string1.getPivote(0)!=null)
                                     is_disconnected = true;
                                     Snackbar.make(parentLayout, "'" + "Bluetooth" + " Disconnected'", Snackbar.LENGTH_LONG).show();
                                     bluetooth.setBackgroundResource(R.drawable.bluetooth_off_foreground);
+                                    bluetooth_progress.setVisibility(View.VISIBLE);
                                   /*
 
                                    while (true)
@@ -819,6 +834,7 @@ if (string1.getPivote(0)!=null)
         ch1.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
+                check_circle1.setBackgroundResource(R.drawable.check_circle_normal_foreground);
                 vibrator.vibrate(30);
                 dialog1.show();
                 return false;
@@ -827,6 +843,7 @@ if (string1.getPivote(0)!=null)
         ch2.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
+                check_circle2.setBackgroundResource(R.drawable.check_circle_normal_foreground);
                 vibrator.vibrate(30);
                 dialog2.show();
                 return false;
@@ -836,6 +853,7 @@ if (string1.getPivote(0)!=null)
             @Override
             public boolean onLongClick(View view) {
                 vibrator.vibrate(30);
+                check_circle3.setBackgroundResource(R.drawable.check_circle_normal_foreground);
                 dialog3.show();
                 return false;
             }
@@ -844,6 +862,7 @@ if (string1.getPivote(0)!=null)
             @Override
             public boolean onLongClick(View view) {
                 vibrator.vibrate(30);
+                check_circle4.setBackgroundResource(R.drawable.check_circle_normal_foreground);
                 dialog4.show();
                 return false;
             }
@@ -852,6 +871,7 @@ if (string1.getPivote(0)!=null)
             @Override
             public boolean onLongClick(View view) {
                 vibrator.vibrate(30);
+                check_circle5.setBackgroundResource(R.drawable.check_circle_normal_foreground);
                 dialog5.show();
                 return false;
             }
@@ -860,6 +880,7 @@ if (string1.getPivote(0)!=null)
             @Override
             public boolean onLongClick(View view) {
                 vibrator.vibrate(30);
+                check_circle6.setBackgroundResource(R.drawable.check_circle_normal_foreground);
                 dialog6.show();
                 return false;
             }
@@ -868,6 +889,7 @@ if (string1.getPivote(0)!=null)
             @Override
             public boolean onLongClick(View view) {
                 vibrator.vibrate(30);
+                check_circle7.setBackgroundResource(R.drawable.check_circle_normal_foreground);
                 dialog7.show();
                 return false;
             }
@@ -876,35 +898,258 @@ if (string1.getPivote(0)!=null)
             @Override
             public boolean onLongClick(View view) {
                 vibrator.vibrate(30);
+                check_circle8.setBackgroundResource(R.drawable.check_circle_normal_foreground);
                 dialog8.show();
                 return false;
             }
         });
+ech1.addTextChangedListener(new TextWatcher() {
+    @Override
+    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
 
+        lch1.setError("");
 
-bch1.setOnClickListener(new View.OnClickListener() {
+        if (ech1.getText().length()<6 && ech1.getText().length()>0){
+            check_circle1.setBackgroundResource(R.drawable.check_circle__foreground);
+        }
+        if (ech1.getText().length()>5 || ech1.getText().length()==0){
+            check_circle1.setBackgroundResource(R.drawable.check_circle_error_foreground);
+            lch1.setError("5 character");
+        }
+
+    }
+
+    @Override
+    public void afterTextChanged(Editable editable) {
+
+    }
+});
+        ech2.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+
+                lch2.setError("");
+
+                if (ech2.getText().length()<6 && ech2.getText().length()>0){
+                    check_circle2.setBackgroundResource(R.drawable.check_circle__foreground);
+                }
+                if (ech2.getText().length()>5 || ech2.getText().length()==0){
+                    check_circle2.setBackgroundResource(R.drawable.check_circle_error_foreground);
+                    lch2.setError("5 character");
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        ech3.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+
+                lch3.setError("");
+
+                if (ech3.getText().length()<6 && ech3.getText().length()>0){
+                    check_circle3.setBackgroundResource(R.drawable.check_circle__foreground);
+                }
+                if (ech3.getText().length()>5 || ech3.getText().length()==0){
+                    check_circle3.setBackgroundResource(R.drawable.check_circle_error_foreground);
+                    lch3.setError("5 character");
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        ech4.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+
+                lch4.setError("");
+
+                if (ech4.getText().length()<6 && ech4.getText().length()>0){
+                    check_circle4.setBackgroundResource(R.drawable.check_circle__foreground);
+                }
+                if (ech4.getText().length()>5 || ech4.getText().length()==0){
+                    check_circle4.setBackgroundResource(R.drawable.check_circle_error_foreground);
+                    lch4.setError("5 character");
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        ech5.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+
+                lch5.setError("");
+
+                if (ech5.getText().length()<6 && ech5.getText().length()>0){
+                    check_circle5.setBackgroundResource(R.drawable.check_circle__foreground);
+                }
+                if (ech5.getText().length()>5 || ech5.getText().length()==0){
+                    check_circle5.setBackgroundResource(R.drawable.check_circle_error_foreground);
+                    lch5.setError("5 character");
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        ech6.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+
+                lch6.setError("");
+
+                if (ech6.getText().length()<6 && ech6.getText().length()>0){
+                    check_circle6.setBackgroundResource(R.drawable.check_circle__foreground);
+                }
+                if (ech6.getText().length()>5 || ech6.getText().length()==0){
+                    check_circle6.setBackgroundResource(R.drawable.check_circle_error_foreground);
+                    lch6.setError("5 character");
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        ech7.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+
+                lch7.setError("");
+
+                if (ech7.getText().length()<6 && ech7.getText().length()>0){
+                    check_circle7.setBackgroundResource(R.drawable.check_circle__foreground);
+                }
+                if (ech7.getText().length()>5 || ech7.getText().length()==0){
+                    check_circle7.setBackgroundResource(R.drawable.check_circle_error_foreground);
+                    lch7.setError("5 character");
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        ech8.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+
+                lch8.setError("");
+
+                if (ech8.getText().length()<6 && ech8.getText().length()>0){
+                    check_circle8.setBackgroundResource(R.drawable.check_circle__foreground);
+                }
+                if (ech8.getText().length()>5 || ech8.getText().length()==0){
+                    check_circle8.setBackgroundResource(R.drawable.check_circle_error_foreground);
+                    lch8.setError("5 character");
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+
+        bch1.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("bch1", MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putString("name",ech1.getText().toString());
+        editor.apply();
 
-
-        if (ech1.getText().toString().length()<6){
+        if (ech1.getText().toString().length()<6 && ech1.getText().toString().length()>0){
 
            ch1.setText(ech1.getText().toString());
            dialog1.dismiss();
         }
-        else
-        {
-            lch1.setError("min 5");
-        }
-
-
     }
 });
         bch2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (ech2.getText().toString().length()<6) {
+                SharedPreferences pref = getApplicationContext().getSharedPreferences("bch2", MODE_PRIVATE);
+                SharedPreferences.Editor editor = pref.edit();
+                editor.putString("name",ech2.getText().toString());
+                editor.apply();
+                if (ech2.getText().toString().length()<6 && ech2.getText().toString().length()>0) {
 
                     ch2.setText(ech2.getText().toString());
                     dialog2.dismiss();
@@ -914,7 +1159,11 @@ bch1.setOnClickListener(new View.OnClickListener() {
         bch3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (ech3.getText().toString().length()<6) {
+                SharedPreferences pref = getApplicationContext().getSharedPreferences("bch3", MODE_PRIVATE);
+                SharedPreferences.Editor editor = pref.edit();
+                editor.putString("name",ech3.getText().toString());
+                editor.apply();
+                if (ech3.getText().toString().length()<6 && ech3.getText().toString().length()>0 ) {
 
                     ch3.setText(ech3.getText().toString());
                     dialog3.dismiss();
@@ -924,7 +1173,11 @@ bch1.setOnClickListener(new View.OnClickListener() {
         bch4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (ech4.getText().toString().length()<6) {
+                SharedPreferences pref = getApplicationContext().getSharedPreferences("bch4", MODE_PRIVATE);
+                SharedPreferences.Editor editor = pref.edit();
+                editor.putString("name",ech4.getText().toString());
+                editor.apply();
+                if (ech4.getText().toString().length()<6 && ech4.getText().toString().length()>0) {
 
                     ch4.setText(ech4.getText().toString());
                     dialog4.dismiss();
@@ -934,7 +1187,11 @@ bch1.setOnClickListener(new View.OnClickListener() {
         bch5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (ech5.getText().toString().length()<6) {
+                SharedPreferences pref = getApplicationContext().getSharedPreferences("bch5", MODE_PRIVATE);
+                SharedPreferences.Editor editor = pref.edit();
+                editor.putString("name",ech5.getText().toString());
+                editor.apply();
+                if (ech5.getText().toString().length()<6  && ech5.getText().toString().length()>0) {
 
                     ch5.setText(ech5.getText().toString());
                     dialog5.dismiss();
@@ -944,7 +1201,11 @@ bch1.setOnClickListener(new View.OnClickListener() {
         bch6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (ech6.getText().toString().length()<6) {
+                SharedPreferences pref = getApplicationContext().getSharedPreferences("bch6", MODE_PRIVATE);
+                SharedPreferences.Editor editor = pref.edit();
+                editor.putString("name",ech6.getText().toString());
+                editor.apply();
+                if (ech6.getText().toString().length()<6 && ech6.getText().toString().length()>0) {
 
                     ch6.setText(ech6.getText().toString());
                     dialog6.dismiss();
@@ -954,7 +1215,11 @@ bch1.setOnClickListener(new View.OnClickListener() {
         bch7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (ech7.getText().toString().length()<6) {
+                SharedPreferences pref = getApplicationContext().getSharedPreferences("bch7", MODE_PRIVATE);
+                SharedPreferences.Editor editor = pref.edit();
+                editor.putString("name",ech7.getText().toString());
+                editor.apply();
+                if (ech7.getText().toString().length()<6 && ech7.getText().toString().length()>0) {
 
                     ch7.setText(ech7.getText().toString());
                     dialog7.dismiss();
@@ -964,13 +1229,49 @@ bch1.setOnClickListener(new View.OnClickListener() {
         bch8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (ech8.getText().toString().length()<6) {
+                SharedPreferences pref = getApplicationContext().getSharedPreferences("bch8", MODE_PRIVATE);
+                SharedPreferences.Editor editor = pref.edit();
+                editor.putString("name",ech8.getText().toString());
+                editor.apply();
+                if (ech8.getText().toString().length()<6 && ech8.getText().toString().length()>0) {
 
                     ch8.setText(ech8.getText().toString());
                     dialog8.dismiss();
                 }
             }
         });
+
+try {
+    SharedPreferences sharedPreferences=getApplicationContext().getSharedPreferences("bch1", MODE_PRIVATE);
+    ch1.setText(sharedPreferences.getString("name",null).toString());
+
+    sharedPreferences=getApplicationContext().getSharedPreferences("bch2", MODE_PRIVATE);
+    ch2.setText(sharedPreferences.getString("name",null).toString());
+
+    sharedPreferences=getApplicationContext().getSharedPreferences("bch3", MODE_PRIVATE);
+    ch3.setText(sharedPreferences.getString("name",null).toString());
+
+    sharedPreferences=getApplicationContext().getSharedPreferences("bch4", MODE_PRIVATE);
+    ch4.setText(sharedPreferences.getString("name",null).toString());
+
+    sharedPreferences=getApplicationContext().getSharedPreferences("bch5", MODE_PRIVATE);
+    ch5.setText(sharedPreferences.getString("name",null).toString());
+
+    sharedPreferences=getApplicationContext().getSharedPreferences("bch6", MODE_PRIVATE);
+    ch6.setText(sharedPreferences.getString("name",null).toString());
+
+    sharedPreferences=getApplicationContext().getSharedPreferences("bch7", MODE_PRIVATE);
+    ch7.setText(sharedPreferences.getString("name",null).toString());
+
+    sharedPreferences=getApplicationContext().getSharedPreferences("bch8", MODE_PRIVATE);
+    ch8.setText(sharedPreferences.getString("name",null).toString());
+
+
+}
+  catch (NullPointerException e) {
+      e.printStackTrace();
+  }
+
     }
 
     private void FindViewBiId() {
@@ -985,17 +1286,33 @@ bch1.setOnClickListener(new View.OnClickListener() {
         listView=dialog.findViewById(R.id.list_device);
 
         ech1=dialog1.findViewById(R.id.textinputedittext1);
+        ech2=dialog2.findViewById(R.id.textinputedittext2);
+        ech3=dialog3.findViewById(R.id.textinputedittext3);
+        ech4=dialog4.findViewById(R.id.textinputedittext4);
+        ech5=dialog5.findViewById(R.id.textinputedittext5);
+        ech6=dialog6.findViewById(R.id.textinputedittext6);
+        ech7=dialog7.findViewById(R.id.textinputedittext7);
+        ech8=dialog8.findViewById(R.id.textinputedittext8);
+
 
         lch1=dialog1.findViewById(R.id.textinputeditlayout1);
+        lch2=dialog2.findViewById(R.id.textinputeditlayout2);
+        lch3=dialog3.findViewById(R.id.textinputeditlayout3);
+        lch4=dialog4.findViewById(R.id.textinputeditlayout4);
+        lch5=dialog5.findViewById(R.id.textinputeditlayout5);
+        lch6=dialog6.findViewById(R.id.textinputeditlayout6);
+        lch7=dialog7.findViewById(R.id.textinputeditlayout7);
+        lch8=dialog8.findViewById(R.id.textinputeditlayout8);
 
-        ech2=dialog2.findViewById(R.id.edittext2);
-        ech3=dialog3.findViewById(R.id.edittext3);
-        ech4=dialog4.findViewById(R.id.edittext4);
-        ech5=dialog5.findViewById(R.id.edittext5);
-        ech6=dialog6.findViewById(R.id.edittext6);
-        ech7=dialog7.findViewById(R.id.edittext7);
-        ech8=dialog8.findViewById(R.id.edittext8);
 
+        check_circle1=dialog1.findViewById(R.id.checkcircle1);
+        check_circle2=dialog2.findViewById(R.id.checkcircle2);
+        check_circle3=dialog3.findViewById(R.id.checkcircle3);
+        check_circle4=dialog4.findViewById(R.id.checkcircle4);
+        check_circle5=dialog5.findViewById(R.id.checkcircle5);
+        check_circle6=dialog6.findViewById(R.id.checkcircle6);
+        check_circle7=dialog7.findViewById(R.id.checkcircle7);
+        check_circle8=dialog8.findViewById(R.id.checkcircle8);
 
         bch1=dialog1.findViewById(R.id.save_renamech1);
         bch2=dialog2.findViewById(R.id.save_renamech2);
@@ -1018,6 +1335,7 @@ bch1.setOnClickListener(new View.OnClickListener() {
         V7000=findViewById(R.id.SM1_7000);
         V8000=findViewById(R.id.SM1_8000);
 
+        bluetooth_progress=findViewById(R.id.bluetooth_progressbar_eight);
 
         ch1=findViewById(R.id.ch1);
         ch2=findViewById(R.id.ch2);

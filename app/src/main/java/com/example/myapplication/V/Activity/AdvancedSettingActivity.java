@@ -1,6 +1,8 @@
 package com.example.myapplication.V.Activity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,6 +26,7 @@ public class AdvancedSettingActivity extends AppCompatActivity {
     RecyclerView recyclerView2;
     List<ItemNotch> list2 = new ArrayList<>();
     ItemNotchAdapter itemAdapter2;
+    Button back;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -51,7 +54,14 @@ public class AdvancedSettingActivity extends AppCompatActivity {
 
 
 
+        back=findViewById(R.id.back_pointer_advanced_setting);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                onBackPressed();
+            }
+        });
 
 
 

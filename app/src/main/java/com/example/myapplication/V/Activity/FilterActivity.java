@@ -1,6 +1,8 @@
 package com.example.myapplication.V.Activity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,6 +21,7 @@ public class FilterActivity extends AppCompatActivity {
     RecyclerView recyclerView1;
     List<ItemFilter> list1 = new ArrayList<>();
     ItemFilterAdapter itemAdapter1;
+    Button back;
 
 
     RecyclerView recyclerView2;
@@ -45,5 +48,16 @@ public class FilterActivity extends AppCompatActivity {
         recyclerView2.setAdapter(itemAdapter2);
         list2.add(new ItemNotch(true,"50 Hz",true,"60 Hz"));
         itemAdapter1.notifyDataSetChanged();
+
+
+        back=findViewById(R.id.back_pointer_filter);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                onBackPressed();
+            }
+        });
+
     }
 }

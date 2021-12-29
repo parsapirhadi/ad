@@ -17,12 +17,16 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.myapplication.M.DataType.Counter;
 import com.example.myapplication.M.DataType.String1;
 import com.example.myapplication.P.FileReader;
 import com.example.myapplication.R;
 import com.example.myapplication.V.ConnectGraphview;
+import com.google.android.material.snackbar.Snackbar;
+
+import java.util.Calendar;
 
 
 public class CustomDrawerLayout extends Fragment {
@@ -157,6 +161,8 @@ TextView textView;
                     public void onClick(View v) {
                        startActivity(new Intent(getContext(),EightRecordActivity.class));
                         getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                     Toast.makeText(getContext(),"' "+textView.getText()+" "+ Calendar.getInstance().getTime()+" '"+" created",Toast.LENGTH_LONG).show();
+
 
 
                     }

@@ -7,6 +7,36 @@
     tools:context=".V.Activity.MontageActivity"
     android:orientation="vertical"
     android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#e1e1e1"
+        android:orientation="horizontal"
+
+
+        >
+        <Button
+            android:layout_margin="10dp"
+            android:layout_gravity="center|start"
+            android:layout_width="25dp"
+            android:background="@drawable/back_pointer_foreground"
+            android:layout_height="25dp"
+            android:id="@+id/back_pointer_replay"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="5dp"
+            android:textSize="15sp"
+            android:textColor="#929292"
+            android:text="NrSign1.0.0"
+
+            />
+    </LinearLayout>
     <TextView
 
         android:padding="10dp"

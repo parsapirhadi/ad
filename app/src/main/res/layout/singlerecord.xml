@@ -171,11 +171,18 @@
                         android:id="@+id/bluetoooth_singlerecord"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:layout_marginEnd="30dp"
+
                         android:layout_gravity="center"
                         android:background="@drawable/bluetooth_off_foreground"
                         app:layout_constraintEnd_toEndOf="parent"
                         tools:layout_editor_absoluteY="10dp" />
+                    <ProgressBar
+                        android:id="@+id/bluetooth_progressbar_single"
+                        android:layout_width="15dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:gravity="left"
+                        />
                 </LinearLayout>
             </LinearLayout>
 

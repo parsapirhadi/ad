@@ -26,7 +26,7 @@
                 app:counterEnabled="true"
 
 
-                app:counterMaxLength="5">
+                app:counterMaxLength="3">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/textinputedittext3"
@@ -36,7 +36,7 @@
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     app:counterEnabled="true"
-                    app:counterMaxLength="5"
+                    app:counterMaxLength="3"
 
 
                     />
@@ -55,19 +55,44 @@
         </LinearLayout>
 
 
-        <Button
-            android:id="@+id/save_renamech3"
-            android:layout_width="50dp"
+        <GridLayout
+            android:layout_width="match_parent"
             android:layout_height="20dp"
-            android:layout_gravity="end|bottom"
-            android:layout_marginEnd="5dp"
-            android:layout_marginRight="5dp"
-            android:background="@drawable/save"
-            android:text="Save"
-            android:textColor="@color/white"
-            android:textSize="12dp"
+            android:orientation="horizontal"
+            >
 
-            />
+            <Button
+                android:id="@+id/save_renamech3"
+                android:layout_width="50dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="4dp"
+                android:layout_row="0"
+                android:layout_column="2"
+                android:background="@drawable/save"
+                android:text="Save"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+
+                />
+
+            <Button
+                android:id="@+id/cancel_renamech3"
+                android:layout_width="50dp"
+                android:layout_height="20dp"
+                android:layout_row="0"
+                android:layout_column="1"
+                android:background="@drawable/save"
+                android:text="cancel"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+
+                />
+
+
+        </GridLayout>
+
+
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

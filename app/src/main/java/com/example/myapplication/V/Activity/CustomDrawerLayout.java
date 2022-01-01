@@ -161,7 +161,8 @@ TextView textView;
                     public void onClick(View v) {
                        startActivity(new Intent(getContext(),EightRecordActivity.class));
                         getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-                     Toast.makeText(getContext(),"' "+textView.getText()+" "+ Calendar.getInstance().getTime()+" '"+" created",Toast.LENGTH_LONG).show();
+
+                        Toast.makeText(getContext(),"' "+textView.getText()+" "+ Calendar.getInstance().getTime()+" '"+" created",Toast.LENGTH_LONG).show();
 
 
 

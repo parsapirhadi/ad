@@ -23,7 +23,8 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -65,9 +66,12 @@ public class EightRecordActivity extends AppCompatActivity {
 
     TextInputLayout lch1,lch2,lch3,lch4,lch5,lch6,lch7,lch8;
 
-
+    Button cch1,cch2,cch3,cch4,cch5,cch6,cch7,cch8;
 
     ProgressBar bluetooth_progress;
+
+    Thread bluetooth_thread;
+    boolean animation_bluetooth=true;
 
     Button btn;
     Button montage;
@@ -90,6 +94,16 @@ public class EightRecordActivity extends AppCompatActivity {
 
     boolean is_connected=false;
     boolean is_open=false;
+
+    static boolean Recordcount=false;
+
+    public static boolean isRecordcount() {
+        return Recordcount;
+    }
+
+    public static void setRecordcount(boolean recordcount) {
+        Recordcount = recordcount;
+    }
 
     boolean is_disconnected=false;
 
@@ -236,7 +250,28 @@ public class EightRecordActivity extends AppCompatActivity {
 
                     View parentLayout = findViewById(android.R.id.content);
                     Snackbar.make(parentLayout, "Connected To '"+bluetooth_name+"'", Snackbar.LENGTH_LONG).show();
+                    animation_bluetooth=false;
 
+if (SingleRecordActivity.isRecordcount()){
+    new Thread(new Runnable() {
+        @Override
+        public void run() {
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            Log.e("is start", "is start");
+            record.setBackgroundResource(R.drawable.rect_stop_record);
+            String string = "CONTB\r\n";
+            set_limit = 1;
+            sendReceive = new EightRecordActivity.SendReceive(objects.getSocket());
+            sendReceive.write(string.getBytes());
+            recordcount = 1;
+        }
+    }).start();
+
+}
                     bluetooth.setBackgroundResource(R.drawable.bluetooth_on_foreground);
                     bluetooth_progress.setVisibility(View.INVISIBLE);
                     counter.setBluetooth_drawabe(true);
@@ -362,6 +397,144 @@ if (string1.getPivote(0)!=null)
         bluetooth.setBackgroundResource(R.drawable.bluetooth_off_foreground);
 bluetooth_progress.setVisibility(View.VISIBLE);
 
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (is_activity_on) {
+
+                    //  Log.e("i=",""+i);
+                    if ((i - data_count) < 200 && recordcount == 1 && objects.getSocket().isConnected()) {
+                        conter++;
+                        if (conter > 1) {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    record.setBackgroundResource(R.drawable.red_record_drawable);
+                                    String string = "NOP\r\n";
+                                    set_limit = 1;
+                                    conter = 0;
+                                    sendReceive.write(string.getBytes());
+                                    recordcount = 0;
+                                    try {
+                                        objects.getSocket().close();
+                                        is_connected = false;
+                                        is_open = true;
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
+                                    }
+
+                                    is_disconnected = true;
+                                    Snackbar.make(parentLayout, "'" + "Bluetooth" + " Disconnected'", Snackbar.LENGTH_LONG).show();
+
+                                    animation_bluetooth=true;
+                                    bluetooth.setBackgroundResource(R.drawable.bluetooth_off_foreground);
+                                    bluetooth_progress.setVisibility(View.VISIBLE);
+
+
+                                }
+                            });
+
+
+                        }
+                    }
+                    if (objects.getSocket()!=null)
+                    {
+                        if (!objects.getSocket().isConnected()) {
+                            Log.e("is true", "is true");
+                            Set<BluetoothDevice> bt = objects.getBluetoothAdapter().getBondedDevices();
+                            String[] strings = new String[bt.size()];
+                            btArray = new BluetoothDevice[bt.size()];
+                            int index = 0;
+
+                            if (bt.size() > 0) {
+                                for (BluetoothDevice device : bt) {
+                                    btArray[index] = device;
+                                    strings[index] = device.getName();
+                                    index++;
+                                }
+                                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, strings);
+                                listView.setAdapter(arrayAdapter);
+                                for (int n = 0; n < btArray.length; n++) {
+                                    if (btArray[n].getName().charAt(0) == 'H' &&
+                                            btArray[n].getName().charAt(1) == 'C' &&
+                                            btArray[n].getName().charAt(2) == '-' &&
+                                            btArray[n].getName().charAt(3) == '0' &&
+                                            btArray[n].getName().charAt(4) == '5'
+                                    ) {
+
+                                        EightRecordActivity.ClientClass clientClass = new EightRecordActivity.ClientClass(btArray[n]);
+                                        bluetooth_name = strings[n] + "";
+                                        clientClass.start();
+
+
+                                    }
+                                }
+                            }
+                            try {
+                                Thread.sleep(2000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    }
+                    else {
+
+                        Set<BluetoothDevice> bt = objects.getBluetoothAdapter().getBondedDevices();
+                        String[] strings = new String[bt.size()];
+                        btArray = new BluetoothDevice[bt.size()];
+                        int index = 0;
+
+                        if (bt.size() > 0) {
+                            for (BluetoothDevice device : bt) {
+                                btArray[index] = device;
+                                strings[index] = device.getName();
+                                index++;
+                            }
+                            ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, strings);
+                            listView.setAdapter(arrayAdapter);
+                            for (int n = 0; n < btArray.length; n++) {
+                                if (btArray[n].getName().charAt(0) == 'H' &&
+                                        btArray[n].getName().charAt(1) == 'C' &&
+                                        btArray[n].getName().charAt(2) == '-' &&
+                                        btArray[n].getName().charAt(3) == '0' &&
+                                        btArray[n].getName().charAt(4) == '5'
+                                ) {
+
+                                    EightRecordActivity.ClientClass clientClass = new EightRecordActivity.ClientClass(btArray[n]);
+                                    bluetooth_name = strings[n] + "";
+                                    clientClass.start();
+
+
+                                }
+                            }
+                        }
+                        try {
+                            Thread.sleep(2000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+
+
+
+                    }
+
+
+
+
+
+
+
+                    data_count=i;
+                    try {
+
+                        Thread.sleep(200);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }).start();
 
     }
 
@@ -519,150 +692,34 @@ bluetooth_progress.setVisibility(View.VISIBLE);
 
 
  */
+
         new Thread(new Runnable() {
             @Override
             public void run() {
-                while (is_activity_on) {
-                    //  Log.e("i=",""+i);
-                    if ((i - data_count) < 200 && recordcount == 1 && objects.getSocket().isConnected()) {
-                        conter++;
-                        if (conter > 1) {
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    record.setBackgroundResource(R.drawable.red_record_drawable);
-                                    String string = "NOP\r\n";
-                                    set_limit = 1;
-                                    conter = 0;
-                                    sendReceive.write(string.getBytes());
-                                    recordcount = 0;
-                                    try {
-                                        objects.getSocket().close();
-                                        is_connected = false;
-                                        is_open = true;
-                                    } catch (IOException e) {
-                                        e.printStackTrace();
-                                    }
 
-                                    is_disconnected = true;
-                                    Snackbar.make(parentLayout, "'" + "Bluetooth" + " Disconnected'", Snackbar.LENGTH_LONG).show();
-                                    bluetooth.setBackgroundResource(R.drawable.bluetooth_off_foreground);
-                                    bluetooth_progress.setVisibility(View.VISIBLE);
-                                  /*
-
-                                   while (true)
-                                   {
-
-
-                                       Set<BluetoothDevice> bt=objects.getBluetoothAdapter().getBondedDevices();
-                                       String[] strings=new String[bt.size()];
-                                       btArray=new BluetoothDevice[bt.size()];
-                                       int index=0;
-
-                                       if( bt.size()>0)
-                                       {
-                                           for(BluetoothDevice device : bt)
-                                           {
-                                               btArray[index]= device;
-                                               strings[index]=device.getName();
-                                               index++;
-                                           }
-                                           ArrayAdapter<String> arrayAdapter=new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,strings);
-                                           listView.setAdapter(arrayAdapter);
-                                           for (int n=0;n<btArray.length;n++){
-                                               if (btArray[n].getName().charAt(0)=='H'  &&
-                                                       btArray[n].getName().charAt(1)=='C' &&
-                                                       btArray[n].getName().charAt(2)=='-' &&
-                                                       btArray[n].getName().charAt(3)=='0' &&
-                                                       btArray[n].getName().charAt(4)=='5'
-                                               ){
-
-                                                   SingleRecordActivity.ClientClass clientClass=new SingleRecordActivity.ClientClass(btArray[n]);
-                                                   bluetooth_name=strings[n]+"";
-                                                   clientClass.start();
-                                               }
-                                           }
-
-                                       }
-
-
-                                   }
-
-                                   */
-                                }
-                            });
-
-
-                        }
-                    }
-                    if (objects.getSocket()!=null)
-                    {
-                    if (!objects.getSocket().isConnected()) {
-                        Log.e("is true", "is true");
-                        Set<BluetoothDevice> bt = objects.getBluetoothAdapter().getBondedDevices();
-                        String[] strings = new String[bt.size()];
-                        btArray = new BluetoothDevice[bt.size()];
-                        int index = 0;
-
-                        if (bt.size() > 0) {
-                            for (BluetoothDevice device : bt) {
-                                btArray[index] = device;
-                                strings[index] = device.getName();
-                                index++;
-                            }
-                            ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, strings);
-                            listView.setAdapter(arrayAdapter);
-                            for (int n = 0; n < btArray.length; n++) {
-                                if (btArray[n].getName().charAt(0) == 'H' &&
-                                        btArray[n].getName().charAt(1) == 'C' &&
-                                        btArray[n].getName().charAt(2) == '-' &&
-                                        btArray[n].getName().charAt(3) == '0' &&
-                                        btArray[n].getName().charAt(4) == '5'
-                                ) {
-
-                                    EightRecordActivity.ClientClass clientClass = new EightRecordActivity.ClientClass(btArray[n]);
-                                    bluetooth_name = strings[n] + "";
-                                    clientClass.start();
-
-
-                                }
-                            }
-                        }
+                while (animation_bluetooth){
+                    for (float f = (float) 1.00; f > 0.50 ;f-=0.01){
+                        bluetooth.setScaleX(f);
+                        bluetooth.setScaleY(f);
                         try {
-                            Thread.sleep(2000);
+                            Thread.sleep(10);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
-                        if (objects.getSocket().isConnected()) {
-                            record.setBackgroundResource(R.drawable.rect_stop_record);
-                            String string = "CONTB\r\n";
-                            set_limit = 1;
-                            sendReceive = new EightRecordActivity.SendReceive(objects.getSocket());
-                            sendReceive.write(string.getBytes());
-                            recordcount = 1;
+                    }
+                    for (float f = (float) 0.50; f < 1 ;f+=0.01){
+                        bluetooth.setScaleX(f);
+                        bluetooth.setScaleY(f);
+                        try {
+                            Thread.sleep(10);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
                         }
                     }
-                }
 
-
-
-
-
-
-
-                    data_count=i;
-                    try {
-
-                        Thread.sleep(200);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
                 }
             }
         }).start();
-
-
-
         implementListeners();
 
     }
@@ -722,6 +779,8 @@ bluetooth_progress.setVisibility(View.VISIBLE);
                     record.setBackgroundResource(R.drawable.rect_stop_record);
                     String string = "CONTB\r\n";
                     set_limit = 1;
+                    Recordcount=true;
+                    SingleRecordActivity.setIs_isRecordcount(true);
                     sendReceive = new SendReceive(objects.getSocket());
                     sendReceive.write(string.getBytes());
                     recordcount = 1;
@@ -729,6 +788,8 @@ bluetooth_progress.setVisibility(View.VISIBLE);
                 } else if (recordcount == 1) {
                     record.setBackgroundResource(R.drawable.red_record_drawable);
                     String string = "NOP\r\n";
+                    Recordcount=false;
+                    SingleRecordActivity.setIs_isRecordcount(false);
                     set_limit = 1;
                     sendReceive.write(string.getBytes());
 
@@ -746,6 +807,44 @@ bluetooth_progress.setVisibility(View.VISIBLE);
         notch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Animation animation1=AnimationUtils.loadAnimation(getApplicationContext(),R.anim.bluetooth_anim_1);
+                Animation animation2=AnimationUtils.loadAnimation(getApplicationContext(),R.anim.bluetooth_anim_2);
+                bluetooth.startAnimation(animation1);
+
+                animation2.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        bluetooth.startAnimation(animation1);
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+
+                    }
+                });
+
+                animation1.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        bluetooth.startAnimation(animation2);
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+
+                    }
+                });
+
                 vibrator.vibrate(40);
 
                 if(notchcount==0) {
@@ -829,80 +928,81 @@ bluetooth_progress.setVisibility(View.VISIBLE);
         });
 
         btn.setOnClickListener(view -> drawerLayout.openDrawer(GravityCompat.START));
-
-
-        ch1.setOnLongClickListener(new View.OnLongClickListener() {
+ch1.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+        ech1.setText("");
+        check_circle1.setVisibility(View.INVISIBLE);
+        vibrator.vibrate(30);
+        dialog1.show();
+    }
+});
+        ch2.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onLongClick(View view) {
-                check_circle1.setBackgroundResource(R.drawable.check_circle_normal_foreground);
-                vibrator.vibrate(30);
-                dialog1.show();
-                return false;
-            }
-        });
-        ch2.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                check_circle2.setBackgroundResource(R.drawable.check_circle_normal_foreground);
+            public void onClick(View view) {
+                ech2.setText("");
+                check_circle2.setVisibility(View.INVISIBLE);
                 vibrator.vibrate(30);
                 dialog2.show();
-                return false;
             }
         });
-        ch3.setOnLongClickListener(new View.OnLongClickListener() {
+        ch3.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onLongClick(View view) {
+            public void onClick(View view) {
+                ech3.setText("");
+                check_circle3.setVisibility(View.INVISIBLE);
                 vibrator.vibrate(30);
-                check_circle3.setBackgroundResource(R.drawable.check_circle_normal_foreground);
                 dialog3.show();
-                return false;
             }
         });
-        ch4.setOnLongClickListener(new View.OnLongClickListener() {
+        ch4.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onLongClick(View view) {
+            public void onClick(View view) {
+                ech4.setText("");
+                check_circle4.setVisibility(View.INVISIBLE);
                 vibrator.vibrate(30);
-                check_circle4.setBackgroundResource(R.drawable.check_circle_normal_foreground);
                 dialog4.show();
-                return false;
             }
         });
-        ch5.setOnLongClickListener(new View.OnLongClickListener() {
+        ch5.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onLongClick(View view) {
+            public void onClick(View view) {
+                ech5.setText("");
+                check_circle5.setVisibility(View.INVISIBLE);
                 vibrator.vibrate(30);
-                check_circle5.setBackgroundResource(R.drawable.check_circle_normal_foreground);
                 dialog5.show();
-                return false;
             }
         });
-        ch6.setOnLongClickListener(new View.OnLongClickListener() {
+        ch6.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onLongClick(View view) {
+            public void onClick(View view) {
+                ech6.setText("");
+                check_circle6.setVisibility(View.INVISIBLE);
                 vibrator.vibrate(30);
-                check_circle6.setBackgroundResource(R.drawable.check_circle_normal_foreground);
                 dialog6.show();
-                return false;
             }
         });
-        ch7.setOnLongClickListener(new View.OnLongClickListener() {
+        ch7.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onLongClick(View view) {
+            public void onClick(View view) {
+                ech7.setText("");
+                check_circle7.setVisibility(View.INVISIBLE);
                 vibrator.vibrate(30);
-                check_circle7.setBackgroundResource(R.drawable.check_circle_normal_foreground);
                 dialog7.show();
-                return false;
             }
         });
-        ch8.setOnLongClickListener(new View.OnLongClickListener() {
+        ch8.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onLongClick(View view) {
+            public void onClick(View view) {
+                ech8.setText("");
+                check_circle8.setVisibility(View.INVISIBLE);
                 vibrator.vibrate(30);
-                check_circle8.setBackgroundResource(R.drawable.check_circle_normal_foreground);
                 dialog8.show();
-                return false;
             }
         });
+
+
+
 ech1.addTextChangedListener(new TextWatcher() {
     @Override
     public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -915,12 +1015,14 @@ ech1.addTextChangedListener(new TextWatcher() {
 
         lch1.setError("");
 
-        if (ech1.getText().length()<6 && ech1.getText().length()>0){
+        if (ech1.getText().length()<4 && ech1.getText().length()>0){
             check_circle1.setBackgroundResource(R.drawable.check_circle__foreground);
+            check_circle1.setVisibility(View.VISIBLE);
         }
-        if (ech1.getText().length()>5 || ech1.getText().length()==0){
+        if (ech1.getText().length()>3 || ech1.getText().length()==0){
             check_circle1.setBackgroundResource(R.drawable.check_circle_error_foreground);
-            lch1.setError("5 character");
+            check_circle1.setVisibility(View.VISIBLE);
+            lch1.setError("Maximum 3 Character");
         }
 
     }
@@ -942,12 +1044,16 @@ ech1.addTextChangedListener(new TextWatcher() {
 
                 lch2.setError("");
 
-                if (ech2.getText().length()<6 && ech2.getText().length()>0){
+                if (ech2.getText().length()<4 && ech2.getText().length()>0){
                     check_circle2.setBackgroundResource(R.drawable.check_circle__foreground);
+                    check_circle2.setVisibility(View.VISIBLE);
+
                 }
-                if (ech2.getText().length()>5 || ech2.getText().length()==0){
+                if (ech2.getText().length()>3 || ech2.getText().length()==0){
                     check_circle2.setBackgroundResource(R.drawable.check_circle_error_foreground);
-                    lch2.setError("5 character");
+                    check_circle2.setVisibility(View.VISIBLE);
+
+                    lch2.setError("Maximum 3 Character");
                 }
 
             }
@@ -970,12 +1076,16 @@ ech1.addTextChangedListener(new TextWatcher() {
 
                 lch3.setError("");
 
-                if (ech3.getText().length()<6 && ech3.getText().length()>0){
+                if (ech3.getText().length()<4 && ech3.getText().length()>0){
                     check_circle3.setBackgroundResource(R.drawable.check_circle__foreground);
+                    check_circle3.setVisibility(View.VISIBLE);
+
                 }
-                if (ech3.getText().length()>5 || ech3.getText().length()==0){
+                if (ech3.getText().length()>3 || ech3.getText().length()==0){
                     check_circle3.setBackgroundResource(R.drawable.check_circle_error_foreground);
-                    lch3.setError("5 character");
+                    check_circle3.setVisibility(View.VISIBLE);
+
+                    lch3.setError("Maximum 3 Character");
                 }
 
             }
@@ -998,12 +1108,16 @@ ech1.addTextChangedListener(new TextWatcher() {
 
                 lch4.setError("");
 
-                if (ech4.getText().length()<6 && ech4.getText().length()>0){
+                if (ech4.getText().length()<4 && ech4.getText().length()>0){
                     check_circle4.setBackgroundResource(R.drawable.check_circle__foreground);
+                    check_circle4.setVisibility(View.VISIBLE);
+
                 }
-                if (ech4.getText().length()>5 || ech4.getText().length()==0){
+                if (ech4.getText().length()>3 || ech4.getText().length()==0){
                     check_circle4.setBackgroundResource(R.drawable.check_circle_error_foreground);
-                    lch4.setError("5 character");
+                    check_circle4.setVisibility(View.VISIBLE);
+
+                    lch4.setError("Maximum 3 Character");
                 }
 
             }
@@ -1026,12 +1140,16 @@ ech1.addTextChangedListener(new TextWatcher() {
 
                 lch5.setError("");
 
-                if (ech5.getText().length()<6 && ech5.getText().length()>0){
+                if (ech5.getText().length()<4 && ech5.getText().length()>0){
                     check_circle5.setBackgroundResource(R.drawable.check_circle__foreground);
+                    check_circle5.setVisibility(View.VISIBLE);
+
                 }
-                if (ech5.getText().length()>5 || ech5.getText().length()==0){
+                if (ech5.getText().length()>3 || ech5.getText().length()==0){
                     check_circle5.setBackgroundResource(R.drawable.check_circle_error_foreground);
-                    lch5.setError("5 character");
+                    check_circle5.setVisibility(View.VISIBLE);
+
+                    lch5.setError("Maximum 3 Character");
                 }
 
             }
@@ -1054,12 +1172,16 @@ ech1.addTextChangedListener(new TextWatcher() {
 
                 lch6.setError("");
 
-                if (ech6.getText().length()<6 && ech6.getText().length()>0){
+                if (ech6.getText().length()<4 && ech6.getText().length()>0){
                     check_circle6.setBackgroundResource(R.drawable.check_circle__foreground);
+                    check_circle6.setVisibility(View.VISIBLE);
+
                 }
-                if (ech6.getText().length()>5 || ech6.getText().length()==0){
+                if (ech6.getText().length()>3 || ech6.getText().length()==0){
                     check_circle6.setBackgroundResource(R.drawable.check_circle_error_foreground);
-                    lch6.setError("5 character");
+                    check_circle6.setVisibility(View.VISIBLE);
+
+                    lch6.setError("Maximum 3 Character");
                 }
 
             }
@@ -1082,12 +1204,16 @@ ech1.addTextChangedListener(new TextWatcher() {
 
                 lch7.setError("");
 
-                if (ech7.getText().length()<6 && ech7.getText().length()>0){
+                if (ech7.getText().length()<4 && ech7.getText().length()>0){
                     check_circle7.setBackgroundResource(R.drawable.check_circle__foreground);
+                    check_circle7.setVisibility(View.VISIBLE);
+
                 }
-                if (ech7.getText().length()>5 || ech7.getText().length()==0){
+                if (ech7.getText().length()>3 || ech7.getText().length()==0){
                     check_circle7.setBackgroundResource(R.drawable.check_circle_error_foreground);
-                    lch7.setError("5 character");
+                    check_circle7.setVisibility(View.VISIBLE);
+
+                    lch7.setError("Maximum 3 Character");
                 }
 
             }
@@ -1110,12 +1236,16 @@ ech1.addTextChangedListener(new TextWatcher() {
 
                 lch8.setError("");
 
-                if (ech8.getText().length()<6 && ech8.getText().length()>0){
+                if (ech8.getText().length()<4 && ech8.getText().length()>0){
                     check_circle8.setBackgroundResource(R.drawable.check_circle__foreground);
+                    check_circle8.setVisibility(View.VISIBLE);
+
                 }
-                if (ech8.getText().length()>5 || ech8.getText().length()==0){
+                if (ech8.getText().length()>3 || ech8.getText().length()==0){
                     check_circle8.setBackgroundResource(R.drawable.check_circle_error_foreground);
-                    lch8.setError("5 character");
+                    check_circle8.setVisibility(View.VISIBLE);
+
+                    lch8.setError("Maximum 3 Character");
                 }
 
             }
@@ -1135,7 +1265,7 @@ ech1.addTextChangedListener(new TextWatcher() {
         editor.putString("name",ech1.getText().toString());
         editor.apply();
 
-        if (ech1.getText().toString().length()<6 && ech1.getText().toString().length()>0){
+        if (ech1.getText().toString().length()<4 && ech1.getText().toString().length()>0){
 
            ch1.setText(ech1.getText().toString());
            dialog1.dismiss();
@@ -1149,7 +1279,7 @@ ech1.addTextChangedListener(new TextWatcher() {
                 SharedPreferences.Editor editor = pref.edit();
                 editor.putString("name",ech2.getText().toString());
                 editor.apply();
-                if (ech2.getText().toString().length()<6 && ech2.getText().toString().length()>0) {
+                if (ech2.getText().toString().length()<4 && ech2.getText().toString().length()>0) {
 
                     ch2.setText(ech2.getText().toString());
                     dialog2.dismiss();
@@ -1163,7 +1293,7 @@ ech1.addTextChangedListener(new TextWatcher() {
                 SharedPreferences.Editor editor = pref.edit();
                 editor.putString("name",ech3.getText().toString());
                 editor.apply();
-                if (ech3.getText().toString().length()<6 && ech3.getText().toString().length()>0 ) {
+                if (ech3.getText().toString().length()<4 && ech3.getText().toString().length()>0 ) {
 
                     ch3.setText(ech3.getText().toString());
                     dialog3.dismiss();
@@ -1177,7 +1307,7 @@ ech1.addTextChangedListener(new TextWatcher() {
                 SharedPreferences.Editor editor = pref.edit();
                 editor.putString("name",ech4.getText().toString());
                 editor.apply();
-                if (ech4.getText().toString().length()<6 && ech4.getText().toString().length()>0) {
+                if (ech4.getText().toString().length()<4 && ech4.getText().toString().length()>0) {
 
                     ch4.setText(ech4.getText().toString());
                     dialog4.dismiss();
@@ -1191,7 +1321,7 @@ ech1.addTextChangedListener(new TextWatcher() {
                 SharedPreferences.Editor editor = pref.edit();
                 editor.putString("name",ech5.getText().toString());
                 editor.apply();
-                if (ech5.getText().toString().length()<6  && ech5.getText().toString().length()>0) {
+                if (ech5.getText().toString().length()<4  && ech5.getText().toString().length()>0) {
 
                     ch5.setText(ech5.getText().toString());
                     dialog5.dismiss();
@@ -1205,7 +1335,7 @@ ech1.addTextChangedListener(new TextWatcher() {
                 SharedPreferences.Editor editor = pref.edit();
                 editor.putString("name",ech6.getText().toString());
                 editor.apply();
-                if (ech6.getText().toString().length()<6 && ech6.getText().toString().length()>0) {
+                if (ech6.getText().toString().length()<4 && ech6.getText().toString().length()>0) {
 
                     ch6.setText(ech6.getText().toString());
                     dialog6.dismiss();
@@ -1219,7 +1349,7 @@ ech1.addTextChangedListener(new TextWatcher() {
                 SharedPreferences.Editor editor = pref.edit();
                 editor.putString("name",ech7.getText().toString());
                 editor.apply();
-                if (ech7.getText().toString().length()<6 && ech7.getText().toString().length()>0) {
+                if (ech7.getText().toString().length()<4 && ech7.getText().toString().length()>0) {
 
                     ch7.setText(ech7.getText().toString());
                     dialog7.dismiss();
@@ -1233,13 +1363,62 @@ ech1.addTextChangedListener(new TextWatcher() {
                 SharedPreferences.Editor editor = pref.edit();
                 editor.putString("name",ech8.getText().toString());
                 editor.apply();
-                if (ech8.getText().toString().length()<6 && ech8.getText().toString().length()>0) {
+                if (ech8.getText().toString().length()<4 && ech8.getText().toString().length()>0) {
 
                     ch8.setText(ech8.getText().toString());
                     dialog8.dismiss();
                 }
             }
         });
+        cch1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog1.dismiss();
+            }
+        });
+        cch2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog2.dismiss();
+            }
+        });
+        cch3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog3.dismiss();
+            }
+        });
+        cch4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog4.dismiss();
+            }
+        });
+        cch5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog5.dismiss();
+            }
+        });
+        cch6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog6.dismiss();
+            }
+        });
+        cch7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog7.dismiss();
+            }
+        });
+        cch8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog8.dismiss();
+            }
+        });
+
 
 try {
     SharedPreferences sharedPreferences=getApplicationContext().getSharedPreferences("bch1", MODE_PRIVATE);
@@ -1323,6 +1502,14 @@ try {
         bch7=dialog7.findViewById(R.id.save_renamech7);
         bch8=dialog8.findViewById(R.id.save_renamech8);
 
+        cch1=dialog1.findViewById(R.id.cancel_renamech1);
+        cch2=dialog2.findViewById(R.id.cancel_renamech2);
+        cch3=dialog3.findViewById(R.id.cancel_renamech3);
+        cch4=dialog4.findViewById(R.id.cancel_renamech4);
+        cch5=dialog5.findViewById(R.id.cancel_renamech5);
+        cch6=dialog6.findViewById(R.id.cancel_renamech6);
+        cch7=dialog7.findViewById(R.id.cancel_renamech7);
+        cch8=dialog8.findViewById(R.id.cancel_renamech8);
 
 
         V0=findViewById(R.id.SM1_0);
@@ -1446,7 +1633,7 @@ no_limit=80001-(counter.getHorizontal_scale()*counter.getRate_in_s()*3);
                             next_is_zarib=true;
                             data=(zarib*256)+s;
                                if (zarib<255){
-                                   o=(i/8)%(no_limit);
+                                   o=(i/counter.getDefault_channel())%(no_limit);
 
                                    if (channel==0) {
 

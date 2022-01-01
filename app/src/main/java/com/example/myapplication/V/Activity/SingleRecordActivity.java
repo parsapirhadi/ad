@@ -82,8 +82,9 @@ public class SingleRecordActivity extends AppCompatActivity {
     Button bluetooth;
     ListView listView;
 
+boolean animation_bluetooth=true;
 
-    ProgressBar bluetooth_progress;
+  //  ProgressBar bluetooth_progress;
 
    ListView choice_listview;
 
@@ -94,12 +95,22 @@ boolean is_activity_on=true;
     int conter=0;
     int data_count_clone=0;
 
-
+Thread bluetooth_thread;
     View parentLayout;
 
     Set<BluetoothDevice> pared;
 
     TextView textplay,row100,row50,row_100,row_50,row0;
+
+    static boolean Recordcount=false;
+
+    public static void setIs_isRecordcount(boolean Recordcount) {
+        SingleRecordActivity.Recordcount = Recordcount;
+    }
+
+    public static boolean isRecordcount() {
+        return Recordcount;
+    }
 
     int recordcount=0;
     int notchcount=0;
@@ -210,9 +221,34 @@ boolean is_activity_on=true;
                     break;
                 case STATE_CONNECTED:
                     bluetooth.setBackgroundResource(R.drawable.bluetooth_on_foreground);
-                    bluetooth_progress.setVisibility(View.INVISIBLE);
+
+
+
+
+                    animation_bluetooth=false;
+
                     parentLayout = findViewById(android.R.id.content);
                     Snackbar.make(parentLayout, "Connected To '"+bluetooth_name+"'", Snackbar.LENGTH_LONG).show();
+                    if (EightRecordActivity.isRecordcount()){
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    Thread.sleep(100);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                                Log.e("is start", "is start");
+                                record.setBackgroundResource(R.drawable.rect_stop_record);
+                                String string = "CONTB\r\n";
+                                set_limit = 1;
+                                sendReceive = new SingleRecordActivity.SendReceive(objects.getSocket());
+                                sendReceive.write(string.getBytes());
+                                recordcount = 1;
+                            }
+                        }).start();
+
+                    }
                     is_open=false;
                     is_connected=true;
                     is_disconnected=false;
@@ -289,7 +325,14 @@ is_activity_on=false;
         if (objects.getSocket()!=null){
             if (objects.getSocket().isConnected()){
                 bluetooth.setBackgroundResource(R.drawable.bluetooth_on_foreground);
-                bluetooth_progress.setVisibility(View.INVISIBLE);
+
+                animation_bluetooth=true;
+                bluetooth_thread.start();
+
+
+
+
+
             }
         }
         i=0;
@@ -301,7 +344,10 @@ is_activity_on=false;
 
 
           bluetooth.setBackgroundResource(R.drawable.bluetooth_on_foreground);
-            bluetooth_progress.setVisibility(View.INVISIBLE);
+
+            animation_bluetooth=false;
+
+
 
         }
         counter.setSingle_step_x((float) counter.getSurface_width()/(500*counter.getHorizontal_scale()));
@@ -326,8 +372,9 @@ is_activity_on=false;
 counter.setShow_record_ch(0);
 
         bluetooth.setBackgroundResource(R.drawable.bluetooth_off_foreground);
-        bluetooth_progress.setVisibility(View.VISIBLE);
-
+        if (!bluetooth_thread.isAlive()) {
+            bluetooth_thread.start();
+        }
 ///////////////////////////////
 
 
@@ -391,6 +438,201 @@ counter.setShow_record_ch(0);
         }
 
 ////////////////////////////
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (is_activity_on) {
+                    //  Log.e("i=",""+i);
+                    if ((i - data_count) < 200 && recordcount == 1 && objects.getSocket().isConnected()) {
+                        conter++;
+                        if (conter > 1) {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    record.setBackgroundResource(R.drawable.red_record_drawable);
+                                    String string = "NOP\r\n";
+                                    set_limit = 1;
+                                    conter = 0;
+                                    sendReceive.write(string.getBytes());
+                                    recordcount = 0;
+                                    try {
+                                        objects.getSocket().close();
+                                        is_connected = false;
+                                        is_open = true;
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
+                                    }
+
+                                    is_disconnected = true;
+                                    Snackbar.make(parentLayout, "'" + "Bluetooth" + " Disconnected'", Snackbar.LENGTH_LONG).show();
+
+
+                                    bluetooth.setBackgroundResource(R.drawable.bluetooth_off_foreground);
+
+                                   /*
+
+                                   while (true)
+                                   {
+
+
+                                       Set<BluetoothDevice> bt=objects.getBluetoothAdapter().getBondedDevices();
+                                       String[] strings=new String[bt.size()];
+                                       btArray=new BluetoothDevice[bt.size()];
+                                       int index=0;
+
+                                       if( bt.size()>0)
+                                       {
+                                           for(BluetoothDevice device : bt)
+                                           {
+                                               btArray[index]= device;
+                                               strings[index]=device.getName();
+                                               index++;
+                                           }
+                                           ArrayAdapter<String> arrayAdapter=new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,strings);
+                                           listView.setAdapter(arrayAdapter);
+                                           for (int n=0;n<btArray.length;n++){
+                                               if (btArray[n].getName().charAt(0)=='H'  &&
+                                                       btArray[n].getName().charAt(1)=='C' &&
+                                                       btArray[n].getName().charAt(2)=='-' &&
+                                                       btArray[n].getName().charAt(3)=='0' &&
+                                                       btArray[n].getName().charAt(4)=='5'
+                                               ){
+
+                                                   SingleRecordActivity.ClientClass clientClass=new SingleRecordActivity.ClientClass(btArray[n]);
+                                                   bluetooth_name=strings[n]+"";
+                                                   clientClass.start();
+                                               }
+                                           }
+
+                                       }
+
+
+                                   }
+
+                                   */
+                                }
+                            });
+
+
+                        }
+                    }
+                    if (objects.getSocket()!=null)
+                    {
+                        if (!objects.getSocket().isConnected()) {
+                            Log.e("is true", "is true");
+                            Set<BluetoothDevice> bt = objects.getBluetoothAdapter().getBondedDevices();
+                            String[] strings = new String[bt.size()];
+                            btArray = new BluetoothDevice[bt.size()];
+                            int index = 0;
+
+                            if (bt.size() > 0) {
+                                for (BluetoothDevice device : bt) {
+                                    btArray[index] = device;
+                                    strings[index] = device.getName();
+                                    index++;
+                                }
+                                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, strings);
+                                listView.setAdapter(arrayAdapter);
+                                for (int n = 0; n < btArray.length; n++) {
+                                    if (btArray[n].getName().charAt(0) == 'H' &&
+                                            btArray[n].getName().charAt(1) == 'C' &&
+                                            btArray[n].getName().charAt(2) == '-' &&
+                                            btArray[n].getName().charAt(3) == '0' &&
+                                            btArray[n].getName().charAt(4) == '5'
+                                    ) {
+
+                                        SingleRecordActivity.ClientClass clientClass = new SingleRecordActivity.ClientClass(btArray[n]);
+                                        bluetooth_name = strings[n] + "";
+                                        clientClass.start();
+
+
+                                    }
+                                }
+                            }
+                            try {
+                                Thread.sleep(2000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+
+
+                        }
+                    }
+                    else {
+                        Log.e("is true", "is true");
+                        Set<BluetoothDevice> bt = objects.getBluetoothAdapter().getBondedDevices();
+                        String[] strings = new String[bt.size()];
+                        btArray = new BluetoothDevice[bt.size()];
+                        int index = 0;
+
+                        if (bt.size() > 0) {
+                            for (BluetoothDevice device : bt) {
+                                btArray[index] = device;
+                                strings[index] = device.getName();
+                                index++;
+                            }
+                            ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, strings);
+                            listView.setAdapter(arrayAdapter);
+                            for (int n = 0; n < btArray.length; n++) {
+                                if (btArray[n].getName().charAt(0) == 'H' &&
+                                        btArray[n].getName().charAt(1) == 'C' &&
+                                        btArray[n].getName().charAt(2) == '-' &&
+                                        btArray[n].getName().charAt(3) == '0' &&
+                                        btArray[n].getName().charAt(4) == '5'
+                                ) {
+
+                                    SingleRecordActivity.ClientClass clientClass = new SingleRecordActivity.ClientClass(btArray[n]);
+                                    bluetooth_name = strings[n] + "";
+                                    clientClass.start();
+
+
+                                }
+                            }
+                        }
+                        try {
+                            Thread.sleep(2000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        if (objects.getSocket().isConnected()) {
+                            record.setBackgroundResource(R.drawable.rect_stop_record);
+                            String string = "CONTB\r\n";
+                            set_limit = 1;
+                            sendReceive = new SingleRecordActivity.SendReceive(objects.getSocket());
+                            sendReceive.write(string.getBytes());
+                            recordcount = 1;
+                        }
+
+                    }
+
+
+
+
+
+
+                    data_count=i;
+                    try {
+
+                        Thread.sleep(200);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }).start();
+
+
+
+
+
+
+
+
+
+
+
+
     }
 
     @Override
@@ -515,150 +757,6 @@ Log.e("SonCreate","SonCreate");
 
  */
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (is_activity_on) {
-                    //  Log.e("i=",""+i);
-                    if ((i - data_count) < 200 && recordcount == 1 && objects.getSocket().isConnected()) {
-                        conter++;
-                        if (conter > 1) {
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    record.setBackgroundResource(R.drawable.red_record_drawable);
-                                    String string = "NOP\r\n";
-                                    set_limit = 1;
-                                    conter = 0;
-                                    sendReceive.write(string.getBytes());
-                                    recordcount = 0;
-                                    try {
-                                        objects.getSocket().close();
-                                        is_connected = false;
-                                        is_open = true;
-                                    } catch (IOException e) {
-                                        e.printStackTrace();
-                                    }
-
-                                    is_disconnected = true;
-                                    Snackbar.make(parentLayout, "'" + "Bluetooth" + " Disconnected'", Snackbar.LENGTH_LONG).show();
-
-
-                                    bluetooth.setBackgroundResource(R.drawable.bluetooth_off_foreground);
-                                    bluetooth_progress.setVisibility(View.VISIBLE);
-                                   /*
-
-                                   while (true)
-                                   {
-
-
-                                       Set<BluetoothDevice> bt=objects.getBluetoothAdapter().getBondedDevices();
-                                       String[] strings=new String[bt.size()];
-                                       btArray=new BluetoothDevice[bt.size()];
-                                       int index=0;
-
-                                       if( bt.size()>0)
-                                       {
-                                           for(BluetoothDevice device : bt)
-                                           {
-                                               btArray[index]= device;
-                                               strings[index]=device.getName();
-                                               index++;
-                                           }
-                                           ArrayAdapter<String> arrayAdapter=new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,strings);
-                                           listView.setAdapter(arrayAdapter);
-                                           for (int n=0;n<btArray.length;n++){
-                                               if (btArray[n].getName().charAt(0)=='H'  &&
-                                                       btArray[n].getName().charAt(1)=='C' &&
-                                                       btArray[n].getName().charAt(2)=='-' &&
-                                                       btArray[n].getName().charAt(3)=='0' &&
-                                                       btArray[n].getName().charAt(4)=='5'
-                                               ){
-
-                                                   SingleRecordActivity.ClientClass clientClass=new SingleRecordActivity.ClientClass(btArray[n]);
-                                                   bluetooth_name=strings[n]+"";
-                                                   clientClass.start();
-                                               }
-                                           }
-
-                                       }
-
-
-                                   }
-
-                                   */
-                                }
-                            });
-
-
-                        }
-                    }
-                    if (objects.getSocket()!=null)
-                    {
-                    if (!objects.getSocket().isConnected()) {
-                        Log.e("is true", "is true");
-                        Set<BluetoothDevice> bt = objects.getBluetoothAdapter().getBondedDevices();
-                        String[] strings = new String[bt.size()];
-                        btArray = new BluetoothDevice[bt.size()];
-                        int index = 0;
-
-                        if (bt.size() > 0) {
-                            for (BluetoothDevice device : bt) {
-                                btArray[index] = device;
-                                strings[index] = device.getName();
-                                index++;
-                            }
-                            ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, strings);
-                            listView.setAdapter(arrayAdapter);
-                            for (int n = 0; n < btArray.length; n++) {
-                                if (btArray[n].getName().charAt(0) == 'H' &&
-                                        btArray[n].getName().charAt(1) == 'C' &&
-                                        btArray[n].getName().charAt(2) == '-' &&
-                                        btArray[n].getName().charAt(3) == '0' &&
-                                        btArray[n].getName().charAt(4) == '5'
-                                ) {
-
-                                    SingleRecordActivity.ClientClass clientClass = new SingleRecordActivity.ClientClass(btArray[n]);
-                                    bluetooth_name = strings[n] + "";
-                                    clientClass.start();
-
-
-                                }
-                            }
-                        }
-                        try {
-                            Thread.sleep(2000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                        if (objects.getSocket().isConnected()) {
-                            record.setBackgroundResource(R.drawable.rect_stop_record);
-                            String string = "CONTB\r\n";
-                            set_limit = 1;
-                            sendReceive = new SingleRecordActivity.SendReceive(objects.getSocket());
-                            sendReceive.write(string.getBytes());
-                            recordcount = 1;
-                        }
-                    }
-                }
-
-
-
-
-
-
-
-                    data_count=i;
-                    try {
-
-                        Thread.sleep(200);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }).start();
-
 
 
         bluetooth.setOnClickListener(new View.OnClickListener() {
@@ -713,6 +811,8 @@ Log.e("SonCreate","SonCreate");
                         record.setBackgroundResource(R.drawable.rect_stop_record);
                         String string = "CONTB\r\n";
                         set_limit = 1;
+                        Recordcount=true;
+                        EightRecordActivity.setRecordcount(true);
                         sendReceive = new SingleRecordActivity.SendReceive(objects.getSocket());
                         sendReceive.write(string.getBytes());
                         recordcount = 1;
@@ -720,6 +820,8 @@ Log.e("SonCreate","SonCreate");
                     } else if (recordcount == 1) {
                         record.setBackgroundResource(R.drawable.red_record_drawable);
                         String string = "NOP\r\n";
+                        EightRecordActivity.setRecordcount(false);
+                        Recordcount=false;
                         set_limit = 1;
                         sendReceive.write(string.getBytes());
                         recordcount = 0;
@@ -945,6 +1047,38 @@ myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 //////////////
             }
         });
+
+
+       bluetooth_thread= new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                while (animation_bluetooth){
+                    for (float f = (float) 1.00; f > 0.50 ;f-=0.01){
+                        bluetooth.setScaleX(f);
+                        bluetooth.setScaleY(f);
+                        try {
+                            Thread.sleep(10);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    for (float f = (float) 0.50; f < 1 ;f+=0.01){
+                        bluetooth.setScaleX(f);
+                        bluetooth.setScaleY(f);
+                        try {
+                            Thread.sleep(10);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                }
+            }
+        });
+
+
+
     }
 
     private void FindViewById() {
@@ -965,8 +1099,6 @@ myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
         V6000_=findViewById(R.id.SS_6000rec);
         V7000_=findViewById(R.id.SS_7000rec);
         V8000_=findViewById(R.id.SS_8000rec);
-
-       bluetooth_progress=findViewById(R.id.bluetooth_progressbar_single);
 
 
         row100=findViewById(R.id.VS100rec);

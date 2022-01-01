@@ -161,6 +161,7 @@ xmlns:tools="http://schemas.android.com/tools"
             android:layout_height="50dp"
             android:layout_width="50dp"
             android:layout_weight="1"
+            android:gravity="center"
             android:layout_gravity="center"
             >
 
@@ -170,6 +171,7 @@ xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
+            android:gravity="center"
             android:background="@drawable/bluetooth_off_foreground"
             app:layout_constraintEnd_toEndOf="parent"
             tools:layout_editor_absoluteY="10dp" />

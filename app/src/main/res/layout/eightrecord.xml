@@ -176,13 +176,8 @@ xmlns:tools="http://schemas.android.com/tools"
             app:layout_constraintEnd_toEndOf="parent"
             tools:layout_editor_absoluteY="10dp" />
 
-            <ProgressBar
-                android:id="@+id/bluetooth_progressbar_eight"
-                android:layout_width="15dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:gravity="left"
-                />
+
+
         </LinearLayout>
     </LinearLayout>
 

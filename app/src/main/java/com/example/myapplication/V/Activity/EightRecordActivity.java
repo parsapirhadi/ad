@@ -23,6 +23,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
@@ -68,11 +69,8 @@ public class EightRecordActivity extends AppCompatActivity {
 
     Button cch1,cch2,cch3,cch4,cch5,cch6,cch7,cch8;
 
-    ProgressBar bluetooth_progress;
 
-    Thread bluetooth_thread;
-    boolean animation_bluetooth=true;
-
+    Animation animation1,animation2;
     Button btn;
     Button montage;
     Button line;
@@ -86,11 +84,16 @@ public class EightRecordActivity extends AppCompatActivity {
    Button bluetooth;
     ListView listView;
 
+    boolean animation_bluetooth=true;
+
     Button check_circle1,check_circle2,check_circle3,check_circle4,check_circle5,check_circle6,check_circle7,check_circle8;
 
 
     Set<BluetoothDevice> pared;
-    Dialog dialog,dialog1,dialog2,dialog3,dialog4,dialog5,dialog6,dialog7,dialog8;
+   static Dialog dialog,dialog1,dialog2,dialog3,dialog4,dialog5,dialog6,dialog7,dialog8;
+
+
+
 
     boolean is_connected=false;
     boolean is_open=false;
@@ -252,6 +255,7 @@ public class EightRecordActivity extends AppCompatActivity {
                     Snackbar.make(parentLayout, "Connected To '"+bluetooth_name+"'", Snackbar.LENGTH_LONG).show();
                     animation_bluetooth=false;
 
+
 if (SingleRecordActivity.isRecordcount()){
     new Thread(new Runnable() {
         @Override
@@ -273,7 +277,6 @@ if (SingleRecordActivity.isRecordcount()){
 
 }
                     bluetooth.setBackgroundResource(R.drawable.bluetooth_on_foreground);
-                    bluetooth_progress.setVisibility(View.INVISIBLE);
                     counter.setBluetooth_drawabe(true);
                     is_open=false;
                     is_connected=true;
@@ -349,6 +352,57 @@ if (SingleRecordActivity.isRecordcount()){
         is_open=false;
 
 
+
+
+        animation1= AnimationUtils.loadAnimation(getApplicationContext(),R.anim.bluetooth_anim_1);
+        animation2=AnimationUtils.loadAnimation(getApplicationContext(),R.anim.bluetooth_anim_2);
+        bluetooth.startAnimation(animation1);
+        animation2.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                if (animation_bluetooth) {
+                    bluetooth.startAnimation(animation1);
+                }
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
+        animation1.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+
+                    bluetooth.startAnimation(animation2);
+
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
+
+
+
+
+
+
+
         if (objects.getSocket()!=null){
            if (objects.getSocket().isConnected()){
 
@@ -358,7 +412,6 @@ if (SingleRecordActivity.isRecordcount()){
 
         if (counter.isBluetooth_drawabe()){
             bluetooth.setBackgroundResource(R.drawable.bluetooth_on_foreground);
-            bluetooth_progress.setVisibility(View.INVISIBLE);
         }
 
         counter.setEnddraw(counter.getHorizontal_scale()*counter.getRate_in_s());
@@ -395,7 +448,40 @@ if (string1.getPivote(0)!=null)
     ch8.setText(string1.getPivote(7));
 }
         bluetooth.setBackgroundResource(R.drawable.bluetooth_off_foreground);
-bluetooth_progress.setVisibility(View.VISIBLE);
+
+        try {
+            SharedPreferences sharedPreferences=getApplicationContext().getSharedPreferences("bch1", MODE_PRIVATE);
+            ch1.setText(sharedPreferences.getString("name","ch1").toString());
+
+
+
+            sharedPreferences=getApplicationContext().getSharedPreferences("bch2", MODE_PRIVATE);
+            ch2.setText(sharedPreferences.getString("name","ch2").toString());
+
+            sharedPreferences=getApplicationContext().getSharedPreferences("bch3", MODE_PRIVATE);
+            ch3.setText(sharedPreferences.getString("name","ch3").toString());
+
+            sharedPreferences=getApplicationContext().getSharedPreferences("bch4", MODE_PRIVATE);
+            ch4.setText(sharedPreferences.getString("name","ch4").toString());
+
+            sharedPreferences=getApplicationContext().getSharedPreferences("bch5", MODE_PRIVATE);
+            ch5.setText(sharedPreferences.getString("name","ch5").toString());
+
+            sharedPreferences=getApplicationContext().getSharedPreferences("bch6", MODE_PRIVATE);
+            ch6.setText(sharedPreferences.getString("name","ch6").toString());
+
+            sharedPreferences=getApplicationContext().getSharedPreferences("bch7", MODE_PRIVATE);
+            ch7.setText(sharedPreferences.getString("name","ch7").toString());
+
+            sharedPreferences=getApplicationContext().getSharedPreferences("bch8", MODE_PRIVATE);
+            ch8.setText(sharedPreferences.getString("name","ch8").toString());
+
+
+        }
+        catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+
 
         new Thread(new Runnable() {
             @Override
@@ -426,9 +512,11 @@ bluetooth_progress.setVisibility(View.VISIBLE);
                                     is_disconnected = true;
                                     Snackbar.make(parentLayout, "'" + "Bluetooth" + " Disconnected'", Snackbar.LENGTH_LONG).show();
 
+                                    bluetooth.startAnimation(animation1);
                                     animation_bluetooth=true;
+
+
                                     bluetooth.setBackgroundResource(R.drawable.bluetooth_off_foreground);
-                                    bluetooth_progress.setVisibility(View.VISIBLE);
 
 
                                 }
@@ -660,7 +748,6 @@ bluetooth_progress.setVisibility(View.VISIBLE);
 
         if (counter.isBluetooth_drawabe()){
             bluetooth.setBackgroundResource(R.drawable.bluetooth_on_foreground);
-            bluetooth_progress.setVisibility(View.INVISIBLE);
         }
 
 /*
@@ -693,33 +780,7 @@ bluetooth_progress.setVisibility(View.VISIBLE);
 
  */
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
 
-                while (animation_bluetooth){
-                    for (float f = (float) 1.00; f > 0.50 ;f-=0.01){
-                        bluetooth.setScaleX(f);
-                        bluetooth.setScaleY(f);
-                        try {
-                            Thread.sleep(10);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                    for (float f = (float) 0.50; f < 1 ;f+=0.01){
-                        bluetooth.setScaleX(f);
-                        bluetooth.setScaleY(f);
-                        try {
-                            Thread.sleep(10);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                }
-            }
-        }).start();
         implementListeners();
 
     }
@@ -807,43 +868,9 @@ bluetooth_progress.setVisibility(View.VISIBLE);
         notch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Animation animation1=AnimationUtils.loadAnimation(getApplicationContext(),R.anim.bluetooth_anim_1);
-                Animation animation2=AnimationUtils.loadAnimation(getApplicationContext(),R.anim.bluetooth_anim_2);
-                bluetooth.startAnimation(animation1);
 
-                animation2.setAnimationListener(new Animation.AnimationListener() {
-                    @Override
-                    public void onAnimationStart(Animation animation) {
 
-                    }
 
-                    @Override
-                    public void onAnimationEnd(Animation animation) {
-                        bluetooth.startAnimation(animation1);
-                    }
-
-                    @Override
-                    public void onAnimationRepeat(Animation animation) {
-
-                    }
-                });
-
-                animation1.setAnimationListener(new Animation.AnimationListener() {
-                    @Override
-                    public void onAnimationStart(Animation animation) {
-
-                    }
-
-                    @Override
-                    public void onAnimationEnd(Animation animation) {
-                        bluetooth.startAnimation(animation2);
-                    }
-
-                    @Override
-                    public void onAnimationRepeat(Animation animation) {
-
-                    }
-                });
 
                 vibrator.vibrate(40);
 
@@ -1420,36 +1447,6 @@ ech1.addTextChangedListener(new TextWatcher() {
         });
 
 
-try {
-    SharedPreferences sharedPreferences=getApplicationContext().getSharedPreferences("bch1", MODE_PRIVATE);
-    ch1.setText(sharedPreferences.getString("name",null).toString());
-
-    sharedPreferences=getApplicationContext().getSharedPreferences("bch2", MODE_PRIVATE);
-    ch2.setText(sharedPreferences.getString("name",null).toString());
-
-    sharedPreferences=getApplicationContext().getSharedPreferences("bch3", MODE_PRIVATE);
-    ch3.setText(sharedPreferences.getString("name",null).toString());
-
-    sharedPreferences=getApplicationContext().getSharedPreferences("bch4", MODE_PRIVATE);
-    ch4.setText(sharedPreferences.getString("name",null).toString());
-
-    sharedPreferences=getApplicationContext().getSharedPreferences("bch5", MODE_PRIVATE);
-    ch5.setText(sharedPreferences.getString("name",null).toString());
-
-    sharedPreferences=getApplicationContext().getSharedPreferences("bch6", MODE_PRIVATE);
-    ch6.setText(sharedPreferences.getString("name",null).toString());
-
-    sharedPreferences=getApplicationContext().getSharedPreferences("bch7", MODE_PRIVATE);
-    ch7.setText(sharedPreferences.getString("name",null).toString());
-
-    sharedPreferences=getApplicationContext().getSharedPreferences("bch8", MODE_PRIVATE);
-    ch8.setText(sharedPreferences.getString("name",null).toString());
-
-
-}
-  catch (NullPointerException e) {
-      e.printStackTrace();
-  }
 
     }
 
@@ -1522,7 +1519,7 @@ try {
         V7000=findViewById(R.id.SM1_7000);
         V8000=findViewById(R.id.SM1_8000);
 
-        bluetooth_progress=findViewById(R.id.bluetooth_progressbar_eight);
+
 
         ch1=findViewById(R.id.ch1);
         ch2=findViewById(R.id.ch2);

@@ -8,9 +8,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
-import com.example.myapplication.P.ItemRecyclerViewAdapter.ItemCustomMontageAdapter;
+import com.example.myapplication.M.Item.ItemCustomMontageEditor;
+import com.example.myapplication.P.ItemRecyclerViewAdapter.ItemCustomMontageEditorAdapter;
 import com.example.myapplication.P.ItemRecyclerViewAdapter.ItemMontageAdapter;
-import com.example.myapplication.M.Item.ItemCustomMontage;
 import com.example.myapplication.M.Item.ItemMontage;
 import com.example.myapplication.R;
 
@@ -22,6 +22,11 @@ public class MontageActivity extends AppCompatActivity {
     List<ItemMontage> list1 = new ArrayList<>();
     ItemMontageAdapter itemAdapter1;
     Button back;
+
+
+    RecyclerView recyclerView2;
+    List<ItemCustomMontageEditor> list2 = new ArrayList<>();
+    ItemCustomMontageEditorAdapter itemAdapter2;
 
 
     @Override
@@ -40,6 +45,16 @@ public class MontageActivity extends AppCompatActivity {
         itemAdapter1.notifyDataSetChanged();
 
 
+
+        recyclerView2 = findViewById(R.id.custom_montage_editor);
+        itemAdapter2 = new ItemCustomMontageEditorAdapter(list2, MontageActivity.this);
+        recyclerView2.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL));
+        recyclerView2.setAdapter(itemAdapter2);
+        list2.add(new ItemCustomMontageEditor("Number of channels","8"));
+        list2.add(new ItemCustomMontageEditor("Rename channels",""));
+
+
+        itemAdapter1.notifyDataSetChanged();
 
 
         back=findViewById(R.id.back_pointer_montage);

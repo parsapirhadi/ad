@@ -22,7 +22,7 @@ public class ScaleActivity extends AppCompatActivity {
         RecyclerView recyclerView;
         List<ItemScale> list = new ArrayList<>();
         ItemScaleAdapter itemAdapter;
-        PackageInfo info;
+
         Counter counter;
     Button back;
 

@@ -10,6 +10,12 @@ public class String1 implements Serializable {
     static int line_count=0;
     static String filename="";
     static int  channel_count=0;
+
+
+
+
+
+
     public static String[] pivote =new String[64];
 
 public static Paint paint[]=new Paint[64];

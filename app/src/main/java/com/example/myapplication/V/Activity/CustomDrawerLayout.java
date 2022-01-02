@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.M.DataType.Counter;
+import com.example.myapplication.M.DataType.Objects;
 import com.example.myapplication.M.DataType.String1;
 import com.example.myapplication.P.FileReader;
 import com.example.myapplication.R;
@@ -34,6 +35,7 @@ public class CustomDrawerLayout extends Fragment {
 Button save;
 Button cancel;
 TextView textView;
+Objects objects;
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -50,6 +52,7 @@ TextView textView;
     public static CustomDrawerLayout newInstance(String param1, String param2) {
         CustomDrawerLayout fragment = new CustomDrawerLayout();
         Bundle args = new Bundle();
+
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
@@ -62,7 +65,7 @@ TextView textView;
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
-
+            objects=new Objects();
         }
     }
 
@@ -144,6 +147,7 @@ TextView textView;
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                   startActivity(new Intent(getActivity(),SettingsActivity.class));
                   getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 

@@ -2,6 +2,10 @@ package com.example.myapplication.M.DataType;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothSocket;
+import android.content.Intent;
+import android.os.Bundle;
+
+import com.example.myapplication.V.Activity.EightRecordActivity;
 
 public class Objects {
 
@@ -23,4 +27,6 @@ public class Objects {
     public void setSocket(BluetoothSocket socket) {
         this.socket = socket;
     }
+
+
 }

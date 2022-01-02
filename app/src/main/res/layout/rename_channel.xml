@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:background="#e1e1e1"
-    tools:context=".V.Activity.MontageActivity"
+    tools:context=".V.Activity.Rename_Channels"
     android:orientation="vertical"
     android:layout_height="match_parent">
     <LinearLayout
@@ -21,7 +21,7 @@
             android:layout_width="25dp"
             android:background="@drawable/back_pointer_foreground"
             android:layout_height="25dp"
-            android:id="@+id/back_pointer_montage"
+            android:id="@+id/back_pointer_renamechannel"
             />
 
         <TextView
@@ -41,7 +41,7 @@
 
         android:padding="10dp"
         android:layout_width="wrap_content"
-        android:text="Montage"
+        android:text="Rename Channel"
         android:layout_height="wrap_content"
         tools:ignore="MissingConstraints"
         />
@@ -51,27 +51,13 @@
         android:layout_width="match_parent"
         android:layout_weight="0"
         android:layout_height="wrap_content"
-        android:id="@+id/recyclemontage">
+        android:id="@+id/recyclerename_channel">
 
 
     </androidx.recyclerview.widget.RecyclerView>
 
 
-    <TextView
 
-        android:padding="10dp"
-        android:layout_width="wrap_content"
-        android:text="Custom Montage Editor"
-        android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints"
-        />
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:id="@+id/custom_montage_editor">
-
-
-    </androidx.recyclerview.widget.RecyclerView>
 
 
 

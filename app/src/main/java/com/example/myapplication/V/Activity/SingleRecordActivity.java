@@ -9,6 +9,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -18,6 +19,8 @@ import android.os.Vibrator;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -81,6 +84,9 @@ public class SingleRecordActivity extends AppCompatActivity {
     Button resize;
     Button bluetooth;
     ListView listView;
+
+    Animation animation1,animation2;
+
 
 boolean animation_bluetooth=true;
 
@@ -229,6 +235,10 @@ Thread bluetooth_thread;
 
                     parentLayout = findViewById(android.R.id.content);
                     Snackbar.make(parentLayout, "Connected To '"+bluetooth_name+"'", Snackbar.LENGTH_LONG).show();
+
+
+
+
                     if (EightRecordActivity.isRecordcount()){
                         new Thread(new Runnable() {
                             @Override
@@ -278,7 +288,7 @@ Thread bluetooth_thread;
     @Override
     protected void onPause() {
         super.onPause();
-
+        Log.e("onPause","onPause");
 
         for (int j2=0;j2<8;j2++){
             for (int j1=0;j1<80000;j1++) {
@@ -312,7 +322,6 @@ is_activity_on=false;
 
         super.onResume();
 
-
         is_disconnected=false;
 
         is_activity_on=true;
@@ -322,12 +331,59 @@ is_activity_on=false;
         is_open=false;
 
 
+
+
+        animation1= AnimationUtils.loadAnimation(getApplicationContext(),R.anim.bluetooth_anim_1);
+        animation2=AnimationUtils.loadAnimation(getApplicationContext(),R.anim.bluetooth_anim_2);
+        bluetooth.startAnimation(animation1);
+        animation2.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                if (animation_bluetooth) {
+                    bluetooth.startAnimation(animation1);
+                }
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
+        animation1.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+
+                bluetooth.startAnimation(animation2);
+
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
+
+
+
+
         if (objects.getSocket()!=null){
             if (objects.getSocket().isConnected()){
                 bluetooth.setBackgroundResource(R.drawable.bluetooth_on_foreground);
 
-                animation_bluetooth=true;
-                bluetooth_thread.start();
+
 
 
 
@@ -337,7 +393,6 @@ is_activity_on=false;
         }
         i=0;
         counter.setStartdraw(1);
-        Log.e("SonResume","SonResume");
 
 
         if (counter.isBluetooth_drawabe()){
@@ -345,7 +400,7 @@ is_activity_on=false;
 
           bluetooth.setBackgroundResource(R.drawable.bluetooth_on_foreground);
 
-            animation_bluetooth=false;
+
 
 
 
@@ -372,9 +427,7 @@ is_activity_on=false;
 counter.setShow_record_ch(0);
 
         bluetooth.setBackgroundResource(R.drawable.bluetooth_off_foreground);
-        if (!bluetooth_thread.isAlive()) {
-            bluetooth_thread.start();
-        }
+
 ///////////////////////////////
 
 
@@ -444,7 +497,7 @@ counter.setShow_record_ch(0);
             public void run() {
                 while (is_activity_on) {
                     //  Log.e("i=",""+i);
-                    if ((i - data_count) < 200 && recordcount == 1 && objects.getSocket().isConnected()) {
+                    if ((i - data_count) < 3 && recordcount == 1 && objects.getSocket().isConnected()) {
                         conter++;
                         if (conter > 1) {
                             runOnUiThread(new Runnable() {
@@ -467,7 +520,8 @@ counter.setShow_record_ch(0);
                                     is_disconnected = true;
                                     Snackbar.make(parentLayout, "'" + "Bluetooth" + " Disconnected'", Snackbar.LENGTH_LONG).show();
 
-
+                                    bluetooth.startAnimation(animation1);
+                                    animation_bluetooth=true;
                                     bluetooth.setBackgroundResource(R.drawable.bluetooth_off_foreground);
 
                                    /*
@@ -627,6 +681,7 @@ counter.setShow_record_ch(0);
 
 
 
+        choise.setText(getApplicationContext().getSharedPreferences("bch1", MODE_PRIVATE).getString("name","ch1").toString());
 
 
 
@@ -657,7 +712,6 @@ counter.setShow_record_ch(0);
         string1=new String1();
         objects=new Objects();
 
-Log.e("SonCreate","SonCreate");
         i=0;
         FindViewById();
         vibrator= (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
@@ -668,7 +722,7 @@ Log.e("SonCreate","SonCreate");
 
         counter.setEight_step_y((float) counter.getSurfaceviewhewidth()/200);
         counter.setEight_step_y((counter.getEight_step_y()/counter.getDefault_channel())/2);
-        choise.setText(EightRecordActivity.getCh1().getText().toString());
+
 
         for (int j2=0;j2<8;j2++){
             for (int j1=0;j1<80000;j1++) {
@@ -871,21 +925,6 @@ Log.e("SonCreate","SonCreate");
 
 
 
-                    is_disconnected=true;
-                    record.setBackgroundResource(R.drawable.red_record_drawable);
-                    String string = "NOP\r\n";
-                    set_limit = 1;
-                    sendReceive.write(string.getBytes());
-                    recordcount = 0;
-                    Toast.makeText(getApplicationContext(),"is....",Toast.LENGTH_SHORT).show();
-                try {
-                    objects.getSocket().close();
-                    is_connected=false;
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-
                 if(notchcount==0) {
                     notch.setBackgroundResource(R.mipmap.notch_);
                     notchcount=1;
@@ -978,24 +1017,19 @@ Log.e("SonCreate","SonCreate");
                 ArrayList<String> myStringArray1 = new ArrayList<String>();
 
 
-                string1.setPivote(0,EightRecordActivity.getCh1().getText().toString());
-                string1.setPivote(1,EightRecordActivity.getCh2().getText().toString());
-                string1.setPivote(2,EightRecordActivity.getCh3().getText().toString());
-                string1.setPivote(3,EightRecordActivity.getCh4().getText().toString());
-                string1.setPivote(4,EightRecordActivity.getCh5().getText().toString());
-                string1.setPivote(5,EightRecordActivity.getCh6().getText().toString());
-                string1.setPivote(6,EightRecordActivity.getCh7().getText().toString());
-                string1.setPivote(7,EightRecordActivity.getCh8().getText().toString());
 
 
-                myStringArray1.add(string1.getPivote(0));
-                myStringArray1.add(string1.getPivote(1));
-                myStringArray1.add(string1.getPivote(2));
-                myStringArray1.add(string1.getPivote(3));
-                myStringArray1.add(string1.getPivote(4));
-                myStringArray1.add(string1.getPivote(5));
-                myStringArray1.add(string1.getPivote(6));
-                myStringArray1.add(string1.getPivote(7));
+
+                myStringArray1.add(getApplicationContext().getSharedPreferences("bch1", MODE_PRIVATE).getString("name","ch1").toString());;
+                myStringArray1.add(getApplicationContext().getSharedPreferences("bch2", MODE_PRIVATE).getString("name","ch2").toString());;
+                myStringArray1.add(getApplicationContext().getSharedPreferences("bch3", MODE_PRIVATE).getString("name","ch3").toString());;
+                myStringArray1.add(getApplicationContext().getSharedPreferences("bch4", MODE_PRIVATE).getString("name","ch4").toString());;
+                myStringArray1.add(getApplicationContext().getSharedPreferences("bch5", MODE_PRIVATE).getString("name","ch5").toString());;
+                myStringArray1.add(getApplicationContext().getSharedPreferences("bch6", MODE_PRIVATE).getString("name","ch6").toString());;
+                myStringArray1.add(getApplicationContext().getSharedPreferences("bch7", MODE_PRIVATE).getString("name","ch7").toString());;
+                myStringArray1.add(getApplicationContext().getSharedPreferences("bch8", MODE_PRIVATE).getString("name","ch8").toString());;
+
+
 
                 adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1, myStringArray1);
                 myListView.setAdapter(adapter);
@@ -1049,33 +1083,7 @@ myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
         });
 
 
-       bluetooth_thread= new Thread(new Runnable() {
-            @Override
-            public void run() {
 
-                while (animation_bluetooth){
-                    for (float f = (float) 1.00; f > 0.50 ;f-=0.01){
-                        bluetooth.setScaleX(f);
-                        bluetooth.setScaleY(f);
-                        try {
-                            Thread.sleep(10);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                    for (float f = (float) 0.50; f < 1 ;f+=0.01){
-                        bluetooth.setScaleX(f);
-                        bluetooth.setScaleY(f);
-                        try {
-                            Thread.sleep(10);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                }
-            }
-        });
 
 
 

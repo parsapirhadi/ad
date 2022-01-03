@@ -50,9 +50,17 @@ public class ScaleActivity extends AppCompatActivity {
                 public void onClick(View view) {
 
                     onBackPressed();
+                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+
                 }
             });
         }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+
+    }
     }
 
 

@@ -28,10 +28,12 @@
         <activity android:name=".V.Activity.MontageActivity"
             android:screenOrientation="userLandscape">
         </activity>
-        <activity android:name=".V.Activity.Rename_Channels"
+        <activity android:name=".V.Activity.RenameChannelsActivity"
             android:screenOrientation="userLandscape">
         </activity>
-
+        <activity android:name=".V.Activity.MontageEditorActivity"
+            android:screenOrientation="userLandscape">
+        </activity>
         <activity android:name=".V.Activity.EightRootActivity"
             android:screenOrientation="userLandscape">
         </activity>

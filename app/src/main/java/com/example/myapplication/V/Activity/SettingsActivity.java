@@ -50,12 +50,14 @@ public class SettingsActivity extends AppCompatActivity {
 
 
         back=findViewById(R.id.back_pointer_settings);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                onBackPressed();
-            }
-        });
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+
     }
 }

@@ -38,7 +38,7 @@ public class ItemRenameAdapter extends RecyclerView.Adapter<ItemRenameAdapter.My
     Counter counter;
     String1 string1;
 
-    static Dialog dialog1,dialog2,dialog3,dialog4,dialog5,dialog6,dialog7,dialog8;
+
 
     TextInputEditText ech1;
 

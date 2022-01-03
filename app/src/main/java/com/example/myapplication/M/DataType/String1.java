@@ -13,6 +13,25 @@ public class String1 implements Serializable {
 
 
 
+public static String[] pivote_from =new String[64];
+public static String[] pivote_to =new String[64];
+
+    public String getPivote_from(int i) {
+        return pivote_from[i];
+    }
+
+    public void setPivote_from(int i,String s) {
+        pivote_from[i]=s;
+    }
+
+    public String getPivote_to(int i) {
+        return pivote_to[i];
+    }
+
+    public void setPivote_to(int i,String s) {
+        pivote_to[i]=s;
+    }
+
 
 
 

@@ -14,7 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.M.Item.ItemCustomMontageEditor;
 import com.example.myapplication.R;
-import com.example.myapplication.V.Activity.Rename_Channels;
+import com.example.myapplication.V.Activity.MontageEditorActivity;
+import com.example.myapplication.V.Activity.RenameChannelsActivity;
 
 import java.util.List;
 
@@ -72,12 +73,21 @@ public class ItemCustomMontageEditorAdapter extends RecyclerView.Adapter<ItemCus
                         @Override
                         public void onClick(View view) {
 
-                            context.startActivity(new Intent(context, Rename_Channels.class));
+                            context.startActivity(new Intent(context, RenameChannelsActivity.class));
 
                         }
                     });
                 }
+                if (position==2){
+                    view.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
 
+                            context.startActivity(new Intent(context, MontageEditorActivity.class));
+
+                        }
+                    });
+                }
 
             }
         });

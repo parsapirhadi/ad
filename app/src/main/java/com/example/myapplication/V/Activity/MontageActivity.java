@@ -53,6 +53,9 @@ public class MontageActivity extends AppCompatActivity {
         list2.add(new ItemCustomMontageEditor("Number of channels","8"));
         list2.add(new ItemCustomMontageEditor("Rename channels",""));
 
+        list2.add(new ItemCustomMontageEditor("Montage Editor",""));
+
+
 
         itemAdapter1.notifyDataSetChanged();
 
@@ -63,12 +66,20 @@ public class MontageActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 onBackPressed();
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+
             }
         });
 
 
 
 
+
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 
     }
 }

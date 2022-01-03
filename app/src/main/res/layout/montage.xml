@@ -4,13 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:background="#e1e1e1"
-    tools:context=".V.Activity.MontageActivity"
     android:orientation="vertical"
+    tools:context=".V.Activity.MontageActivity"
     android:layout_height="match_parent">
+
     <LinearLayout
+
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="#e1e1e1"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#cccccc"
         android:orientation="horizontal"
 
 
@@ -19,6 +21,7 @@
             android:layout_margin="10dp"
             android:layout_gravity="center|start"
             android:layout_width="25dp"
+            android:gravity="center"
             android:background="@drawable/back_pointer_foreground"
             android:layout_height="25dp"
             android:id="@+id/back_pointer_montage"
@@ -29,7 +32,7 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
             android:layout_marginRight="5dp"
             android:textSize="15sp"
             android:textColor="#929292"
@@ -37,6 +40,22 @@
 
             />
     </LinearLayout>
+
+
+    <ScrollView
+
+    android:layout_width="match_parent"
+    android:background="#e1e1e1"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    >
+<LinearLayout
+
+    android:layout_width="match_parent"
+    android:background="#e1e1e1"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
     <TextView
 
         android:padding="10dp"
@@ -49,7 +68,6 @@
     <androidx.recyclerview.widget.RecyclerView
 
         android:layout_width="match_parent"
-        android:layout_weight="0"
         android:layout_height="wrap_content"
         android:id="@+id/recyclemontage">
 
@@ -65,14 +83,17 @@
         android:layout_height="wrap_content"
         tools:ignore="MissingConstraints"
         />
+
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/custom_montage_editor"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:id="@+id/custom_montage_editor">
+        android:layout_height="match_parent">
 
 
     </androidx.recyclerview.widget.RecyclerView>
 
 
 
+</LinearLayout>
+</ScrollView>
 </LinearLayout>

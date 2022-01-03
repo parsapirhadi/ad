@@ -51,7 +51,8 @@ public class ItemSettingAdapter extends RecyclerView.Adapter<ItemSettingAdapter.
                 if(position==0){
 
                     context.startActivity(new Intent(context, FilterActivity.class));
-                   // overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                   //overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+
 
                 }
                 if(position==1){

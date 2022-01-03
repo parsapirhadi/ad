@@ -39,7 +39,7 @@ SharedPreferences pref = getApplicationContext().getSharedPreferences("bch6", MO
 
 */
 
-public class Rename_Channels extends AppCompatActivity {
+public class RenameChannelsActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     List<ItemRename> list = new ArrayList<>();
@@ -54,49 +54,49 @@ public class Rename_Channels extends AppCompatActivity {
         super.onPause();
         SharedPreferences pref1 = getApplicationContext().getSharedPreferences("bch1", MODE_PRIVATE);
         SharedPreferences.Editor editor1 = pref1.edit();
-        if (string1.getPivote(0)!=null && string1.getPivote(0).length()<4 ) {
+        if (string1.getPivote(0)!=null && string1.getPivote(0).length()<4 && string1.getPivote(0).length()!=0) {
             editor1.putString("name", "" + string1.getPivote(0));
             editor1.apply();
         }
         SharedPreferences pref2 = getApplicationContext().getSharedPreferences("bch2", MODE_PRIVATE);
         SharedPreferences.Editor editor2 = pref2.edit();
-        if (string1.getPivote(1)!=null && string1.getPivote(1).length()<4) {
+        if (string1.getPivote(1)!=null && string1.getPivote(1).length()<4 && string1.getPivote(0).length()!=0) {
             editor2.putString("name", "" + string1.getPivote(1));
             editor2.apply();
         }
         SharedPreferences pref3 = getApplicationContext().getSharedPreferences("bch3", MODE_PRIVATE);
         SharedPreferences.Editor editor3 = pref3.edit();
-        if (string1.getPivote(2)!=null && string1.getPivote(2).length()<4) {
+        if (string1.getPivote(2)!=null && string1.getPivote(2).length()<4 && string1.getPivote(0).length()!=0) {
             editor3.putString("name", "" + string1.getPivote(2));
             editor3.apply();
         }
         SharedPreferences pref4 = getApplicationContext().getSharedPreferences("bch4", MODE_PRIVATE);
         SharedPreferences.Editor editor4 = pref4.edit();
-        if (string1.getPivote(3)!=null && string1.getPivote(3).length()<4) {
+        if (string1.getPivote(3)!=null && string1.getPivote(3).length()<4 && string1.getPivote(0).length()!=0) {
             editor4.putString("name", "" + string1.getPivote(3));
             editor4.apply();
         }
         SharedPreferences pref5 = getApplicationContext().getSharedPreferences("bch5", MODE_PRIVATE);
         SharedPreferences.Editor editor5 = pref5.edit();
-        if (string1.getPivote(4)!=null && string1.getPivote(4).length()<4) {
+        if (string1.getPivote(4)!=null && string1.getPivote(4).length()<4 && string1.getPivote(0).length()!=0) {
             editor5.putString("name", "" + string1.getPivote(4));
             editor5.apply();
         }
         SharedPreferences pref6 = getApplicationContext().getSharedPreferences("bch6", MODE_PRIVATE);
         SharedPreferences.Editor editor6 = pref6.edit();
-        if (string1.getPivote(5)!=null && string1.getPivote(5).length()<4) {
+        if (string1.getPivote(5)!=null && string1.getPivote(5).length()<4 && string1.getPivote(0).length()!=0) {
             editor6.putString("name", "" + string1.getPivote(5));
             editor6.apply();
         }
         SharedPreferences pref7 = getApplicationContext().getSharedPreferences("bch7", MODE_PRIVATE);
         SharedPreferences.Editor editor7 = pref7.edit();
-        if (string1.getPivote(6)!=null && string1.getPivote(6).length()<4) {
+        if (string1.getPivote(6)!=null && string1.getPivote(6).length()<4 && string1.getPivote(0).length()!=0) {
             editor7.putString("name", "" + string1.getPivote(7));
             editor7.apply();
         }
         SharedPreferences pref8 = getApplicationContext().getSharedPreferences("bch8", MODE_PRIVATE);
         SharedPreferences.Editor editor8 = pref8.edit();
-        if (string1.getPivote(7)!=null && string1.getPivote(7).length()<4) {
+        if (string1.getPivote(7)!=null && string1.getPivote(7).length()<4 && string1.getPivote(0).length()!=0) {
             editor8.putString("name", "" + string1.getPivote(7));
             editor8.apply();
         }
@@ -123,14 +123,14 @@ public class Rename_Channels extends AppCompatActivity {
 
 
 
-        list.add(new ItemRename("ch1",""+getApplicationContext().getSharedPreferences("bch1", MODE_PRIVATE).getString("name",null).toString()));
-        list.add(new ItemRename("ch2",""+getApplicationContext().getSharedPreferences("bch2", MODE_PRIVATE).getString("name",null).toString()));
-        list.add(new ItemRename("ch3",""+getApplicationContext().getSharedPreferences("bch3", MODE_PRIVATE).getString("name",null).toString()));
-        list.add(new ItemRename("ch4",""+getApplicationContext().getSharedPreferences("bch4", MODE_PRIVATE).getString("name",null).toString()));
-        list.add(new ItemRename("ch5",""+getApplicationContext().getSharedPreferences("bch5", MODE_PRIVATE).getString("name",null).toString()));
-        list.add(new ItemRename("ch6",""+getApplicationContext().getSharedPreferences("bch6", MODE_PRIVATE).getString("name",null).toString()));
-        list.add(new ItemRename("ch7",""+getApplicationContext().getSharedPreferences("bch7", MODE_PRIVATE).getString("name",null).toString()));
-        list.add(new ItemRename("ch8",""+getApplicationContext().getSharedPreferences("bch8", MODE_PRIVATE).getString("name",null).toString()));
+        list.add(new ItemRename("CH1",""+getApplicationContext().getSharedPreferences("bch1", MODE_PRIVATE).getString("name","ch1")));
+        list.add(new ItemRename("CH2",""+getApplicationContext().getSharedPreferences("bch2", MODE_PRIVATE).getString("name","ch2")));
+        list.add(new ItemRename("CH3",""+getApplicationContext().getSharedPreferences("bch3", MODE_PRIVATE).getString("name","ch3")));
+        list.add(new ItemRename("CH4",""+getApplicationContext().getSharedPreferences("bch4", MODE_PRIVATE).getString("name","ch4")));
+        list.add(new ItemRename("CH5",""+getApplicationContext().getSharedPreferences("bch5", MODE_PRIVATE).getString("name","ch5")));
+        list.add(new ItemRename("CH6",""+getApplicationContext().getSharedPreferences("bch6", MODE_PRIVATE).getString("name","ch6")));
+        list.add(new ItemRename("CH7",""+getApplicationContext().getSharedPreferences("bch7", MODE_PRIVATE).getString("name","ch7")));
+        list.add(new ItemRename("CH8",""+getApplicationContext().getSharedPreferences("bch8", MODE_PRIVATE).getString("name","ch8")));
 
 
 
@@ -143,8 +143,16 @@ public class Rename_Channels extends AppCompatActivity {
             public void onClick(View view) {
 
                 onBackPressed();
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+
             }
         });
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+
     }
 }
 

@@ -381,41 +381,13 @@ int check_non_two_end=0;
 
                         for(int v=0;v<string1.getChannel_count();v++) {
                          if(menuItem.getTitle()==string1.getPivote(v)){
-
-
-
-
                              surface.startDrawThread(v);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                          }
                         }
                         choose_channel.setText(menuItem.getTitle());
 
-
-
-
-
-
-
-
-
-
-                        return true;
+                       return true;
                     }
                 });
                 popup.show();

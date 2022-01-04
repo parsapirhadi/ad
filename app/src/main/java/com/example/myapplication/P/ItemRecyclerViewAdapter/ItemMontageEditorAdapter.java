@@ -34,7 +34,9 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class ItemMontageEditorAdapter extends RecyclerView.Adapter<ItemMontageEditorAdapter.MyViewHolder> {
     List<ItemMontageEditor> itwm;
-    PopupMenu popup;
+    PopupMenu popup_start;
+    PopupMenu popup_end;
+            ;
     Context context;
     String1 string1;
 
@@ -48,6 +50,7 @@ public class ItemMontageEditorAdapter extends RecyclerView.Adapter<ItemMontageEd
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.item_montage_editor,parent,false);
         string1=new String1();
+
         return new MyViewHolder(view);
     }
 
@@ -62,10 +65,13 @@ public class ItemMontageEditorAdapter extends RecyclerView.Adapter<ItemMontageEd
         holder.title_start.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if (position==0) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (position==0) {
                     string1.setPivote_from(0,holder.title_start.getText().toString());
-                not set pivote_from
                 }
                 if (position==1) {
                     string1.setPivote_from(1,holder.title_start.getText().toString());
@@ -93,8 +99,47 @@ public class ItemMontageEditorAdapter extends RecyclerView.Adapter<ItemMontageEd
             }
 
             @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            public void afterTextChanged(Editable editable) {
 
+            }
+        });
+
+        holder.title_end.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (position==0) {
+
+                    string1.setPivote_to(0,holder.title_end.getText().toString());
+
+                }
+                if (position==1) {
+                    string1.setPivote_to(1,holder.title_end.getText().toString());
+                }
+                if (position==2) {
+                    string1.setPivote_to(2,holder.title_end.getText().toString());
+                }
+                if (position==3) {
+                    string1.setPivote_to(3,holder.title_end.getText().toString());
+                }
+                if (position==4) {
+                    string1.setPivote_to(4,holder.title_end.getText().toString());
+                }
+                if (position==5) {
+                    string1.setPivote_to(5,holder.title_end.getText().toString());
+                }
+                if (position==6) {
+                    string1.setPivote_to(6,holder.title_end.getText().toString());
+                }
+                if (position==7) {
+                    string1.setPivote_to(7,holder.title_end.getText().toString());
+
+
+                }
             }
 
             @Override
@@ -109,29 +154,29 @@ public class ItemMontageEditorAdapter extends RecyclerView.Adapter<ItemMontageEd
             @Override
             public void onClick(View view) {
 
-                    popup = new PopupMenu(context, holder.title_start);
-                    popup.getMenuInflater().inflate(R.menu.choose_channel, popup.getMenu());
+                    popup_start = new PopupMenu(context, holder.title_start);
+                    popup_start.getMenuInflater().inflate(R.menu.choose_channel, popup_start.getMenu());
 
 
-                    popup.getMenu().add(context.getApplicationContext().getSharedPreferences("bch1", MODE_PRIVATE).getString("name", "ch1").toString());
-                    ;
-                    popup.getMenu().add(context.getApplicationContext().getSharedPreferences("bch2", MODE_PRIVATE).getString("name", "ch2").toString());
-                    ;
-                    popup.getMenu().add(context.getApplicationContext().getSharedPreferences("bch3", MODE_PRIVATE).getString("name", "ch3").toString());
-                    ;
-                    popup.getMenu().add(context.getApplicationContext().getSharedPreferences("bch4", MODE_PRIVATE).getString("name", "ch4").toString());
-                    ;
-                    popup.getMenu().add(context.getApplicationContext().getSharedPreferences("bch5", MODE_PRIVATE).getString("name", "ch5").toString());
-                    ;
-                    popup.getMenu().add(context.getApplicationContext().getSharedPreferences("bch6", MODE_PRIVATE).getString("name", "ch6").toString());
-                    ;
-                    popup.getMenu().add(context.getApplicationContext().getSharedPreferences("bch7", MODE_PRIVATE).getString("name", "ch7").toString());
-                    ;
-                    popup.getMenu().add(context.getApplicationContext().getSharedPreferences("bch8", MODE_PRIVATE).getString("name", "ch8").toString());
-                    ;
+                    popup_start.getMenu().add(context.getApplicationContext().getSharedPreferences("bch1", MODE_PRIVATE).getString("name", "ch1").toString());
+
+                    popup_start.getMenu().add(context.getApplicationContext().getSharedPreferences("bch2", MODE_PRIVATE).getString("name", "ch2").toString());
+
+                    popup_start.getMenu().add(context.getApplicationContext().getSharedPreferences("bch3", MODE_PRIVATE).getString("name", "ch3").toString());
+
+                    popup_start.getMenu().add(context.getApplicationContext().getSharedPreferences("bch4", MODE_PRIVATE).getString("name", "ch4").toString());
+
+                    popup_start.getMenu().add(context.getApplicationContext().getSharedPreferences("bch5", MODE_PRIVATE).getString("name", "ch5").toString());
+
+                    popup_start.getMenu().add(context.getApplicationContext().getSharedPreferences("bch6", MODE_PRIVATE).getString("name", "ch6").toString());
+
+                    popup_start.getMenu().add(context.getApplicationContext().getSharedPreferences("bch7", MODE_PRIVATE).getString("name", "ch7").toString());
+
+                    popup_start.getMenu().add(context.getApplicationContext().getSharedPreferences("bch8", MODE_PRIVATE).getString("name", "ch8").toString());
 
 
-                    popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+
+                    popup_start.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                         @Override
                         public boolean onMenuItemClick(MenuItem menuItem) {
 
@@ -141,7 +186,7 @@ public class ItemMontageEditorAdapter extends RecyclerView.Adapter<ItemMontageEd
                             return true;
                         }
                     });
-                    popup.show();
+                    popup_start.show();
 
 
             }
@@ -150,7 +195,30 @@ public class ItemMontageEditorAdapter extends RecyclerView.Adapter<ItemMontageEd
 holder.title_end.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
-        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+
+        popup_end = new PopupMenu(context, holder.title_start);
+        popup_end.getMenuInflater().inflate(R.menu.choose_channel, popup_end.getMenu());
+
+        popup_end.getMenu().add(context.getApplicationContext().getSharedPreferences("bch1", MODE_PRIVATE).getString("name", "ch1").toString());
+
+        popup_end.getMenu().add(context.getApplicationContext().getSharedPreferences("bch2", MODE_PRIVATE).getString("name", "ch2").toString());
+
+        popup_end.getMenu().add(context.getApplicationContext().getSharedPreferences("bch3", MODE_PRIVATE).getString("name", "ch3").toString());
+
+        popup_end.getMenu().add(context.getApplicationContext().getSharedPreferences("bch4", MODE_PRIVATE).getString("name", "ch4").toString());
+
+        popup_end.getMenu().add(context.getApplicationContext().getSharedPreferences("bch5", MODE_PRIVATE).getString("name", "ch5").toString());
+
+        popup_end.getMenu().add(context.getApplicationContext().getSharedPreferences("bch6", MODE_PRIVATE).getString("name", "ch6").toString());
+
+        popup_end.getMenu().add(context.getApplicationContext().getSharedPreferences("bch7", MODE_PRIVATE).getString("name", "ch7").toString());
+
+        popup_end.getMenu().add(context.getApplicationContext().getSharedPreferences("bch8", MODE_PRIVATE).getString("name", "ch8").toString());
+
+
+
+
+        popup_end.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
 
@@ -160,7 +228,7 @@ holder.title_end.setOnClickListener(new View.OnClickListener() {
                 return true;
             }
         });
-        popup.show();
+        popup_end.show();
     }
 });
 

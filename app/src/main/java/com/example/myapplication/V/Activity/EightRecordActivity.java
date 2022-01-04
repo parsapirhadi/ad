@@ -69,6 +69,7 @@ public class EightRecordActivity extends AppCompatActivity {
 
     Button cch1,cch2,cch3,cch4,cch5,cch6,cch7,cch8;
 
+    String montageS;
 
     Animation animation1,animation2;
     Button btn;
@@ -81,7 +82,7 @@ public class EightRecordActivity extends AppCompatActivity {
     Button record;
     String text_ch1="";
     Button resize;
-   Button bluetooth;
+    Button bluetooth;
     ListView listView;
 
     boolean animation_bluetooth=true;
@@ -110,6 +111,9 @@ public class EightRecordActivity extends AppCompatActivity {
 
     boolean is_disconnected=false;
 
+
+
+    boolean allow_rename=true;
 
     int data_count=0;
     int conter=0;
@@ -784,6 +788,82 @@ if (string1.getPivote(0)!=null)
         implementListeners();
 
     }
+public void mono(){
+    try {
+
+        SharedPreferences sharedPreferences=getApplicationContext().getSharedPreferences("bch1", MODE_PRIVATE);
+        ch1.setText(sharedPreferences.getString("name","ch1").toString());
+
+        sharedPreferences=getApplicationContext().getSharedPreferences("bch2", MODE_PRIVATE);
+        ch2.setText(sharedPreferences.getString("name","ch2").toString());
+
+        sharedPreferences=getApplicationContext().getSharedPreferences("bch3", MODE_PRIVATE);
+        ch3.setText(sharedPreferences.getString("name","ch3").toString());
+
+        sharedPreferences=getApplicationContext().getSharedPreferences("bch4", MODE_PRIVATE);
+        ch4.setText(sharedPreferences.getString("name","ch4").toString());
+
+        sharedPreferences=getApplicationContext().getSharedPreferences("bch5", MODE_PRIVATE);
+        ch5.setText(sharedPreferences.getString("name","ch5").toString());
+
+        sharedPreferences=getApplicationContext().getSharedPreferences("bch6", MODE_PRIVATE);
+        ch6.setText(sharedPreferences.getString("name","ch6").toString());
+
+        sharedPreferences=getApplicationContext().getSharedPreferences("bch7", MODE_PRIVATE);
+        ch7.setText(sharedPreferences.getString("name","ch7").toString());
+
+        sharedPreferences=getApplicationContext().getSharedPreferences("bch8", MODE_PRIVATE);
+        ch8.setText(sharedPreferences.getString("name","ch8").toString());
+
+
+    }
+    catch (NullPointerException e) {
+        e.printStackTrace();
+    }
+
+
+
+    }
+
+
+    @SuppressLint("SetTextI18n")
+    public void banana(){
+        SharedPreferences sharedPreferences_start = getApplicationContext().getSharedPreferences("bch1_start", MODE_PRIVATE);
+        SharedPreferences sharedPreferences_end=  getApplicationContext().getSharedPreferences("bch1_end", MODE_PRIVATE);
+        ch1.setText(sharedPreferences_start.getString("name","ch1")+"-"+sharedPreferences_end.getString("name","ch1"));
+
+        sharedPreferences_start = getApplicationContext().getSharedPreferences("bch2_start", MODE_PRIVATE);
+        sharedPreferences_end=  getApplicationContext().getSharedPreferences("bch2_end", MODE_PRIVATE);
+        ch2.setText(sharedPreferences_start.getString("name","ch2")+"-"+sharedPreferences_end.getString("name","ch2"));
+
+        sharedPreferences_start = getApplicationContext().getSharedPreferences("bch3_start", MODE_PRIVATE);
+        sharedPreferences_end=  getApplicationContext().getSharedPreferences("bch3_end", MODE_PRIVATE);
+        ch3.setText(sharedPreferences_start.getString("name","ch3")+"-"+sharedPreferences_end.getString("name","ch3"));
+
+        sharedPreferences_start = getApplicationContext().getSharedPreferences("bch4_start", MODE_PRIVATE);
+        sharedPreferences_end=  getApplicationContext().getSharedPreferences("bch4_end", MODE_PRIVATE);
+        ch4.setText(sharedPreferences_start.getString("name","ch4")+"-"+sharedPreferences_end.getString("name","ch4"));
+
+        sharedPreferences_start = getApplicationContext().getSharedPreferences("bch5_start", MODE_PRIVATE);
+        sharedPreferences_end=  getApplicationContext().getSharedPreferences("bch5_end", MODE_PRIVATE);
+        ch5.setText(sharedPreferences_start.getString("name","ch5")+"-"+sharedPreferences_end.getString("name","ch5"));
+
+        sharedPreferences_start = getApplicationContext().getSharedPreferences("bch6_start", MODE_PRIVATE);
+        sharedPreferences_end=  getApplicationContext().getSharedPreferences("bch6_end", MODE_PRIVATE);
+        ch6.setText(sharedPreferences_start.getString("name","ch6")+"-"+sharedPreferences_end.getString("name","ch6"));
+
+        sharedPreferences_start = getApplicationContext().getSharedPreferences("bch7_start", MODE_PRIVATE);
+        sharedPreferences_end=  getApplicationContext().getSharedPreferences("bch7_end", MODE_PRIVATE);
+        ch7.setText(sharedPreferences_start.getString("name","ch7")+"-"+sharedPreferences_end.getString("name","ch7"));
+
+        sharedPreferences_start = getApplicationContext().getSharedPreferences("bch8_start", MODE_PRIVATE);
+        sharedPreferences_end=  getApplicationContext().getSharedPreferences("bch8_end", MODE_PRIVATE);
+        ch8.setText(sharedPreferences_start.getString("name","ch8")+"-"+sharedPreferences_end.getString("name","ch8"));
+
+
+
+    }
+
 
     private void implementListeners() {
 
@@ -918,7 +998,18 @@ if (string1.getPivote(0)!=null)
                     @Override
                     public boolean onMenuItemClick(MenuItem menuItem) {
                         montage.setText(menuItem.getTitle());
+                        montageS=montage.getText().toString();
 
+
+
+                        if (montageS.equals("mono")){
+                            allow_rename=true;
+                            mono();
+                        }
+                        else if (montageS.equals("banana")){
+                            allow_rename=false;
+                            banana();
+                        }
                         return true;
                     }
                 });
@@ -958,73 +1049,89 @@ if (string1.getPivote(0)!=null)
 ch1.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
-        ech1.setText("");
-        check_circle1.setVisibility(View.INVISIBLE);
-        vibrator.vibrate(30);
-        dialog1.show();
+if (allow_rename) {
+    ech1.setText("");
+    check_circle1.setVisibility(View.INVISIBLE);
+    vibrator.vibrate(30);
+    dialog1.show();
+}
     }
 });
         ch2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ech2.setText("");
-                check_circle2.setVisibility(View.INVISIBLE);
-                vibrator.vibrate(30);
-                dialog2.show();
+                if (allow_rename) {
+                    ech2.setText("");
+                    check_circle2.setVisibility(View.INVISIBLE);
+                    vibrator.vibrate(30);
+                    dialog2.show();
+                }
             }
         });
         ch3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ech3.setText("");
-                check_circle3.setVisibility(View.INVISIBLE);
-                vibrator.vibrate(30);
-                dialog3.show();
+                if (allow_rename) {
+                    ech3.setText("");
+                    check_circle3.setVisibility(View.INVISIBLE);
+                    vibrator.vibrate(30);
+                    dialog3.show();
+                }
             }
         });
         ch4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ech4.setText("");
-                check_circle4.setVisibility(View.INVISIBLE);
-                vibrator.vibrate(30);
-                dialog4.show();
+                if (allow_rename) {
+                    ech4.setText("");
+                    check_circle4.setVisibility(View.INVISIBLE);
+                    vibrator.vibrate(30);
+                    dialog4.show();
+                }
             }
         });
         ch5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ech5.setText("");
-                check_circle5.setVisibility(View.INVISIBLE);
-                vibrator.vibrate(30);
-                dialog5.show();
+                if (allow_rename) {
+                    ech5.setText("");
+                    check_circle5.setVisibility(View.INVISIBLE);
+                    vibrator.vibrate(30);
+                    dialog5.show();
+                }
             }
         });
         ch6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ech6.setText("");
-                check_circle6.setVisibility(View.INVISIBLE);
-                vibrator.vibrate(30);
-                dialog6.show();
+                if (allow_rename) {
+                    ech6.setText("");
+                    check_circle6.setVisibility(View.INVISIBLE);
+                    vibrator.vibrate(30);
+                    dialog6.show();
+                }
             }
         });
         ch7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ech7.setText("");
-                check_circle7.setVisibility(View.INVISIBLE);
-                vibrator.vibrate(30);
-                dialog7.show();
+                if (allow_rename) {
+                    ech7.setText("");
+                    check_circle7.setVisibility(View.INVISIBLE);
+                    vibrator.vibrate(30);
+                    dialog7.show();
+                }
             }
         });
         ch8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ech8.setText("");
-                check_circle8.setVisibility(View.INVISIBLE);
-                vibrator.vibrate(30);
-                dialog8.show();
+                if (allow_rename) {
+                    ech8.setText("");
+                    check_circle8.setVisibility(View.INVISIBLE);
+                    vibrator.vibrate(30);
+                    dialog8.show();
+                }
             }
         });
 
@@ -1292,7 +1399,7 @@ ech1.addTextChangedListener(new TextWatcher() {
         editor.putString("name",ech1.getText().toString());
         editor.apply();
 
-        if (ech1.getText().toString().length()<4 && ech1.getText().toString().length()>0){
+        if (ech1.getText().toString().length()<8 && ech1.getText().toString().length()>0){
 
            ch1.setText(ech1.getText().toString());
            dialog1.dismiss();

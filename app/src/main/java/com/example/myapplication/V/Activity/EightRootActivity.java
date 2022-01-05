@@ -14,6 +14,7 @@ import android.graphics.Point;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
 import android.view.MenuItem;
@@ -25,6 +26,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
@@ -88,6 +90,7 @@ int line_play=0;
 
 int is_change_text=0;
 
+ TextView ch1,ch2,ch3,ch4,ch5,ch6,ch7,ch8,ch9,ch10,ch11;
 
     public static TextView getV0() {
         return V0;
@@ -117,6 +120,8 @@ int is_change_text=0;
 
 
         super.onResume();
+
+
         surface.startDrawThread(0);
         counter.setStartdraw(1);
         counter.setEnddraw(counter.getHorizontal_scale()*1000);
@@ -167,13 +172,7 @@ int is_change_text=0;
         if (string1.getChannel_count()==8)
         {
 
-            findViewById(R.id.layout_axis_textview_10).setVisibility(View.GONE);
-            findViewById(R.id.layout_axis_textview_11).setVisibility(View.GONE);
-            findViewById(R.id.layout_axis_textview_12).setVisibility(View.GONE);
-            findViewById(R.id.layout_axis_textview_13).setVisibility(View.GONE);
-            findViewById(R.id.layout_axis_textview_14).setVisibility(View.GONE);
-            findViewById(R.id.layout_axis_textview_15).setVisibility(View.GONE);
-            findViewById(R.id.layout_axis_textview_16).setVisibility(View.GONE);
+
 
         }
         if (string1.getChannel_count()>16)
@@ -221,8 +220,18 @@ int is_change_text=0;
         setContentView(R.layout.eightroot);
 
 
+ch1=findViewById(R.id.axis_textview_1);
 
-
+        ch2=findViewById(R.id.axis_textview_2);
+        ch3=findViewById(R.id.axis_textview_3);
+        ch4=findViewById(R.id.axis_textview_4);
+        ch5=findViewById(R.id.axis_textview_5);
+        ch6=findViewById(R.id.axis_textview_6);
+        ch7=findViewById(R.id.axis_textview_7);
+        ch8=findViewById(R.id.axis_textview_8);
+        ch9=findViewById(R.id.axis_textview_9);
+        ch10=findViewById(R.id.axis_textview_10);
+        ch11=findViewById(R.id.axis_textview_11);
 
 
         Display display=getWindowManager().getDefaultDisplay();
@@ -232,6 +241,27 @@ int is_change_text=0;
         int height =size.y;
         string1=new String1();
         counter=new Counter();
+
+counter.getSurfaceviewheheight();
+
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+
+int paint_screen=displayMetrics.heightPixels-(30+50+30+100+20+10+5);?????????????????????????
+
+float button_step=(float)paint_screen/(11*2);
+        Toast.makeText(getApplicationContext(), ""+paint_screen, Toast.LENGTH_SHORT).show();
+        ch1.setTranslationY(1*button_step);
+        ch2.setTranslationY(3*button_step);
+        ch3.setTranslationY(5*button_step);
+        ch4.setTranslationY(7*button_step);
+        ch5.setTranslationY(9*button_step);
+        ch6.setTranslationY(11*button_step);
+        ch7.setTranslationY(13*button_step);
+        ch8.setTranslationY(15*button_step);
+        ch9.setTranslationY(17*button_step);
+        ch10.setTranslationY(19*button_step);
+        ch11.setTranslationY(21*button_step);
 
 
 
@@ -245,7 +275,7 @@ int is_change_text=0;
 
 
 
-        LinearLayout linearLayout=findViewById(R.id.left_linearlayout);
+
         activity=this;
         vibrator= (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         notchcount=0;
@@ -564,14 +594,7 @@ new Thread(new Runnable() {
 
                     if (string1.getChannel_count()==8)
                     {
-                        findViewById(R.id.layout_axis_textview_9).setVisibility(View.GONE);
-                        findViewById(R.id.layout_axis_textview_10).setVisibility(View.GONE);
-                        findViewById(R.id.layout_axis_textview_11).setVisibility(View.GONE);
-                        findViewById(R.id.layout_axis_textview_12).setVisibility(View.GONE);
-                        findViewById(R.id.layout_axis_textview_13).setVisibility(View.GONE);
-                        findViewById(R.id.layout_axis_textview_14).setVisibility(View.GONE);
-                        findViewById(R.id.layout_axis_textview_15).setVisibility(View.GONE);
-                        findViewById(R.id.layout_axis_textview_16).setVisibility(View.GONE);
+
 
                     }
                     else if (string1.getChannel_count()>16)

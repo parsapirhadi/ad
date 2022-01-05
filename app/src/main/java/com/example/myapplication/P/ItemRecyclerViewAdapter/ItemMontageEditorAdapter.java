@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapplication.M.DataType.Counter;
 import com.example.myapplication.M.DataType.String1;
 import com.example.myapplication.M.Item.ItemMontageEditor;
 import com.example.myapplication.R;
@@ -39,7 +40,7 @@ public class ItemMontageEditorAdapter extends RecyclerView.Adapter<ItemMontageEd
             ;
     Context context;
     String1 string1;
-
+Counter counter;
     private ArrayAdapter<String> adapter;
     public ItemMontageEditorAdapter(List<ItemMontageEditor> itwm, Context context) {
         this.itwm = itwm;
@@ -50,6 +51,7 @@ public class ItemMontageEditorAdapter extends RecyclerView.Adapter<ItemMontageEd
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.item_montage_editor,parent,false);
         string1=new String1();
+        counter=new Counter();
 
         return new MyViewHolder(view);
     }
@@ -182,6 +184,8 @@ public class ItemMontageEditorAdapter extends RecyclerView.Adapter<ItemMontageEd
 
 
                             holder.title_start.setText(menuItem.getTitle());
+                            Log.e(""+menuItem.getTitle(),""+menuItem.getOrder());
+
 
                             return true;
                         }

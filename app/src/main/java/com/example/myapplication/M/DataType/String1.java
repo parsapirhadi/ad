@@ -5,7 +5,7 @@ import android.graphics.Paint;
 import java.io.Serializable;
 
 public class String1 implements Serializable {
-     String montage="";
+    static String montage="mono";
     static String filepatch="";
     static int line_count=0;
     static String filename="";

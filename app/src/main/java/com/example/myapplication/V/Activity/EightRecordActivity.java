@@ -128,7 +128,7 @@ public class EightRecordActivity extends AppCompatActivity {
     Counter counter;
     /////////////////////////////////////////////////
     Button listDevices;
-
+int t;
 
     static TextView V0,V1000,V2000,V3000,V4000,V5000,V6000,V7000,V8000;
 
@@ -998,15 +998,14 @@ public void mono(){
                     @Override
                     public boolean onMenuItemClick(MenuItem menuItem) {
                         montage.setText(menuItem.getTitle());
-                        montageS=montage.getText().toString();
+                        string1.setMontage(menuItem.getTitle().toString());
 
 
-
-                        if (montageS.equals("mono")){
+                        if (menuItem.getTitle().equals("mono")){
                             allow_rename=true;
                             mono();
                         }
-                        else if (montageS.equals("banana")){
+                        else {
                             allow_rename=false;
                             banana();
                         }
@@ -1706,7 +1705,7 @@ ech1.addTextChangedListener(new TextWatcher() {
 
         public void run()
         {
-            byte[] buffer=new byte[512];
+            byte[] buffer=new byte[counter.getRate_in_s()];
 
 no_limit=80001-(counter.getHorizontal_scale()*counter.getRate_in_s()*3);
             while (is_activity_on)
@@ -1739,47 +1738,20 @@ no_limit=80001-(counter.getHorizontal_scale()*counter.getRate_in_s()*3);
                                if (zarib<255){
                                    o=(i/counter.getDefault_channel())%(no_limit);
 
-                                   if (channel==0) {
 
-                                    channel=1;
-                                    counter.setBuffer(((float) ((data - 2048) / 1.4)), 0, o);
-                                }
-                                else if (channel==1) {
-                                    //    Log.e("gggggg",""+s);
 
-                                    channel=2;
 
-                                    counter.setBuffer(((float)  ((data - 2048) / 1.4)), 1, o);
-                                } else if (channel==2) {
-                                    channel=3;
+                                   counter.setBuffer(((float) ((data - 2048) / 1.4)), channel, o);
+                                   channel++;
 
-                                    counter.setBuffer( ((float)  ((data - 2048) / 1.4)), 2, o);
-
-                                } else if (channel==3) {
-                                    channel=4;
-
-                                    counter.setBuffer(((float) ((data - 2048) / 1.4)), 3, o);
-
-                                } else if (channel==4) {
-                                    channel=5;
-
-                                    counter.setBuffer(((float)  ((data - 2048) / 1.4)), 4, o);
-
-                                }else if (channel==5) {
-                                    channel=6;
-
-                                    counter.setBuffer( ((float) ((data - 2048) / 1.4)), 5, o);
-                                } else if (channel==6) {
-                                    channel=7;
-
-                                    counter.setBuffer(((float)  ((data - 2048) / 1.4)), 6, o);
-
-                                }else if (channel==7) {
+                              if (channel==counter.getDefault_channel()) {
                                     channel=0;
                                     counter.setRefresh(true);
-                                    counter.setBuffer( ((float)  ((data - 2048) / 1.4)), 7, o);
+                                    counter.setBuffer( ((float)  ((data - 2048) / 1.4)), counter.getDefault_channel()-1, o);
 
                                 }
+
+
                                 i++;
 
                             }

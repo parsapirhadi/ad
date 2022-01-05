@@ -33,7 +33,6 @@
             android:layout_marginRight="5dp"
             android:textSize="15sp"
             android:textColor="#929292"
-            android:text="NrSign1.0.0"
 
             />
     </LinearLayout>

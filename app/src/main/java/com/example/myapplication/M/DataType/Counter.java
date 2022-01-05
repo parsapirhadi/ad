@@ -12,8 +12,19 @@ public class Counter {
 
 static int exist_in_secound=0;
 
+static int row_montage[]=new int[64];
+
 static int count_buffer=1;
 static int show_record_ch=0;
+
+
+    public int getRow_montage(int i) {
+        return row_montage[i];
+    }
+
+    public void setRow_montage(int row_montage,int i) {
+        Counter.row_montage[i]= row_montage;
+    }
 
     public int getShow_record_ch() {
         return show_record_ch;
@@ -207,9 +218,9 @@ static long anim_sleep=0;
         Counter.surface_height = surface_height;
     }
 
-    public static float [][] channel=new float[32][800000];
+    public static float [][] channel=new float[64][800000];
 
-    public static float [][] buffer=new float[8][80000];
+    public static float [][] buffer=new float[64][80000];
 
     public static float [][] buffer_clone=new float[8][80000];
 

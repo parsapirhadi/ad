@@ -1219,46 +1219,19 @@ break;
                             if (zarib<255){
                                 o=(i/8)%(80001-(counter.getHorizontal_scale()*counter.getRate_in_s()*3));
 
-                                if (channel==0) {
-                                    channel=1;
-                                    counter.setBuffer(((float) ((data - 2048) / 1.4)), 0,o);
-                                }
-                                else if (channel==1) {
-                                    //    Log.e("gggggg",""+s);
 
-                                    channel=2;
 
-                                    counter.setBuffer(((float)  ((data - 2048) / 1.4)), 1, o);
-                                } else if (channel==2) {
-                                    channel=3;
+                                counter.setBuffer(((float) ((data - 2048) / 1.4)), channel, o);
+                                channel++;
 
-                                    counter.setBuffer( ((float)  ((data - 2048) / 1.4)), 2, o);
-
-                                } else if (channel==3) {
-                                    channel=4;
-
-                                    counter.setBuffer(((float) ((data - 2048) / 1.4)), 3, o);
-
-                                } else if (channel==4) {
-                                    channel=5;
-
-                                    counter.setBuffer(((float)  ((data - 2048) / 1.4)), 4, o);
-
-                                }else if (channel==5) {
-                                    channel=6;
-
-                                    counter.setBuffer( ((float) ((data - 2048) / 1.4)), 5, o);
-                                } else if (channel==6) {
-                                    channel=7;
-
-                                    counter.setBuffer(((float)  ((data - 2048) / 1.4)), 6, o);
-
-                                }else if (channel==7) {
+                                if (channel==counter.getDefault_channel()) {
                                     channel=0;
                                     counter.setRefresh(true);
-                                    counter.setBuffer( ((float)  ((data - 2048) / 1.4)), 7, o);
+                                    counter.setBuffer( ((float)  ((data - 2048) / 1.4)), counter.getDefault_channel()-1, o);
 
                                 }
+
+
                                 i++;
 
                             }

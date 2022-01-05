@@ -15,6 +15,11 @@
         android:id="@+id/_16channels"
         android:title="16"/>
 
-
+    <item
+        android:id="@+id/_32channels"
+        android:title="32"/>
+    <item
+        android:id="@+id/_64channels"
+        android:title="64"/>
 
 </menu>

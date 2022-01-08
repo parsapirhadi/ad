@@ -20,7 +20,8 @@ import com.example.myapplication.V.Activity.EightRootActivity;
 import com.example.myapplication.V.Activity.MainActivity;
 import com.example.myapplication.V.Activity.SingleRootActivity;
 
-public class BaseSurfaceEightRoot extends SurfaceView implements SurfaceHolder.Callback, View.OnTouchListener, Runnable
+public class
+BaseSurfaceEightRoot extends SurfaceView implements SurfaceHolder.Callback, View.OnTouchListener, Runnable
 {
 float x=0 ,y =0;
 float dy,dx;
@@ -196,6 +197,10 @@ float f=Float.parseFloat(EightRootActivity.getV0().getText().toString())-1;
     public void surfaceCreated(SurfaceHolder holder)
     {
         this.holder = holder;
+
+        counter.setSurfaceviewheheight(getWidth());
+
+
 
         if (drawThread != null)
         {

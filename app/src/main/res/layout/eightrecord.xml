@@ -188,111 +188,403 @@ xmlns:tools="http://schemas.android.com/tools"
         android:layout_weight="1"
         >
 
-        <LinearLayout
-            android:id="@+id/left_linearlayout"
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/left_linearlayout_re"
             android:layout_width="50dp"
-            android:orientation="vertical"
-            android:background="#e6e6e6"
             android:layout_height="match_parent"
 
+            android:background="#e6e6e6"
+            android:orientation="vertical"
+
             >
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1">
 
-                <TextView
-                    android:id="@+id/ch1"
-                    android:text="ch1"
-                    style="@style/axis_textview_root" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
+            <TextView
+                android:id="@+id/axis_textview_1_re"
+                style="@style/axis_textview_root"
+                android:text="ch1"
+                tools:ignore="MissingConstraints" />
 
-                android:layout_weight="1">
-                <TextView
-                    android:id="@+id/ch2"
-                    style="@style/axis_textview_root"
-                    android:text="ch2"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
+            <TextView
+                android:id="@+id/axis_textview_2_re"
+                style="@style/axis_textview_root"
+                android:text="ch2"
+                tools:ignore="MissingConstraints" />
 
-                android:layout_weight="1">
-                <TextView
-                    style="@style/axis_textview_root"
-                    android:id="@+id/ch3"
-                    android:text="ch3"
-                    />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
+            <TextView
+                android:id="@+id/axis_textview_3_re"
+                style="@style/axis_textview_root"
+                android:text="ch3"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/axis_textview_4_re"
+                style="@style/axis_textview_root"
+                android:text="ch4"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/axis_textview_5_re"
+                style="@style/axis_textview_root"
+                android:text="ch5"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/axis_textview_6_re"
+                style="@style/axis_textview_root"
+                android:text="ch6"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/axis_textview_7_re"
+                style="@style/axis_textview_root"
+                android:text="ch7"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/axis_textview_8_re"
+                style="@style/axis_textview_root"
+                android:text="ch8"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/axis_textview_9_re"
+                style="@style/axis_textview_root"
+                android:text="ch9"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/axis_textview_10_re"
+                style="@style/axis_textview_root"
+                android:text="ch10"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/axis_textview_11_re"
+                style="@style/axis_textview_root"
+                android:text="ch11"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/axis_textview_12_re"
+                style="@style/axis_textview_root"
+                android:text="ch12"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/axis_textview_13_re"
+                style="@style/axis_textview_root"
+                android:text="ch13"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/axis_textview_14_re"
+                style="@style/axis_textview_root"
+                android:text="ch14"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/axis_textview_15_re"
+                style="@style/axis_textview_root"
+                android:text="ch15"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/axis_textview_16_re"
+                style="@style/axis_textview_root"
+                android:text="ch16"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/axis_textview_17_re"
+                style="@style/axis_textview_root"
+                android:text="ch17"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/axis_textview_18_re"
+                style="@style/axis_textview_root"
+                android:text="ch18"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/axis_textview_19_re"
+                style="@style/axis_textview_root"
+                android:text="ch19"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/axis_textview_20_re"
+                style="@style/axis_textview_root"
+                android:text="ch20"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/axis_textview_21_re"
+                style="@style/axis_textview_root"
+                android:text="ch21"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/axis_textview_22_re"
+                style="@style/axis_textview_root"
+                android:text="ch22"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/axis_textview_23_re"
+                style="@style/axis_textview_root"
+                android:text="ch23"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/axis_textview_24_re"
+                style="@style/axis_textview_root"
+                android:text="ch24"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/axis_textview_25_re"
+                style="@style/axis_textview_root"
+                android:text="ch25"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/axis_textview_26_re"
+                style="@style/axis_textview_root"
+                android:text="ch26"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/axis_textview_27_re"
+                style="@style/axis_textview_root"
+                android:text="ch27"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/axis_textview_28_re"
+                style="@style/axis_textview_root"
+                android:text="ch28"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/axis_textview_29_re"
+                style="@style/axis_textview_root"
+                android:text="ch29"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/axis_textview_30_re"
+                style="@style/axis_textview_root"
+                android:text="ch30"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/axis_textview_31_re"
+                style="@style/axis_textview_root"
+                android:text="ch31"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/axis_textview_32_re"
+                style="@style/axis_textview_root"
+                android:text="ch32"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/axis_textview_33_re"
+                style="@style/axis_textview_root"
+                android:text="ch33"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/axis_textview_34_re"
+                style="@style/axis_textview_root"
+                android:text="ch34"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/axis_textview_35_re"
+                style="@style/axis_textview_root"
+                android:text="ch35"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/axis_textview_36_re"
+                style="@style/axis_textview_root"
+                android:text="ch36"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/axis_textview_37_re"
+                style="@style/axis_textview_root"
+                android:text="ch37"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/axis_textview_38_re"
+                style="@style/axis_textview_root"
+                android:text="ch38"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/axis_textview_39_re"
+                style="@style/axis_textview_root"
+                android:text="ch39"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/axis_textview_40_re"
+                style="@style/axis_textview_root"
+                android:text="ch40"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/axis_textview_41_re"
+                style="@style/axis_textview_root"
+                android:text="ch41"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/axis_textview_42_re"
+                style="@style/axis_textview_root"
+                android:text="ch42"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/axis_textview_43_re"
+                style="@style/axis_textview_root"
+                android:text="ch43"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/axis_textview_44_re"
+                style="@style/axis_textview_root"
+                android:text="ch44"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/axis_textview_45_re"
+                style="@style/axis_textview_root"
+                android:text="ch45"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/axis_textview_46_re"
+                style="@style/axis_textview_root"
+                android:text="ch46"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/axis_textview_47_re"
+                style="@style/axis_textview_root"
+                android:text="ch47"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/axis_textview_48_re"
+                style="@style/axis_textview_root"
+                android:text="ch48"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/axis_textview_49_re"
+                style="@style/axis_textview_root"
+                android:text="ch49"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/axis_textview_50_re"
+                style="@style/axis_textview_root"
+                android:text="ch50"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/axis_textview_51_re"
+                style="@style/axis_textview_root"
+                android:text="ch51"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/axis_textview_52_re"
+                style="@style/axis_textview_root"
+                android:text="ch52"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/axis_textview_53_re"
+                style="@style/axis_textview_root"
+                android:text="ch53"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/axis_textview_54_re"
+                style="@style/axis_textview_root"
+                android:text="ch54"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/axis_textview_55_re"
+                style="@style/axis_textview_root"
+                android:text="ch55"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/axis_textview_56_re"
+                style="@style/axis_textview_root"
+                android:text="ch56"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/axis_textview_57_re"
+                style="@style/axis_textview_root"
+                android:text="ch57"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/axis_textview_58_re"
+                style="@style/axis_textview_root"
+                android:text="ch58"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/axis_textview_59_re"
+                style="@style/axis_textview_root"
+                android:text="ch59"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/axis_textview_60_re"
+                style="@style/axis_textview_root"
+                android:text="ch60"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/axis_textview_61_re"
+                style="@style/axis_textview_root"
+                android:text="ch61"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/axis_textview_62_re"
+                style="@style/axis_textview_root"
+                android:text="ch62"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/axis_textview_63_re"
+                style="@style/axis_textview_root"
+                android:text="ch63"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/axis_textview_64_re"
+                style="@style/axis_textview_root"
+                android:text="ch64"
+                tools:ignore="MissingConstraints" />
 
 
-                android:layout_weight="1">
-                <TextView
-                    style="@style/axis_textview_root"
-                    android:text="ch4"
-                    android:id="@+id/ch4"
-
-                    />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-
-                android:layout_weight="1">
-
-                <TextView
-                    style="@style/axis_textview_root"
-                    android:text="ch5"
-                    android:id="@+id/ch5"
-                    />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-
-
-                android:layout_weight="1">
-                <TextView
-                    style="@style/axis_textview_root"
-                    android:text="ch6"
-                    android:id="@+id/ch6"
-                    />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-
-
-                android:layout_weight="1">
-                <TextView
-                    style="@style/axis_textview_root"
-                    android:text="ch7"
-                    android:id="@+id/ch7"
-                    />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-
-
-                android:layout_weight="1">
-                <TextView
-                    style="@style/axis_textview_root"
-                    android:text="ch8"
-                    android:id="@+id/ch8"
-                    />
-            </LinearLayout>
-
-
-
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">

@@ -46,9 +46,9 @@ public class BaseSurfaceEightRecord extends SurfaceView implements SurfaceHolder
             ,500,500 , 500,11//////////////////////////////////////////////////////
             ,500,11 , 800,11/////////////////////////////////////////////////////
     };
-   int no_limit;
+    int no_limit;
     int positive=0;
-Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher_background);
+    Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher_background);
     private boolean surfaceReady = false;
 
     int cannel_count=0;
@@ -227,7 +227,7 @@ Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher
             long frameStartTime;
             long frameTime;
 
-
+            counter.setSurfaceview_height_record(getHeight());
 
             try
             {
@@ -282,52 +282,51 @@ Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher
 
 
 
-                            for (int j = 0; j < counter.getDefault_channel(); j++) {
-                                int y = 0;
-                                for (i1 = counter.getStartdraw(); i1 < counter.getEnddraw(); i1++) {
-                                    if (counter.getBuffere(j, i1 + 1) != 1000.0) {
+                                for (int j = 0; j < counter.getDefault_channel(); j++) {
+                                    int y = 0;
+                                    for (i1 = counter.getStartdraw(); i1 < counter.getEnddraw(); i1++) {
+                                        if (counter.getBuffere(j, i1 + 1) != 1000.0) {
 
 
-                                        if (i1 % 70000 == no_limit) {
-                                            Log.e("start=", "" + counter.getStartdraw());
-                                            Log.e("i=end", "" + counter.getEnddraw());
+                                            if (i1 % 70000 == no_limit) {
+                                                Log.e("start=", "" + counter.getStartdraw());
+                                                Log.e("i=end", "" + counter.getEnddraw());
 
 
-                                            for (int j2 = 0; j2 < 8; j2++) {
-                                                for (int j1 = 0; j1 < 80000; j1++) {
-                                                    counter.setBuffer(counter.getPart_data(), j2, j1);
-                                                    counter.setBuffer_clone(counter.getPart_data(), j2, j1);
+                                                for (int j2 = 0; j2 < 8; j2++) {
+                                                    for (int j1 = 0; j1 < 9000; j1++) {
+                                                        counter.setBuffer(counter.getPart_data(), j2, j1);
+                                                    }
                                                 }
+
+                                                counter.setStartdraw(1);
+                                                counter.setEnddraw(counter.getHorizontal_scale() * counter.getRate_in_s());
+                                                i1 = 1;
+
+
+                                                x = 1;
+
+
                                             }
 
-                                            counter.setStartdraw(1);
-                                            counter.setEnddraw(counter.getHorizontal_scale() * counter.getRate_in_s());
-                                            i1 = 1;
+                                            g = (i1 % 70000) - 1;
+                                            //Log.e("i=", "" + g);
 
-
-                                            x = 1;
-
+                                            canvas.drawLine(
+                                                    (float) (y * counter.getEight_step_x()),
+                                                    (float) (((float) ((float) (getHeight() / (float) (counter.getDefault_channel() * 2))) * (((2 * j) + 1))) + (counter.getBuffere(j, g) * counter.getEight_step_y())),
+                                                    (float) ((y + 1) * counter.getEight_step_x()),
+                                                    (float) (((float) ((float) (getHeight() / (float) (counter.getDefault_channel() * 2))) * (((2 * j) + 1))) + (counter.getBuffere(j, (g + 1)) * counter.getEight_step_y())),
+                                                    samplePaint1);
 
                                         }
-
-                                        g = (i1 % 70000) - 1;
-                                        //Log.e("i=", "" + g);
-
-                                        canvas.drawLine(
-                                                (float) (y * counter.getEight_step_x()),
-                                                (float) (((float) ((float) (getHeight() / (float) (counter.getDefault_channel() * 2))) * (((2 * j) + 1))) + (counter.getBuffere(j, g) * counter.getEight_step_y())),
-                                                (float) ((y + 1) * counter.getEight_step_x()),
-                                                (float) (((float) ((float) (getHeight() / (float) (counter.getDefault_channel() * 2))) * (((2 * j) + 1))) + (counter.getBuffere(j, (g + 1)) * counter.getEight_step_y())),
-                                                samplePaint1);
+                                        y++;
 
                                     }
-                                    y++;
-
                                 }
+
+
                             }
-
-
-                        }
 
 
                             if (string1.getMontage().equals("banana")) {
@@ -348,9 +347,8 @@ Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher
 
 
                                                 for (int j2 = 0; j2 < 8; j2++) {
-                                                    for (int j1 = 0; j1 < 80000; j1++) {
+                                                    for (int j1 = 0; j1 < 9000; j1++) {
                                                         counter.setBuffer(counter.getPart_data(), j2, j1);
-                                                        counter.setBuffer_clone(counter.getPart_data(), j2, j1);
                                                     }
                                                 }
 

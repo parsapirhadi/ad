@@ -59,9 +59,15 @@ import java.util.UUID;
 
 
 public class EightRecordActivity extends AppCompatActivity {
-    static TextView  ch1,ch2,ch3,ch4,ch5,ch6,ch7,ch8;
+
     EditText ech2,ech3,ech4,ech5,ech6,ech7,ech8;
     Button bch1,bch2,bch3,bch4,bch5,bch6,bch7,bch8;
+
+    static TextView ch[]=new TextView[65];
+
+    public static TextView getCh1() {
+        return ch[1];
+    }
 
     TextInputEditText ech1;
 
@@ -87,11 +93,13 @@ public class EightRecordActivity extends AppCompatActivity {
 
     boolean animation_bluetooth=true;
 
+    boolean set_dimens=true;
+
     Button check_circle1,check_circle2,check_circle3,check_circle4,check_circle5,check_circle6,check_circle7,check_circle8;
 
 
     Set<BluetoothDevice> pared;
-   static Dialog dialog,dialog1,dialog2,dialog3,dialog4,dialog5,dialog6,dialog7,dialog8;
+    static Dialog dialog,dialog1,dialog2,dialog3,dialog4,dialog5,dialog6,dialog7,dialog8;
 
 
 
@@ -128,7 +136,7 @@ public class EightRecordActivity extends AppCompatActivity {
     Counter counter;
     /////////////////////////////////////////////////
     Button listDevices;
-int t;
+    int t;
 
     static TextView V0,V1000,V2000,V3000,V4000,V5000,V6000,V7000,V8000;
 
@@ -145,7 +153,7 @@ int t;
 
     BluetoothDevice[] btArray;
 
-     static SendReceive sendReceive;
+    static SendReceive sendReceive;
     int q=0;
     int set_limit=0;
     int no_limit;
@@ -163,57 +171,7 @@ int t;
     InputStream inputStream;
     OutputStream outputStream;
 
-    public static TextView getV0() {
-        return V0;
-    }public static TextView getV1000() {
-        return V1000;
-    }public static TextView getV2000() {
-        return V2000;
-    } public static TextView getV3000() {
-        return V3000;
-    } public static TextView getV4000() {
-        return V4000;
-    } public static TextView getV5000() {
-        return V5000;
-    } public static TextView getV6000() {
-        return V6000;
-    } public static TextView getV7000() {
-        return V7000;
-    } public static TextView getV8000() {
-        return V8000;
-    }
 
-    public static TextView getCh1() {
-        return ch1;
-    }
-
-    public static TextView getCh2() {
-        return ch2;
-    }
-
-    public static TextView getCh3() {
-        return ch3;
-    }
-
-    public static TextView getCh4() {
-        return ch4;
-    }
-
-    public static TextView getCh5() {
-        return ch5;
-    }
-
-    public static TextView getCh6() {
-        return ch6;
-    }
-
-    public static TextView getCh7() {
-        return ch7;
-    }
-
-    public static TextView getCh8() {
-        return ch8;
-    }
 
     int s;
     static final int STATE_LISTENING = 1;
@@ -248,10 +206,10 @@ int t;
             switch (msg.what)
             {
                 case STATE_LISTENING:
-                   // status.setText("Listening");
+                    // status.setText("Listening");
                     break;
                 case STATE_CONNECTING:
-                   // status.setText("Connecting");
+                    // status.setText("Connecting");
                     break;
                 case STATE_CONNECTED:
 
@@ -260,26 +218,26 @@ int t;
                     animation_bluetooth=false;
 
 
-if (SingleRecordActivity.isRecordcount()){
-    new Thread(new Runnable() {
-        @Override
-        public void run() {
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            Log.e("is start", "is start");
-            record.setBackgroundResource(R.drawable.rect_stop_record);
-            String string = "CONTB\r\n";
-            set_limit = 1;
-            sendReceive = new EightRecordActivity.SendReceive(objects.getSocket());
-            sendReceive.write(string.getBytes());
-            recordcount = 1;
-        }
-    }).start();
+                    if (SingleRecordActivity.isRecordcount()){
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    Thread.sleep(100);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                                Log.e("is start", "is start");
+                                record.setBackgroundResource(R.drawable.rect_stop_record);
+                                String string = "CONTB\r\n";
+                                set_limit = 1;
+                                sendReceive = new EightRecordActivity.SendReceive(objects.getSocket());
+                                sendReceive.write(string.getBytes());
+                                recordcount = 1;
+                            }
+                        }).start();
 
-}
+                    }
                     bluetooth.setBackgroundResource(R.drawable.bluetooth_on_foreground);
                     counter.setBluetooth_drawabe(true);
                     is_open=false;
@@ -289,14 +247,14 @@ if (SingleRecordActivity.isRecordcount()){
                     String string = "NOP\r\n";
                     set_limit = 1;
                     if (objects.getSocket()!=null){
-                    sendReceive.write(string.getBytes());
-}
+                        sendReceive.write(string.getBytes());
+                    }
                     recordcount = 0;
 
                     dialog.dismiss();
                     break;
                 case STATE_CONNECTION_FAILED:
-                  //  status.setText("Connection Failed");
+                    //  status.setText("Connection Failed");
                     break;
                 case STATE_MESSAGE_RECEIVED:
                     byte[] readBuff= (byte[]) msg.obj;
@@ -314,9 +272,9 @@ if (SingleRecordActivity.isRecordcount()){
         is_activity_on=false;
 
         for (int j2=0;j2<8;j2++){
-            for (int j1=0;j1<80000;j1++) {
+            for (int j1=0;j1<9000;j1++) {
                 counter.setBuffer(counter.getPart_data(), j2, j1);
-                counter.setBuffer_clone(counter.getPart_data(), j2, j1);
+
             }
         }
 
@@ -389,7 +347,7 @@ if (SingleRecordActivity.isRecordcount()){
             @Override
             public void onAnimationEnd(Animation animation) {
 
-                    bluetooth.startAnimation(animation2);
+                bluetooth.startAnimation(animation2);
 
 
             }
@@ -408,10 +366,10 @@ if (SingleRecordActivity.isRecordcount()){
 
 
         if (objects.getSocket()!=null){
-           if (objects.getSocket().isConnected()){
+            if (objects.getSocket().isConnected()){
 
-           }
-       }
+            }
+        }
         counter.setStartdraw(1);
 
         if (counter.isBluetooth_drawabe()){
@@ -433,53 +391,28 @@ if (SingleRecordActivity.isRecordcount()){
         V7000.setText(""+(float)(int)((7*125*counter.getHorizontal_scale()))/1000);
         V8000.setText(""+(float)(int)((8*125*counter.getHorizontal_scale()))/1000);
         for (int j2=0;j2<8;j2++){
-            for (int j1=0;j1<80000;j1++) {
+            for (int j1=0;j1<9000;j1++) {
                 counter.setBuffer(counter.getPart_data(), j2, j1);
-                counter.setBuffer_clone(counter.getPart_data(), j2, j1);
+
             }
         }
         i=0;
 
-if (string1.getPivote(0)!=null)
-{
-    ch1.setText(string1.getPivote(0));
-    ch2.setText(string1.getPivote(1));
-    ch3.setText(string1.getPivote(2));
-    ch4.setText(string1.getPivote(3));
-    ch5.setText(string1.getPivote(4));
-    ch6.setText(string1.getPivote(5));
-    ch7.setText(string1.getPivote(6));
-    ch8.setText(string1.getPivote(7));
-}
+        if (string1.getPivote(0)!=null)
+        {
+            for (int y=0;y<counter.getDefault_channel();y++) {
+                ch[y].setText(string1.getPivote(y));
+            }
+
+        }
         bluetooth.setBackgroundResource(R.drawable.bluetooth_off_foreground);
 
         try {
-            SharedPreferences sharedPreferences=getApplicationContext().getSharedPreferences("bch1", MODE_PRIVATE);
-            ch1.setText(sharedPreferences.getString("name","ch1").toString());
+            for (int m=1;m<65;m++){
+                SharedPreferences sharedPreferences=getApplicationContext().getSharedPreferences("bch"+m, MODE_PRIVATE);
+                ch[m].setText(sharedPreferences.getString("name","ch"+m).toString());
 
-
-
-            sharedPreferences=getApplicationContext().getSharedPreferences("bch2", MODE_PRIVATE);
-            ch2.setText(sharedPreferences.getString("name","ch2").toString());
-
-            sharedPreferences=getApplicationContext().getSharedPreferences("bch3", MODE_PRIVATE);
-            ch3.setText(sharedPreferences.getString("name","ch3").toString());
-
-            sharedPreferences=getApplicationContext().getSharedPreferences("bch4", MODE_PRIVATE);
-            ch4.setText(sharedPreferences.getString("name","ch4").toString());
-
-            sharedPreferences=getApplicationContext().getSharedPreferences("bch5", MODE_PRIVATE);
-            ch5.setText(sharedPreferences.getString("name","ch5").toString());
-
-            sharedPreferences=getApplicationContext().getSharedPreferences("bch6", MODE_PRIVATE);
-            ch6.setText(sharedPreferences.getString("name","ch6").toString());
-
-            sharedPreferences=getApplicationContext().getSharedPreferences("bch7", MODE_PRIVATE);
-            ch7.setText(sharedPreferences.getString("name","ch7").toString());
-
-            sharedPreferences=getApplicationContext().getSharedPreferences("bch8", MODE_PRIVATE);
-            ch8.setText(sharedPreferences.getString("name","ch8").toString());
-
+            }
 
         }
         catch (NullPointerException e) {
@@ -628,6 +561,56 @@ if (string1.getPivote(0)!=null)
             }
         }).start();
 
+
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (set_dimens) {
+                    if (counter.getSurfaceviewheheight()>0){
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+
+
+                                int paint_screen=counter.getSurfaceview_height_record();
+                                float button_step = (float) paint_screen / (((counter.getDefault_channel()) * 2));
+                                int k=counter.getDefault_channel();
+                                Toast.makeText(getApplicationContext(), "" + counter.getSurfaceviewheheight(), Toast.LENGTH_SHORT).show();
+
+
+                                for (int o=0;o<counter.getDefault_channel();o++){
+                                    Log.e(""+(float) (((2*o)+0.5) * button_step),""+(float) (((2*o)+0.5) * button_step));
+                                    ch[o+1].setTranslationY((float) (((2*o)+0.5) * button_step));
+                                }
+                                for (int s=1;s<65;s++)
+                                {
+                                    ch[s].setTranslationY((float) ((float) ch[s].getTranslationY()-(0.5*button_step)));
+                                }
+                                for (int o=counter.getDefault_channel();o<64;o++){
+                                    ch[o+1].setTranslationY(1000+paint_screen);
+                                }
+                                for (int s=1;s<65;s++)
+                                {
+                                    if (k>12)
+                                        ch[s].setScaleY((float) 1-((float) 1.25*k/100));
+                                    ch[s].setScaleX((float) 1-((float)1.25*k/100));
+
+
+                                }
+                                //   findViewById(R.id.left_linearlayout_re).setTranslationY((float) (button_step*-1));
+
+
+
+                            }
+                        });
+                        set_dimens=false;
+                    }
+                }
+            }
+        }).start();
+
+
     }
 
     @Override
@@ -699,9 +682,9 @@ if (string1.getPivote(0)!=null)
 
 
         for (int j2=0;j2<8;j2++){
-            for (int j1=0;j1<80000;j1++) {
+            for (int j1=0;j1<9000;j1++) {
                 counter.setBuffer(counter.getPart_data(), j2, j1);
-                counter.setBuffer_clone(counter.getPart_data(), j2, j1);
+
             }
         }
 
@@ -788,38 +771,24 @@ if (string1.getPivote(0)!=null)
         implementListeners();
 
     }
-public void mono(){
-    try {
-
-        SharedPreferences sharedPreferences=getApplicationContext().getSharedPreferences("bch1", MODE_PRIVATE);
-        ch1.setText(sharedPreferences.getString("name","ch1").toString());
-
-        sharedPreferences=getApplicationContext().getSharedPreferences("bch2", MODE_PRIVATE);
-        ch2.setText(sharedPreferences.getString("name","ch2").toString());
-
-        sharedPreferences=getApplicationContext().getSharedPreferences("bch3", MODE_PRIVATE);
-        ch3.setText(sharedPreferences.getString("name","ch3").toString());
-
-        sharedPreferences=getApplicationContext().getSharedPreferences("bch4", MODE_PRIVATE);
-        ch4.setText(sharedPreferences.getString("name","ch4").toString());
-
-        sharedPreferences=getApplicationContext().getSharedPreferences("bch5", MODE_PRIVATE);
-        ch5.setText(sharedPreferences.getString("name","ch5").toString());
-
-        sharedPreferences=getApplicationContext().getSharedPreferences("bch6", MODE_PRIVATE);
-        ch6.setText(sharedPreferences.getString("name","ch6").toString());
-
-        sharedPreferences=getApplicationContext().getSharedPreferences("bch7", MODE_PRIVATE);
-        ch7.setText(sharedPreferences.getString("name","ch7").toString());
-
-        sharedPreferences=getApplicationContext().getSharedPreferences("bch8", MODE_PRIVATE);
-        ch8.setText(sharedPreferences.getString("name","ch8").toString());
+    public void mono(){
+        try {
 
 
-    }
-    catch (NullPointerException e) {
-        e.printStackTrace();
-    }
+            for (int u=1;u<65;u++){
+
+                SharedPreferences sharedPreferences=getApplicationContext().getSharedPreferences("bch"+u, MODE_PRIVATE);
+                ch[u].setText(sharedPreferences.getString("name","ch"+u).toString());
+
+
+            }
+
+
+
+        }
+        catch (NullPointerException e) {
+            e.printStackTrace();
+        }
 
 
 
@@ -828,37 +797,15 @@ public void mono(){
 
     @SuppressLint("SetTextI18n")
     public void banana(){
-        SharedPreferences sharedPreferences_start = getApplicationContext().getSharedPreferences("bch1_start", MODE_PRIVATE);
-        SharedPreferences sharedPreferences_end=  getApplicationContext().getSharedPreferences("bch1_end", MODE_PRIVATE);
-        ch1.setText(sharedPreferences_start.getString("name","ch1")+"-"+sharedPreferences_end.getString("name","ch1"));
 
-        sharedPreferences_start = getApplicationContext().getSharedPreferences("bch2_start", MODE_PRIVATE);
-        sharedPreferences_end=  getApplicationContext().getSharedPreferences("bch2_end", MODE_PRIVATE);
-        ch2.setText(sharedPreferences_start.getString("name","ch2")+"-"+sharedPreferences_end.getString("name","ch2"));
 
-        sharedPreferences_start = getApplicationContext().getSharedPreferences("bch3_start", MODE_PRIVATE);
-        sharedPreferences_end=  getApplicationContext().getSharedPreferences("bch3_end", MODE_PRIVATE);
-        ch3.setText(sharedPreferences_start.getString("name","ch3")+"-"+sharedPreferences_end.getString("name","ch3"));
+        for (int a=1;a<65;a++){
+            SharedPreferences sharedPreferences_start = getApplicationContext().getSharedPreferences("bch"+a+"_start", MODE_PRIVATE);
+            SharedPreferences sharedPreferences_end=  getApplicationContext().getSharedPreferences("bch"+a+"_end", MODE_PRIVATE);
+            ch[a].setText(sharedPreferences_start.getString("name","ch"+a)+"-"+sharedPreferences_end.getString("name","ch"+a));
 
-        sharedPreferences_start = getApplicationContext().getSharedPreferences("bch4_start", MODE_PRIVATE);
-        sharedPreferences_end=  getApplicationContext().getSharedPreferences("bch4_end", MODE_PRIVATE);
-        ch4.setText(sharedPreferences_start.getString("name","ch4")+"-"+sharedPreferences_end.getString("name","ch4"));
+        }
 
-        sharedPreferences_start = getApplicationContext().getSharedPreferences("bch5_start", MODE_PRIVATE);
-        sharedPreferences_end=  getApplicationContext().getSharedPreferences("bch5_end", MODE_PRIVATE);
-        ch5.setText(sharedPreferences_start.getString("name","ch5")+"-"+sharedPreferences_end.getString("name","ch5"));
-
-        sharedPreferences_start = getApplicationContext().getSharedPreferences("bch6_start", MODE_PRIVATE);
-        sharedPreferences_end=  getApplicationContext().getSharedPreferences("bch6_end", MODE_PRIVATE);
-        ch6.setText(sharedPreferences_start.getString("name","ch6")+"-"+sharedPreferences_end.getString("name","ch6"));
-
-        sharedPreferences_start = getApplicationContext().getSharedPreferences("bch7_start", MODE_PRIVATE);
-        sharedPreferences_end=  getApplicationContext().getSharedPreferences("bch7_end", MODE_PRIVATE);
-        ch7.setText(sharedPreferences_start.getString("name","ch7")+"-"+sharedPreferences_end.getString("name","ch7"));
-
-        sharedPreferences_start = getApplicationContext().getSharedPreferences("bch8_start", MODE_PRIVATE);
-        sharedPreferences_end=  getApplicationContext().getSharedPreferences("bch8_end", MODE_PRIVATE);
-        ch8.setText(sharedPreferences_start.getString("name","ch8")+"-"+sharedPreferences_end.getString("name","ch8"));
 
 
 
@@ -915,29 +862,29 @@ public void mono(){
             public void onClick(View view) {
 
                 if (objects.getSocket() != null ){
-                vibrator.vibrate(40);
-                if (recordcount == 0) {
-                    record.setBackgroundResource(R.drawable.rect_stop_record);
-                    String string = "CONTB\r\n";
-                    set_limit = 1;
-                    Recordcount=true;
-                    SingleRecordActivity.setIs_isRecordcount(true);
-                    sendReceive = new SendReceive(objects.getSocket());
-                    sendReceive.write(string.getBytes());
-                    recordcount = 1;
+                    vibrator.vibrate(40);
+                    if (recordcount == 0) {
+                        record.setBackgroundResource(R.drawable.rect_stop_record);
+                        String string = "CONTB\r\n";
+                        set_limit = 1;
+                        Recordcount=true;
+                        SingleRecordActivity.setIs_isRecordcount(true);
+                        sendReceive = new SendReceive(objects.getSocket());
+                        sendReceive.write(string.getBytes());
+                        recordcount = 1;
 
-                } else if (recordcount == 1) {
-                    record.setBackgroundResource(R.drawable.red_record_drawable);
-                    String string = "NOP\r\n";
-                    Recordcount=false;
-                    SingleRecordActivity.setIs_isRecordcount(false);
-                    set_limit = 1;
-                    sendReceive.write(string.getBytes());
+                    } else if (recordcount == 1) {
+                        record.setBackgroundResource(R.drawable.red_record_drawable);
+                        String string = "NOP\r\n";
+                        Recordcount=false;
+                        SingleRecordActivity.setIs_isRecordcount(false);
+                        set_limit = 1;
+                        sendReceive.write(string.getBytes());
 
-                    recordcount = 0;
+                        recordcount = 0;
+                    }
+
                 }
-
-            }
                 else {
                     Toast.makeText(getApplicationContext(),"Please Connect With Bluetooth",Toast.LENGTH_LONG).show();
 
@@ -1045,18 +992,18 @@ public void mono(){
         });
 
         btn.setOnClickListener(view -> drawerLayout.openDrawer(GravityCompat.START));
-ch1.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View view) {
-if (allow_rename) {
-    ech1.setText("");
-    check_circle1.setVisibility(View.INVISIBLE);
-    vibrator.vibrate(30);
-    dialog1.show();
-}
-    }
-});
-        ch2.setOnClickListener(new View.OnClickListener() {
+        ch[1].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (allow_rename) {
+                    ech1.setText("");
+                    check_circle1.setVisibility(View.INVISIBLE);
+                    vibrator.vibrate(30);
+                    dialog1.show();
+                }
+            }
+        });
+        ch[2].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (allow_rename) {
@@ -1067,7 +1014,7 @@ if (allow_rename) {
                 }
             }
         });
-        ch3.setOnClickListener(new View.OnClickListener() {
+        ch[3].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (allow_rename) {
@@ -1078,7 +1025,7 @@ if (allow_rename) {
                 }
             }
         });
-        ch4.setOnClickListener(new View.OnClickListener() {
+        ch[4].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (allow_rename) {
@@ -1089,7 +1036,7 @@ if (allow_rename) {
                 }
             }
         });
-        ch5.setOnClickListener(new View.OnClickListener() {
+        ch[5].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (allow_rename) {
@@ -1100,7 +1047,7 @@ if (allow_rename) {
                 }
             }
         });
-        ch6.setOnClickListener(new View.OnClickListener() {
+        ch[6].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (allow_rename) {
@@ -1111,7 +1058,7 @@ if (allow_rename) {
                 }
             }
         });
-        ch7.setOnClickListener(new View.OnClickListener() {
+        ch[7].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (allow_rename) {
@@ -1122,7 +1069,7 @@ if (allow_rename) {
                 }
             }
         });
-        ch8.setOnClickListener(new View.OnClickListener() {
+        ch[8].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (allow_rename) {
@@ -1136,35 +1083,45 @@ if (allow_rename) {
 
 
 
-ech1.addTextChangedListener(new TextWatcher() {
-    @Override
-    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-    }
-
-    @Override
-    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
 
-        lch1.setError("");
 
-        if (ech1.getText().length()<4 && ech1.getText().length()>0){
-            check_circle1.setBackgroundResource(R.drawable.check_circle__foreground);
-            check_circle1.setVisibility(View.VISIBLE);
-        }
-        if (ech1.getText().length()>3 || ech1.getText().length()==0){
-            check_circle1.setBackgroundResource(R.drawable.check_circle_error_foreground);
-            check_circle1.setVisibility(View.VISIBLE);
-            lch1.setError("Maximum 3 Character");
-        }
 
-    }
 
-    @Override
-    public void afterTextChanged(Editable editable) {
 
-    }
-});
+
+
+
+
+        ech1.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+
+                lch1.setError("");
+
+                if (ech1.getText().length()<4 && ech1.getText().length()>0){
+                    check_circle1.setBackgroundResource(R.drawable.check_circle__foreground);
+                    check_circle1.setVisibility(View.VISIBLE);
+                }
+                if (ech1.getText().length()>3 || ech1.getText().length()==0){
+                    check_circle1.setBackgroundResource(R.drawable.check_circle_error_foreground);
+                    check_circle1.setVisibility(View.VISIBLE);
+                    lch1.setError("Maximum 3 Character");
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
         ech2.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -1391,20 +1348,20 @@ ech1.addTextChangedListener(new TextWatcher() {
 
 
         bch1.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View view) {
-        SharedPreferences pref = getApplicationContext().getSharedPreferences("bch1", MODE_PRIVATE);
-        SharedPreferences.Editor editor = pref.edit();
-        editor.putString("name",ech1.getText().toString());
-        editor.apply();
+            @Override
+            public void onClick(View view) {
+                SharedPreferences pref = getApplicationContext().getSharedPreferences("bch1", MODE_PRIVATE);
+                SharedPreferences.Editor editor = pref.edit();
+                editor.putString("name",ech1.getText().toString());
+                editor.apply();
 
-        if (ech1.getText().toString().length()<8 && ech1.getText().toString().length()>0){
+                if (ech1.getText().toString().length()<8 && ech1.getText().toString().length()>0){
 
-           ch1.setText(ech1.getText().toString());
-           dialog1.dismiss();
-        }
-    }
-});
+                    ch[1].setText(ech1.getText().toString());
+                    dialog1.dismiss();
+                }
+            }
+        });
         bch2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -1414,7 +1371,7 @@ ech1.addTextChangedListener(new TextWatcher() {
                 editor.apply();
                 if (ech2.getText().toString().length()<4 && ech2.getText().toString().length()>0) {
 
-                    ch2.setText(ech2.getText().toString());
+                    ch[2].setText(ech2.getText().toString());
                     dialog2.dismiss();
                 }
             }
@@ -1428,7 +1385,7 @@ ech1.addTextChangedListener(new TextWatcher() {
                 editor.apply();
                 if (ech3.getText().toString().length()<4 && ech3.getText().toString().length()>0 ) {
 
-                    ch3.setText(ech3.getText().toString());
+                    ch[3].setText(ech3.getText().toString());
                     dialog3.dismiss();
                 }
             }
@@ -1442,7 +1399,7 @@ ech1.addTextChangedListener(new TextWatcher() {
                 editor.apply();
                 if (ech4.getText().toString().length()<4 && ech4.getText().toString().length()>0) {
 
-                    ch4.setText(ech4.getText().toString());
+                    ch[4].setText(ech4.getText().toString());
                     dialog4.dismiss();
                 }
             }
@@ -1456,7 +1413,7 @@ ech1.addTextChangedListener(new TextWatcher() {
                 editor.apply();
                 if (ech5.getText().toString().length()<4  && ech5.getText().toString().length()>0) {
 
-                    ch5.setText(ech5.getText().toString());
+                    ch[5].setText(ech5.getText().toString());
                     dialog5.dismiss();
                 }
             }
@@ -1470,7 +1427,7 @@ ech1.addTextChangedListener(new TextWatcher() {
                 editor.apply();
                 if (ech6.getText().toString().length()<4 && ech6.getText().toString().length()>0) {
 
-                    ch6.setText(ech6.getText().toString());
+                    ch[6].setText(ech6.getText().toString());
                     dialog6.dismiss();
                 }
             }
@@ -1484,7 +1441,7 @@ ech1.addTextChangedListener(new TextWatcher() {
                 editor.apply();
                 if (ech7.getText().toString().length()<4 && ech7.getText().toString().length()>0) {
 
-                    ch7.setText(ech7.getText().toString());
+                    ch[7].setText(ech7.getText().toString());
                     dialog7.dismiss();
                 }
             }
@@ -1498,7 +1455,7 @@ ech1.addTextChangedListener(new TextWatcher() {
                 editor.apply();
                 if (ech8.getText().toString().length()<4 && ech8.getText().toString().length()>0) {
 
-                    ch8.setText(ech8.getText().toString());
+                    ch[8].setText(ech8.getText().toString());
                     dialog8.dismiss();
                 }
             }
@@ -1627,20 +1584,84 @@ ech1.addTextChangedListener(new TextWatcher() {
 
 
 
-        ch1=findViewById(R.id.ch1);
-        ch2=findViewById(R.id.ch2);
-        ch3=findViewById(R.id.ch3);
-        ch4=findViewById(R.id.ch4);
-        ch5=findViewById(R.id.ch5);
-        ch6=findViewById(R.id.ch6);
-        ch7=findViewById(R.id.ch7);
-        ch8=findViewById(R.id.ch8);
 
 
         zoomout=findViewById(R.id.zoomout_eightrecord);
         zoomin=findViewById(R.id.zoomin_eightrecord);
 
         parentLayout = findViewById(android.R.id.content);
+
+
+
+
+        ch[1]=findViewById(R.id.axis_textview_1_re);
+        ch[2]=findViewById(R.id.axis_textview_2_re);
+        ch[3]=findViewById(R.id.axis_textview_3_re);
+        ch[4]=findViewById(R.id.axis_textview_4_re);
+        ch[5]=findViewById(R.id.axis_textview_5_re);
+        ch[6]=findViewById(R.id.axis_textview_6_re);
+        ch[7]=findViewById(R.id.axis_textview_7_re);
+        ch[8]=findViewById(R.id.axis_textview_8_re);
+        ch[9]=findViewById(R.id.axis_textview_9_re);
+        ch[10]=findViewById(R.id.axis_textview_10_re);
+        ch[11]=findViewById(R.id.axis_textview_11_re);
+        ch[12]=findViewById(R.id.axis_textview_12_re);
+        ch[13]=findViewById(R.id.axis_textview_13_re);
+        ch[14]=findViewById(R.id.axis_textview_14_re);
+        ch[15]=findViewById(R.id.axis_textview_15_re);
+        ch[16]=findViewById(R.id.axis_textview_16_re);
+        ch[17]=findViewById(R.id.axis_textview_17_re);
+        ch[18]=findViewById(R.id.axis_textview_18_re);
+        ch[19]=findViewById(R.id.axis_textview_19_re);
+        ch[20]=findViewById(R.id.axis_textview_20_re);
+        ch[21]=findViewById(R.id.axis_textview_21_re);
+        ch[22]=findViewById(R.id.axis_textview_22_re);
+        ch[23]=findViewById(R.id.axis_textview_23_re);
+        ch[24]=findViewById(R.id.axis_textview_24_re);
+        ch[25]=findViewById(R.id.axis_textview_25_re);
+        ch[26]=findViewById(R.id.axis_textview_26_re);
+        ch[27]=findViewById(R.id.axis_textview_27_re);
+        ch[28]=findViewById(R.id.axis_textview_28_re);
+        ch[29]=findViewById(R.id.axis_textview_29_re);
+        ch[30]=findViewById(R.id.axis_textview_30_re);
+        ch[31]=findViewById(R.id.axis_textview_31_re);
+        ch[32]=findViewById(R.id.axis_textview_32_re);
+        ch[33]=findViewById(R.id.axis_textview_33_re);
+        ch[34]=findViewById(R.id.axis_textview_34_re);
+        ch[35]=findViewById(R.id.axis_textview_35_re);
+        ch[36]=findViewById(R.id.axis_textview_36_re);
+        ch[37]=findViewById(R.id.axis_textview_37_re);
+        ch[38]=findViewById(R.id.axis_textview_38_re);
+        ch[39]=findViewById(R.id.axis_textview_39_re);
+        ch[40]=findViewById(R.id.axis_textview_40_re);
+        ch[41]=findViewById(R.id.axis_textview_41_re);
+        ch[42]=findViewById(R.id.axis_textview_42_re);
+        ch[43]=findViewById(R.id.axis_textview_43_re);
+        ch[44]=findViewById(R.id.axis_textview_44_re);
+        ch[45]=findViewById(R.id.axis_textview_45_re);
+        ch[46]=findViewById(R.id.axis_textview_46_re);
+        ch[47]=findViewById(R.id.axis_textview_47_re);
+        ch[48]=findViewById(R.id.axis_textview_48_re);
+        ch[49]=findViewById(R.id.axis_textview_49_re);
+        ch[50]=findViewById(R.id.axis_textview_50_re);
+        ch[51]=findViewById(R.id.axis_textview_51_re);
+        ch[52]=findViewById(R.id.axis_textview_52_re);
+        ch[53]=findViewById(R.id.axis_textview_53_re);
+        ch[54]=findViewById(R.id.axis_textview_54_re);
+        ch[55]=findViewById(R.id.axis_textview_55_re);
+        ch[56]=findViewById(R.id.axis_textview_56_re);
+        ch[57]=findViewById(R.id.axis_textview_57_re);
+        ch[58]=findViewById(R.id.axis_textview_58_re);
+        ch[59]=findViewById(R.id.axis_textview_59_re);
+        ch[60]=findViewById(R.id.axis_textview_60_re);
+        ch[61]=findViewById(R.id.axis_textview_61_re);
+        ch[62]=findViewById(R.id.axis_textview_62_re);
+        ch[63]=findViewById(R.id.axis_textview_63_re);
+        ch[64]=findViewById(R.id.axis_textview_64_re);
+
+
+
+
 
     }
     private class ClientClass extends Thread
@@ -1707,7 +1728,7 @@ ech1.addTextChangedListener(new TextWatcher() {
         {
             byte[] buffer=new byte[counter.getRate_in_s()];
 
-no_limit=80001-(counter.getHorizontal_scale()*counter.getRate_in_s()*3);
+            no_limit=80001-(counter.getHorizontal_scale()*counter.getRate_in_s()*3);
             while (is_activity_on)
             {
 
@@ -1720,71 +1741,71 @@ no_limit=80001-(counter.getHorizontal_scale()*counter.getRate_in_s()*3);
                     e.printStackTrace();
                     break;
                 }
-                    // bytes =s;
-                    handler.obtainMessage(STATE_MESSAGE_RECEIVED, s, -1, buffer).sendToTarget();
+                // bytes =s;
+                handler.obtainMessage(STATE_MESSAGE_RECEIVED, s, -1, buffer).sendToTarget();
 
 
-                    if (channel!=-1)
-                    {
+                if (channel!=-1)
+                {
 
-                        if (next_is_zarib){
-                            zarib=s;
-                            next_is_zarib=false;
+                    if (next_is_zarib){
+                        zarib=s;
+                        next_is_zarib=false;
 
-                        }
-                        else {
-                            next_is_zarib=true;
-                            data=(zarib*256)+s;
-                               if (zarib<255){
-                                   o=(i/counter.getDefault_channel())%(no_limit);
-
-
+                    }
+                    else {
+                        next_is_zarib=true;
+                        data=(zarib*256)+s;
+                        if (zarib<255){
+                            o=(i/counter.getDefault_channel())%(no_limit);
 
 
-                                   counter.setBuffer(((float) ((data - 2048) / 1.4)), channel, o);
-                                   channel++;
-
-                              if (channel==counter.getDefault_channel()) {
-                                    channel=0;
-                                    counter.setRefresh(true);
-                                    counter.setBuffer( ((float)  ((data - 2048) / 1.4)), counter.getDefault_channel()-1, o);
-
-                                }
 
 
-                                i++;
+                            counter.setBuffer(((float) ((data - 2048) / 1.4)), channel, o);
+                            channel++;
+
+                            if (channel==counter.getDefault_channel()) {
+                                channel=0;
+                                counter.setRefresh(true);
+                                counter.setBuffer( ((float)  ((data - 2048) / 1.4)), counter.getDefault_channel()-1, o);
 
                             }
- }
-  }
- if (s==255)
-                    {
 
 
-                        y++;
- }
+                            i++;
 
-
-
-                    if (y==1 && s<255){
-
-     y=0;
- }
-                    if (y==2)
-                    {
-                        y=0;
-
-
-
-                        channel=0;
-                        next_is_zarib=true;
+                        }
                     }
+                }
+                if (s==255)
+                {
+
+
+                    y++;
+                }
+
+
+
+                if (y==1 && s<255){
+
+                    y=0;
+                }
+                if (y==2)
+                {
+                    y=0;
+
+
+
+                    channel=0;
+                    next_is_zarib=true;
+                }
 
 
 
             }
         }
- public void write(byte[] bytes)
+        public void write(byte[] bytes)
         {
             try {
                 outputStream.write(bytes);

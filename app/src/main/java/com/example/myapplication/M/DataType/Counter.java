@@ -17,7 +17,13 @@ static int row_montage[]=new int[64];
 static int count_buffer=1;
 static int show_record_ch=0;
 
-
+    static int Surfaceview_height_record=0;
+   public int getSurfaceview_height_record(){
+       return Surfaceview_height_record;
+   }
+    public void setSurfaceview_height_record(int Surfaceview_height_record){
+        this.Surfaceview_height_record =Surfaceview_height_record;
+    }
     public int getRow_montage(int i) {
         return row_montage[i];
     }
@@ -222,17 +228,10 @@ static long anim_sleep=0;
 
     public static float [][] buffer=new float[64][80000];
 
-    public static float [][] buffer_clone=new float[8][80000];
 
 
-    public float getBuffer_clone(int i,int j) {
-        return buffer_clone[i][j];
-    }
 
 
-    public void setBuffer_clone(float f,int i,int j) {
-        this.buffer_clone[i][j]=f;
-    }
     public float getBuffere(int i,int j) {
         return buffer[i][j];
     }

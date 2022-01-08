@@ -59,6 +59,7 @@ public class EightRootActivity extends AppCompatActivity {
     SetPivotName namePivote;
     SetPivotValue pivotValue;
 
+    boolean set_dimens=true;
 
     ObjectAnimator animatorX;
     AnimatorSet animatorSet;
@@ -90,7 +91,8 @@ int line_play=0;
 
 int is_change_text=0;
 
- TextView ch1,ch2,ch3,ch4,ch5,ch6,ch7,ch8,ch9,ch10,ch11;
+ static TextView ch[]=new TextView[65];
+
 
     public static TextView getV0() {
         return V0;
@@ -187,6 +189,46 @@ int is_change_text=0;
         }
 
 
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (set_dimens) {
+                    if (counter.getSurfaceviewheheight()>0){
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                int paint_screen=counter.getSurfaceviewheheight();
+                                float button_step = (float) paint_screen / ((counter.getDefault_channel()+1) * 2);
+                                int k=counter.getDefault_channel();
+                                Toast.makeText(getApplicationContext(), "" + counter.getSurfaceviewheheight(), Toast.LENGTH_SHORT).show();
+
+
+                                for (int o=0;o<counter.getDefault_channel();o++){
+                                    Log.e(""+(float) (((2*o)+1) * button_step),""+(float) (((2*o)+1) * button_step));
+                                    ch[o+1].setTranslationY((float) (((2*o)+1) * button_step));
+                                }
+                                for (int o=counter.getDefault_channel();o<64;o++){
+                                    ch[o+1].setTranslationY(1000+paint_screen);
+                                }
+                                for (int s=1;s<65;s++)
+                                {
+                                    if (k>12)
+                                        ch[s].setScaleY((float) 1-((float) 1.25*k/100));
+                                    ch[s].setScaleX((float) 1-((float)1.25*k/100));
+
+
+                                }
+
+
+
+                            }
+                        });
+                        set_dimens=false;
+                    }
+                }
+            }
+        }).start();
+
 
     }
 
@@ -220,18 +262,73 @@ int is_change_text=0;
         setContentView(R.layout.eightroot);
 
 
-ch1=findViewById(R.id.axis_textview_1);
+ch[1]=findViewById(R.id.axis_textview_1);
 
-        ch2=findViewById(R.id.axis_textview_2);
-        ch3=findViewById(R.id.axis_textview_3);
-        ch4=findViewById(R.id.axis_textview_4);
-        ch5=findViewById(R.id.axis_textview_5);
-        ch6=findViewById(R.id.axis_textview_6);
-        ch7=findViewById(R.id.axis_textview_7);
-        ch8=findViewById(R.id.axis_textview_8);
-        ch9=findViewById(R.id.axis_textview_9);
-        ch10=findViewById(R.id.axis_textview_10);
-        ch11=findViewById(R.id.axis_textview_11);
+        ch[2]=findViewById(R.id.axis_textview_2);
+        ch[3]=findViewById(R.id.axis_textview_3);
+        ch[4]=findViewById(R.id.axis_textview_4);
+        ch[5]=findViewById(R.id.axis_textview_5);
+        ch[6]=findViewById(R.id.axis_textview_6);
+        ch[7]=findViewById(R.id.axis_textview_7);
+        ch[8]=findViewById(R.id.axis_textview_8);
+        ch[9]=findViewById(R.id.axis_textview_9);
+        ch[10]=findViewById(R.id.axis_textview_10);
+        ch[11]=findViewById(R.id.axis_textview_11);
+        ch[12]=findViewById(R.id.axis_textview_12);
+        ch[13]=findViewById(R.id.axis_textview_13);
+        ch[14]=findViewById(R.id.axis_textview_14);
+        ch[15]=findViewById(R.id.axis_textview_15);
+        ch[16]=findViewById(R.id.axis_textview_16);
+        ch[17]=findViewById(R.id.axis_textview_17);
+        ch[18]=findViewById(R.id.axis_textview_18);
+        ch[19]=findViewById(R.id.axis_textview_19);
+        ch[20]=findViewById(R.id.axis_textview_20);
+        ch[21]=findViewById(R.id.axis_textview_21);
+        ch[22]=findViewById(R.id.axis_textview_22);
+        ch[23]=findViewById(R.id.axis_textview_23);
+        ch[24]=findViewById(R.id.axis_textview_24);
+        ch[25]=findViewById(R.id.axis_textview_25);
+        ch[26]=findViewById(R.id.axis_textview_26);
+        ch[27]=findViewById(R.id.axis_textview_27);
+        ch[28]=findViewById(R.id.axis_textview_28);
+        ch[29]=findViewById(R.id.axis_textview_29);
+        ch[30]=findViewById(R.id.axis_textview_30);
+        ch[31]=findViewById(R.id.axis_textview_31);
+        ch[32]=findViewById(R.id.axis_textview_32);
+        ch[33]=findViewById(R.id.axis_textview_33);
+        ch[34]=findViewById(R.id.axis_textview_34);
+        ch[35]=findViewById(R.id.axis_textview_35);
+        ch[36]=findViewById(R.id.axis_textview_36);
+        ch[37]=findViewById(R.id.axis_textview_37);
+        ch[38]=findViewById(R.id.axis_textview_38);
+        ch[39]=findViewById(R.id.axis_textview_39);
+        ch[40]=findViewById(R.id.axis_textview_40);
+        ch[41]=findViewById(R.id.axis_textview_41);
+        ch[42]=findViewById(R.id.axis_textview_42);
+        ch[43]=findViewById(R.id.axis_textview_43);
+        ch[44]=findViewById(R.id.axis_textview_44);
+        ch[45]=findViewById(R.id.axis_textview_45);
+        ch[46]=findViewById(R.id.axis_textview_46);
+        ch[47]=findViewById(R.id.axis_textview_47);
+        ch[48]=findViewById(R.id.axis_textview_48);
+        ch[49]=findViewById(R.id.axis_textview_49);
+        ch[50]=findViewById(R.id.axis_textview_50);
+        ch[51]=findViewById(R.id.axis_textview_51);
+        ch[52]=findViewById(R.id.axis_textview_52);
+        ch[53]=findViewById(R.id.axis_textview_53);
+        ch[54]=findViewById(R.id.axis_textview_54);
+        ch[55]=findViewById(R.id.axis_textview_55);
+        ch[56]=findViewById(R.id.axis_textview_56);
+        ch[57]=findViewById(R.id.axis_textview_57);
+        ch[58]=findViewById(R.id.axis_textview_58);
+        ch[59]=findViewById(R.id.axis_textview_59);
+        ch[60]=findViewById(R.id.axis_textview_60);
+        ch[61]=findViewById(R.id.axis_textview_61);
+        ch[62]=findViewById(R.id.axis_textview_62);
+        ch[63]=findViewById(R.id.axis_textview_63);
+        ch[64]=findViewById(R.id.axis_textview_64);
+
+
 
 
         Display display=getWindowManager().getDefaultDisplay();
@@ -242,26 +339,13 @@ ch1=findViewById(R.id.axis_textview_1);
         string1=new String1();
         counter=new Counter();
 
-counter.getSurfaceviewheheight();
+
 
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
 
-int paint_screen=displayMetrics.heightPixels-(30+50+30+100+20+10+5);?????????????????????????
 
-float button_step=(float)paint_screen/(11*2);
-        Toast.makeText(getApplicationContext(), ""+paint_screen, Toast.LENGTH_SHORT).show();
-        ch1.setTranslationY(1*button_step);
-        ch2.setTranslationY(3*button_step);
-        ch3.setTranslationY(5*button_step);
-        ch4.setTranslationY(7*button_step);
-        ch5.setTranslationY(9*button_step);
-        ch6.setTranslationY(11*button_step);
-        ch7.setTranslationY(13*button_step);
-        ch8.setTranslationY(15*button_step);
-        ch9.setTranslationY(17*button_step);
-        ch10.setTranslationY(19*button_step);
-        ch11.setTranslationY(21*button_step);
+
 
 
 

@@ -278,7 +278,6 @@ public class BaseSurfaceSingleRecord extends SurfaceView implements SurfaceHolde
                                             for (int j2=0;j2<8;j2++){
                                                 for (int j1=0;j1<80000;j1++) {
                                                     counter.setBuffer(counter.getPart_data(), j2, j1);
-                                                    counter.setBuffer_clone(counter.getPart_data(), j2, j1);
                                                 }
                                             }
 

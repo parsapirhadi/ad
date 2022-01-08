@@ -22,8 +22,6 @@ import com.example.myapplication.R;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.myapplication.V.Activity.EightRecordActivity.ch1;
-
 
 /*
 SharedPreferences pref = getApplicationContext().getSharedPreferences("bch6", MODE_PRIVATE);

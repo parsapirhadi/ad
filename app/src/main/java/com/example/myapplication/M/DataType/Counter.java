@@ -10,6 +10,7 @@ import java.io.Serializable;
 
 public class Counter {
 
+
 static int exist_in_secound=0;
 
 static int row_montage[]=new int[64];
@@ -17,13 +18,61 @@ static int row_montage[]=new int[64];
 static int count_buffer=1;
 static int show_record_ch=0;
 
-    static int Surfaceview_height_record=0;
-   public int getSurfaceview_height_record(){
-       return Surfaceview_height_record;
-   }
-    public void setSurfaceview_height_record(int Surfaceview_height_record){
-        this.Surfaceview_height_record =Surfaceview_height_record;
+    static int Surfaceview_height_singlerecord=0;
+
+    static int Surfaceview_Width_singlerecord=0;
+
+
+    static int Surfaceview_height_eightrecord=0;
+
+    static int Surfaceview_Width_eightrecord=0;
+
+
+
+
+
+    public int getSurfaceview_Width_singlerecord() {
+        return Surfaceview_Width_singlerecord;
     }
+
+    public void setSurfaceview_Width_singlerecord(int Surfaceview_Width_singlerecord) {
+        this.Surfaceview_Width_singlerecord = Surfaceview_Width_singlerecord;
+    }
+
+    public int getSurfaceview_height_singlerecord(){
+       return Surfaceview_height_singlerecord;
+   }
+    public void setSurfaceview_height_singlerecord(int Surfaceview_height_singlerecord){
+        this.Surfaceview_height_singlerecord =Surfaceview_height_singlerecord;
+    }
+
+
+
+
+
+
+
+    public int getSurfaceview_Width_eightrecord() {
+        return Surfaceview_Width_eightrecord;
+    }
+
+    public void setSurfaceview_Width_eightrecord(int Surfaceview_Width_eightrecord) {
+        this.Surfaceview_Width_eightrecord = Surfaceview_Width_eightrecord;
+    }
+
+    public int getSurfaceview_height_eightrecord(){
+        return Surfaceview_height_eightrecord;
+    }
+    public void setSurfaceview_height_eightrecord(int Surfaceview_height_eightrecord){
+        this.Surfaceview_height_eightrecord =Surfaceview_height_eightrecord;
+    }
+
+
+
+
+
+
+
     public int getRow_montage(int i) {
         return row_montage[i];
     }
@@ -224,9 +273,9 @@ static long anim_sleep=0;
         Counter.surface_height = surface_height;
     }
 
-    public static float [][] channel=new float[64][800000];
+    public static float [][] channel=new float[default_channel][800000];
 
-    public static float [][] buffer=new float[64][80000];
+    public static float [][] buffer=new float[default_channel][40000];
 
 
 

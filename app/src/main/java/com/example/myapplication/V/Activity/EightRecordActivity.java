@@ -140,6 +140,78 @@ public class EightRecordActivity extends AppCompatActivity {
 
     static TextView V0,V1000,V2000,V3000,V4000,V5000,V6000,V7000,V8000;
 
+    public static TextView getV0() {
+        return V0;
+    }
+
+    public static void setV0(TextView v0) {
+        V0 = v0;
+    }
+
+    public static TextView getV1000() {
+        return V1000;
+    }
+
+    public static void setV1000(TextView v1000) {
+        V1000 = v1000;
+    }
+
+    public static TextView getV2000() {
+        return V2000;
+    }
+
+    public static void setV2000(TextView v2000) {
+        V2000 = v2000;
+    }
+
+    public static TextView getV3000() {
+        return V3000;
+    }
+
+    public static void setV3000(TextView v3000) {
+        V3000 = v3000;
+    }
+
+    public static TextView getV4000() {
+        return V4000;
+    }
+
+    public static void setV4000(TextView v4000) {
+        V4000 = v4000;
+    }
+
+    public static TextView getV5000() {
+        return V5000;
+    }
+
+    public static void setV5000(TextView v5000) {
+        V5000 = v5000;
+    }
+
+    public static TextView getV6000() {
+        return V6000;
+    }
+
+    public static void setV6000(TextView v6000) {
+        V6000 = v6000;
+    }
+
+    public static TextView getV7000() {
+        return V7000;
+    }
+
+    public static void setV7000(TextView v7000) {
+        V7000 = v7000;
+    }
+
+    public static TextView getV8000() {
+        return V8000;
+    }
+
+    public static void setV8000(TextView v8000) {
+        V8000 = v8000;
+    }
+
 
     BaseSurfaceEightRecord msg_box;
     String tempMsg;
@@ -272,13 +344,13 @@ public class EightRecordActivity extends AppCompatActivity {
         is_activity_on=false;
 
         for (int j2=0;j2<8;j2++){
-            for (int j1=0;j1<9000;j1++) {
+            for (int j1=0;j1<40000;j1++) {
                 counter.setBuffer(counter.getPart_data(), j2, j1);
 
             }
         }
 
-        is_activity_on=false;
+        //is_activity_on=false;
         String string = "NOP\r\n";
         set_limit = 1;
 
@@ -379,19 +451,28 @@ public class EightRecordActivity extends AppCompatActivity {
         counter.setEnddraw(counter.getHorizontal_scale()*counter.getRate_in_s());
         counter.setEight_step_x((float) counter.getSurface_width()/(counter.getRate_in_s()*counter.getHorizontal_scale()));
 
+          try {
 
 
-        V0.setText(""+0);
-        V1000.setText(""+(float)(int)((125*counter.getHorizontal_scale()))/1000);
-        V2000.setText(""+(float)(int)((2*125*counter.getHorizontal_scale()))/1000);
-        V3000.setText(""+(float)(int)((3*125*counter.getHorizontal_scale()))/1000);
-        V4000.setText(""+(float)(int)((4*125*counter.getHorizontal_scale()))/1000);
-        V5000.setText(""+(float)(int)((5*125*counter.getHorizontal_scale()))/1000);
-        V6000.setText(""+(float)(int)((6*125*counter.getHorizontal_scale()))/1000);
-        V7000.setText(""+(float)(int)((7*125*counter.getHorizontal_scale()))/1000);
-        V8000.setText(""+(float)(int)((8*125*counter.getHorizontal_scale()))/1000);
+
+              getV0().setText((Float.parseFloat(SingleRecordActivity.getV0().getText().toString()))+"");getV1000().setText((Float.parseFloat(getV0().getText().toString())+((float) counter.getHorizontal_scale()/8))+"");
+              getV1000().setText((Float.parseFloat(getV0().getText().toString())+(1*(float) counter.getHorizontal_scale()/8))+"");
+              getV2000().setText((Float.parseFloat(getV0().getText().toString())+(2*(float) counter.getHorizontal_scale()/8))+"");
+              getV3000().setText((Float.parseFloat(getV0().getText().toString())+(3*(float) counter.getHorizontal_scale()/8))+"");
+              getV4000().setText((Float.parseFloat(getV0().getText().toString())+(4*(float) counter.getHorizontal_scale()/8))+"");
+              getV5000().setText((Float.parseFloat(getV0().getText().toString())+(5*(float) counter.getHorizontal_scale()/8))+"");
+              getV6000().setText((Float.parseFloat(getV0().getText().toString())+(6*(float) counter.getHorizontal_scale()/8))+"");
+              getV7000().setText((Float.parseFloat(getV0().getText().toString())+(7*(float) counter.getHorizontal_scale()/8))+"");
+              getV8000().setText((Float.parseFloat(getV0().getText().toString())+(8*(float) counter.getHorizontal_scale()/8))+"");
+
+
+
+          }catch (NullPointerException e){
+              e.printStackTrace();
+          }
+
         for (int j2=0;j2<8;j2++){
-            for (int j1=0;j1<9000;j1++) {
+            for (int j1=0;j1<40000;j1++) {
                 counter.setBuffer(counter.getPart_data(), j2, j1);
 
             }
@@ -567,13 +648,13 @@ public class EightRecordActivity extends AppCompatActivity {
             @Override
             public void run() {
                 while (set_dimens) {
-                    if (counter.getSurfaceviewheheight()>0){
+                    if (counter.getSurfaceview_height_eightrecord()>0){
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
 
 
-                                int paint_screen=counter.getSurfaceview_height_record();
+                                int paint_screen=counter.getSurfaceview_height_eightrecord();
                                 float button_step = (float) paint_screen / (((counter.getDefault_channel()) * 2));
                                 int k=counter.getDefault_channel();
                                 Toast.makeText(getApplicationContext(), "" + counter.getSurfaceviewheheight(), Toast.LENGTH_SHORT).show();
@@ -592,19 +673,44 @@ public class EightRecordActivity extends AppCompatActivity {
                                 }
                                 for (int s=1;s<65;s++)
                                 {
-                                    if (k>12)
-                                        ch[s].setScaleY((float) 1-((float) 1.25*k/100));
-                                    ch[s].setScaleX((float) 1-((float)1.25*k/100));
-
+                                    if (k>12) {
+                                        ch[s].setScaleY((float) 1 - ((float) 1.25 * k / 100));
+                                        ch[s].setScaleX((float) 1 - ((float) 1.25 * k / 100));
+                                    }
 
                                 }
                                 //   findViewById(R.id.left_linearlayout_re).setTranslationY((float) (button_step*-1));
 
 
 
+
+
+                                float f= counter.getSurfaceview_Width_eightrecord();
+
+                                getV0().setTranslationX(0);
+                                getV1000().setTranslationX(((float) f/8)*1);
+                                getV2000().setTranslationX(((float)f/8)*2);
+                                getV3000().setTranslationX(((float)f/8)*3);
+                                getV4000().setTranslationX(((float)f/8)*4);
+                                getV5000().setTranslationX(((float)f/8)*5);
+                                getV6000().setTranslationX(((float)f/8)*6);
+                                getV7000().setTranslationX(((float)f/8)*7);
+                                getV8000().setTranslationX(((float)f/8)*8-30);
+
+
+
+
+
                             }
                         });
+
+
+
+
                         set_dimens=false;
+
+
+
                     }
                 }
             }
@@ -682,7 +788,7 @@ public class EightRecordActivity extends AppCompatActivity {
 
 
         for (int j2=0;j2<8;j2++){
-            for (int j1=0;j1<9000;j1++) {
+            for (int j1=0;j1<40000;j1++) {
                 counter.setBuffer(counter.getPart_data(), j2, j1);
 
             }
@@ -774,12 +880,11 @@ public class EightRecordActivity extends AppCompatActivity {
     public void mono(){
         try {
 
-
             for (int u=1;u<65;u++){
 
                 SharedPreferences sharedPreferences=getApplicationContext().getSharedPreferences("bch"+u, MODE_PRIVATE);
                 ch[u].setText(sharedPreferences.getString("name","ch"+u).toString());
-
+                ch[u].setTextSize(12);
 
             }
 
@@ -803,7 +908,7 @@ public class EightRecordActivity extends AppCompatActivity {
             SharedPreferences sharedPreferences_start = getApplicationContext().getSharedPreferences("bch"+a+"_start", MODE_PRIVATE);
             SharedPreferences sharedPreferences_end=  getApplicationContext().getSharedPreferences("bch"+a+"_end", MODE_PRIVATE);
             ch[a].setText(sharedPreferences_start.getString("name","ch"+a)+"-"+sharedPreferences_end.getString("name","ch"+a));
-
+            ch[a].setTextSize(10);
         }
 
 
@@ -1728,7 +1833,7 @@ public class EightRecordActivity extends AppCompatActivity {
         {
             byte[] buffer=new byte[counter.getRate_in_s()];
 
-            no_limit=80001-(counter.getHorizontal_scale()*counter.getRate_in_s()*3);
+            no_limit=40001-(counter.getHorizontal_scale()*counter.getRate_in_s()*3);
             while (is_activity_on)
             {
 

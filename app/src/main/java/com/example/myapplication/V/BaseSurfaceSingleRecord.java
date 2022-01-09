@@ -209,7 +209,8 @@ public class BaseSurfaceSingleRecord extends SurfaceView implements SurfaceHolde
             long frameStartTime;
             long frameTime;
 
-
+            counter.setSurfaceview_height_singlerecord(getHeight());
+            counter.setSurfaceview_Width_singlerecord(getWidth());
 
             try
             {
@@ -256,6 +257,30 @@ public class BaseSurfaceSingleRecord extends SurfaceView implements SurfaceHolde
 
                             if ( counter.getBuffere(0,(counter.getHorizontal_scale()*500*x)-100)!=1000.0 ){
 
+                                SingleRecordActivity.getV0().setText(((counter.getHorizontal_scale())+Float.parseFloat(SingleRecordActivity.getV0().getText().toString()))+"");
+                                SingleRecordActivity.getV1000().setText(((counter.getHorizontal_scale())+Float.parseFloat(SingleRecordActivity.getV1000().getText().toString()))+"");
+                                SingleRecordActivity.getV2000().setText(((counter.getHorizontal_scale())+Float.parseFloat(SingleRecordActivity.getV2000().getText().toString()))+"");
+                                SingleRecordActivity.getV3000().setText(((counter.getHorizontal_scale())+Float.parseFloat(SingleRecordActivity.getV3000().getText().toString()))+"");
+                                SingleRecordActivity.getV4000().setText(((counter.getHorizontal_scale())+Float.parseFloat(SingleRecordActivity.getV4000().getText().toString()))+"");
+                                SingleRecordActivity.getV5000().setText(((counter.getHorizontal_scale())+Float.parseFloat(SingleRecordActivity.getV5000().getText().toString()))+"");
+                                SingleRecordActivity.getV6000().setText(((counter.getHorizontal_scale())+Float.parseFloat(SingleRecordActivity.getV6000().getText().toString()))+"");
+                                SingleRecordActivity.getV7000().setText(((counter.getHorizontal_scale())+Float.parseFloat(SingleRecordActivity.getV7000().getText().toString()))+"");
+                                SingleRecordActivity.getV8000().setText(((counter.getHorizontal_scale())+Float.parseFloat(SingleRecordActivity.getV8000().getText().toString()))+"");
+
+
+                                EightRecordActivity.getV0().setText(((counter.getHorizontal_scale())+Float.parseFloat(EightRecordActivity.getV0().getText().toString()))+"");
+                                EightRecordActivity.getV1000().setText(((counter.getHorizontal_scale())+Float.parseFloat(EightRecordActivity.getV1000().getText().toString()))+"");
+                                EightRecordActivity.getV2000().setText(((counter.getHorizontal_scale())+Float.parseFloat(EightRecordActivity.getV2000().getText().toString()))+"");
+                                EightRecordActivity.getV3000().setText(((counter.getHorizontal_scale())+Float.parseFloat(EightRecordActivity.getV3000().getText().toString()))+"");
+                                EightRecordActivity.getV4000().setText(((counter.getHorizontal_scale())+Float.parseFloat(EightRecordActivity.getV4000().getText().toString()))+"");
+                                EightRecordActivity.getV5000().setText(((counter.getHorizontal_scale())+Float.parseFloat(EightRecordActivity.getV5000().getText().toString()))+"");
+                                EightRecordActivity.getV6000().setText(((counter.getHorizontal_scale())+Float.parseFloat(EightRecordActivity.getV6000().getText().toString()))+"");
+                                EightRecordActivity.getV7000().setText(((counter.getHorizontal_scale())+Float.parseFloat(EightRecordActivity.getV7000().getText().toString()))+"");
+                                EightRecordActivity.getV8000().setText(((counter.getHorizontal_scale())+Float.parseFloat(EightRecordActivity.getV8000().getText().toString()))+"");
+
+
+
+
                                 counter.setEnddraw(counter.getEnddraw()+(counter.getHorizontal_scale()*500));
                                 counter.setStartdraw(counter.getStartdraw()+(counter.getHorizontal_scale()*500));
                                 x++;
@@ -269,14 +294,14 @@ public class BaseSurfaceSingleRecord extends SurfaceView implements SurfaceHolde
                                 int j=counter.getShow_record_ch();
                                 for (i1 = counter.getStartdraw(); i1 < counter.getEnddraw(); i1++) {
                                     if (counter.getBuffere(j,i1+1)!=1000.0  ) {
-                                        if (i1%70000==79990-(counter.getHorizontal_scale()*counter.getRate_in_s()*3)){
+                                        if (i1%30000==39990-(counter.getHorizontal_scale()*counter.getRate_in_s()*3)){
 
                                             Log.e("start=", "" +counter.getStartdraw() );
                                             Log.e("i=end", "" + counter.getEnddraw() );
 
 
                                             for (int j2=0;j2<8;j2++){
-                                                for (int j1=0;j1<80000;j1++) {
+                                                for (int j1=0;j1<40000;j1++) {
                                                     counter.setBuffer(counter.getPart_data(), j2, j1);
                                                 }
                                             }
@@ -286,10 +311,12 @@ public class BaseSurfaceSingleRecord extends SurfaceView implements SurfaceHolde
                                             i1=1;
 
 
+
+
                                            x=1;
 
                                         }
-                                        g=(i1%70000)-1;
+                                        g=(i1%30000)-1;
 
 
 

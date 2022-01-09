@@ -39,7 +39,7 @@ Counter counter;
         counter=new Counter();
         Intent intent=new Intent(this,EightRootActivity.class);
 
-        for (int o=0;o<32;o++){
+        for (int o=0;o<counter.getDefault_channel();o++){
         for (int p=0;p<800000;p++) {
             counter.setChannel(1000, o, p);
         }}

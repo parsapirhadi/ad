@@ -637,88 +637,101 @@ xmlns:tools="http://schemas.android.com/tools"
                 android:layout_height="25dp"
 
                 />
+
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:background="#e6e6e6"
+
+                android:layout_height="match_parent">
+
+
+                <TextView
+                    android:layout_width="50dp"
+                    android:layout_height="25dp"
+
+                    android:id="@+id/SM1_0"
+                    android:text="0"
+
+                    tools:ignore="MissingConstraints" />
+
+
+
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="25dp"
-
-                android:id="@+id/SM1_0"
-                android:text="0"
-                android:layout_weight="1"
-
-                />
-
-
-            <TextView
-                android:layout_width="0dp"
-                android:text="1000"
-                android:layout_weight="1"
+                android:layout_width="50dp"
+                android:text="1.0"
                 android:id="@+id/SM1_1000"
                 android:layout_height="25dp"
-                />
+                tools:ignore="MissingConstraints" />
 
             <TextView
-                android:layout_width="0dp"
-                android:text="2000"
+
+                android:layout_width="50dp"
+                android:text="2"
                 android:id="@+id/SM1_2000"
 
-                android:layout_weight="1"
                 android:layout_height="25dp"
-                />
+                tools:ignore="MissingConstraints" />
 
             <TextView
-                android:layout_width="0dp"
-                android:text="3000"
+
+                android:layout_width="50dp"
+                android:text="3.0"
                 android:id="@+id/SM1_3000"
 
 
-                android:layout_weight="1"
                 android:layout_height="25dp"
-                />
+                tools:ignore="MissingConstraints" />
 
             <TextView
-                android:layout_width="0dp"
-                android:text="4000"
+
+                android:layout_width="50dp"
+                android:text="4.0"
 
                 android:id="@+id/SM1_4000"
 
-                android:layout_weight="1"
                 android:layout_height="25dp"
-                />
+                tools:ignore="MissingConstraints" />
             <TextView
-                android:layout_width="0dp"
-                android:text="5000"
+
+                android:layout_width="50dp"
+                android:text="5.0"
                 android:id="@+id/SM1_5000"
 
 
-                android:layout_weight="1"
                 android:layout_height="25dp"
-                />
+                tools:ignore="MissingConstraints" />
             <TextView
-                android:layout_width="0dp"
-                android:text="6000"
+
+                android:layout_width="50dp"
+                android:text="6.0"
 
                 android:id="@+id/SM1_6000"
 
-                android:layout_weight="1"
                 android:layout_height="25dp"
-                />
+                tools:ignore="MissingConstraints" />
             <TextView
-                android:layout_width="0dp"
-                android:text="7000"
+
+                android:layout_width="50dp"
+                android:text="7.0"
                 android:id="@+id/SM1_7000"
 
 
-                android:layout_weight="1"
                 android:layout_height="25dp"
-                />
+                tools:ignore="MissingConstraints" />
             <TextView
-                android:layout_width="wrap_content"
-                android:text="8000"
+
+                android:layout_width="50dp"
+                android:text="8.0"
                 android:id="@+id/SM1_8000"
 
 
                 android:layout_height="25dp"
-                />
+                tools:ignore="MissingConstraints" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         </LinearLayout>
     </LinearLayout>

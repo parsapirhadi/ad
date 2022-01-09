@@ -87,7 +87,7 @@ public class SingleRecordActivity extends AppCompatActivity {
 
     Animation animation1,animation2;
 
-
+    boolean set_dimens=true;
 boolean animation_bluetooth=true;
 
   //  ProgressBar bluetooth_progress;
@@ -291,7 +291,7 @@ Thread bluetooth_thread;
         Log.e("onPause","onPause");
 
         for (int j2=0;j2<8;j2++){
-            for (int j1=0;j1<80000;j1++) {
+            for (int j1=0;j1<40000;j1++) {
                 counter.setBuffer(counter.getPart_data(), j2, j1);
             }
         }
@@ -321,19 +321,17 @@ is_activity_on=false;
 
         super.onResume();
 
-        is_disconnected=false;
+        is_disconnected = false;
 
-        is_activity_on=true;
-        data_count=0;
-        conter=0;
-        is_connected=false;
-        is_open=false;
-
-
+        is_activity_on = true;
+        data_count = 0;
+        conter = 0;
+        is_connected = false;
+        is_open = false;
 
 
-        animation1= AnimationUtils.loadAnimation(getApplicationContext(),R.anim.bluetooth_anim_1);
-        animation2=AnimationUtils.loadAnimation(getApplicationContext(),R.anim.bluetooth_anim_2);
+        animation1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.bluetooth_anim_1);
+        animation2 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.bluetooth_anim_2);
         bluetooth.startAnimation(animation1);
         animation2.setAnimationListener(new Animation.AnimationListener() {
             @Override
@@ -375,49 +373,45 @@ is_activity_on=false;
         });
 
 
-
-
-
-        if (objects.getSocket()!=null){
-            if (objects.getSocket().isConnected()){
+        if (objects.getSocket() != null) {
+            if (objects.getSocket().isConnected()) {
                 bluetooth.setBackgroundResource(R.drawable.bluetooth_on_foreground);
-
-
-
-
-
 
 
             }
         }
-        i=0;
+        i = 0;
         counter.setStartdraw(1);
 
 
-        if (counter.isBluetooth_drawabe()){
+        if (counter.isBluetooth_drawabe()) {
 
 
-          bluetooth.setBackgroundResource(R.drawable.bluetooth_on_foreground);
-
-
-
+            bluetooth.setBackgroundResource(R.drawable.bluetooth_on_foreground);
 
 
         }
-        counter.setSingle_step_x((float) counter.getSurface_width()/(500*counter.getHorizontal_scale()));
-        counter.setSingle_step_y((float) counter.getSurface_height()/200);
+        counter.setSingle_step_x((float) counter.getSurface_width() / (500 * counter.getHorizontal_scale()));
+        counter.setSingle_step_y((float) counter.getSurface_height() / 200);
 
-        V0_.setText(""+0);
-        V1000_.setText(""+(float)(int)((125*counter.getHorizontal_scale()))/1000);
-        V2000_.setText(""+(float)(int)((2*125*counter.getHorizontal_scale()))/1000);
-        V3000_.setText(""+(float)(int)((3*125*counter.getHorizontal_scale()))/1000);
-        V4000_.setText(""+(float)(int)((4*125*counter.getHorizontal_scale()))/1000);
-        V5000_.setText(""+(float)(int)((5*125*counter.getHorizontal_scale()))/1000);
-        V6000_.setText(""+(float)(int)((6*125*counter.getHorizontal_scale()))/1000);
-        V7000_.setText(""+(float)(int)((7*125*counter.getHorizontal_scale()))/1000);
-        V8000_.setText(""+(float)(int)((8*125*counter.getHorizontal_scale()))/1000);
+
+
+
+            getV0().setText((Float.parseFloat(EightRecordActivity.getV0().getText().toString()))+"");
+        getV1000().setText((Float.parseFloat(getV0().getText().toString())+(1*(float) counter.getHorizontal_scale()/8))+"");
+        getV2000().setText((Float.parseFloat(getV0().getText().toString())+(2*(float) counter.getHorizontal_scale()/8))+"");
+        getV3000().setText((Float.parseFloat(getV0().getText().toString())+(3*(float) counter.getHorizontal_scale()/8))+"");
+        getV4000().setText((Float.parseFloat(getV0().getText().toString())+(4*(float) counter.getHorizontal_scale()/8))+"");
+        getV5000().setText((Float.parseFloat(getV0().getText().toString())+(5*(float) counter.getHorizontal_scale()/8))+"");
+        getV6000().setText((Float.parseFloat(getV0().getText().toString())+(6*(float) counter.getHorizontal_scale()/8))+"");
+        getV7000().setText((Float.parseFloat(getV0().getText().toString())+(7*(float) counter.getHorizontal_scale()/8))+"");
+        getV8000().setText((Float.parseFloat(getV0().getText().toString())+(8*(float) counter.getHorizontal_scale()/8))+"");
+
+
+
+
         for (int j2=0;j2<8;j2++){
-            for (int j1=0;j1<80000;j1++) {
+            for (int j1=0;j1<40000;j1++) {
                 counter.setBuffer(counter.getPart_data(), j2, j1);
             }
         }
@@ -440,7 +434,7 @@ counter.setShow_record_ch(0);
         choise.setText(EightRecordActivity.getCh1().getText().toString());
 
         for (int j2=0;j2<8;j2++){
-            for (int j1=0;j1<80000;j1++) {
+            for (int j1=0;j1<40000;j1++) {
                 counter.setBuffer(counter.getPart_data(), j2, j1);
             }
         }
@@ -683,6 +677,40 @@ counter.setShow_record_ch(0);
 
 
 
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (set_dimens) {
+                    if (counter.getSurfaceview_Width_singlerecord()>0){
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                               float f= counter.getSurfaceview_Width_singlerecord();
+
+                                getV0().setTranslationX(0);
+                                getV1000().setTranslationX(((float)f/8)*1);
+                                getV2000().setTranslationX(((float)f/8)*2);
+                                getV3000().setTranslationX(((float)f/8)*3);
+                                getV4000().setTranslationX(((float)f/8)*4);
+                                getV5000().setTranslationX(((float)f/8)*5);
+                                getV6000().setTranslationX(((float)f/8)*6);
+                                getV7000().setTranslationX(((float)f/8)*7);
+                                getV8000().setTranslationX(((float)f/8)*8-100);
+
+
+
+
+
+                            }
+                        });
+                        set_dimens=false;
+
+
+
+                    }
+                }
+            }
+        }).start();
 
 
     }
@@ -722,7 +750,7 @@ counter.setShow_record_ch(0);
 
 
         for (int j2=0;j2<8;j2++){
-            for (int j1=0;j1<80000;j1++) {
+            for (int j1=0;j1<40000;j1++) {
                 counter.setBuffer(counter.getPart_data(), j2, j1);
             }
         }
@@ -1070,7 +1098,6 @@ myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                 dialog1.show();
                             }
                         });
-
                     }
                 }).start();
 
@@ -1213,7 +1240,7 @@ break;
                             next_is_zarib=true;
                             data=(zarib*256)+s;
                             if (zarib<255){
-                                o=(i/8)%(80001-(counter.getHorizontal_scale()*counter.getRate_in_s()*3));
+                                o=(i/8)%(40001-(counter.getHorizontal_scale()*counter.getRate_in_s()*3));
 
 
 

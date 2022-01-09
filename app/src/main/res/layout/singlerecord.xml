@@ -215,6 +215,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
+                            android:gravity="center|top"
                             android:id="@+id/VS100rec"
                             android:layout_weight="1"
                             android:text="100" />
@@ -222,7 +223,8 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
-                            android:layout_weight="1"
+                            android:gravity="center|top"
+                           android:layout_weight="1"
                             android:id="@+id/VS50rec"
                             android:text="50"
 
@@ -230,6 +232,7 @@
 
                         <TextView
                             android:layout_width="match_parent"
+                            android:gravity="center|top"
                             android:layout_height="0dp"
                             android:layout_weight="1"
                             android:id="@+id/VS0rec"
@@ -240,6 +243,8 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
+
+                            android:gravity="center|top"
                             android:layout_weight="1"
                             android:id="@+id/VS_50rec"
                             android:text="-50"
@@ -249,8 +254,9 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:gravity="bottom"
-                            android:id="@+id/VS_100rec"
+
+                            android:gravity="center|top"
+                           android:id="@+id/VS_100rec"
                             android:text="-100"
 
                             />
@@ -292,88 +298,91 @@
 
             >
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:gravity="right"
                 android:orientation="horizontal"
                 android:layout_weight="1"
                 >
+
+
+
+
                 <TextView
-                    android:layout_width="0dp"
+                    android:layout_width="50dp"
                     android:layout_height="25dp"
                     android:id="@+id/SS_0rec"
                     android:text="0"
-                    android:layout_weight="1"
 
-                    />
+                    tools:ignore="MissingConstraints" />
 
 
                 <TextView
-                    android:layout_width="0dp"
-                    android:text="1000"
-                    android:layout_weight="1"
+                    android:layout_width="50dp"
+                    android:text="1.0"
                     android:id="@+id/SS_1000rec"
                     android:layout_height="25dp"
-                    />
+                    tools:ignore="MissingConstraints" />
 
                 <TextView
-                    android:layout_width="0dp"
-                    android:text="2000"
+                    android:layout_width="50dp"
+
+                    android:text="2.0"
                     android:id="@+id/SS_2000rec"
 
-                    android:layout_weight="1"
                     android:layout_height="25dp"
-                    />
+                    tools:ignore="MissingConstraints" />
 
                 <TextView
-                    android:layout_width="0dp"
-                    android:text="3000"
+                    android:text="3.0"
                     android:id="@+id/SS_3000rec"
 
-                    android:layout_weight="1"
+                    android:layout_width="50dp"
+
                     android:layout_height="25dp"
-                    />
+                    tools:ignore="MissingConstraints" />
 
                 <TextView
-                    android:layout_width="0dp"
-                    android:text="4000"
+                    android:layout_width="50dp"
+
+                    android:text="4.0"
                     android:id="@+id/SS_4000rec"
 
-                    android:layout_weight="1"
                     android:layout_height="25dp"
-                    />
+                    tools:ignore="MissingConstraints" />
                 <TextView
-                    android:layout_width="0dp"
-                    android:text="5000"
+                    android:text="5.0"
                     android:id="@+id/SS_5000rec"
+                    android:layout_width="50dp"
 
-                    android:layout_weight="1"
                     android:layout_height="25dp"
-                    />
+                    tools:ignore="MissingConstraints" />
                 <TextView
-                    android:layout_width="0dp"
-                    android:text="6000"
+                    android:text="6.0"
                     android:id="@+id/SS_6000rec"
 
-                    android:layout_weight="1"
+                    android:layout_width="50dp"
                     android:layout_height="25dp"
-                    />
+                    tools:ignore="MissingConstraints" />
                 <TextView
-                    android:layout_width="0dp"
-                    android:text="7000"
+                    android:text="7.0"
                     android:id="@+id/SS_7000rec"
 
-                    android:layout_weight="1"
+                    android:layout_width="50dp"
                     android:layout_height="25dp"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:text="8000"
-                    android:id="@+id/SS_8000rec"
-                    android:layout_height="25dp"
-                    />
+                    tools:ignore="MissingConstraints" />
 
-            </LinearLayout>
+                <TextView
+                    android:id="@+id/SS_8000rec"
+                    android:layout_width="50dp"
+                    android:gravity="right"
+                    android:layout_height="25dp"
+                    android:text="8.0"
+                    tools:ignore="MissingConstraints" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
 
     </androidx.appcompat.widget.LinearLayoutCompat>

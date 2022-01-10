@@ -108,6 +108,8 @@ Thread bluetooth_thread;
 
     TextView textplay,row100,row50,row_100,row_50,row0;
 
+    boolean is_buffer_null=false;
+
     static boolean Recordcount=false;
 
     public static void setIs_isRecordcount(boolean Recordcount) {
@@ -292,7 +294,7 @@ Thread bluetooth_thread;
 
         for (int j2=0;j2<8;j2++){
             for (int j1=0;j1<40000;j1++) {
-                counter.setBuffer(counter.getPart_data(), j2, j1);
+               // counter.setBuffer(counter.getPart_data(), j2, j1);
             }
         }
         Log.e("SonPause","SonPause");
@@ -381,8 +383,6 @@ is_activity_on=false;
             }
         }
         i = 0;
-        counter.setStartdraw(1);
-
 
         if (counter.isBluetooth_drawabe()) {
 
@@ -397,7 +397,7 @@ is_activity_on=false;
 
 
 
-            getV0().setText((Float.parseFloat(EightRecordActivity.getV0().getText().toString()))+"");
+        getV0().setText((Float.parseFloat(EightRecordActivity.getV0().getText().toString()))+"");
         getV1000().setText((Float.parseFloat(getV0().getText().toString())+(1*(float) counter.getHorizontal_scale()/8))+"");
         getV2000().setText((Float.parseFloat(getV0().getText().toString())+(2*(float) counter.getHorizontal_scale()/8))+"");
         getV3000().setText((Float.parseFloat(getV0().getText().toString())+(3*(float) counter.getHorizontal_scale()/8))+"");
@@ -412,7 +412,7 @@ is_activity_on=false;
 
         for (int j2=0;j2<8;j2++){
             for (int j1=0;j1<40000;j1++) {
-                counter.setBuffer(counter.getPart_data(), j2, j1);
+             //  counter.setBuffer(counter.getPart_data(), j2, j1);
             }
         }
 
@@ -426,8 +426,6 @@ counter.setShow_record_ch(0);
         vibrator= (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         objects.setBluetoothAdapter(BluetoothAdapter.getDefaultAdapter());
 
-        counter.setEnddraw(counter.getHorizontal_scale()*counter.getRate_in_s());
-        counter.setEight_step_x((float) counter.getSurfaceviewhewidth()/(counter.getRate_in_s()*counter.getHorizontal_scale()));
 
         counter.setEight_step_y((float) counter.getSurfaceviewhewidth()/200);
         counter.setEight_step_y((counter.getEight_step_y()/counter.getDefault_channel())/2);
@@ -435,7 +433,7 @@ counter.setShow_record_ch(0);
 
         for (int j2=0;j2<8;j2++){
             for (int j1=0;j1<40000;j1++) {
-                counter.setBuffer(counter.getPart_data(), j2, j1);
+              //  counter.setBuffer(counter.getPart_data(), j2, j1);
             }
         }
 
@@ -742,8 +740,7 @@ counter.setShow_record_ch(0);
         vibrator= (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         objects.setBluetoothAdapter(BluetoothAdapter.getDefaultAdapter());
 
-        counter.setEnddraw(counter.getHorizontal_scale()*counter.getRate_in_s());
-        counter.setEight_step_x((float) counter.getSurfaceviewhewidth()/(counter.getRate_in_s()*counter.getHorizontal_scale()));
+       counter.setEight_step_x((float) counter.getSurfaceviewhewidth()/(counter.getRate_in_s()*counter.getHorizontal_scale()));
 
         counter.setEight_step_y((float) counter.getSurfaceviewhewidth()/200);
         counter.setEight_step_y((counter.getEight_step_y()/counter.getDefault_channel())/2);
@@ -751,7 +748,7 @@ counter.setShow_record_ch(0);
 
         for (int j2=0;j2<8;j2++){
             for (int j1=0;j1<40000;j1++) {
-                counter.setBuffer(counter.getPart_data(), j2, j1);
+              //  counter.setBuffer(counter.getPart_data(), j2, j1);
             }
         }
 
@@ -1220,7 +1217,7 @@ myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 catch (IOException e){
 
                     e.printStackTrace();
-break;
+               break;
 
                 }
 
@@ -1242,10 +1239,22 @@ break;
                             if (zarib<255){
                                 o=(i/8)%(40001-(counter.getHorizontal_scale()*counter.getRate_in_s()*3));
 
+                               while (!is_buffer_null){
+                                   if (counter.getBuffere(channel,o)==counter.getPart_data()){
+                                       break;
+                                   }
+                                   i+=8;
+                                   o=(i/8)%(40001-(counter.getHorizontal_scale()*counter.getRate_in_s()*3));
 
+                                   Log.e("not nullll","not nullll");
+                               }
 
                                 counter.setBuffer(((float) ((data - 2048) / 1.4)), channel, o);
                                 channel++;
+
+                                if (o%((500*counter.getHorizontal_scale()))==0){
+                                    counter.setChangeScreen_single(true);
+                                }
 
                                 if (channel==counter.getDefault_channel()) {
                                     channel=0;
@@ -1253,6 +1262,7 @@ break;
                                     counter.setBuffer( ((float)  ((data - 2048) / 1.4)), counter.getDefault_channel()-1, o);
 
                                 }
+
 
 
                                 i++;

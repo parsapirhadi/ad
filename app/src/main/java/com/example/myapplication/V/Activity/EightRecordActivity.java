@@ -36,6 +36,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 //import android.widget.Toast;
+//import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -125,6 +126,9 @@ public class EightRecordActivity extends AppCompatActivity {
 
     int data_count=0;
     int conter=0;
+
+
+    boolean is_buffer_null=false;
 
     View parentLayout;
     int recordcount=0;
@@ -299,7 +303,7 @@ public class EightRecordActivity extends AppCompatActivity {
                                 } catch (InterruptedException e) {
                                     e.printStackTrace();
                                 }
-                                Log.e("is start", "is start");
+
                                 record.setBackgroundResource(R.drawable.rect_stop_record);
                                 String string = "CONTB\r\n";
                                 set_limit = 1;
@@ -345,7 +349,7 @@ public class EightRecordActivity extends AppCompatActivity {
 
         for (int j2=0;j2<8;j2++){
             for (int j1=0;j1<40000;j1++) {
-                counter.setBuffer(counter.getPart_data(), j2, j1);
+             //   counter.setBuffer(counter.getPart_data(), j2, j1);
 
             }
         }
@@ -354,7 +358,6 @@ public class EightRecordActivity extends AppCompatActivity {
         String string = "NOP\r\n";
         set_limit = 1;
 
-        Log.e("EonPause","EonPause");
 
 
         if (objects.getSocket()!=null){
@@ -442,20 +445,21 @@ public class EightRecordActivity extends AppCompatActivity {
 
             }
         }
-        counter.setStartdraw(1);
+
 
         if (counter.isBluetooth_drawabe()){
             bluetooth.setBackgroundResource(R.drawable.bluetooth_on_foreground);
         }
 
-        counter.setEnddraw(counter.getHorizontal_scale()*counter.getRate_in_s());
+
         counter.setEight_step_x((float) counter.getSurface_width()/(counter.getRate_in_s()*counter.getHorizontal_scale()));
 
           try {
 
 
 
-              getV0().setText((Float.parseFloat(SingleRecordActivity.getV0().getText().toString()))+"");getV1000().setText((Float.parseFloat(getV0().getText().toString())+((float) counter.getHorizontal_scale()/8))+"");
+              getV0().setText((Float.parseFloat(SingleRecordActivity.getV0().getText().toString()))+"");
+              getV1000().setText((Float.parseFloat(getV0().getText().toString())+((float) counter.getHorizontal_scale()/8))+"");
               getV1000().setText((Float.parseFloat(getV0().getText().toString())+(1*(float) counter.getHorizontal_scale()/8))+"");
               getV2000().setText((Float.parseFloat(getV0().getText().toString())+(2*(float) counter.getHorizontal_scale()/8))+"");
               getV3000().setText((Float.parseFloat(getV0().getText().toString())+(3*(float) counter.getHorizontal_scale()/8))+"");
@@ -473,7 +477,7 @@ public class EightRecordActivity extends AppCompatActivity {
 
         for (int j2=0;j2<8;j2++){
             for (int j1=0;j1<40000;j1++) {
-                counter.setBuffer(counter.getPart_data(), j2, j1);
+              //  counter.setBuffer(counter.getPart_data(), j2, j1);
 
             }
         }
@@ -546,7 +550,8 @@ public class EightRecordActivity extends AppCompatActivity {
                     if (objects.getSocket()!=null)
                     {
                         if (!objects.getSocket().isConnected()) {
-                            Log.e("is true", "is true");
+
+
                             Set<BluetoothDevice> bt = objects.getBluetoothAdapter().getBondedDevices();
                             String[] strings = new String[bt.size()];
                             btArray = new BluetoothDevice[bt.size()];
@@ -657,11 +662,9 @@ public class EightRecordActivity extends AppCompatActivity {
                                 int paint_screen=counter.getSurfaceview_height_eightrecord();
                                 float button_step = (float) paint_screen / (((counter.getDefault_channel()) * 2));
                                 int k=counter.getDefault_channel();
-                                Toast.makeText(getApplicationContext(), "" + counter.getSurfaceviewheheight(), Toast.LENGTH_SHORT).show();
 
 
                                 for (int o=0;o<counter.getDefault_channel();o++){
-                                    Log.e(""+(float) (((2*o)+0.5) * button_step),""+(float) (((2*o)+0.5) * button_step));
                                     ch[o+1].setTranslationY((float) (((2*o)+0.5) * button_step));
                                 }
                                 for (int s=1;s<65;s++)
@@ -767,8 +770,6 @@ public class EightRecordActivity extends AppCompatActivity {
         dialog8.setContentView(R.layout.rename_ch8);
         dialog8.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-        Log.e("EonCreate","EonCreate");
-
 
         drawerLayout=findViewById(R.id.draver_eightrecord);
         counter=new Counter();
@@ -780,7 +781,7 @@ public class EightRecordActivity extends AppCompatActivity {
         vibrator= (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         objects.setBluetoothAdapter(BluetoothAdapter.getDefaultAdapter());
 
-        counter.setEnddraw(counter.getHorizontal_scale()*counter.getRate_in_s());
+
         counter.setEight_step_x((float) counter.getSurfaceviewhewidth()/(counter.getRate_in_s()*counter.getHorizontal_scale()));
 
         counter.setEight_step_y((float) counter.getSurfaceviewhewidth()/200);
@@ -789,7 +790,7 @@ public class EightRecordActivity extends AppCompatActivity {
 
         for (int j2=0;j2<8;j2++){
             for (int j1=0;j1<40000;j1++) {
-                counter.setBuffer(counter.getPart_data(), j2, j1);
+              //  counter.setBuffer(counter.getPart_data(), j2, j1);
 
             }
         }
@@ -821,7 +822,6 @@ public class EightRecordActivity extends AppCompatActivity {
 
                     }
                     else {
-                        Toast.makeText(getApplicationContext(),"Error",Toast.LENGTH_LONG).show();
                     }
                 }
 
@@ -833,7 +833,6 @@ public class EightRecordActivity extends AppCompatActivity {
 
         objects.setBluetoothAdapter(BluetoothAdapter.getDefaultAdapter());
         if (objects.getBluetoothAdapter()==null){
-            Toast.makeText(getApplicationContext(),"null",Toast.LENGTH_LONG).show();
             finish();
         }
         if (objects.getBluetoothAdapter().isEnabled()){
@@ -1864,11 +1863,25 @@ public class EightRecordActivity extends AppCompatActivity {
                         if (zarib<255){
                             o=(i/counter.getDefault_channel())%(no_limit);
 
+                            while (!is_buffer_null){
+                                if (counter.getBuffere(channel,o)==counter.getPart_data()){
+                                    break;
+                                }
+                                i+=8;
+                                o=(i/8)%(40001-(counter.getHorizontal_scale()*counter.getRate_in_s()*3));
+
+                                Log.e("not nullll","not nullll");
+                            }
 
 
 
                             counter.setBuffer(((float) ((data - 2048) / 1.4)), channel, o);
                             channel++;
+
+
+                            if (o%((512*counter.getHorizontal_scale())-100)==0){
+                                counter.setChangeScreen_eight(true);
+                            }
 
                             if (channel==counter.getDefault_channel()) {
                                 channel=0;

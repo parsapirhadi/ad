@@ -37,12 +37,20 @@ Counter counter;
         getResources().getConfiguration().setLocale(locale_us);
         string1=new String1();
         counter=new Counter();
+        counter.setStartdraw(1);
         Intent intent=new Intent(this,EightRootActivity.class);
 
         for (int o=0;o<counter.getDefault_channel();o++){
         for (int p=0;p<800000;p++) {
             counter.setChannel(1000, o, p);
         }}
+
+        for (int j2=0;j2<8;j2++){
+            for (int j1=0;j1<40000;j1++) {
+                counter.setBuffer(counter.getPart_data(), j2, j1);
+
+            }
+        }
 
         startActivity(intent);
 

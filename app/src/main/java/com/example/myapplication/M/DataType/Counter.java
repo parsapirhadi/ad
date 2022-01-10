@@ -281,7 +281,26 @@ static long anim_sleep=0;
 
 
 
-    public float getBuffere(int i,int j) {
+    public static boolean changeScreen_eight=false;
+    public static boolean changeScreen_single=false;
+
+    public boolean isChangeScreen_eight() {
+        return changeScreen_eight;
+    }
+
+    public void setChangeScreen_eight(boolean changeScreen_eight) {
+        Counter.changeScreen_eight = changeScreen_eight;
+    }
+
+    public boolean isChangeScreen_single() {
+        return changeScreen_single;
+    }
+
+    public void setChangeScreen_single(boolean changeScreen_single) {
+        Counter.changeScreen_single = changeScreen_single;
+    }
+
+    public float getBuffere(int i, int j) {
         return buffer[i][j];
     }
 

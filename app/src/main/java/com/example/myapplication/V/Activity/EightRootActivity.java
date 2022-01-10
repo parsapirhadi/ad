@@ -26,7 +26,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
@@ -200,7 +199,6 @@ int is_change_text=0;
                                 int paint_screen=counter.getSurfaceviewheheight();
                                 float button_step = (float) paint_screen / ((counter.getDefault_channel()+1) * 2);
                                 int k=counter.getDefault_channel();
-                                Toast.makeText(getApplicationContext(), "" + counter.getSurfaceviewheheight(), Toast.LENGTH_SHORT).show();
 
 
                                 for (int o=0;o<counter.getDefault_channel();o++){
@@ -229,8 +227,48 @@ int is_change_text=0;
             }
         }).start();
 
+        for (int i=0;i<counter.getHorizontal_scale();i++) {
+            for (int j=0;j<40000;j++) {
+               counter.setBuffer(counter.getPart_data(),i,j);
+            }
+        }
+        try {
+            EightRecordActivity.getV0().setText(0 + "");
+            EightRecordActivity.getV1000().setText((Float.parseFloat(EightRecordActivity.getV0().getText().toString()) + ((float) counter.getHorizontal_scale() / 8)) + "");
+            EightRecordActivity.getV1000().setText((Float.parseFloat(EightRecordActivity.getV0().getText().toString()) + (1 * (float) counter.getHorizontal_scale() / 8)) + "");
+            EightRecordActivity.getV2000().setText((Float.parseFloat(EightRecordActivity.getV0().getText().toString()) + (2 * (float) counter.getHorizontal_scale() / 8)) + "");
+            EightRecordActivity.getV3000().setText((Float.parseFloat(EightRecordActivity.getV0().getText().toString()) + (3 * (float) counter.getHorizontal_scale() / 8)) + "");
+            EightRecordActivity.getV4000().setText((Float.parseFloat(EightRecordActivity.getV0().getText().toString()) + (4 * (float) counter.getHorizontal_scale() / 8)) + "");
+            EightRecordActivity.getV5000().setText((Float.parseFloat(EightRecordActivity.getV0().getText().toString()) + (5 * (float) counter.getHorizontal_scale() / 8)) + "");
+            EightRecordActivity.getV6000().setText((Float.parseFloat(EightRecordActivity.getV0().getText().toString()) + (6 * (float) counter.getHorizontal_scale() / 8)) + "");
+            EightRecordActivity.getV7000().setText((Float.parseFloat(EightRecordActivity.getV0().getText().toString()) + (7 * (float) counter.getHorizontal_scale() / 8)) + "");
+            EightRecordActivity.getV8000().setText((Float.parseFloat(EightRecordActivity.getV0().getText().toString()) + (8 * (float) counter.getHorizontal_scale() / 8)) + "");
+
+            SingleRecordActivity.getV0().setText(0 + "");
+            SingleRecordActivity.getV1000().setText((Float.parseFloat(EightRecordActivity.getV0().getText().toString()) + ((float) counter.getHorizontal_scale() / 8)) + "");
+            SingleRecordActivity.getV1000().setText((Float.parseFloat(EightRecordActivity.getV0().getText().toString()) + (1 * (float) counter.getHorizontal_scale() / 8)) + "");
+            SingleRecordActivity.getV2000().setText((Float.parseFloat(EightRecordActivity.getV0().getText().toString()) + (2 * (float) counter.getHorizontal_scale() / 8)) + "");
+            SingleRecordActivity.getV3000().setText((Float.parseFloat(EightRecordActivity.getV0().getText().toString()) + (3 * (float) counter.getHorizontal_scale() / 8)) + "");
+            SingleRecordActivity.getV4000().setText((Float.parseFloat(EightRecordActivity.getV0().getText().toString()) + (4 * (float) counter.getHorizontal_scale() / 8)) + "");
+            SingleRecordActivity.getV5000().setText((Float.parseFloat(EightRecordActivity.getV0().getText().toString()) + (5 * (float) counter.getHorizontal_scale() / 8)) + "");
+            SingleRecordActivity.getV6000().setText((Float.parseFloat(EightRecordActivity.getV0().getText().toString()) + (6 * (float) counter.getHorizontal_scale() / 8)) + "");
+            SingleRecordActivity.getV7000().setText((Float.parseFloat(EightRecordActivity.getV0().getText().toString()) + (7 * (float) counter.getHorizontal_scale() / 8)) + "");
+            SingleRecordActivity.getV8000().setText((Float.parseFloat(EightRecordActivity.getV0().getText().toString()) + (8 * (float) counter.getHorizontal_scale() / 8)) + "");
+        }
+catch (NullPointerException e){
+            e.printStackTrace();
+}
+
+
+
+
+
+
+
 
     }
+
+
 
     public void restchannel(){
         for (int i=0;i<32;i++) {

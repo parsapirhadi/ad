@@ -237,7 +237,7 @@ public class EightRecordActivity extends AppCompatActivity {
     float data=0;
     int g;
 
-    int i=0;
+
     int o;
 
     boolean bb=false;
@@ -370,7 +370,9 @@ public class EightRecordActivity extends AppCompatActivity {
         }
 
         recordcount = 0;
-        i=0;
+
+        counter.setBuffer_count(0);
+
     }
 
     @SuppressLint("SetTextI18n")
@@ -481,7 +483,7 @@ public class EightRecordActivity extends AppCompatActivity {
 
             }
         }
-        i=0;
+        counter.setBuffer_count(0);
 
         if (string1.getPivote(0)!=null)
         {
@@ -511,7 +513,7 @@ public class EightRecordActivity extends AppCompatActivity {
                 while (is_activity_on) {
 
                     //  Log.e("i=",""+i);
-                    if ((i - data_count) < 200 && recordcount == 1 && objects.getSocket().isConnected()) {
+                    if ((counter.getBuffer_count() - data_count) < 3 && recordcount == 1 && objects.getSocket().isConnected()) {
                         conter++;
                         if (conter > 1) {
                             runOnUiThread(new Runnable() {
@@ -636,7 +638,7 @@ public class EightRecordActivity extends AppCompatActivity {
 
 
 
-                    data_count=i;
+                    data_count=counter.getBuffer_count();
                     try {
 
                         Thread.sleep(200);
@@ -776,7 +778,7 @@ public class EightRecordActivity extends AppCompatActivity {
         string1=new String1();
         objects=new Objects();
 
-        i=0;
+        counter.setBuffer_count(0);
         FindViewBiId();
         vibrator= (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         objects.setBluetoothAdapter(BluetoothAdapter.getDefaultAdapter());
@@ -918,49 +920,8 @@ public class EightRecordActivity extends AppCompatActivity {
 
     private void implementListeners() {
 
-        bluetooth.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Set<BluetoothDevice> bt=objects.getBluetoothAdapter().getBondedDevices();
-                String[] strings=new String[bt.size()];
-                btArray=new BluetoothDevice[bt.size()];
-                int index=0;
-
-                if( bt.size()>0)
-                {
-                    for(BluetoothDevice device : bt)
-                    {
-                        btArray[index]= device;
-                        strings[index]=device.getName();
-                        index++;
-                    }
-                    ArrayAdapter<String> arrayAdapter=new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,strings);
-                    listView.setAdapter(arrayAdapter);
-                    for (int n=0;n<btArray.length;n++){
-                        if (btArray[n].getName().charAt(0)=='H'  &&
-                                btArray[n].getName().charAt(1)=='C' &&
-                                btArray[n].getName().charAt(2)=='-' &&
-                                btArray[n].getName().charAt(3)=='0' &&
-                                btArray[n].getName().charAt(4)=='5'
-                        ){
-
-                            EightRecordActivity.ClientClass clientClass=new EightRecordActivity.ClientClass(btArray[n]);
-                            bluetooth_name=strings[n]+"";
-                            clientClass.start();
-                        }
-                    }
-                }
-                // dialog.show();
 
 
-
-
-
-
-
-            }
-        });
         record.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -1861,14 +1822,15 @@ public class EightRecordActivity extends AppCompatActivity {
                         next_is_zarib=true;
                         data=(zarib*256)+s;
                         if (zarib<255){
-                            o=(i/counter.getDefault_channel())%(no_limit);
+                            o=(counter.getBuffer_count()/counter.getDefault_channel())%(no_limit);
 
                             while (!is_buffer_null){
                                 if (counter.getBuffere(channel,o)==counter.getPart_data()){
                                     break;
                                 }
-                                i+=8;
-                                o=(i/8)%(40001-(counter.getHorizontal_scale()*counter.getRate_in_s()*3));
+                                counter.setBuffer_count(counter.getBuffer_count()+8);
+
+                                o=(counter.getBuffer_count()/8)%(40001-(counter.getHorizontal_scale()*counter.getRate_in_s()*3));
 
                                 Log.e("not nullll","not nullll");
                             }
@@ -1879,8 +1841,11 @@ public class EightRecordActivity extends AppCompatActivity {
                             channel++;
 
 
-                            if (o%((512*counter.getHorizontal_scale())-100)==0){
+                            if (o%((500*counter.getHorizontal_scale()))==0){
+
                                 counter.setChangeScreen_eight(true);
+
+
                             }
 
                             if (channel==counter.getDefault_channel()) {
@@ -1891,7 +1856,7 @@ public class EightRecordActivity extends AppCompatActivity {
                             }
 
 
-                            i++;
+                            counter.setBuffer_count(counter.getBuffer_count()+1);
 
                         }
                     }

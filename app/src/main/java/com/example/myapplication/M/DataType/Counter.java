@@ -27,9 +27,53 @@ static int show_record_ch=0;
 
     static int Surfaceview_Width_eightrecord=0;
 
+    public static float [][] channel=new float[16][800000];
+
+    public static float [][] buffer=new float[16][16000];
+
+    static boolean refresh=true;
+
+    static final int part_data= 1000;
+
+    static int surfaceviewheheight=0;
+    static int surfaceviewhewidth=0;
+
+    static int horizontal_scale=8;
+    static int startdraw=0;
+    static int enddraw=8000;
+
+    static long anim_sleep=0;
+
+    static boolean bluetooth_drawabe =false;
 
 
+    int count_of_set_i_channel=0;
+    int count_of_set_j_channel=0;
 
+    static float single_step_y =0;
+    static float single_step_x =0;
+
+    static float eight_step_y =0;
+    static float eight_step_x =0;
+
+
+    static final int default_channel=8;
+
+    static int line_clecked=0;
+
+    public static boolean changeScreen_eight=false;
+    public static boolean changeScreen_single=false;
+
+
+    static int counter_changescreeen=1;
+
+    static int buffer_count=0;
+
+
+    static float surface_width =0;
+    static float surface_height=0;
+
+    static int x=1;
 
     public int getSurfaceview_Width_singlerecord() {
         return Surfaceview_Width_singlerecord;
@@ -89,7 +133,7 @@ static int show_record_ch=0;
         this.show_record_ch = show_record_ch;
     }
 
-    static boolean refresh=true;
+
 
     public boolean isRefresh() {
         return refresh;
@@ -114,17 +158,13 @@ static int show_record_ch=0;
     public void setExist_in_secound(int exist_in_secound) {
         this.exist_in_secound = exist_in_secound;
     }
-static final int part_data= 1000;
+
 
     public int getPart_data() {
         return part_data;
     }
 
-    int count_of_set_i_channel=0;
-     int count_of_set_j_channel=0;
 
-
-     static boolean bluetooth_drawabe =false;
 
     public boolean isBluetooth_drawabe() {
         return bluetooth_drawabe;
@@ -134,14 +174,17 @@ static final int part_data= 1000;
         this.bluetooth_drawabe = bluetooth_drawabe;
     }
 
-    static int surfaceviewheheight=0;
-      static int surfaceviewhewidth=0;
 
-     static int horizontal_scale=8;
-static int startdraw=0;
-    static int enddraw=8000;
 
-static long anim_sleep=0;
+    public int getBuffer_count() {
+        return buffer_count;
+    }
+
+    public void setBuffer_count(int buffer_count) {
+        Counter.buffer_count = buffer_count;
+    }
+
+
 
     public long getAnim_sleep() {
         return anim_sleep;
@@ -199,14 +242,7 @@ static long anim_sleep=0;
 
 
 
-       static float single_step_y =0;
-         static float single_step_x =0;
 
-    static float eight_step_y =0;
-    static float eight_step_x =0;
-
-
-     static final int default_channel=8;
 
     public  int getDefault_channel() {
         return default_channel;
@@ -244,10 +280,7 @@ static long anim_sleep=0;
         Counter.single_step_x = single_step_x;
     }
 
-    static float surface_width =0;
-   static float surface_height=0;
 
-    static int x=1;
 
     public int getX() {
         return x;
@@ -273,16 +306,18 @@ static long anim_sleep=0;
         Counter.surface_height = surface_height;
     }
 
-    public static float [][] channel=new float[default_channel][800000];
-
-    public static float [][] buffer=new float[default_channel][40000];
 
 
 
+    public int getCounter_changescreeen() {
+        return counter_changescreeen;
+    }
+
+    public void setCounter_changescreeen(int counter_changescreeen) {
+        Counter.counter_changescreeen = counter_changescreeen;
+    }
 
 
-    public static boolean changeScreen_eight=false;
-    public static boolean changeScreen_single=false;
 
     public boolean isChangeScreen_eight() {
         return changeScreen_eight;
@@ -308,8 +343,6 @@ static long anim_sleep=0;
     public void setBuffer(float f,int i,int j) {
         this.buffer[i][j]=f;
     }
-
-    static int line_clecked=0;
 
 
 

@@ -159,7 +159,7 @@ Thread bluetooth_thread;
     float data=0;
     int g;
 
-    int i=0;
+
     int o;
 
     boolean bb=false;
@@ -315,7 +315,7 @@ is_activity_on=false;
         }
 
         recordcount = 0;
-        i=0;
+        counter.setBuffer_count(0);
     }
     @SuppressLint("SetTextI18n")
     @Override
@@ -382,7 +382,8 @@ is_activity_on=false;
 
             }
         }
-        i = 0;
+
+        counter.setBuffer_count(0);
 
         if (counter.isBluetooth_drawabe()) {
 
@@ -486,7 +487,7 @@ counter.setShow_record_ch(0);
             public void run() {
                 while (is_activity_on) {
                     //  Log.e("i=",""+i);
-                    if ((i - data_count) < 3 && recordcount == 1 && objects.getSocket().isConnected()) {
+                    if ((counter.getBuffer_count() - data_count) < 3 && recordcount == 1 && objects.getSocket().isConnected()) {
                         conter++;
                         if (conter > 1) {
                             runOnUiThread(new Runnable() {
@@ -654,7 +655,7 @@ counter.setShow_record_ch(0);
 
 
 
-                    data_count=i;
+                    data_count=counter.getBuffer_count();
                     try {
 
                         Thread.sleep(200);
@@ -735,7 +736,8 @@ counter.setShow_record_ch(0);
         string1=new String1();
         objects=new Objects();
 
-        i=0;
+        counter.setBuffer_count(0);
+
         FindViewById();
         vibrator= (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         objects.setBluetoothAdapter(BluetoothAdapter.getDefaultAdapter());
@@ -834,49 +836,7 @@ counter.setShow_record_ch(0);
 
 
 
-        bluetooth.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                Set<BluetoothDevice> bt=objects.getBluetoothAdapter().getBondedDevices();
-                String[] strings=new String[bt.size()];
-                btArray=new BluetoothDevice[bt.size()];
-                int index=0;
-
-                if( bt.size()>0)
-                {
-                    for(BluetoothDevice device : bt)
-                    {
-                        btArray[index]= device;
-                        strings[index]=device.getName();
-                        index++;
-                    }
-                    ArrayAdapter<String> arrayAdapter=new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,strings);
-                    listView.setAdapter(arrayAdapter);
-                    for (int n=0;n<btArray.length;n++){
-                        if (btArray[n].getName().charAt(0)=='H'  &&
-                                btArray[n].getName().charAt(1)=='C' &&
-                                btArray[n].getName().charAt(2)=='-' &&
-                                btArray[n].getName().charAt(3)=='0' &&
-                                btArray[n].getName().charAt(4)=='5'
-                        ){
-
-                            SingleRecordActivity.ClientClass clientClass=new SingleRecordActivity.ClientClass(btArray[n]);
-                            bluetooth_name=strings[n]+"";
-                            clientClass.start();
-                        }
-                    }
-                }
-               // dialog.show();
-
-
-
-
-
-
-
-            }
-        });
         record.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -1237,14 +1197,21 @@ myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             next_is_zarib=true;
                             data=(zarib*256)+s;
                             if (zarib<255){
-                                o=(i/8)%(40001-(counter.getHorizontal_scale()*counter.getRate_in_s()*3));
+                                o=(counter.getBuffer_count()/8)%(40001-(counter.getHorizontal_scale()*counter.getRate_in_s()*3));
 
                                while (!is_buffer_null){
                                    if (counter.getBuffere(channel,o)==counter.getPart_data()){
+
+
+
+
+
+
+
                                        break;
                                    }
-                                   i+=8;
-                                   o=(i/8)%(40001-(counter.getHorizontal_scale()*counter.getRate_in_s()*3));
+                                   counter.setBuffer_count(counter.getBuffer_count()+8);
+                                   o=(counter.getBuffer_count()/8)%(40001-(counter.getHorizontal_scale()*counter.getRate_in_s()*3));
 
                                    Log.e("not nullll","not nullll");
                                }
@@ -1253,7 +1220,9 @@ myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                 channel++;
 
                                 if (o%((500*counter.getHorizontal_scale()))==0){
+
                                     counter.setChangeScreen_single(true);
+
                                 }
 
                                 if (channel==counter.getDefault_channel()) {
@@ -1265,7 +1234,7 @@ myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
 
 
-                                i++;
+                                counter.setBuffer_count(counter.getBuffer_count()+1);
 
                             }
                         }

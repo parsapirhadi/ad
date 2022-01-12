@@ -69,11 +69,25 @@ static int show_record_ch=0;
 
     static int buffer_count=0;
 
+    static boolean is_activity_on =true;
+
+
+
+
 
     static float surface_width =0;
     static float surface_height=0;
 
     static int x=1;
+
+
+    public boolean is_activity_on() {
+        return is_activity_on;
+    }
+
+    public void set_activity_on(boolean is_activity_on) {
+        this.is_activity_on = is_activity_on;
+    }
 
     public int getSurfaceview_Width_singlerecord() {
         return Surfaceview_Width_singlerecord;

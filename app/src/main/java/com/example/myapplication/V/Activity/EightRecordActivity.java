@@ -46,6 +46,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.example.myapplication.M.DataType.Counter;
 import com.example.myapplication.M.DataType.Objects;
 import com.example.myapplication.M.DataType.String1;
+import com.example.myapplication.P.SendReceive;
 import com.example.myapplication.R;
 import com.example.myapplication.V.BaseSurfaceEightRecord;
 import com.google.android.material.snackbar.Snackbar;
@@ -244,9 +245,6 @@ public class EightRecordActivity extends AppCompatActivity {
     boolean ggg=false;
     int byt=0;
 
-    InputStream inputStream;
-    OutputStream outputStream;
-
 
 
     int s;
@@ -254,13 +252,11 @@ public class EightRecordActivity extends AppCompatActivity {
     static final int STATE_CONNECTING=2;
     static final int STATE_CONNECTED=3;
     static final int STATE_CONNECTION_FAILED=4;
-    static final int STATE_MESSAGE_RECEIVED=5;
+    public static final int STATE_MESSAGE_RECEIVED=5;
 
     int REQUEST_ENABLE_BLUETOOTH=1;
 
-    InputStream tempIn=null;
-    OutputStream tempOut=null;
-    boolean is_activity_on =true;
+
 
 
 
@@ -275,77 +271,12 @@ public class EightRecordActivity extends AppCompatActivity {
     private static final UUID MY_UUID=UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");////hc05
     //private static final UUID MY_UUID=UUID.fromString("8ce255c0-223a-11e0-ac64-0803450c9a66");////mobile
 
-    Handler handler=new Handler(new Handler.Callback() {
-        @Override
-        public boolean handleMessage(Message msg) {
 
-            switch (msg.what)
-            {
-                case STATE_LISTENING:
-                    // status.setText("Listening");
-                    break;
-                case STATE_CONNECTING:
-                    // status.setText("Connecting");
-                    break;
-                case STATE_CONNECTED:
-
-                    View parentLayout = findViewById(android.R.id.content);
-                    Snackbar.make(parentLayout, "Connected To '"+bluetooth_name+"'", Snackbar.LENGTH_LONG).show();
-                    animation_bluetooth=false;
-
-
-                    if (SingleRecordActivity.isRecordcount()){
-                        new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-                                try {
-                                    Thread.sleep(100);
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
-
-                                record.setBackgroundResource(R.drawable.rect_stop_record);
-                                String string = "CONTB\r\n";
-                                set_limit = 1;
-                                sendReceive = new EightRecordActivity.SendReceive(objects.getSocket());
-                                sendReceive.write(string.getBytes());
-                                recordcount = 1;
-                            }
-                        }).start();
-
-                    }
-                    bluetooth.setBackgroundResource(R.drawable.bluetooth_on_foreground);
-                    counter.setBluetooth_drawabe(true);
-                    is_open=false;
-                    is_connected=true;
-                    is_disconnected=false;
-                    record.setBackgroundResource(R.drawable.red_record_drawable);
-                    String string = "NOP\r\n";
-                    set_limit = 1;
-                    if (objects.getSocket()!=null){
-                        sendReceive.write(string.getBytes());
-                    }
-                    recordcount = 0;
-
-                    dialog.dismiss();
-                    break;
-                case STATE_CONNECTION_FAILED:
-                    //  status.setText("Connection Failed");
-                    break;
-                case STATE_MESSAGE_RECEIVED:
-                    byte[] readBuff= (byte[]) msg.obj;
-                    tempMsg=new String(readBuff,0,msg.arg1);
-                    //  msg_box.setText(tempMsg);
-                    break;
-            }
-            return true;
-        }
-    });
 
     @Override
     protected void onPause() {
         super.onPause();
-        is_activity_on=false;
+        counter.set_activity_on(false);
 
         for (int j2=0;j2<8;j2++){
             for (int j1=0;j1<16000;j1++) {
@@ -384,7 +315,9 @@ public class EightRecordActivity extends AppCompatActivity {
 
         is_disconnected=false;
 
-        is_activity_on=true;
+        counter.set_activity_on(true);
+
+
         data_count=0;
         conter=0;
         is_connected=false;
@@ -510,7 +443,7 @@ public class EightRecordActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                while (is_activity_on) {
+                while (counter.is_activity_on()) {
 
                     //  Log.e("i=",""+i);
 
@@ -727,7 +660,6 @@ public class EightRecordActivity extends AppCompatActivity {
 
 
 
-
                         set_dimens=false;
 
 
@@ -890,6 +822,74 @@ public class EightRecordActivity extends AppCompatActivity {
 
  */
 
+        objects.setHandler( new Handler(new Handler.Callback() {
+            @Override
+            public boolean handleMessage(Message msg) {
+
+                switch (msg.what)
+                {
+                    case STATE_LISTENING:
+                        // status.setText("Listening");
+                        break;
+                    case STATE_CONNECTING:
+                        // status.setText("Connecting");
+                        break;
+                    case STATE_CONNECTED:
+
+                        View parentLayout = findViewById(android.R.id.content);
+                        Snackbar.make(parentLayout, "Connected To '"+bluetooth_name+"'", Snackbar.LENGTH_LONG).show();
+                        animation_bluetooth=false;
+
+
+                        if (SingleRecordActivity.isRecordcount()){
+                            new Thread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    try {
+                                        Thread.sleep(100);
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+
+                                    record.setBackgroundResource(R.drawable.rect_stop_record);
+                                    String string = "CONTB\r\n";
+                                    set_limit = 1;
+                                    sendReceive = new SendReceive(objects.getSocket(),counter,objects);
+                                    sendReceive.write(string.getBytes());
+                                    recordcount = 1;
+                                }
+                            }).start();
+
+                        }
+                        bluetooth.setBackgroundResource(R.drawable.bluetooth_on_foreground);
+                        counter.setBluetooth_drawabe(true);
+                        is_open=false;
+                        is_connected=true;
+                        is_disconnected=false;
+                        record.setBackgroundResource(R.drawable.red_record_drawable);
+                        String string = "NOP\r\n";
+                        set_limit = 1;
+                        if (objects.getSocket()!=null){
+                            sendReceive.write(string.getBytes());
+                        }
+                        recordcount = 0;
+
+                        dialog.dismiss();
+                        break;
+                    case STATE_CONNECTION_FAILED:
+                        //  status.setText("Connection Failed");
+                        break;
+                    case STATE_MESSAGE_RECEIVED:
+                        byte[] readBuff= (byte[]) msg.obj;
+                        tempMsg=new String(readBuff,0,msg.arg1);
+                        //  msg_box.setText(tempMsg);
+                        break;
+                }
+                return true;
+            }
+        }));
+
+
 
         implementListeners();
 
@@ -929,8 +929,6 @@ public class EightRecordActivity extends AppCompatActivity {
         }
 
 
-
-
     }
 
 
@@ -950,7 +948,7 @@ public class EightRecordActivity extends AppCompatActivity {
                         set_limit = 1;
                         Recordcount=true;
                         SingleRecordActivity.setIs_isRecordcount(true);
-                        sendReceive = new SendReceive(objects.getSocket());
+                        sendReceive = new SendReceive(objects.getSocket(),counter,objects);
                         sendReceive.write(string.getBytes());
                         recordcount = 1;
 
@@ -1666,7 +1664,6 @@ public class EightRecordActivity extends AppCompatActivity {
 
 
 
-
         zoomout=findViewById(R.id.zoomout_eightrecord);
         zoomin=findViewById(R.id.zoomin_eightrecord);
 
@@ -1767,10 +1764,13 @@ public class EightRecordActivity extends AppCompatActivity {
 
                 Message message=Message.obtain();
                 message.what=STATE_CONNECTED;
-                handler.sendMessage(message);
+
+                objects.getHandler().sendMessage(message);
 
 
-                sendReceive=new SendReceive(objects.getSocket());
+
+
+                sendReceive=new SendReceive(objects.getSocket(),counter,objects);
 
                 sendReceive.start();
 
@@ -1778,140 +1778,14 @@ public class EightRecordActivity extends AppCompatActivity {
                 e.printStackTrace();
                 Message message=Message.obtain();
                 message.what=STATE_CONNECTION_FAILED;
-                handler.sendMessage(message);
+
+
+                objects.getHandler().sendMessage(message);
+
             }
         }
     }
 
-    private class SendReceive extends Thread
-    {
-        private final BluetoothSocket bluetoothSocket;
 
-
-        public SendReceive (BluetoothSocket socket)
-        {
-
-            bluetoothSocket=socket;
-
-
-            try {
-                tempIn=bluetoothSocket.getInputStream();
-                tempOut=bluetoothSocket.getOutputStream();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            inputStream=tempIn;
-            outputStream=tempOut;
-        }
-
-        public void run()
-        {
-            byte[] buffer=new byte[counter.getRate_in_s()];
-
-            no_limit=16001-(counter.getHorizontal_scale()*counter.getRate_in_s()*3);
-            while (is_activity_on)
-            {
-
-                try {
-
-                    s=inputStream.read();
-
-                } catch (IOException e) {
-
-                    e.printStackTrace();
-                    break;
-                }
-                // bytes =s;
-                handler.obtainMessage(STATE_MESSAGE_RECEIVED, s, -1, buffer).sendToTarget();
-
-
-                if (channel!=-1)
-                {
-
-                    if (next_is_zarib){
-                        zarib=s;
-                        next_is_zarib=false;
-
-                    }
-                    else {
-                        next_is_zarib=true;
-                        data=(zarib*256)+s;
-                        if (zarib<255){
-                            o=(counter.getBuffer_count()/counter.getDefault_channel())%(no_limit);
-
-                            while (!is_buffer_null){
-                                if (counter.getBuffere(channel,o)==counter.getPart_data()){
-                                    break;
-                                }
-                                counter.setBuffer_count(counter.getBuffer_count()+8);
-
-                                o=(counter.getBuffer_count()/8)%(16001-(counter.getHorizontal_scale()*counter.getRate_in_s()*3));
-
-                                Log.e("not nullll","not nullll");
-                            }
-
-
-
-                            counter.setBuffer(((float) ((data - 2048) / 1.4)), channel, o);
-                            channel++;
-
-
-                            if (o%((500*counter.getHorizontal_scale()))==0){
-
-                                counter.setChangeScreen_eight(true);
-
-
-                            }
-
-                            if (channel==counter.getDefault_channel()) {
-                                channel=0;
-                                counter.setRefresh(true);
-                                counter.setBuffer( ((float)  ((data - 2048) / 1.4)), counter.getDefault_channel()-1, o);
-
-                            }
-
-
-                            counter.setBuffer_count(counter.getBuffer_count()+1);
-
-                        }
-                    }
-                }
-                if (s==255)
-                {
-
-
-                    y++;
-                }
-
-
-
-                if (y==1 && s<255){
-
-                    y=0;
-                }
-                if (y==2)
-                {
-                    y=0;
-
-
-
-                    channel=0;
-                    next_is_zarib=true;
-                }
-
-
-
-            }
-        }
-        public void write(byte[] bytes)
-        {
-            try {
-                outputStream.write(bytes);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
 }
 

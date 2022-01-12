@@ -29,7 +29,7 @@ static int show_record_ch=0;
 
     public static float [][] channel=new float[16][800000];
 
-    public static float [][] buffer=new float[16][16000];
+    public static float [][] buffer=new float[16][16100];
 
     static boolean refresh=true;
 

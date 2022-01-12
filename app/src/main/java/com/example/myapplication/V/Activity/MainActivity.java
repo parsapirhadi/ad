@@ -46,7 +46,7 @@ Counter counter;
         }}
 
         for (int j2=0;j2<8;j2++){
-            for (int j1=0;j1<40000;j1++) {
+            for (int j1=0;j1<16000;j1++) {
                 counter.setBuffer(counter.getPart_data(), j2, j1);
 
             }

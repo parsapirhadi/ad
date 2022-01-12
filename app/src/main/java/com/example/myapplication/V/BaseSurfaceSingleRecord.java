@@ -294,8 +294,12 @@ public class BaseSurfaceSingleRecord extends SurfaceView implements SurfaceHolde
                                 int y=0;
                                 int j=counter.getShow_record_ch();
                                 for (i1 = counter.getStartdraw(); i1 < counter.getEnddraw(); i1++) {
-                                    if (counter.getBuffere(j,i1+1)!=counter.getPart_data()  ) {
-                                        if (i1%30000==39990-(counter.getHorizontal_scale()*counter.getRate_in_s()*3)){
+                                    if (counter.getBuffere(j,i1)!=counter.getPart_data()
+                                    &&  counter.getBuffere(j,i1+1)!=counter.getPart_data()
+                                            && counter.getBuffere(j,i1-1)!=counter.getPart_data()
+                                    ) {
+
+                                        if (i1%15000==15990-(counter.getHorizontal_scale()*counter.getRate_in_s()*3)){
 
 
 
@@ -321,14 +325,14 @@ public class BaseSurfaceSingleRecord extends SurfaceView implements SurfaceHolde
                                             counter.setCounter_changescreeen(1);
 
                                             for (int j2=0;j2<8;j2++){
-                                                for (int j1=0;j1<40000;j1++) {
+                                                for (int j1=0;j1<16000;j1++) {
                                                     counter.setBuffer(counter.getPart_data(), j2, j1);
                                                 }
                                             }
                                             counter.setBuffer_count(0);
 
                                         }
-                                        g=(i1%30000)-1;
+                                        g=(i1%15000)-1;
 
 
 

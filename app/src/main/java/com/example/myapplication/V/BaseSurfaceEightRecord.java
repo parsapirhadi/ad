@@ -159,7 +159,7 @@ public class BaseSurfaceEightRecord extends SurfaceView implements SurfaceHolder
         ondraw(c);
         holder.unlockCanvasAndPost(c);
 
-        no_limit=39990-(counter.getHorizontal_scale()*counter.getRate_in_s()*3);
+        no_limit=24990-(counter.getHorizontal_scale()*counter.getRate_in_s()*3);
 
     }
 
@@ -312,16 +312,19 @@ public class BaseSurfaceEightRecord extends SurfaceView implements SurfaceHolder
 
 
 
-
                                 for (int j = 0; j < counter.getDefault_channel(); j++) {
                                     int y = 0;
                                     for (i1 = counter.getStartdraw(); i1 < counter.getEnddraw(); i1++) {
-                                        if (counter.getBuffere(j, i1 + 1) != counter.getPart_data()) {
+                                        if (counter.getBuffere(j, i1 + 1) != counter.getPart_data())
 
 
-                                            if (i1 % 30000 ==39990-(counter.getHorizontal_scale()*counter.getRate_in_s()*3)) {
+                                        {
+
+
+
+                                            if (i1 % 15000 ==15999-(counter.getHorizontal_scale()*counter.getRate_in_s()*3)) {
                                                 for (int j2=0;j2<8;j2++){
-                                                    for (int j1=0;j1<40000;j1++) {
+                                                    for (int j1=0;j1<16000;j1++) {
                                                         counter.setBuffer(counter.getPart_data(), j2, j1);
                                                     }
                                                 }
@@ -346,14 +349,14 @@ public class BaseSurfaceEightRecord extends SurfaceView implements SurfaceHolder
                                                 counter.setCounter_changescreeen(1);
                                                 counter.setBuffer_count(0);
                                                 for (int j2 = 0; j2 < counter.getDefault_channel(); j2++) {
-                                                    for (int j1 = 0; j1 < 40000; j1++) {
+                                                    for (int j1 = 0; j1 < 16000; j1++) {
                                                         counter.setBuffer(counter.getPart_data(), j2, j1);
                                                     }
                                                 }
 
                                             }
 
-                                            g = (i1 % 30000) - 1;
+                                            g = (i1 % 15000) - 1;
                                             //Log.e("i=", "" + g);
 
                                             canvas.drawLine(
@@ -381,14 +384,14 @@ public class BaseSurfaceEightRecord extends SurfaceView implements SurfaceHolder
 
                                 for (int j = 0; j < counter.getDefault_channel(); j++) {
                                     int y = 0;
-                                    for (i1 = counter.getStartdraw(); i1 < counter.getEnddraw(); i1++) {
+                                    for (i1 = (counter.getStartdraw()+10); i1 < counter.getEnddraw(); i1++) {
                                         if (counter.getBuffere(j, i1 + 1) != counter.getPart_data()) {
 
 
-                                            if (i1%30000==39990-(counter.getHorizontal_scale()*counter.getRate_in_s()*3)) {
+                                            if (i1%15000==15999-(counter.getHorizontal_scale()*counter.getRate_in_s()*3)) {
 
                                                 for (int j2 = 0; j2 < 8; j2++) {
-                                                    for (int j1 = 0; j1 < 40000; j1++) {
+                                                    for (int j1 = 0; j1 < 16000; j1++) {
                                                         counter.setBuffer(counter.getPart_data(), j2, j1);
                                                     }
                                                 }
@@ -420,7 +423,7 @@ public class BaseSurfaceEightRecord extends SurfaceView implements SurfaceHolder
 
                                             }
 
-                                            g = (i1 % 30000) - 1;
+                                            g = (i1 % 15000) - 1;
                                             //Log.e("i=", "" + g);
 
                                             canvas.drawLine(

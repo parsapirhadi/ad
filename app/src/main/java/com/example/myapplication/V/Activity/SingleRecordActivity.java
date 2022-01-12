@@ -412,7 +412,7 @@ is_activity_on=false;
 
 
         for (int j2=0;j2<8;j2++){
-            for (int j1=0;j1<40000;j1++) {
+            for (int j1=0;j1<16000;j1++) {
              //  counter.setBuffer(counter.getPart_data(), j2, j1);
             }
         }
@@ -433,7 +433,7 @@ counter.setShow_record_ch(0);
         choise.setText(EightRecordActivity.getCh1().getText().toString());
 
         for (int j2=0;j2<8;j2++){
-            for (int j1=0;j1<40000;j1++) {
+            for (int j1=0;j1<16000;j1++) {
               //  counter.setBuffer(counter.getPart_data(), j2, j1);
             }
         }
@@ -487,6 +487,12 @@ counter.setShow_record_ch(0);
             public void run() {
                 while (is_activity_on) {
                     //  Log.e("i=",""+i);
+
+                       /*
+
+                    *********disconnect bluetooth when receive bad data*********************
+
+
                     if ((counter.getBuffer_count() - data_count) < 3 && recordcount == 1 && objects.getSocket().isConnected()) {
                         conter++;
                         if (conter > 1) {
@@ -514,7 +520,9 @@ counter.setShow_record_ch(0);
                                     animation_bluetooth=true;
                                     bluetooth.setBackgroundResource(R.drawable.bluetooth_off_foreground);
 
-                                   /*
+
+
+
 
                                    while (true)
                                    {
@@ -554,13 +562,14 @@ counter.setShow_record_ch(0);
 
                                    }
 
-                                   */
+
                                 }
                             });
 
 
                         }
                     }
+                    */
                     if (objects.getSocket()!=null)
                     {
                         if (!objects.getSocket().isConnected()) {
@@ -749,7 +758,7 @@ counter.setShow_record_ch(0);
 
 
         for (int j2=0;j2<8;j2++){
-            for (int j1=0;j1<40000;j1++) {
+            for (int j1=0;j1<16000;j1++) {
               //  counter.setBuffer(counter.getPart_data(), j2, j1);
             }
         }
@@ -1197,7 +1206,7 @@ myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             next_is_zarib=true;
                             data=(zarib*256)+s;
                             if (zarib<255){
-                                o=(counter.getBuffer_count()/8)%(40001-(counter.getHorizontal_scale()*counter.getRate_in_s()*3));
+                                o=(counter.getBuffer_count()/8)%(16001-(counter.getHorizontal_scale()*counter.getRate_in_s()*3));
 
                                while (!is_buffer_null){
                                    if (counter.getBuffere(channel,o)==counter.getPart_data()){
@@ -1211,7 +1220,7 @@ myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                        break;
                                    }
                                    counter.setBuffer_count(counter.getBuffer_count()+8);
-                                   o=(counter.getBuffer_count()/8)%(40001-(counter.getHorizontal_scale()*counter.getRate_in_s()*3));
+                                   o=(counter.getBuffer_count()/8)%(16001-(counter.getHorizontal_scale()*counter.getRate_in_s()*3));
 
                                    Log.e("not nullll","not nullll");
                                }

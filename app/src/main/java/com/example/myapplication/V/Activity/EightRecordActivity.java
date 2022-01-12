@@ -348,7 +348,7 @@ public class EightRecordActivity extends AppCompatActivity {
         is_activity_on=false;
 
         for (int j2=0;j2<8;j2++){
-            for (int j1=0;j1<40000;j1++) {
+            for (int j1=0;j1<16000;j1++) {
              //   counter.setBuffer(counter.getPart_data(), j2, j1);
 
             }
@@ -478,7 +478,7 @@ public class EightRecordActivity extends AppCompatActivity {
           }
 
         for (int j2=0;j2<8;j2++){
-            for (int j1=0;j1<40000;j1++) {
+            for (int j1=0;j1<16000;j1++) {
               //  counter.setBuffer(counter.getPart_data(), j2, j1);
 
             }
@@ -513,6 +513,12 @@ public class EightRecordActivity extends AppCompatActivity {
                 while (is_activity_on) {
 
                     //  Log.e("i=",""+i);
+
+
+                    /*
+
+                    *********disconnect bluetooth when receive bad data*********************
+
                     if ((counter.getBuffer_count() - data_count) < 3 && recordcount == 1 && objects.getSocket().isConnected()) {
                         conter++;
                         if (conter > 1) {
@@ -549,6 +555,16 @@ public class EightRecordActivity extends AppCompatActivity {
 
                         }
                     }
+
+
+                  51     *********disconnect bluetooth when receive bad data*********************
+
+
+
+                    */
+
+
+
                     if (objects.getSocket()!=null)
                     {
                         if (!objects.getSocket().isConnected()) {
@@ -791,7 +807,7 @@ public class EightRecordActivity extends AppCompatActivity {
 
 
         for (int j2=0;j2<8;j2++){
-            for (int j1=0;j1<40000;j1++) {
+            for (int j1=0;j1<16000;j1++) {
               //  counter.setBuffer(counter.getPart_data(), j2, j1);
 
             }
@@ -1793,7 +1809,7 @@ public class EightRecordActivity extends AppCompatActivity {
         {
             byte[] buffer=new byte[counter.getRate_in_s()];
 
-            no_limit=40001-(counter.getHorizontal_scale()*counter.getRate_in_s()*3);
+            no_limit=16001-(counter.getHorizontal_scale()*counter.getRate_in_s()*3);
             while (is_activity_on)
             {
 
@@ -1830,7 +1846,7 @@ public class EightRecordActivity extends AppCompatActivity {
                                 }
                                 counter.setBuffer_count(counter.getBuffer_count()+8);
 
-                                o=(counter.getBuffer_count()/8)%(40001-(counter.getHorizontal_scale()*counter.getRate_in_s()*3));
+                                o=(counter.getBuffer_count()/8)%(16001-(counter.getHorizontal_scale()*counter.getRate_in_s()*3));
 
                                 Log.e("not nullll","not nullll");
                             }

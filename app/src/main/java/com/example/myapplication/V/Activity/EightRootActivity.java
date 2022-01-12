@@ -228,7 +228,7 @@ int is_change_text=0;
         }).start();
 
         for (int i=0;i<counter.getHorizontal_scale();i++) {
-            for (int j=0;j<40000;j++) {
+            for (int j=0;j<16000;j++) {
                counter.setBuffer(counter.getPart_data(),i,j);
             }
         }

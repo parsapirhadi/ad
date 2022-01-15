@@ -10,6 +10,7 @@ xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     tools:context=".V.Activity.EightRecordActivity"
     android:id="@+id/draver_eightrecord"
+    android:keepScreenOn="true"
     >
 
 <androidx.appcompat.widget.LinearLayoutCompat
@@ -138,13 +139,58 @@ xmlns:tools="http://schemas.android.com/tools"
             android:background="@drawable/zoom_in_foreground"
             tools:layout_editor_absoluteX="512dp"
             tools:layout_editor_absoluteY="10dp" />
-    <LinearLayout
+
+
+        <Button
+
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:visibility="gone"
+            android:layout_gravity="center"
+            android:id="@+id/zoomout_singlerecord"
+            android:background="@drawable/zoom_out_foreground"
+            tools:layout_editor_absoluteX="512dp"
+            tools:layout_editor_absoluteY="10dp" />
+        <Button
+
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:visibility="gone"
+            android:layout_gravity="center"
+            android:id="@+id/zoomin_singlerecord"
+            android:background="@drawable/zoom_in_foreground"
+            tools:layout_editor_absoluteX="512dp"
+            tools:layout_editor_absoluteY="10dp" />
+
+
+
+
+
+        <LinearLayout
         android:layout_height="50dp"
         android:layout_width="50dp"
         android:layout_weight="1"
         android:layout_marginLeft="30dp"
         android:layout_gravity="center"
+
         >
+
+        <Button
+
+            android:id="@+id/choise_channel_record"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginEnd="30dp"
+            android:background="@drawable/banda_tools"
+            android:hint="CHOOSE"
+            android:visibility="gone"
+            android:textColorHint="#bbbbbb"
+            tools:ignore="HardcodedText"
+            tools:layout_editor_absoluteX="356dp"
+            tools:layout_editor_absoluteY="10dp" />
+
+
         <Button
 
             android:layout_width="50dp"
@@ -155,6 +201,9 @@ xmlns:tools="http://schemas.android.com/tools"
             android:background="@drawable/replay_root_foreground"
             tools:layout_editor_absoluteX="512dp"
             tools:layout_editor_absoluteY="10dp" />
+
+
+
     </LinearLayout>
 
         <LinearLayout
@@ -188,15 +237,96 @@ xmlns:tools="http://schemas.android.com/tools"
         android:layout_weight="1"
         >
 
+        <LinearLayout
+            android:id="@+id/left_linearlayout_singlere"
+            android:layout_width="50dp"
+            android:visibility="gone"
+            android:layout_height="match_parent"
+            android:background="#e6e6e6"
+            android:orientation="horizontal"
+            android:gravity="right"
+
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:gravity="center|top"
+                        android:id="@+id/VS100rec"
+                        android:layout_weight="1"
+                        android:text="100" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:gravity="center|top"
+                        android:layout_weight="1"
+                        android:id="@+id/VS50rec"
+                        android:text="50"
+
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:gravity="center|top"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:id="@+id/VS0rec"
+                        android:text="0"
+
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+
+                        android:gravity="center|top"
+                        android:layout_weight="1"
+                        android:id="@+id/VS_50rec"
+                        android:text="-50"
+
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:gravity="center|top"
+                        android:id="@+id/VS_100rec"
+                        android:text="-100"
+
+                        />
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+
+
+
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/left_linearlayout_re"
+            android:id="@+id/left_linearlayout_eightre"
             android:layout_width="50dp"
             android:layout_height="match_parent"
-
             android:background="#e6e6e6"
             android:orientation="vertical"
-
             >
 
             <TextView

@@ -21,15 +21,18 @@ import android.text.Editable;
 
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.ProgressBar;
@@ -56,6 +59,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.Set;
 import java.util.UUID;
 
@@ -67,6 +71,9 @@ public class EightRecordActivity extends AppCompatActivity {
 
     static TextView ch[]=new TextView[65];
 
+
+    private ArrayAdapter<String> adapter;
+
     public static TextView getCh1() {
         return ch[1];
     }
@@ -77,7 +84,6 @@ public class EightRecordActivity extends AppCompatActivity {
 
     Button cch1,cch2,cch3,cch4,cch5,cch6,cch7,cch8;
 
-    String montageS;
 
     Animation animation1,animation2;
     Button btn;
@@ -85,11 +91,22 @@ public class EightRecordActivity extends AppCompatActivity {
     Button line;
     ImageView notch;
     Button replay;
-    Button zoomout;
-    Button zoomin;
+    Button eight_zoomout;
+    Button eight_zoomin;
+
+
+    float pivote50=50;
+    float pivote100=100;
+    float pivote_50=-50;
+    float pivote_100=-100;
+
+    TextView row100,row50,row_100,row_50;
+
+    Button single_zoomout;
+    Button single_zoomin;
+
     Button record;
-    String text_ch1="";
-    Button resize;
+
     Button bluetooth;
     ListView listView;
 
@@ -103,6 +120,7 @@ public class EightRecordActivity extends AppCompatActivity {
     Set<BluetoothDevice> pared;
     static Dialog dialog,dialog1,dialog2,dialog3,dialog4,dialog5,dialog6,dialog7,dialog8;
 
+    Dialog choiceDialog;
 
 
 
@@ -128,6 +146,8 @@ public class EightRecordActivity extends AppCompatActivity {
     int data_count=0;
     int conter=0;
 
+    Button choise;
+    ListView myListView;
 
     boolean is_buffer_null=false;
 
@@ -280,12 +300,11 @@ public class EightRecordActivity extends AppCompatActivity {
 
         for (int j2=0;j2<8;j2++){
             for (int j1=0;j1<16000;j1++) {
-             //   counter.setBuffer(counter.getPart_data(), j2, j1);
+                counter.setBuffer(counter.getPart_data(), j2, j1);
 
             }
         }
 
-        //is_activity_on=false;
         String string = "NOP\r\n";
         set_limit = 1;
 
@@ -300,7 +319,7 @@ public class EightRecordActivity extends AppCompatActivity {
             }
         }
 
-        recordcount = 0;
+       // recordcount = 0;
 
         counter.setBuffer_count(0);
 
@@ -372,9 +391,6 @@ public class EightRecordActivity extends AppCompatActivity {
 
 
 
-
-
-
         if (objects.getSocket()!=null){
             if (objects.getSocket().isConnected()){
 
@@ -385,6 +401,9 @@ public class EightRecordActivity extends AppCompatActivity {
         if (counter.isBluetooth_drawabe()){
             bluetooth.setBackgroundResource(R.drawable.bluetooth_on_foreground);
         }
+
+        counter.setSingle_step_x((float) counter.getSurface_width() / (500 * counter.getHorizontal_scale()));
+        counter.setSingle_step_y((float) counter.getSurface_height() / 200);
 
 
         counter.setEight_step_x((float) counter.getSurface_width()/(counter.getRate_in_s()*counter.getHorizontal_scale()));
@@ -598,6 +617,9 @@ public class EightRecordActivity extends AppCompatActivity {
             }
         }).start();
 
+        TextView ctext=findViewById(R.id.choise_channel_record);
+        ctext.setText(getApplicationContext().getSharedPreferences("bch1", MODE_PRIVATE).getString("name","ch1").toString());
+
 
 
         new Thread(new Runnable() {
@@ -687,6 +709,12 @@ public class EightRecordActivity extends AppCompatActivity {
         dialog=new Dialog(EightRecordActivity.this);
         dialog.setContentView(R.layout.bluetooth_alert);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+
+        choiceDialog=new Dialog(EightRecordActivity.this);
+        choiceDialog.setContentView(R.layout.choice_dialog);
+        choiceDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
 
         dialog1=new Dialog(EightRecordActivity.this);
         dialog1.setContentView(R.layout.rename_ch1);
@@ -996,19 +1024,141 @@ public class EightRecordActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
+
+
                 vibrator.vibrate(40);
 
-                startActivity(new Intent(getApplicationContext(),EightRootActivity.class));
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                 startActivity(new Intent(getApplicationContext(), EightRootActivity.class));
+                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+
+
+
+
+             }
+        });
+
+
+        choise.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                myListView =  choiceDialog.findViewById(R.id.choice_list_view);
+                ArrayList<String> myStringArray1 = new ArrayList<String>();
+
+
+
+
+
+                myStringArray1.add(getApplicationContext().getSharedPreferences("bch1", MODE_PRIVATE).getString("name","ch1").toString());;
+                myStringArray1.add(getApplicationContext().getSharedPreferences("bch2", MODE_PRIVATE).getString("name","ch2").toString());;
+                myStringArray1.add(getApplicationContext().getSharedPreferences("bch3", MODE_PRIVATE).getString("name","ch3").toString());;
+                myStringArray1.add(getApplicationContext().getSharedPreferences("bch4", MODE_PRIVATE).getString("name","ch4").toString());;
+                myStringArray1.add(getApplicationContext().getSharedPreferences("bch5", MODE_PRIVATE).getString("name","ch5").toString());;
+                myStringArray1.add(getApplicationContext().getSharedPreferences("bch6", MODE_PRIVATE).getString("name","ch6").toString());;
+                myStringArray1.add(getApplicationContext().getSharedPreferences("bch7", MODE_PRIVATE).getString("name","ch7").toString());;
+                myStringArray1.add(getApplicationContext().getSharedPreferences("bch8", MODE_PRIVATE).getString("name","ch8").toString());;
+
+
+
+                adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1, myStringArray1);
+                myListView.setAdapter(adapter);
+
+
+
+
+
+
+                myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        choise.setText(myStringArray1.get(i));
+                        counter.setShow_record_ch(i);
+
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        choiceDialog.dismiss();
+                                    }
+                                });
+
+                            }
+                        }).start();
+
+                        // myStringArray1.clear();
+
+
+                    }
+                });
+
+
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                choiceDialog.show();
+                            }
+                        });
+                    }
+                }).start();
+
+//////////////
             }
         });
+
+
+
+
         line.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 vibrator.vibrate(70);
-                startActivity(new Intent(getApplicationContext(),SingleRecordActivity.class));
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-                finish();
+
+                if(string1.getSview()==string1.getSeight()){
+                    line.setBackgroundResource(R.drawable.one_line_foreground);
+                    findViewById(R.id.replay_eightrecord).setVisibility(View.GONE);
+                    findViewById(R.id.choise_channel_record).setVisibility(View.VISIBLE);
+                    findViewById(R.id.left_linearlayout_eightre).setVisibility(View.GONE);
+                    findViewById(R.id.left_linearlayout_singlere).setVisibility(View.VISIBLE);
+                    findViewById(R.id.zoomin_singlerecord).setVisibility(View.VISIBLE);
+                    findViewById(R.id.zoomout_singlerecord).setVisibility(View.VISIBLE);
+                    findViewById(R.id.zoomin_eightrecord).setVisibility(View.GONE);
+                    findViewById(R.id.zoomout_eightrecord).setVisibility(View.GONE);
+
+
+
+
+
+
+                    string1.setSview(string1.getSsingle());
+
+                }
+
+                 else if (string1.getSview()==string1.getSsingle()){
+                    line.setBackgroundResource(R.drawable.multi_line_foreground);
+                    findViewById(R.id.replay_eightrecord).setVisibility(View.VISIBLE);
+                    findViewById(R.id.choise_channel_record).setVisibility(View.GONE);
+                    findViewById(R.id.left_linearlayout_eightre).setVisibility(View.VISIBLE);
+                    findViewById(R.id.left_linearlayout_singlere).setVisibility(View.GONE);
+
+                    findViewById(R.id.zoomin_singlerecord).setVisibility(View.GONE);
+                    findViewById(R.id.zoomout_singlerecord).setVisibility(View.GONE);
+                    findViewById(R.id.zoomin_eightrecord).setVisibility(View.VISIBLE);
+                    findViewById(R.id.zoomout_eightrecord).setVisibility(View.VISIBLE);
+
+
+                    string1.setSview(string1.getSeight());
+
+                }
+
+
+                //startActivity(new Intent(getApplicationContext(),SingleRecordActivity.class));
+               // overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+             //  finish();
 
             }
         });
@@ -1016,59 +1166,110 @@ public class EightRecordActivity extends AppCompatActivity {
         montage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                myListView =  choiceDialog.findViewById(R.id.choice_list_view);
+                ArrayList<String> myStringArray1 = new ArrayList<String>();
 
-                PopupMenu popup = new PopupMenu(EightRecordActivity.this,montage);
-                popup.getMenuInflater().inflate(R.menu.montage, popup.getMenu());
+                myStringArray1.add("Mono");
+                myStringArray1.add("Banana");
 
-                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1, myStringArray1);
+                myListView.setAdapter(adapter);
+                myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
-                    public boolean onMenuItemClick(MenuItem menuItem) {
-                        montage.setText(menuItem.getTitle());
-                        string1.setMontage(menuItem.getTitle().toString());
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                        montage.setText(myStringArray1.get(i));
+                        choiceDialog.dismiss();
+                        //  myStringArray1.clear();
 
 
-                        if (menuItem.getTitle().equals("mono")){
-                            allow_rename=true;
-                            mono();
-                        }
-                        else {
-                            allow_rename=false;
-                            banana();
-                        }
-                        return true;
                     }
                 });
-                popup.show();
+
+                dialog1.show();
+
 
 
             }
         });
 
-        zoomout.setOnClickListener(new View.OnClickListener() {
+        eight_zoomout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
 
                 if(counter.getEight_step_y()>0) {
                     vibrator.vibrate(40);
                     counter.setEight_step_y((float) ((float) (counter.getEight_step_y() -(counter.getDefault_channel()*(counter.getEight_step_y()/100)))));
                 }
             }
-
         });
-        zoomin.setOnClickListener(new View.OnClickListener() {
+        eight_zoomin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 vibrator.vibrate(40);
                 counter.setEight_step_y((float) (counter.getEight_step_y() +(counter.getDefault_channel()*(counter.getEight_step_y()/50))));
+            }
+        });
+
+        single_zoomout.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onClick(View view) {
+
+
+                if(counter.getEight_step_y()>0) {
+                    counter.setSingle_step_y((float) (counter.getSingle_step_y() / (1.1)));
+                    pivote_50 = (float) (pivote_50 * 1.1);
+                    pivote_100 = (float) (pivote_100 * 1.1);
+                    pivote50 = (float) (pivote50 * 1.1);
+                    pivote100 = (float) (pivote100 * 1.1);
+
+
+                    row50.setText("" + (int) (pivote50));
+                    row100.setText("" + (int) (pivote100));
+                    row_50.setText("" + (int) (pivote_50));
+                    row_100.setText("" + (int) (pivote_100));
+
+
+                    vibrator.vibrate(40);
+
+                }
+
+
+
 
 
 
             }
-
-
-
-
         });
+        single_zoomin.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onClick(View view) {
+
+                if(Float.parseFloat(row50.getText().toString())>3) {
+                    counter.setSingle_step_y((float) (counter.getSingle_step_y() * (1.1)));
+
+                    pivote50 = (float) (pivote50 / 1.1);
+                    pivote100 = (float) (pivote100 / 1.1);
+                    pivote_100 = (float) (pivote_100 / 1.1);
+                    pivote_50 = (float) (pivote_50 / 1.1);
+
+
+                    row50.setText("" + (int) (pivote50));
+                    row100.setText("" + (int) (pivote100));
+                    row_50.setText("" + (int) (pivote_50));
+                    row_100.setText("" + (int) (pivote_100));
+
+                    vibrator.vibrate(40);
+
+
+                }
+
+            }
+        });
+
 
         btn.setOnClickListener(view -> drawerLayout.openDrawer(GravityCompat.START));
         ch[1].setOnClickListener(new View.OnClickListener() {
@@ -1661,16 +1862,25 @@ public class EightRecordActivity extends AppCompatActivity {
         V7000=findViewById(R.id.SM1_7000);
         V8000=findViewById(R.id.SM1_8000);
 
+        choise=findViewById(R.id.choise_channel_record);
 
 
+        eight_zoomout=findViewById(R.id.zoomout_eightrecord);
+        eight_zoomin=findViewById(R.id.zoomin_eightrecord);
 
-        zoomout=findViewById(R.id.zoomout_eightrecord);
-        zoomin=findViewById(R.id.zoomin_eightrecord);
+
+        single_zoomin=findViewById(R.id.zoomin_singlerecord);
+        single_zoomout=findViewById(R.id.zoomout_singlerecord);
+
+
 
         parentLayout = findViewById(android.R.id.content);
 
 
-
+        row100=findViewById(R.id.VS100rec);
+        row50=findViewById(R.id.VS50rec);
+        row_50=findViewById(R.id.VS_50rec);
+        row_100=findViewById(R.id.VS_100rec);
 
         ch[1]=findViewById(R.id.axis_textview_1_re);
         ch[2]=findViewById(R.id.axis_textview_2_re);

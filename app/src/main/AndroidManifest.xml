@@ -7,7 +7,9 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE/" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.VIBRATE"
+        />
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
 
 
 
@@ -18,56 +20,56 @@
 
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:screenOrientation="userLandscape"
+        android:screenOrientation="landscape"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
         <activity android:name=".V.Activity.EightRecordActivity"
-            android:screenOrientation="userLandscape"
+            android:screenOrientation="landscape"
             >
 
         </activity>
         <activity android:name=".V.Activity.MontageActivity"
-            android:screenOrientation="userLandscape">
+            android:screenOrientation="landscape">
         </activity>
         <activity android:name=".V.Activity.RenameChannelsActivity"
-            android:screenOrientation="userLandscape">
+            android:screenOrientation="landscape">
         </activity>
         <activity android:name=".V.Activity.MontageEditorActivity"
-            android:screenOrientation="userLandscape">
+            android:screenOrientation="landscape">
         </activity>
         <activity android:name=".V.Activity.EightRootActivity"
-            android:screenOrientation="userLandscape">
+            android:screenOrientation="landscape">
         </activity>
 
         <activity android:name=".V.Activity.AdvancedSettingActivity"
-            android:screenOrientation="userLandscape">
+            android:screenOrientation="landscape">
         </activity>
 
         <activity android:name=".V.Activity.SingleRootActivity"
-            android:screenOrientation="userLandscape">
+            android:screenOrientation="landscape">
         </activity>
 
         <activity android:name=".V.Activity.SingleRecordActivity"
-            android:screenOrientation="userLandscape">
+            android:screenOrientation="landscape">
 
         </activity>
         <activity android:name=".V.Activity.SettingsActivity"
-            android:screenOrientation="userLandscape">
+            android:screenOrientation="landscape">
 
         </activity>
         <activity android:name=".V.Activity.ReplayActivity"
-            android:screenOrientation="userLandscape">
+            android:screenOrientation="landscape">
 
         </activity>
 
         <activity android:name=".V.Activity.ScaleActivity"
-            android:screenOrientation="userLandscape">
+            android:screenOrientation="landscape">
         </activity>
 
         <activity android:name=".V.Activity.FilterActivity"
-            android:screenOrientation="userLandscape">
+            android:screenOrientation="landscape">
         </activity>
         <activity android:name=".V.Activity.MainActivity"
-            android:screenOrientation="userLandscape">
+            android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -11,9 +11,37 @@ public class String1 implements Serializable {
     static String filename="";
     static int  channel_count=0;
 
+   static String sview="eight";
+
+   static String seight="eight";
+   static String ssingle="single";
 
 
-public static String[] pivote_from =new String[64];
+    public String getSview() {
+        return sview;
+    }
+
+    public void setSview(String sview) {
+        this.sview = sview;
+    }
+
+    public String getSeight() {
+        return seight;
+    }
+
+    public void setSeight(String seight) {
+        this.seight = seight;
+    }
+
+    public String getSsingle() {
+        return ssingle;
+    }
+
+    public void setSsingle(String ssingle) {
+        this.ssingle = ssingle;
+    }
+
+    public static String[] pivote_from =new String[64];
 public static String[] pivote_to =new String[64];
 
     public String getPivote_from(int i) {

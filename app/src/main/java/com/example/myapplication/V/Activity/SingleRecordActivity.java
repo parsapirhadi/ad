@@ -307,8 +307,8 @@ is_activity_on=false;
 
         if (objects.getSocket()!=null){
             try {
-                sendReceive.write(string.getBytes());
-                 objects.getSocket().close();
+              //  sendReceive.write(string.getBytes());
+               //  objects.getSocket().close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -1114,36 +1114,36 @@ myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
         public ClientClass (BluetoothDevice device1)
         {
-            device=device1;
+           // device=device1;
 
-            try {
-                objects.setSocket(device.createRfcommSocketToServiceRecord(MY_UUID));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+         //   try {
+             //   objects.setSocket(device.createRfcommSocketToServiceRecord(MY_UUID));
+          //  } catch (IOException e) {
+             //   e.printStackTrace();
+            //}
         }
 
         public void run()
         {
-            try {
+           // try {
 
-                objects.getSocket().connect();
+              //  objects.getSocket().connect();
+//
+               // Message message=Message.obtain();
+              //  message.what=STATE_CONNECTED;
+              //  handler.sendMessage(message);
 
-                Message message=Message.obtain();
-                message.what=STATE_CONNECTED;
-                handler.sendMessage(message);
 
+               // sendReceive=new SingleRecordActivity.SendReceive(objects.getSocket());
 
-                sendReceive=new SingleRecordActivity.SendReceive(objects.getSocket());
+               // sendReceive.start();
 
-                sendReceive.start();
-
-            } catch (IOException e) {
-                e.printStackTrace();
-                Message message=Message.obtain();
-                message.what=STATE_CONNECTION_FAILED;
-                handler.sendMessage(message);
-            }
+          //  } catch (IOException e) {
+            //    e.printStackTrace();
+           //     Message message=Message.obtain();
+           //     message.what=STATE_CONNECTION_FAILED;
+           //     handler.sendMessage(message);
+           // }
         }
     }
 
@@ -1171,7 +1171,7 @@ myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
         public void run()
         {
-            byte[] buffer=new byte[512];
+            byte[] buffer=new byte[counter.getRate_in_s()];
 
 
             while (is_activity_on)

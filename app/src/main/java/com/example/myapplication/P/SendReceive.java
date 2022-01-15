@@ -3,6 +3,7 @@ package com.example.myapplication.P;
 import android.bluetooth.BluetoothSocket;
 import android.util.Log;
 
+
 import com.example.myapplication.M.DataType.Counter;
 import com.example.myapplication.M.DataType.Objects;
 

@@ -103,6 +103,8 @@ public class BaseSurfaceEightRecord extends SurfaceView implements SurfaceHolder
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height)
 
     {
+        samplePaint1.setColor(Color.RED);
+
         if (width == 0 || height == 0)
         {
             return;
@@ -118,6 +120,8 @@ public class BaseSurfaceEightRecord extends SurfaceView implements SurfaceHolder
 
         if (drawThread != null)
         {
+            samplePaint1.setColor(Color.RED);
+
             // Log.d(LOGTAG, "draw thread still active..");
             drawingActive = false;
             try
@@ -213,6 +217,7 @@ public class BaseSurfaceEightRecord extends SurfaceView implements SurfaceHolder
         cannel_count=i;
         if (surfaceReady && drawThread == null)
         {
+            samplePaint1.setColor(Color.RED);
             drawThread = new Thread(runnable1, "Draw thread");
             drawingActive = true;
             drawThread.start();
@@ -233,11 +238,14 @@ public class BaseSurfaceEightRecord extends SurfaceView implements SurfaceHolder
 
             counter.setSurfaceview_height_eightrecord(getHeight());
             counter.setSurfaceview_Width_eightrecord(getWidth());
+            samplePaint1.setColor(Color.RED);
 
             try
             {
                 while (drawingActive)
                 {
+
+
                     if (holder == null)
                     {
                         return;
@@ -276,7 +284,7 @@ public class BaseSurfaceEightRecord extends SurfaceView implements SurfaceHolder
                             canvas.drawRect(0, 0, getWidth(), 1, samplePaint);
                             canvas.drawRect(0, getHeight() - 4, getWidth(), getHeight(), samplePaint);
 
-                            if (counter.getBuffere(0, counter.getHorizontal_scale() * 500 * counter.getCounter_changescreeen()+1) != counter.getPart_data()) {
+                            if (counter.getBuffere(0, counter.getHorizontal_scale() * counter.getRate_in_s()* counter.getCounter_changescreeen()+1) != counter.getPart_data()) {
 
                                 if (counter.isChangeScreen_eight()) {
 
@@ -311,7 +319,6 @@ public class BaseSurfaceEightRecord extends SurfaceView implements SurfaceHolder
 
                             }
 
-                            samplePaint1.setColor(Color.RED);
 
                             if (string1.getMontage().equals("mono")){
 
@@ -370,9 +377,9 @@ public class BaseSurfaceEightRecord extends SurfaceView implements SurfaceHolder
                                                     (float) ((y + 1) * counter.getEight_step_x()),
                                                     (float) (((float) ((float) (getHeight() / (float) (counter.getDefault_channel() * 2))) * (((2 * j) + 1))) + (counter.getBuffere(j, (g + 1)) * counter.getEight_step_y())),
                                                     samplePaint1);
-
+                                            y++;
                                         }
-                                        y++;
+
 
                                     }
                                 }

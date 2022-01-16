@@ -331,6 +331,7 @@ public class EightRecordActivity extends AppCompatActivity {
 
         super.onResume();
         Log.e("EonResume","EonResume");
+        counter.setShow_record_ch(0);
 
         is_disconnected=false;
 
@@ -467,9 +468,6 @@ public class EightRecordActivity extends AppCompatActivity {
                     //  Log.e("i=",""+i);
 
 
-                    /*
-
-                    *********disconnect bluetooth when receive bad data*********************
 
                     if ((counter.getBuffer_count() - data_count) < 3 && recordcount == 1 && objects.getSocket().isConnected()) {
                         conter++;
@@ -509,11 +507,8 @@ public class EightRecordActivity extends AppCompatActivity {
                     }
 
 
-                  51     *********disconnect bluetooth when receive bad data*********************
 
 
-
-                    */
 
 
 

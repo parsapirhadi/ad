@@ -255,7 +255,7 @@ public class BaseSurfaceSingleRecord extends SurfaceView implements SurfaceHolde
                             canvas.drawRect(0, 0, getWidth(), 1, samplePaint);
                             canvas.drawRect(0, getHeight() - 4, getWidth(), getHeight(), samplePaint);
 
-                            if (counter.getBuffere(0, (counter.getHorizontal_scale() * 500 * counter.getCounter_changescreeen()) - 100) != counter.getPart_data()) {
+                            if (counter.getBuffere(0, (counter.getHorizontal_scale() * counter.getRate_in_s() * counter.getCounter_changescreeen())) != counter.getPart_data()) {
                                 if (counter.isChangeScreen_single()) {
 
 
@@ -289,7 +289,7 @@ public class BaseSurfaceSingleRecord extends SurfaceView implements SurfaceHolde
                             int j = counter.getShow_record_ch();
                             for (i1 = counter.getStartdraw(); i1 < counter.getEnddraw(); i1++) {
                                 if (counter.getBuffere(j, i1) != counter.getPart_data()
-                                        && counter.getBuffere(j, i1 + 1) != counter.getPart_data()
+                                        && counter.getBuffere(j, i1 - 1) != counter.getPart_data()
 
                                 ) {
 
@@ -331,9 +331,9 @@ public class BaseSurfaceSingleRecord extends SurfaceView implements SurfaceHolde
                                             (float) ((y + 1) * counter.getSingle_step_x()),
                                             (float) (((float) ((float) (getHeight() / 2))) + (counter.getBuffere(j, (g + 1)) * counter.getSingle_step_y())),
                                             samplePaint1);
-
+                                    y++;
                                 }
-                                y++;
+
 
                             }
 

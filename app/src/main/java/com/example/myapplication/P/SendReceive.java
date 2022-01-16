@@ -49,13 +49,16 @@ Counter counter;
     {
 
         bluetoothSocket=socket;
+
         this.counter=counter;
 
         this.objects=objects;
 
         try {
             tempIn=bluetoothSocket.getInputStream();
+
             tempOut=bluetoothSocket.getOutputStream();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -122,6 +125,7 @@ Counter counter;
                         channel++;
 
 
+
                         if (o%((500*counter.getHorizontal_scale()))==0){
 
                             counter.setChangeScreen_eight(true);
@@ -139,7 +143,16 @@ Counter counter;
 
                         counter.setBuffer_count(counter.getBuffer_count()+1);
 
+
+
+
+
+
                     }
+
+
+
+
                 }
             }
             if (s==255)

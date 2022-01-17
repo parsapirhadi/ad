@@ -72,7 +72,7 @@ static int show_record_ch=0;
     static boolean is_activity_on =true;
 
 
-
+    static boolean signal_is_weak=false;
 
 
     static float surface_width =0;
@@ -80,6 +80,13 @@ static int show_record_ch=0;
 
     static int x=1;
 
+    public boolean isSignal_is_weak() {
+        return signal_is_weak;
+    }
+
+    public void setSignal_is_weak(boolean signal_is_weak) {
+        this.signal_is_weak = signal_is_weak;
+    }
 
     public boolean is_activity_on() {
         return is_activity_on;

@@ -298,12 +298,12 @@ public class EightRecordActivity extends AppCompatActivity {
         super.onPause();
         counter.set_activity_on(false);
 
-        for (int j2=0;j2<8;j2++){
-            for (int j1=0;j1<16000;j1++) {
-                counter.setBuffer(counter.getPart_data(), j2, j1);
+      //   for (int j2=0;j2<8;j2++){
+           // for (int j1=0;j1<16000;j1++) {
+              //  counter.setBuffer(counter.getPart_data(), j2, j1);
 
-            }
-        }
+          //  }
+       // }
 
         String string = "NOP\r\n";
         set_limit = 1;
@@ -342,6 +342,17 @@ public class EightRecordActivity extends AppCompatActivity {
         conter=0;
         is_connected=false;
         is_open=false;
+
+
+       pivote50=50;
+        pivote100=100;
+        pivote_50=-50;
+        pivote_100=-100;
+
+        row_100.setText("-100");
+        row100.setText("100");
+        row50.setText("50");
+        row_50.setText("-50");
 
 
 
@@ -430,12 +441,8 @@ public class EightRecordActivity extends AppCompatActivity {
               e.printStackTrace();
           }
 
-        for (int j2=0;j2<8;j2++){
-            for (int j1=0;j1<16000;j1++) {
-              //  counter.setBuffer(counter.getPart_data(), j2, j1);
 
-            }
-        }
+
         counter.setBuffer_count(0);
 
         if (string1.getPivote(0)!=null)
@@ -469,7 +476,8 @@ public class EightRecordActivity extends AppCompatActivity {
 
 
 
-                    if ((counter.getBuffer_count() - data_count) < 3 && recordcount == 1 && objects.getSocket().isConnected()) {
+
+                    if ( counter.isSignal_is_weak() &&(counter.getBuffer_count() - data_count) < 3 && recordcount == 1 && objects.getSocket().isConnected()) {
                         conter++;
                         if (conter > 1) {
                             runOnUiThread(new Runnable() {
@@ -604,7 +612,7 @@ public class EightRecordActivity extends AppCompatActivity {
                     data_count=counter.getBuffer_count();
                     try {
 
-                        Thread.sleep(200);
+                        Thread.sleep(300);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }

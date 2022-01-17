@@ -79,6 +79,9 @@ Counter counter;
 
                 s=inputStream.read();
 
+
+
+
             } catch (IOException e) {
 
                 e.printStackTrace();
@@ -93,31 +96,41 @@ Counter counter;
 
 
 
-
             if (channel!=-1)
             {
 
                 if (next_is_zarib){
+
                     zarib=s;
                     next_is_zarib=false;
 
                 }
                 else {
+
                     next_is_zarib=true;
                     data=(zarib*256)+s;
                     if (zarib<255){
+
                         o=(counter.getBuffer_count()/counter.getDefault_channel())%(no_limit);
 
                         while (!is_buffer_null){
+
+
                             if (counter.getBuffere(channel,o)==counter.getPart_data()){
                                 break;
                             }
+
+
+                            counter.setSignal_is_weak(false);
+
+
                             counter.setBuffer_count(counter.getBuffer_count()+8);
 
                             o=(counter.getBuffer_count()/8)%(16001-(counter.getHorizontal_scale()*counter.getRate_in_s()*3));
 
-                            Log.e("not nullll","not nullll");
+
                         }
+                        counter.setSignal_is_weak(false);
 
 
 
@@ -143,14 +156,7 @@ Counter counter;
 
                         counter.setBuffer_count(counter.getBuffer_count()+1);
 
-
-
-
-
-
                     }
-
-
 
 
                 }

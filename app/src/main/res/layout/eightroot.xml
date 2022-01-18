@@ -452,11 +452,15 @@
     android:id="@+id/axis_textview_63"
     style="@style/axis_textview_root"
     android:text="ch63"
-    tools:ignore="MissingConstraints" />  <TextView
-    android:id="@+id/axis_textview_64"
-    style="@style/axis_textview_root"
-    android:text="ch64"
     tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/axis_textview_64"
+        style="@style/axis_textview_root"
+        android:text="ch64"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="4dp"
+        tools:layout_editor_absoluteY="0dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

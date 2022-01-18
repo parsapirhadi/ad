@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="51dp">
     <LinearLayout
-        android:background="@drawable/main"
+        android:background="@drawable/item_drawable"
         android:id="@+id/item_custommontageeditor_layout"
         android:layout_width="match_parent"
         android:padding="10dp"
@@ -21,6 +21,7 @@
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:textSize="12sp"
+            android:fontFamily="sans-serif-medium"
             android:background="#e6e6e6"
             android:layout_gravity="center"
             android:gravity="center"
@@ -40,7 +41,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="38dp"
                 android:layout_gravity="center"
-                android:textColor="#1BAAFA"
+                android:textColor="#5a8fe5"
                 android:background="#e6e6e6"
                 android:gravity="center"
                 android:paddingLeft="10dp"

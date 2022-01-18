@@ -83,6 +83,15 @@ static int show_record_ch=0;
 
     static int x=1;
 
+   static int recordcount=0;
+
+    public int getRecordcount() {
+        return recordcount;
+    }
+
+    public void setRecordcount(int recordcount) {
+        this.recordcount = recordcount;
+    }
 
     public boolean isEightRecord_ispause() {
         return eightRecord_ispause;

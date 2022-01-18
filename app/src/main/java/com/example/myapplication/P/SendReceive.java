@@ -143,7 +143,7 @@ Counter counter;
 
                             counter.setChangeScreen_eight(true);
 
-                            if (counter.isEightRecord_ispause()){
+                            if (counter.isEightRecord_ispause() ){
                             for (int j2 = 0; j2 < 8; j2++) {
                                 for (int j1 = 0; j1 < 16000; j1++) {
 

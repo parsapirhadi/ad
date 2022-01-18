@@ -78,6 +78,7 @@ Counter counter;
             try {
 
                 s=inputStream.read();
+                counter.setSignal_is_weak(false);
 
 
 
@@ -117,11 +118,12 @@ Counter counter;
 
 
                             if (counter.getBuffere(channel,o)==counter.getPart_data()){
+
                                 break;
                             }
 
-
                             counter.setSignal_is_weak(false);
+
 
 
                             counter.setBuffer_count(counter.getBuffer_count()+8);
@@ -130,8 +132,6 @@ Counter counter;
 
 
                         }
-                        counter.setSignal_is_weak(false);
-
 
 
                         counter.setBuffer(((float) ((data - 2048) / 1.4)), channel, o);
@@ -139,10 +139,22 @@ Counter counter;
 
 
 
-                        if (o%((500*counter.getHorizontal_scale()))==0){
+                        if (o%((500*counter.getHorizontal_scale()))==0) {
 
                             counter.setChangeScreen_eight(true);
 
+                            if (counter.isEightRecord_ispause()){
+                            for (int j2 = 0; j2 < 8; j2++) {
+                                for (int j1 = 0; j1 < 16000; j1++) {
+
+                                    counter.setSignal_is_weak(false);
+
+                                    counter.setBuffer(counter.getPart_data(), j2, j1);
+
+
+                                }
+                            }
+                        }
 
                         }
 

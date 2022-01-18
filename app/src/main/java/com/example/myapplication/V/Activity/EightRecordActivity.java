@@ -41,6 +41,7 @@ import android.widget.Toast;
 //import android.widget.Toast;
 //import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
@@ -308,6 +309,7 @@ public class EightRecordActivity extends AppCompatActivity {
         String string = "NOP\r\n";
         set_limit = 1;
 
+        counter.setEightRecord_ispause(false);
 
 
         if (objects.getSocket()!=null){
@@ -337,7 +339,6 @@ public class EightRecordActivity extends AppCompatActivity {
 
         counter.set_activity_on(true);
 
-
         data_count=0;
         conter=0;
         is_connected=false;
@@ -354,7 +355,19 @@ public class EightRecordActivity extends AppCompatActivity {
         row50.setText("50");
         row_50.setText("-50");
 
+      new Thread(new Runnable() {
+          @Override
+          public void run() {
+              try {
+                  Thread.sleep(1000);
+              } catch (InterruptedException e) {
+                  e.printStackTrace();
+              }
 
+              counter.setEightRecord_ispause(true);
+
+          }
+      }).start();
 
 
         animation1= AnimationUtils.loadAnimation(getApplicationContext(),R.anim.bluetooth_anim_1);

@@ -74,11 +74,23 @@ static int show_record_ch=0;
 
     static boolean signal_is_weak=false;
 
+   static boolean eightRecord_ispause=false;
+
+
 
     static float surface_width =0;
     static float surface_height=0;
 
     static int x=1;
+
+
+    public boolean isEightRecord_ispause() {
+        return eightRecord_ispause;
+    }
+
+    public void setEightRecord_ispause(boolean eightRecord_ispause) {
+        this.eightRecord_ispause = eightRecord_ispause;
+    }
 
     public boolean isSignal_is_weak() {
         return signal_is_weak;

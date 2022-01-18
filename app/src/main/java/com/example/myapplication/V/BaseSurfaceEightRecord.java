@@ -288,6 +288,7 @@ public class BaseSurfaceEightRecord extends SurfaceView implements SurfaceHolder
 
                                 if (counter.isChangeScreen_eight()) {
 
+                                    counter.setSignal_is_weak(false);
 
                                     counter.setChangeScreen_eight(false);
 
@@ -315,18 +316,28 @@ public class BaseSurfaceEightRecord extends SurfaceView implements SurfaceHolder
                                 }
 
 
+                                for (int j2 = 0; j2 < 8; j2++) {
+                                    for (int j1 = 0; j1 < 16000; j1++) {
 
+                                        counter.setSignal_is_weak(false);
+
+                                        counter.setBuffer(counter.getPart_data(), j2, j1);
+
+
+                                    }
+                                }
 
                             }
+
                                 counter.setSignal_is_weak(true);
-
-
-                            if (string1.getMontage().equals("mono")){
+                                if (string1.getMontage().equals("mono")){
 
 
 
                                 for (int j = 0; j < counter.getDefault_channel(); j++) {
                                     int y = 0;
+
+
                                     for (i1 = counter.getStartdraw(); i1 < counter.getEnddraw(); i1++) {
                                         if (counter.getBuffere(j, i1) != counter.getPart_data()
                                                 && counter.getBuffere(j, i1 - 1) != counter.getPart_data()
@@ -338,9 +349,9 @@ public class BaseSurfaceEightRecord extends SurfaceView implements SurfaceHolder
                                             if (i1 % 15000 ==15999-(counter.getHorizontal_scale()*counter.getRate_in_s()*3)) {
                                                 for (int j2=0;j2<8;j2++){
                                                     for (int j1=0;j1<16000;j1++) {
-                                                        counter.setSignal_is_weak(false);
 
                                                         counter.setBuffer(counter.getPart_data(), j2, j1);
+                                                        counter.setSignal_is_weak(false);
 
                                                     }
                                                 }
@@ -366,6 +377,8 @@ public class BaseSurfaceEightRecord extends SurfaceView implements SurfaceHolder
                                                 counter.setBuffer_count(0);
                                                 for (int j2 = 0; j2 < counter.getDefault_channel(); j2++) {
                                                     for (int j1 = 0; j1 < 16000; j1++) {
+
+
                                                         counter.setSignal_is_weak(false);
 
                                                         counter.setBuffer(counter.getPart_data(), j2, j1);
@@ -386,6 +399,7 @@ public class BaseSurfaceEightRecord extends SurfaceView implements SurfaceHolder
                                                     samplePaint1);
                                             y++;
                                         }
+
 
 
                                     }
@@ -411,7 +425,9 @@ public class BaseSurfaceEightRecord extends SurfaceView implements SurfaceHolder
 
                                                 for (int j2 = 0; j2 < 8; j2++) {
                                                     for (int j1 = 0; j1 < 16000; j1++) {
+
                                                         counter.setSignal_is_weak(false);
+
                                                         counter.setBuffer(counter.getPart_data(), j2, j1);
 
 
@@ -510,9 +526,21 @@ for (int j=0;j<1000;j+=50) {
                                 canvas.drawRect(0, 0, getWidth(), 1, samplePaint);
                                 canvas.drawRect(0, getHeight() - 4, getWidth(), getHeight(), samplePaint);
 
+                                counter.setSignal_is_weak(true);
+
                                 if (counter.getBuffere(0, (counter.getHorizontal_scale() * 500 * counter.getCounter_changescreeen()) - 100) != counter.getPart_data()) {
                                     if (counter.isChangeScreen_eight()) {
 
+                                        for (int j2 = 0; j2 < 8; j2++) {
+                                            for (int j1 = 0; j1 < 16000; j1++) {
+
+                                                counter.setSignal_is_weak(false);
+
+                                                counter.setBuffer(counter.getPart_data(), j2, j1);
+
+
+                                            }
+                                        }
 
                                         counter.setChangeScreen_eight(false);
                                         EightRecordActivity.getV0().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV0().getText().toString())) + "");
@@ -540,16 +568,23 @@ for (int j=0;j<1000;j+=50) {
                                 }
 
 
+
+
+
                                 int y = 0;
                                 int j = counter.getShow_record_ch();
                                 for (i1 = counter.getStartdraw(); i1 < counter.getEnddraw(); i1++) {
+
+
+
                                     if (counter.getBuffere(j, i1) != counter.getPart_data()
                                             && counter.getBuffere(j, i1 - 1) != counter.getPart_data()
                                     ) {
 
                                         if (i1 % 15000 == 15990 - (counter.getHorizontal_scale() * counter.getRate_in_s() * 3)) {
 
-                                            counter.setSignal_is_weak(false);
+
+
 
                                             EightRecordActivity.getV0().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV0().getText().toString())) + "");
                                             EightRecordActivity.getV1000().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV1000().getText().toString())) + "");
@@ -571,7 +606,10 @@ for (int j=0;j<1000;j+=50) {
 
                                             for (int j2 = 0; j2 < 8; j2++) {
                                                 for (int j1 = 0; j1 < 16000; j1++) {
+
+
                                                     counter.setSignal_is_weak(false);
+
                                                     counter.setBuffer(counter.getPart_data(), j2, j1);
 
 

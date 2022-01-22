@@ -53,6 +53,7 @@ import com.example.myapplication.M.DataType.String1;
 import com.example.myapplication.P.SendReceive;
 import com.example.myapplication.R;
 import com.example.myapplication.V.BaseSurfaceEightRecord;
+
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -259,6 +260,7 @@ public class EightRecordActivity extends AppCompatActivity {
     float data=0;
     int g;
 
+    Snackbar snackbar_connecting;
 
     int o;
 
@@ -327,9 +329,12 @@ public class EightRecordActivity extends AppCompatActivity {
 
     }
 
+
+
     @SuppressLint("SetTextI18n")
     @Override
     protected void onResume() {
+
 
         super.onResume();
         Log.e("EonResume","EonResume");
@@ -490,7 +495,7 @@ public class EightRecordActivity extends AppCompatActivity {
 
 
 
-                    if ( counter.isSignal_is_weak() &&(counter.getBuffer_count() - data_count) < 3 && recordcount == 1 && objects.getSocket().isConnected()) {
+                    if ( counter.isSignal_is_weak() &&(counter.getBuffer_count() - data_count) < 300 && recordcount == 1 && objects.getSocket().isConnected()) {
                         conter++;
                         if (conter > 1) {
                             runOnUiThread(new Runnable() {
@@ -511,7 +516,8 @@ public class EightRecordActivity extends AppCompatActivity {
                                     }
 
                                     is_disconnected = true;
-                                    Snackbar.make(parentLayout, "'" + "Bluetooth" + " Disconnected'", Snackbar.LENGTH_LONG).show();
+                                    snackbar_connecting.setDuration(400000);
+                                    snackbar_connecting.show();
 
                                     bluetooth.startAnimation(animation1);
                                     animation_bluetooth=true;
@@ -625,7 +631,7 @@ public class EightRecordActivity extends AppCompatActivity {
                     data_count=counter.getBuffer_count();
                     try {
 
-                        Thread.sleep(300);
+                        Thread.sleep(200);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -706,8 +712,10 @@ public class EightRecordActivity extends AppCompatActivity {
                 }
             }
         }).start();
+        snackbar_connecting=Snackbar.make(parentLayout, "' " + "Bluetooth" + " is connecting '"+"   "+"' Please approach the device '", Snackbar.LENGTH_LONG);
 
-
+        snackbar_connecting.setDuration(400000);
+        snackbar_connecting.show();
     }
 
     @Override
@@ -879,9 +887,10 @@ public class EightRecordActivity extends AppCompatActivity {
                         // status.setText("Connecting");
                         break;
                     case STATE_CONNECTED:
-
+                       snackbar_connecting.dismiss();
                         View parentLayout = findViewById(android.R.id.content);
                         Snackbar.make(parentLayout, "Connected To '"+bluetooth_name+"'", Snackbar.LENGTH_LONG).show();
+
                         animation_bluetooth=false;
 
 
@@ -985,8 +994,9 @@ public class EightRecordActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 if (objects.getSocket() != null ){
-                    vibrator.vibrate(40);
-                    if (recordcount == 0) {
+                    if (recordcount == 0 && is_connected) {
+                        vibrator.vibrate(40);
+
                         record.setBackgroundResource(R.drawable.rect_stop_record);
                         String string = "CONTB\r\n";
                         set_limit = 1;
@@ -1015,9 +1025,15 @@ public class EightRecordActivity extends AppCompatActivity {
             }
 
         });
+
         notch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
+
+
+
 
 
 

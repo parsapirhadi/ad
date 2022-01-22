@@ -337,7 +337,6 @@ public class BaseSurfaceEightRecord extends SurfaceView implements SurfaceHolder
                                 for (int j = 0; j < counter.getDefault_channel(); j++) {
                                     int y = 0;
 
-
                                     for (i1 = counter.getStartdraw(); i1 < counter.getEnddraw(); i1++) {
                                         if (counter.getBuffere(j, i1) != counter.getPart_data()
                                                 && counter.getBuffere(j, i1 - 1) != counter.getPart_data()
@@ -380,6 +379,7 @@ public class BaseSurfaceEightRecord extends SurfaceView implements SurfaceHolder
 
 
                                                         counter.setSignal_is_weak(false);
+
 
                                                         counter.setBuffer(counter.getPart_data(), j2, j1);
 

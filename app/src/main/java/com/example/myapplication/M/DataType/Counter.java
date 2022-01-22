@@ -56,6 +56,15 @@ static int show_record_ch=0;
     static float eight_step_y =0;
     static float eight_step_x =0;
 
+    static int o;
+
+    public int getO() {
+        return o;
+    }
+
+    public void setO(int o) {
+        this.o = o;
+    }
 
     static final int default_channel=8;
 
@@ -100,6 +109,8 @@ static int show_record_ch=0;
     public void setEightRecord_ispause(boolean eightRecord_ispause) {
         this.eightRecord_ispause = eightRecord_ispause;
     }
+
+
 
     public boolean isSignal_is_weak() {
         return signal_is_weak;

@@ -112,12 +112,13 @@ Counter counter;
                     data=(zarib*256)+s;
                     if (zarib<255){
 
-                        o=(counter.getBuffer_count()/counter.getDefault_channel())%(no_limit);
+
+                        counter.setO((counter.getBuffer_count()/counter.getDefault_channel())%(no_limit));
 
                         while (!is_buffer_null){
 
 
-                            if (counter.getBuffere(channel,o)==counter.getPart_data()){
+                            if (counter.getBuffere(channel,counter.getO())==counter.getPart_data()){
 
                                 break;
                             }
@@ -128,18 +129,17 @@ Counter counter;
 
                             counter.setBuffer_count(counter.getBuffer_count()+8);
 
-                            o=(counter.getBuffer_count()/8)%(16001-(counter.getHorizontal_scale()*counter.getRate_in_s()*3));
-
+                              counter.setO((counter.getBuffer_count()/8)%(16001-(counter.getHorizontal_scale()*counter.getRate_in_s()*3)));
 
                         }
 
 
-                        counter.setBuffer(((float) ((data - 2048) / 1.4)), channel, o);
+                        counter.setBuffer(((float) ((data - 2048) / 1.4)), channel, counter.getO());
                         channel++;
 
 
 
-                        if (o%((500*counter.getHorizontal_scale()))==0) {
+                        if (counter.getO()%((500*counter.getHorizontal_scale()))==0) {
 
                             counter.setChangeScreen_eight(true);
 
@@ -161,7 +161,7 @@ Counter counter;
                         if (channel==counter.getDefault_channel()) {
                             channel=0;
                             counter.setRefresh(true);
-                            counter.setBuffer( ((float)  ((data - 2048) / 1.4)), counter.getDefault_channel()-1, o);
+                            counter.setBuffer( ((float)  ((data - 2048) / 1.4)), counter.getDefault_channel()-1, counter.getO());
 
                         }
 

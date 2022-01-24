@@ -225,8 +225,10 @@ int is_change_text=0;
                     }
                 }
             }
-        }).start();
 
+        }).start();
+        counter.setEightRecord_ispause(false);
+        counter.setFrist_page(false);
         for (int i=0;i<counter.getHorizontal_scale();i++) {
             for (int j=0;j<16000;j++) {
                counter.setBuffer(counter.getPart_data(),i,j);
@@ -243,6 +245,7 @@ int is_change_text=0;
             EightRecordActivity.getV6000().setText((Float.parseFloat(EightRecordActivity.getV0().getText().toString()) + (6 * (float) counter.getHorizontal_scale() / 8)) + "");
             EightRecordActivity.getV7000().setText((Float.parseFloat(EightRecordActivity.getV0().getText().toString()) + (7 * (float) counter.getHorizontal_scale() / 8)) + "");
             EightRecordActivity.getV8000().setText((Float.parseFloat(EightRecordActivity.getV0().getText().toString()) + (8 * (float) counter.getHorizontal_scale() / 8)) + "");
+
 
             SingleRecordActivity.getV0().setText(0 + "");
             SingleRecordActivity.getV1000().setText((Float.parseFloat(EightRecordActivity.getV0().getText().toString()) + ((float) counter.getHorizontal_scale() / 8)) + "");

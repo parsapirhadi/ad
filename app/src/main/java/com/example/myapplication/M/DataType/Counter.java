@@ -56,7 +56,7 @@ static int show_record_ch=0;
     static float eight_step_y =0;
     static float eight_step_x =0;
 
-    static int o;
+    static int o=-1;
 
     public int getO() {
         return o;
@@ -80,10 +80,14 @@ static int show_record_ch=0;
 
     static boolean is_activity_on =true;
 
+  static boolean first_page=false;
+
 
     static boolean signal_is_weak=false;
 
    static boolean eightRecord_ispause=false;
+
+    static float min_receive_data;
 
 
 
@@ -110,7 +114,13 @@ static int show_record_ch=0;
         this.eightRecord_ispause = eightRecord_ispause;
     }
 
+    public float getMin_receive_data() {
+        return min_receive_data;
+    }
 
+    public void setMin_receive_data(float min_receive_data) {
+        this.min_receive_data = min_receive_data;
+    }
 
     public boolean isSignal_is_weak() {
         return signal_is_weak;
@@ -134,6 +144,14 @@ static int show_record_ch=0;
 
     public void setSurfaceview_Width_singlerecord(int Surfaceview_Width_singlerecord) {
         this.Surfaceview_Width_singlerecord = Surfaceview_Width_singlerecord;
+    }
+
+    public boolean isFrist_page() {
+        return first_page;
+    }
+
+    public void setFrist_page(boolean frist_page) {
+        this.first_page = frist_page;
     }
 
     public int getSurfaceview_height_singlerecord(){

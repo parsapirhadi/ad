@@ -311,7 +311,7 @@ public class EightRecordActivity extends AppCompatActivity {
         String string = "NOP\r\n";
         set_limit = 1;
 
-        counter.setEightRecord_ispause(false);
+       // counter.setEightRecord_ispause(false);
 
 
         if (objects.getSocket()!=null){
@@ -325,7 +325,7 @@ public class EightRecordActivity extends AppCompatActivity {
 
        // recordcount = 0;
 
-        counter.setBuffer_count(0);
+      //  counter.setBuffer_count(0);
 
     }
 
@@ -370,6 +370,7 @@ public class EightRecordActivity extends AppCompatActivity {
               }
 
               counter.setEightRecord_ispause(true);
+
 
           }
       }).start();
@@ -461,7 +462,7 @@ public class EightRecordActivity extends AppCompatActivity {
 
 
 
-        counter.setBuffer_count(0);
+       // counter.setBuffer_count(0);
 
         if (string1.getPivote(0)!=null)
         {
@@ -495,7 +496,7 @@ public class EightRecordActivity extends AppCompatActivity {
 
 
 
-                    if ( counter.isSignal_is_weak() &&(counter.getBuffer_count() - data_count) < 300 && recordcount == 1 && objects.getSocket().isConnected()) {
+                    if ( counter.isSignal_is_weak() &&(counter.getBuffer_count() - data_count) < counter.getMin_receive_data() && recordcount == 1 && objects.getSocket().isConnected()) {
                         conter++;
                         if (conter > 1) {
                             runOnUiThread(new Runnable() {
@@ -514,7 +515,6 @@ public class EightRecordActivity extends AppCompatActivity {
                                     } catch (IOException e) {
                                         e.printStackTrace();
                                     }
-
                                     is_disconnected = true;
                                     snackbar_connecting.setDuration(400000);
                                     snackbar_connecting.show();
@@ -790,12 +790,8 @@ public class EightRecordActivity extends AppCompatActivity {
         counter.setEight_step_y((counter.getEight_step_y()/counter.getDefault_channel())/2);
 
 
-        for (int j2=0;j2<8;j2++){
-            for (int j1=0;j1<16000;j1++) {
-              //  counter.setBuffer(counter.getPart_data(), j2, j1);
+   counter.setMin_receive_data((float) (counter.getRate_in_s()*counter.getDefault_channel()*0.2*0.37));
 
-            }
-        }
 
         if(!objects.getBluetoothAdapter().isEnabled())
         {

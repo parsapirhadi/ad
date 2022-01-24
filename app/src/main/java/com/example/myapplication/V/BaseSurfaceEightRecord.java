@@ -259,6 +259,41 @@ public class BaseSurfaceEightRecord extends SurfaceView implements SurfaceHolder
                         try {
                             int t = 0;
 
+
+                             if (counter.getO()>500){
+                                 counter.setFrist_page(true);
+                             }
+
+
+
+
+                             if (counter.isFrist_page())
+                            if (counter.getO()<100) {
+                                counter.setChangeScreen_eight(true);
+
+
+                            }
+                            else
+                                if (counter.isChangeScreen_eight()){
+
+                                EightRecordActivity.getV0().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV0().getText().toString())) + "");
+                                EightRecordActivity.getV1000().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV1000().getText().toString())) + "");
+                                EightRecordActivity.getV2000().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV2000().getText().toString())) + "");
+                                EightRecordActivity.getV3000().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV3000().getText().toString())) + "");
+                                EightRecordActivity.getV4000().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV4000().getText().toString())) + "");
+                                EightRecordActivity.getV5000().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV5000().getText().toString())) + "");
+                                EightRecordActivity.getV6000().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV6000().getText().toString())) + "");
+                                EightRecordActivity.getV7000().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV7000().getText().toString())) + "");
+                                EightRecordActivity.getV8000().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV8000().getText().toString())) + "");
+
+
+                                counter.setChangeScreen_eight(false);
+                            }
+
+
+
+
+
                             if (string1.getSview().equals(string1.getSeight())){
 
 
@@ -284,50 +319,7 @@ public class BaseSurfaceEightRecord extends SurfaceView implements SurfaceHolder
                             canvas.drawRect(0, 0, getWidth(), 1, samplePaint);
                             canvas.drawRect(0, getHeight() - 4, getWidth(), getHeight(), samplePaint);
 
-                            if (counter.getBuffere(0, counter.getHorizontal_scale() * counter.getRate_in_s()* counter.getCounter_changescreeen()+1) != counter.getPart_data()) {
 
-                                if (counter.isChangeScreen_eight()) {
-
-                                    counter.setSignal_is_weak(false);
-
-                                    counter.setChangeScreen_eight(false);
-
-                                    EightRecordActivity.getV0().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV0().getText().toString())) + "");
-                                    EightRecordActivity.getV1000().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV1000().getText().toString())) + "");
-                                    EightRecordActivity.getV2000().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV2000().getText().toString())) + "");
-                                    EightRecordActivity.getV3000().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV3000().getText().toString())) + "");
-                                    EightRecordActivity.getV4000().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV4000().getText().toString())) + "");
-                                    EightRecordActivity.getV5000().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV5000().getText().toString())) + "");
-                                    EightRecordActivity.getV6000().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV6000().getText().toString())) + "");
-                                    EightRecordActivity.getV7000().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV7000().getText().toString())) + "");
-                                    EightRecordActivity.getV8000().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV8000().getText().toString())) + "");
-
-
-
-                                    counter.setEnddraw(counter.getEnddraw() + (counter.getHorizontal_scale() * 500));
-                                    counter.setStartdraw(counter.getStartdraw() + (counter.getHorizontal_scale() * 500));
-                                    counter.setCounter_changescreeen(counter.getCounter_changescreeen()+1);
-
-                              Log.e("eight(((start))))))",""+counter.getStartdraw());
-                                    Log.e("eight(((end)))))",""+counter.getEnddraw());
-
-
-
-                                }
-
-
-                                for (int j2 = 0; j2 < 8; j2++) {
-                                    for (int j1 = 0; j1 < 16000; j1++) {
-
-                                        counter.setSignal_is_weak(false);
-
-                                        counter.setBuffer(counter.getPart_data(), j2, j1);
-
-
-                                    }
-                                }
-
-                            }
 
                                 counter.setSignal_is_weak(true);
                                 if (string1.getMontage().equals("mono")){
@@ -345,48 +337,7 @@ public class BaseSurfaceEightRecord extends SurfaceView implements SurfaceHolder
 
 
 
-                                            if (i1 % 15000 ==15999-(counter.getHorizontal_scale()*counter.getRate_in_s()*3)) {
-                                                for (int j2=0;j2<8;j2++){
-                                                    for (int j1=0;j1<16000;j1++) {
 
-                                                        counter.setBuffer(counter.getPart_data(), j2, j1);
-                                                        counter.setSignal_is_weak(false);
-
-                                                    }
-                                                }
-
-
-                                                EightRecordActivity.getV0().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV0().getText().toString())) + "");
-                                                EightRecordActivity.getV1000().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV1000().getText().toString())) + "");
-                                                EightRecordActivity.getV2000().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV2000().getText().toString())) + "");
-                                                EightRecordActivity.getV3000().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV3000().getText().toString())) + "");
-                                                EightRecordActivity.getV4000().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV4000().getText().toString())) + "");
-                                                EightRecordActivity.getV5000().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV5000().getText().toString())) + "");
-                                                EightRecordActivity.getV6000().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV6000().getText().toString())) + "");
-                                                EightRecordActivity.getV7000().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV7000().getText().toString())) + "");
-                                                EightRecordActivity.getV8000().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV8000().getText().toString())) + "");
-
-
-                                                counter.setStartdraw(1);
-                                                counter.setEnddraw(counter.getHorizontal_scale() * counter.getRate_in_s());
-                                                i1 = 1;
-
-
-                                                counter.setCounter_changescreeen(1);
-                                                counter.setBuffer_count(0);
-                                                for (int j2 = 0; j2 < counter.getDefault_channel(); j2++) {
-                                                    for (int j1 = 0; j1 < 16000; j1++) {
-
-
-                                                        counter.setSignal_is_weak(false);
-
-
-                                                        counter.setBuffer(counter.getPart_data(), j2, j1);
-
-                                                    }
-                                                }
-
-                                            }
 
                                             g = (i1 % 15000) - 1;
                                             //Log.e("i=", "" + g);
@@ -421,45 +372,6 @@ public class BaseSurfaceEightRecord extends SurfaceView implements SurfaceHolder
                                         if (counter.getBuffere(j, i1 + 1) != counter.getPart_data()) {
 
 
-                                            if (i1%15000==15999-(counter.getHorizontal_scale()*counter.getRate_in_s()*3)) {
-
-                                                for (int j2 = 0; j2 < 8; j2++) {
-                                                    for (int j1 = 0; j1 < 16000; j1++) {
-
-                                                        counter.setSignal_is_weak(false);
-
-                                                        counter.setBuffer(counter.getPart_data(), j2, j1);
-
-
-                                                    }
-                                                }
-
-
-                                                EightRecordActivity.getV0().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV0().getText().toString())) + "");
-                                                EightRecordActivity.getV1000().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV1000().getText().toString())) + "");
-                                                EightRecordActivity.getV2000().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV2000().getText().toString())) + "");
-                                                EightRecordActivity.getV3000().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV3000().getText().toString())) + "");
-                                                EightRecordActivity.getV4000().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV4000().getText().toString())) + "");
-                                                EightRecordActivity.getV5000().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV5000().getText().toString())) + "");
-                                                EightRecordActivity.getV6000().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV6000().getText().toString())) + "");
-                                                EightRecordActivity.getV7000().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV7000().getText().toString())) + "");
-                                                EightRecordActivity.getV8000().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV8000().getText().toString())) + "");
-
-
-
-
-
-                                                counter.setBuffer_count(0);
-
-                                                counter.setStartdraw(1);
-                                                counter.setEnddraw(counter.getHorizontal_scale() * counter.getRate_in_s());
-                                                i1 = 1;
-
-
-                                                counter.setCounter_changescreeen(1);
-
-
-                                            }
 
                                             g = (i1 % 15000) - 1;
                                             //Log.e("i=", "" + g);
@@ -501,7 +413,7 @@ for (int j=0;j<1000;j+=50) {
 
                             }
                             else {
-
+                             ///////////////////////////single record
 
 
 
@@ -528,44 +440,7 @@ for (int j=0;j<1000;j+=50) {
 
                                 counter.setSignal_is_weak(true);
 
-                                if (counter.getBuffere(0, (counter.getHorizontal_scale() * 500 * counter.getCounter_changescreeen()) - 100) != counter.getPart_data()) {
-                                    if (counter.isChangeScreen_eight()) {
 
-                                        for (int j2 = 0; j2 < 8; j2++) {
-                                            for (int j1 = 0; j1 < 16000; j1++) {
-
-                                                counter.setSignal_is_weak(false);
-
-                                                counter.setBuffer(counter.getPart_data(), j2, j1);
-
-
-                                            }
-                                        }
-
-                                        counter.setChangeScreen_eight(false);
-                                        EightRecordActivity.getV0().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV0().getText().toString())) + "");
-                                        EightRecordActivity.getV1000().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV1000().getText().toString())) + "");
-                                        EightRecordActivity.getV2000().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV2000().getText().toString())) + "");
-                                        EightRecordActivity.getV3000().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV3000().getText().toString())) + "");
-                                        EightRecordActivity.getV4000().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV4000().getText().toString())) + "");
-                                        EightRecordActivity.getV5000().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV5000().getText().toString())) + "");
-                                        EightRecordActivity.getV6000().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV6000().getText().toString())) + "");
-                                        EightRecordActivity.getV7000().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV7000().getText().toString())) + "");
-                                        EightRecordActivity.getV8000().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV8000().getText().toString())) + "");
-
-
-                                        counter.setEnddraw(counter.getEnddraw() + (counter.getHorizontal_scale() * 500));
-                                        counter.setStartdraw(counter.getStartdraw() + (counter.getHorizontal_scale() * 500));
-                                        counter.setCounter_changescreeen(counter.getCounter_changescreeen() + 1);
-
-                                        Log.e("(single((start)))", "" + counter.getStartdraw());
-                                        Log.e("(single((end)))", "" + counter.getEnddraw());
-
-
-                                    }
-
-
-                                }
 
 
 
@@ -581,43 +456,7 @@ for (int j=0;j<1000;j+=50) {
                                             && counter.getBuffere(j, i1 - 1) != counter.getPart_data()
                                     ) {
 
-                                        if (i1 % 15000 == 15990 - (counter.getHorizontal_scale() * counter.getRate_in_s() * 3)) {
 
-
-
-
-                                            EightRecordActivity.getV0().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV0().getText().toString())) + "");
-                                            EightRecordActivity.getV1000().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV1000().getText().toString())) + "");
-                                            EightRecordActivity.getV2000().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV2000().getText().toString())) + "");
-                                            EightRecordActivity.getV3000().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV3000().getText().toString())) + "");
-                                            EightRecordActivity.getV4000().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV4000().getText().toString())) + "");
-                                            EightRecordActivity.getV5000().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV5000().getText().toString())) + "");
-                                            EightRecordActivity.getV6000().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV6000().getText().toString())) + "");
-                                            EightRecordActivity.getV7000().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV7000().getText().toString())) + "");
-                                            EightRecordActivity.getV8000().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV8000().getText().toString())) + "");
-
-
-                                            counter.setStartdraw(1);
-                                            counter.setEnddraw(counter.getHorizontal_scale() * counter.getRate_in_s());
-                                            i1 = 1;
-
-
-                                            counter.setCounter_changescreeen(1);
-
-                                            for (int j2 = 0; j2 < 8; j2++) {
-                                                for (int j1 = 0; j1 < 16000; j1++) {
-
-
-                                                    counter.setSignal_is_weak(false);
-
-                                                    counter.setBuffer(counter.getPart_data(), j2, j1);
-
-
-                                                }
-                                            }
-                                            counter.setBuffer_count(0);
-
-                                        }
                                         g = (i1 % 15000) - 1;
 
 

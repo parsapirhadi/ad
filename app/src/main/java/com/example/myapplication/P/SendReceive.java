@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.example.myapplication.M.DataType.Counter;
 import com.example.myapplication.M.DataType.Objects;
+import com.example.myapplication.V.Activity.EightRecordActivity;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -71,7 +72,6 @@ Counter counter;
     {
         byte[] buffer=new byte[counter.getRate_in_s()];
 
-        no_limit=16001-(counter.getHorizontal_scale()*counter.getRate_in_s()*3);
         while (counter.is_activity_on())
         {
 
@@ -113,38 +113,22 @@ Counter counter;
                     if (zarib<255){
 
 
-                        counter.setO((counter.getBuffer_count()/counter.getDefault_channel())%(no_limit));
-
-                        while (!is_buffer_null){
-
-
-                            if (counter.getBuffere(channel,counter.getO())==counter.getPart_data()){
-
-                                break;
-                            }
-
-                            counter.setSignal_is_weak(false);
+                        counter.setO((int) ((counter.getBuffer_count()/counter.getDefault_channel())%(counter.getHorizontal_scale()*counter.getRate_in_s()*0.95)));
 
 
 
-                            counter.setBuffer_count(counter.getBuffer_count()+8);
-
-                              counter.setO((counter.getBuffer_count()/8)%(16001-(counter.getHorizontal_scale()*counter.getRate_in_s()*3)));
-
-                        }
 
 
                         counter.setBuffer(((float) ((data - 2048) / 1.4)), channel, counter.getO());
                         channel++;
 
 
+                        if (counter.getO()%(counter.getHorizontal_scale()*counter.getRate_in_s()*0.95)==0) {
 
-                        if (counter.getO()%((500*counter.getHorizontal_scale()))==0) {
-
-                            counter.setChangeScreen_eight(true);
 
                             if (counter.isEightRecord_ispause() ){
-                            for (int j2 = 0; j2 < 8; j2++) {
+
+                                for (int j2 = 0; j2 < 8; j2++) {
                                 for (int j1 = 0; j1 < 16000; j1++) {
 
                                     counter.setSignal_is_weak(false);
@@ -162,6 +146,7 @@ Counter counter;
                             channel=0;
                             counter.setRefresh(true);
                             counter.setBuffer( ((float)  ((data - 2048) / 1.4)), counter.getDefault_channel()-1, counter.getO());
+
 
                         }
 

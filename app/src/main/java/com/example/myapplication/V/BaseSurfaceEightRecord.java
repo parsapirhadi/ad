@@ -31,6 +31,7 @@ public class BaseSurfaceEightRecord extends SurfaceView implements SurfaceHolder
     float  f[] =new float[5];
     private SurfaceHolder holder;
 
+
     int y=0;
     float y0 =0,y1=0,y2=0,y3=0,y4=0,y5=0,y6=0,y7=0;
     float dy,dx;

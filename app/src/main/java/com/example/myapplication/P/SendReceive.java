@@ -113,6 +113,7 @@ Counter counter;
                     if (zarib<255){
 
 
+
                         counter.setO((int) ((counter.getBuffer_count()/counter.getDefault_channel())%(counter.getHorizontal_scale()*counter.getRate_in_s()*0.95)));
 
 

@@ -78,9 +78,12 @@ static int show_record_ch=0;
 
     static int buffer_count=0;
 
-    static boolean is_activity_on =true;
+    static boolean is_draw_activity_on =true;
 
-  static boolean first_page=false;
+    static boolean is_receive_activity_on =true;
+
+
+    static boolean first_page=false;
 
 
     static boolean signal_is_weak=false;
@@ -130,14 +133,20 @@ static int show_record_ch=0;
         this.signal_is_weak = signal_is_weak;
     }
 
-    public boolean is_activity_on() {
-        return is_activity_on;
+    public boolean is_draw_activity_on() {
+        return is_draw_activity_on;
     }
 
-    public void set_activity_on(boolean is_activity_on) {
-        this.is_activity_on = is_activity_on;
+    public void set_draw_activity_on(boolean is_draw_activity_on) {
+        this.is_draw_activity_on = is_draw_activity_on;
+    }
+    public boolean is_receive_activity_on() {
+        return is_receive_activity_on;
     }
 
+    public void set_receive_activity_on(boolean is_receive_activity_on) {
+        this.is_receive_activity_on = is_receive_activity_on;
+    }
     public int getSurfaceview_Width_singlerecord() {
         return Surfaceview_Width_singlerecord;
     }

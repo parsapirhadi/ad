@@ -300,7 +300,8 @@ public class EightRecordActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        counter.set_activity_on(false);
+        counter.set_draw_activity_on(false);
+        counter.set_receive_activity_on(false);
 
       //   for (int j2=0;j2<8;j2++){
            // for (int j1=0;j1<16000;j1++) {
@@ -343,7 +344,10 @@ public class EightRecordActivity extends AppCompatActivity {
 
         is_disconnected=false;
 
-        counter.set_activity_on(true);
+        counter.set_receive_activity_on(true);
+        counter.set_draw_activity_on(true);
+
+
 
         data_count=0;
         conter=0;
@@ -490,7 +494,7 @@ public class EightRecordActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                while (counter.is_activity_on()) {
+                while (counter.is_draw_activity_on()) {
 
                     //  Log.e("i=",""+i);
 

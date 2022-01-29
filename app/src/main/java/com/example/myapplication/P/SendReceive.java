@@ -72,7 +72,7 @@ Counter counter;
     {
         byte[] buffer=new byte[counter.getRate_in_s()];
 
-        while (counter.is_activity_on())
+        while (counter.is_receive_activity_on())
         {
 
             try {

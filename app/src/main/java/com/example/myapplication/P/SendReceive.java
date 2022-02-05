@@ -75,6 +75,7 @@ Counter counter;
         while (counter.is_receive_activity_on())
         {
 
+            Log.e("mmmmm","mmmm");
             try {
 
                 s=inputStream.read();
@@ -128,6 +129,19 @@ Counter counter;
 
 
                             if (counter.isEightRecord_ispause() ){
+
+                                counter.setSeconds_count0(counter.getSeconds_count0()+(counter.getHorizontal_scale()));
+                                counter.setSeconds_count1000(counter.getSeconds_count1000()+(counter.getHorizontal_scale()));
+                                counter.setSeconds_count2000(counter.getSeconds_count2000()+(counter.getHorizontal_scale()));
+                                counter.setSeconds_count3000(counter.getSeconds_count3000()+(counter.getHorizontal_scale()));
+                                counter.setSeconds_count4000(counter.getSeconds_count4000()+(counter.getHorizontal_scale()));
+                                counter.setSeconds_count5000(counter.getSeconds_count5000()+(counter.getHorizontal_scale()));
+                                counter.setSeconds_count6000(counter.getSeconds_count6000()+(counter.getHorizontal_scale()));
+                                counter.setSeconds_count7000(counter.getSeconds_count7000()+(counter.getHorizontal_scale()));
+                                counter.setSeconds_count8000(counter.getSeconds_count8000()+(counter.getHorizontal_scale()));
+
+
+
 
                                 for (int j2 = 0; j2 < 8; j2++) {
                                 for (int j1 = 0; j1 < 16000; j1++) {

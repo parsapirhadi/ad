@@ -277,18 +277,33 @@ public class BaseSurfaceEightRecord extends SurfaceView implements SurfaceHolder
                             else
                                 if (counter.isChangeScreen_eight()){
 
-                                EightRecordActivity.getV0().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV0().getText().toString())) + "");
-                                EightRecordActivity.getV1000().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV1000().getText().toString())) + "");
-                                EightRecordActivity.getV2000().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV2000().getText().toString())) + "");
-                                EightRecordActivity.getV3000().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV3000().getText().toString())) + "");
-                                EightRecordActivity.getV4000().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV4000().getText().toString())) + "");
-                                EightRecordActivity.getV5000().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV5000().getText().toString())) + "");
-                                EightRecordActivity.getV6000().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV6000().getText().toString())) + "");
-                                EightRecordActivity.getV7000().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV7000().getText().toString())) + "");
-                                EightRecordActivity.getV8000().setText(((counter.getHorizontal_scale()) + Float.parseFloat(EightRecordActivity.getV8000().getText().toString())) + "");
+                                    String s="";
+
+                                    counter.setSeconds_count0(counter.getSeconds_count0()+(counter.getHorizontal_scale()));
+                                    counter.setSeconds_count1000(counter.getSeconds_count1000()+(counter.getHorizontal_scale()));
+                                    counter.setSeconds_count2000(counter.getSeconds_count2000()+(counter.getHorizontal_scale()));
+                                    counter.setSeconds_count3000(counter.getSeconds_count3000()+(counter.getHorizontal_scale()));
+                                    counter.setSeconds_count4000(counter.getSeconds_count4000()+(counter.getHorizontal_scale()));
+                                    counter.setSeconds_count5000(counter.getSeconds_count5000()+(counter.getHorizontal_scale()));
+                                    counter.setSeconds_count6000(counter.getSeconds_count6000()+(counter.getHorizontal_scale()));
+                                    counter.setSeconds_count7000(counter.getSeconds_count7000()+(counter.getHorizontal_scale()));
+                                    counter.setSeconds_count8000(counter.getSeconds_count8000()+(counter.getHorizontal_scale()));
 
 
-                                counter.setChangeScreen_eight(false);
+
+
+                                    EightRecordActivity.getV0().setText(counter.getSeconds_count0()+ "s");
+                                    EightRecordActivity.getV1000().setText(counter.getSeconds_count1000()+ "s");
+                                    EightRecordActivity.getV2000().setText(counter.getSeconds_count2000()+ "s");
+                                    EightRecordActivity.getV3000().setText(counter.getSeconds_count3000()+ "s");
+                                    EightRecordActivity.getV4000().setText(counter.getSeconds_count4000()+ "s");
+                                    EightRecordActivity.getV5000().setText(counter.getSeconds_count5000()+ "s");
+                                    EightRecordActivity.getV6000().setText(counter.getSeconds_count6000()+ "s");
+                                    EightRecordActivity.getV7000().setText(counter.getSeconds_count7000()+ "s");
+                                    EightRecordActivity.getV8000().setText(counter.getSeconds_count8000()+ "s");
+
+
+                                    counter.setChangeScreen_eight(false);
                             }
 
 

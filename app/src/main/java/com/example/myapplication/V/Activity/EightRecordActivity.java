@@ -301,35 +301,30 @@ public class EightRecordActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         counter.set_draw_activity_on(false);
-        counter.set_receive_activity_on(false);
-
-      //   for (int j2=0;j2<8;j2++){
+     //   counter.set_receive_activity_on(false);
+ //   for (int j2=0;j2<8;j2++){
            // for (int j1=0;j1<16000;j1++) {
               //  counter.setBuffer(counter.getPart_data(), j2, j1);
 
           //  }
        // }
 
-        String string = "NOP\r\n";
-        set_limit = 1;
+      //  String string = "NOP\r\n";
+      //  set_limit = 1;
 
        // counter.setEightRecord_ispause(false);
-
-
-        if (objects.getSocket()!=null){
+  if (objects.getSocket()!=null){
             try {
-                sendReceive.write(string.getBytes());
-                objects.getSocket().close();
+               // sendReceive.write(string.getBytes());
+               // objects.getSocket().close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-
-       // recordcount = 0;
+ // recordcount = 0;
 
       //  counter.setBuffer_count(0);
-
-    }
+ }
 
 
 
@@ -360,10 +355,10 @@ public class EightRecordActivity extends AppCompatActivity {
         pivote_50=-50;
         pivote_100=-100;
 
-        row_100.setText("-100");
-        row100.setText("100");
-        row50.setText("50");
-        row_50.setText("-50");
+        row_100.setText("-100µV");
+        row100.setText("100µV");
+        row50.setText("50µV");
+        row_50.setText("-50µV");
 
       new Thread(new Runnable() {
           @Override
@@ -448,16 +443,15 @@ public class EightRecordActivity extends AppCompatActivity {
 
 
 
-              getV0().setText((Float.parseFloat(SingleRecordActivity.getV0().getText().toString()))+"");
-              getV1000().setText((Float.parseFloat(getV0().getText().toString())+((float) counter.getHorizontal_scale()/8))+"");
-              getV1000().setText((Float.parseFloat(getV0().getText().toString())+(1*(float) counter.getHorizontal_scale()/8))+"");
-              getV2000().setText((Float.parseFloat(getV0().getText().toString())+(2*(float) counter.getHorizontal_scale()/8))+"");
-              getV3000().setText((Float.parseFloat(getV0().getText().toString())+(3*(float) counter.getHorizontal_scale()/8))+"");
-              getV4000().setText((Float.parseFloat(getV0().getText().toString())+(4*(float) counter.getHorizontal_scale()/8))+"");
-              getV5000().setText((Float.parseFloat(getV0().getText().toString())+(5*(float) counter.getHorizontal_scale()/8))+"");
-              getV6000().setText((Float.parseFloat(getV0().getText().toString())+(6*(float) counter.getHorizontal_scale()/8))+"");
-              getV7000().setText((Float.parseFloat(getV0().getText().toString())+(7*(float) counter.getHorizontal_scale()/8))+"");
-              getV8000().setText((Float.parseFloat(getV0().getText().toString())+(8*(float) counter.getHorizontal_scale()/8))+"");
+              EightRecordActivity.getV0().setText(counter.getSeconds_count0()+"s");
+              EightRecordActivity.getV1000().setText(counter.getSeconds_count1000()+"s");
+              EightRecordActivity.getV2000().setText(counter.getSeconds_count2000()+"s");
+              EightRecordActivity.getV3000().setText(counter.getSeconds_count3000()+"s");
+              EightRecordActivity.getV4000().setText(counter.getSeconds_count4000()+"s");
+              EightRecordActivity.getV5000().setText(counter.getSeconds_count5000()+"s");
+              EightRecordActivity.getV6000().setText(counter.getSeconds_count6000()+"s");
+              EightRecordActivity.getV7000().setText(counter.getSeconds_count7000()+"s");
+              EightRecordActivity.getV8000().setText(counter.getSeconds_count8000()+"s");
 
 
 
@@ -599,7 +593,27 @@ public class EightRecordActivity extends AppCompatActivity {
         snackbar_connecting=Snackbar.make(parentLayout, "' " + "Bluetooth" + " is connecting '"+"   "+"' Please approach the device '", Snackbar.LENGTH_LONG);
 
         snackbar_connecting.setDuration(400000);
-        snackbar_connecting.show();
+       // snackbar_connecting.show();
+
+
+        if(counter.getHorizontal_scale()<8){
+            getV1000().setVisibility(View.INVISIBLE);
+            getV3000().setVisibility(View.INVISIBLE);
+            getV5000().setVisibility(View.INVISIBLE);
+            getV7000().setVisibility(View.INVISIBLE);
+
+        }
+        else{
+            getV1000().setVisibility(View.VISIBLE);
+            getV3000().setVisibility(View.VISIBLE);
+            getV5000().setVisibility(View.VISIBLE);
+            getV7000().setVisibility(View.VISIBLE);
+
+        }
+
+
+
+
     }
 
     private void metode(int i) throws InterruptedException {
@@ -1312,10 +1326,10 @@ public class EightRecordActivity extends AppCompatActivity {
                     pivote100 = (float) (pivote100 * 1.1);
 
 
-                    row50.setText("" + (int) (pivote50));
-                    row100.setText("" + (int) (pivote100));
-                    row_50.setText("" + (int) (pivote_50));
-                    row_100.setText("" + (int) (pivote_100));
+                    row50.setText( (int) (pivote50)+"µV");
+                    row100.setText((int) (pivote100)+"µV");
+                    row_50.setText ((int) (pivote_50)+"µV");
+                    row_100.setText( (int) (pivote_100)+"µV");
 
 
                     vibrator.vibrate(40);
@@ -1334,7 +1348,7 @@ public class EightRecordActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if(Float.parseFloat(row50.getText().toString())>3) {
+                if(pivote50>3) {
                     counter.setSingle_step_y((float) (counter.getSingle_step_y() * (1.1)));
 
                     pivote50 = (float) (pivote50 / 1.1);
@@ -1343,10 +1357,10 @@ public class EightRecordActivity extends AppCompatActivity {
                     pivote_50 = (float) (pivote_50 / 1.1);
 
 
-                    row50.setText("" + (int) (pivote50));
-                    row100.setText("" + (int) (pivote100));
-                    row_50.setText("" + (int) (pivote_50));
-                    row_100.setText("" + (int) (pivote_100));
+                    row50.setText ((int) (pivote50)+"µV");
+                    row100.setText((int) (pivote100)+"µV");
+                    row_50.setText((int) (pivote_50)+"µV");
+                    row_100.setText((int) (pivote_100)+"µV");
 
                     vibrator.vibrate(40);
 

@@ -47,6 +47,19 @@ static int show_record_ch=0;
     static boolean bluetooth_drawabe =false;
 
 
+     static int Seconds_count0;
+    static int Seconds_count1000;
+    static int Seconds_count2000;
+    static int Seconds_count3000;
+    static int Seconds_count4000;
+    static int Seconds_count5000;
+    static int Seconds_count6000;
+     static int Seconds_count7000;
+    static int Seconds_count8000;
+
+
+
+
     int count_of_set_i_channel=0;
     int count_of_set_j_channel=0;
 
@@ -100,6 +113,79 @@ static int show_record_ch=0;
     static int x=1;
 
    static int recordcount=0;
+
+
+    public int getSeconds_count0() {
+        return Seconds_count0;
+    }
+
+    public void setSeconds_count0(int seconds_count0) {
+        Seconds_count0 = seconds_count0;
+    }
+
+    public int getSeconds_count1000() {
+        return Seconds_count1000;
+    }
+
+    public void setSeconds_count1000(int seconds_count1000) {
+        Seconds_count1000 = seconds_count1000;
+    }
+
+    public int getSeconds_count2000() {
+        return Seconds_count2000;
+    }
+
+    public void setSeconds_count2000(int seconds_count2000) {
+        Seconds_count2000 = seconds_count2000;
+    }
+
+    public int getSeconds_count3000() {
+        return Seconds_count3000;
+    }
+
+    public void setSeconds_count3000(int seconds_count3000) {
+        Seconds_count3000 = seconds_count3000;
+    }
+
+    public int getSeconds_count4000() {
+        return Seconds_count4000;
+    }
+
+    public void setSeconds_count4000(int seconds_count4000) {
+        Seconds_count4000 = seconds_count4000;
+    }
+
+    public int getSeconds_count5000() {
+        return Seconds_count5000;
+    }
+
+    public void setSeconds_count5000(int seconds_count5000) {
+        Seconds_count5000 = seconds_count5000;
+    }
+
+    public int getSeconds_count6000() {
+        return Seconds_count6000;
+    }
+
+    public void setSeconds_count6000(int seconds_count6000) {
+        Seconds_count6000 = seconds_count6000;
+    }
+
+    public int getSeconds_count7000() {
+        return Seconds_count7000;
+    }
+
+    public void setSeconds_count7000(int seconds_count7000) {
+        Seconds_count7000 = seconds_count7000;
+    }
+
+    public int getSeconds_count8000() {
+        return Seconds_count8000;
+    }
+
+    public void setSeconds_count8000(int seconds_count8000) {
+        Seconds_count8000 = seconds_count8000;
+    }
 
     public int getRecordcount() {
         return recordcount;

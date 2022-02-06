@@ -168,6 +168,23 @@ public class BaseSurfaceEightRecord extends SurfaceView implements SurfaceHolder
 
         no_limit=24990-(counter.getHorizontal_scale()*counter.getRate_in_s()*3);
 
+
+
+        counter.setSurface_height(getHeight());
+        counter.setSurface_width(getWidth());
+
+        counter.setSingle_step_x((float) counter.getSurface_width() / (500 * counter.getHorizontal_scale()));
+        counter.setSingle_step_y((float) counter.getSurface_height() / 200);
+
+
+       // counter.setEight_step_x((float) counter.getSurface_width()/(500*counter.getHorizontal_scale()));
+       // counter.setEight_step_y((float) counter.getSurface_height()/200);
+     //   counter.setEight_step_y((counter.getEight_step_y()/string1.getChannel_count())/2);
+
+
+        counter.setEight_step_x((float) counter.getSurface_width()/(500*counter.getHorizontal_scale()));
+        counter.setEight_step_y((float) counter.getSurface_height()/200);
+        counter.setEight_step_y((counter.getEight_step_y()/counter.getDefault_channel())/2);
     }
 
     @Override
@@ -259,55 +276,6 @@ public class BaseSurfaceEightRecord extends SurfaceView implements SurfaceHolder
 
                         try {
                             int t = 0;
-
-
-                             if (counter.getO()>500){
-                                 counter.setFrist_page(true);
-                             }
-
-
-
-
-                             if (counter.isFrist_page())
-                            if (counter.getO()<100) {
-                                counter.setChangeScreen_eight(true);
-
-
-                            }
-                            else
-                                if (counter.isChangeScreen_eight()){
-
-                                    String s="";
-
-                                    counter.setSeconds_count0(counter.getSeconds_count0()+(counter.getHorizontal_scale()));
-                                    counter.setSeconds_count1000(counter.getSeconds_count1000()+(counter.getHorizontal_scale()));
-                                    counter.setSeconds_count2000(counter.getSeconds_count2000()+(counter.getHorizontal_scale()));
-                                    counter.setSeconds_count3000(counter.getSeconds_count3000()+(counter.getHorizontal_scale()));
-                                    counter.setSeconds_count4000(counter.getSeconds_count4000()+(counter.getHorizontal_scale()));
-                                    counter.setSeconds_count5000(counter.getSeconds_count5000()+(counter.getHorizontal_scale()));
-                                    counter.setSeconds_count6000(counter.getSeconds_count6000()+(counter.getHorizontal_scale()));
-                                    counter.setSeconds_count7000(counter.getSeconds_count7000()+(counter.getHorizontal_scale()));
-                                    counter.setSeconds_count8000(counter.getSeconds_count8000()+(counter.getHorizontal_scale()));
-
-
-
-
-                                    EightRecordActivity.getV0().setText(counter.getSeconds_count0()+ "s");
-                                    EightRecordActivity.getV1000().setText(counter.getSeconds_count1000()+ "s");
-                                    EightRecordActivity.getV2000().setText(counter.getSeconds_count2000()+ "s");
-                                    EightRecordActivity.getV3000().setText(counter.getSeconds_count3000()+ "s");
-                                    EightRecordActivity.getV4000().setText(counter.getSeconds_count4000()+ "s");
-                                    EightRecordActivity.getV5000().setText(counter.getSeconds_count5000()+ "s");
-                                    EightRecordActivity.getV6000().setText(counter.getSeconds_count6000()+ "s");
-                                    EightRecordActivity.getV7000().setText(counter.getSeconds_count7000()+ "s");
-                                    EightRecordActivity.getV8000().setText(counter.getSeconds_count8000()+ "s");
-
-
-                                    counter.setChangeScreen_eight(false);
-                            }
-
-
-
 
 
                             if (string1.getSview().equals(string1.getSeight())){

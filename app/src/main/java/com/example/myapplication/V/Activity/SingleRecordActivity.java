@@ -664,7 +664,7 @@ counter.setShow_record_ch(0);
 
 
 
-                    data_count=counter.getBuffer_count();
+                    data_count= (int) counter.getBuffer_count();
                     try {
 
                         Thread.sleep(200);
@@ -1208,7 +1208,7 @@ myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             next_is_zarib=true;
                             data=(zarib*256)+s;
                             if (zarib<255){
-                                o=(counter.getBuffer_count()/8)%(16001-(counter.getHorizontal_scale()*counter.getRate_in_s()*3));
+                                o= (int) ((counter.getBuffer_count()/8)%(16001-(counter.getHorizontal_scale()*counter.getRate_in_s()*3)));
 
                                while (!is_buffer_null){
                                    if (counter.getBuffere(channel,o)==counter.getPart_data()){
@@ -1221,8 +1221,8 @@ myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
                                        break;
                                    }
-                                   counter.setBuffer_count(counter.getBuffer_count()+8);
-                                   o=(counter.getBuffer_count()/8)%(16001-(counter.getHorizontal_scale()*counter.getRate_in_s()*3));
+                                   counter.setBuffer_count(counter.getBuffer_count()+counter.getDefault_channel());
+                                   o= (int) ((counter.getBuffer_count()/counter.getDefault_channel())%(16001-(counter.getHorizontal_scale()*counter.getRate_in_s()*3)));
 
                                    Log.e("not nullll","not nullll");
                                }

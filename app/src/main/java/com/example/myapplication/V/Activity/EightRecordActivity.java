@@ -328,6 +328,7 @@ public class EightRecordActivity extends AppCompatActivity {
 
 
 
+
     @SuppressLint("SetTextI18n")
     @Override
     protected void onResume() {
@@ -359,6 +360,21 @@ public class EightRecordActivity extends AppCompatActivity {
         row100.setText("100µV");
         row50.setText("50µV");
         row_50.setText("-50µV");
+
+
+          String string = "NOP\r\n";
+          set_limit = 1;
+
+        if (objects.getSocket()!=null){
+            try {
+                record.setBackgroundResource(R.drawable.red_record_drawable);
+                 sendReceive.write(string.getBytes());
+                 objects.getSocket().close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
 
       new Thread(new Runnable() {
           @Override
@@ -506,7 +522,7 @@ public class EightRecordActivity extends AppCompatActivity {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    data_count=counter.getBuffer_count();
+                    data_count= (int) counter.getBuffer_count();
                     try {
 
                         Thread.sleep(200);
@@ -610,6 +626,9 @@ public class EightRecordActivity extends AppCompatActivity {
             getV7000().setVisibility(View.VISIBLE);
 
         }
+
+
+
 
 
 

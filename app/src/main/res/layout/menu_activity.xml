@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e6e6e6"
+    android:layout_gravity="center"
+    android:gravity="center"
+
+    >
+
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_gravity="center"
+        android:background="@drawable/main"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.495"
+        tools:ignore="MissingConstraints"
+        android:orientation="vertical">
+
+
+
+
+       <LinearLayout
+
+            android:layout_width="match_parent"
+            android:id="@+id/layoutnewrecord_menu"
+            android:layout_height="?attr/actionBarSize"
+
+            >
+            <Button
+                android:layout_width="50dp"
+                android:id="@+id/icon_newpatient_menu"
+                android:layout_height="50dp"
+                android:background="@drawable/record_foreground"
+                />
+            <TextView
+                android:id="@+id/newrecord_menu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="New Record"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:id="@+id/layoutloadrecord_menu"
+
+            >
+            <Button
+                android:id="@+id/icon_loadpatient_menu"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/personal_foreground"
+                />
+            <TextView
+                android:id="@+id/loadpatient_menu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Load Record"
+                android:textColor="@color/black"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:id="@+id/layoutsetting_menu"
+            >
+            <Button
+                android:id="@+id/icon_setting_menu"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/setting_foreground"
+                />
+
+            <TextView
+                android:id="@+id/settings_menu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Settings"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -39,7 +39,7 @@ Counter counter;
         string1=new String1();
         counter=new Counter();
         counter.setStartdraw(1);
-        Intent intent=new Intent(this,EightRootActivity.class);
+        Intent intent=new Intent(this,MenuActivity.class);
 
         for (int o=0;o<counter.getDefault_channel();o++){
         for (int p=0;p<800000;p++) {

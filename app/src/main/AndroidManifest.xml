@@ -43,7 +43,9 @@
         <activity android:name=".V.Activity.AdvancedSettingActivity"
             android:screenOrientation="landscape">
         </activity>
-
+        <activity android:name=".V.Activity.MenuActivity"
+            android:screenOrientation="landscape">
+        </activity>
         <activity android:name=".V.Activity.SingleRootActivity"
             android:screenOrientation="landscape">
         </activity>

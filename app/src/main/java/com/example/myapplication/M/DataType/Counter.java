@@ -89,7 +89,7 @@ static int show_record_ch=0;
 
     static int counter_changescreeen=1;
 
-    static int buffer_count=0;
+    static long buffer_count=0;
 
     static boolean is_draw_activity_on =true;
 
@@ -342,11 +342,11 @@ static int show_record_ch=0;
 
 
 
-    public int getBuffer_count() {
+    public long getBuffer_count() {
         return buffer_count;
     }
 
-    public void setBuffer_count(int buffer_count) {
+    public void setBuffer_count(long buffer_count) {
         Counter.buffer_count = buffer_count;
     }
 

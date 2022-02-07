@@ -1,5 +1,6 @@
 package com.example.myapplication.V.Activity;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -38,6 +39,7 @@ public class MenuActivity extends AppCompatActivity {
     Counter counter;
     private String mParam2;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onResume() {
         super.onResume();

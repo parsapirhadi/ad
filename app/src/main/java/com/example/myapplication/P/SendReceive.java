@@ -115,63 +115,88 @@ Counter counter;
                     data=(zarib*256)+s;
                     if (zarib<255){
 
-                        if (counter.getBuffere(0,1500)==counter.getPart_data()) {
+                        if (counter.getO()==3700 || counter.getO()==1000) {
                             counter.setChangeScreen_eight(true);
 
 
                         }
 
 
-                        counter.setO((int) ((counter.getBuffer_count()/counter.getDefault_channel())%(counter.getHorizontal_scale()*counter.getRate_in_s()*0.95)));
+                        counter.setO((int) ((counter.getBuffer_count()/counter.getDefault_channel())%(counter.getHorizontal_scale()*counter.getRate_in_s()*0.99)));
 
 
                         if (counter.isChangeScreen_eight()
                                 &&
-                           counter.getBuffere(0,(counter.getHorizontal_scale()*(counter.getRate_in_s()-30)))!=counter.getPart_data()
+                           counter.getBuffere(0, (int) (counter.getHorizontal_scale()*counter.getRate_in_s()*0.98))!=counter.getPart_data()
                         ){
                             change_counter++;
+                          //  counter.setChangeScreen_eight(false);
+
+
+
+
+
+
+
+
+
+
+
+
+
+                           // Log.e("mmm",""+counter.getBuffer_count());
+
+                           // counter.setSeconds_count0(counter.getSeconds_count0()+(counter.getHorizontal_scale()));
+                           // counter.setSeconds_count1000(counter.getSeconds_count1000()+(counter.getHorizontal_scale()));
+                           /// counter.setSeconds_count2000(counter.getSeconds_count2000()+(counter.getHorizontal_scale()));
+                           // counter.setSeconds_count3000(counter.getSeconds_count3000()+(counter.getHorizontal_scale()));
+                           // counter.setSeconds_count4000(counter.getSeconds_count4000()+(counter.getHorizontal_scale()));
+                           // counter.setSeconds_count5000(counter.getSeconds_count5000()+(counter.getHorizontal_scale()));
+                           // counter.setSeconds_count6000(counter.getSeconds_count6000()+(counter.getHorizontal_scale()));
+                           // counter.setSeconds_count7000(counter.getSeconds_count7000()+(counter.getHorizontal_scale()));
+                           // counter.setSeconds_count8000(counter.getSeconds_count8000()+(counter.getHorizontal_scale()));
+
+
+
+                           // EightRecordActivity.getV0().setText(counter.getSeconds_count0()+ "s");
+                          //  EightRecordActivity.getV1000().setText(counter.getSeconds_count1000()+ "s");
+                            //EightRecordActivity.getV2000().setText(counter.getSeconds_count2000()+ "s");
+                           // EightRecordActivity.getV3000().setText(counter.getSeconds_count3000()+ "s");
+                           // EightRecordActivity.getV4000().setText(counter.getSeconds_count4000()+ "s");
+                          //  EightRecordActivity.getV5000().setText(counter.getSeconds_count5000()+ "s");
+                           // EightRecordActivity.getV6000().setText(counter.getSeconds_count6000()+ "s");
+                          //  EightRecordActivity.getV7000().setText(counter.getSeconds_count7000()+ "s");
+                          //  EightRecordActivity.getV8000().setText(counter.getSeconds_count8000()+ "s");
+
+                        }
+
+                        counter.setBuffer(((float) ((data - 2048) / 1.4)), channel, counter.getO());
+                        if (counter.isChangeScreen_eight() && (counter.getO())==100){
+                            Log.e(""+counter.getO(),""+counter.getO());
+
                             counter.setChangeScreen_eight(false);
+                            counter.setSeconds_count0(counter.getSeconds_count0()+  counter.getHorizontal_scale());
+                            EightRecordActivity.getV0().setText(counter.getSeconds_count0()+"s");
+                        }
+
+                        if (counter.isChangeScreen_eight() && (counter.getO())==1300){
+                            Log.e(""+counter.getO(),""+counter.getO());
+
+                            counter.setChangeScreen_eight(false);
+                            counter.setSeconds_count4000(counter.getSeconds_count0()+  counter.getHorizontal_scale());
+                            EightRecordActivity.getV4000().setText(counter.getSeconds_count0()+"s");
+                        }
 
 
 
-
-
-
-
-
-
-
-
-
-
-                            Log.e("mmm",""+counter.getBuffer_count());
-
-                            counter.setSeconds_count0(counter.getSeconds_count0()+(counter.getHorizontal_scale()));
-                            counter.setSeconds_count1000(counter.getSeconds_count1000()+(counter.getHorizontal_scale()));
-                            counter.setSeconds_count2000(counter.getSeconds_count2000()+(counter.getHorizontal_scale()));
-                            counter.setSeconds_count3000(counter.getSeconds_count3000()+(counter.getHorizontal_scale()));
-                            counter.setSeconds_count4000(counter.getSeconds_count4000()+(counter.getHorizontal_scale()));
-                            counter.setSeconds_count5000(counter.getSeconds_count5000()+(counter.getHorizontal_scale()));
-                            counter.setSeconds_count6000(counter.getSeconds_count6000()+(counter.getHorizontal_scale()));
-                            counter.setSeconds_count7000(counter.getSeconds_count7000()+(counter.getHorizontal_scale()));
-                            counter.setSeconds_count8000(counter.getSeconds_count8000()+(counter.getHorizontal_scale()));
-
-
-
-                            EightRecordActivity.getV0().setText(counter.getSeconds_count0()+ "s");
-                            EightRecordActivity.getV1000().setText(counter.getSeconds_count1000()+ "s");
-                            EightRecordActivity.getV2000().setText(counter.getSeconds_count2000()+ "s");
-                            EightRecordActivity.getV3000().setText(counter.getSeconds_count3000()+ "s");
-                            EightRecordActivity.getV4000().setText(counter.getSeconds_count4000()+ "s");
-                            EightRecordActivity.getV5000().setText(counter.getSeconds_count5000()+ "s");
-                            EightRecordActivity.getV6000().setText(counter.getSeconds_count6000()+ "s");
-                            EightRecordActivity.getV7000().setText(counter.getSeconds_count7000()+ "s");
-                            EightRecordActivity.getV8000().setText(counter.getSeconds_count8000()+ "s");
+                        for (int j=0;j<counter.getDefault_channel();j++)
+                        for (int p=1;p<200;p++) {
+                            counter.setBuffer(counter.getPart_data(), channel, counter.getO()+ p);
 
                         }
 
 
-                        counter.setBuffer(((float) ((data - 2048) / 1.4)), channel, counter.getO());
+
                         channel++;
 
                         if (counter.getO()%(counter.getHorizontal_scale()*counter.getRate_in_s()*0.95)==0) {
@@ -184,17 +209,7 @@ Counter counter;
 
 
 
-                                for (int j2 = 0; j2 < 8; j2++) {
-                                for (int j1 = 0; j1 < 16000; j1++) {
 
-                                    counter.setSignal_is_weak(false);
-
-                                    counter.setBuffer(counter.getPart_data(), j2, j1);
-
-
-
-                                }
-                            }
                         }
 
                         }
@@ -202,6 +217,8 @@ Counter counter;
                         if (channel==counter.getDefault_channel()) {
                             channel=0;
                             counter.setRefresh(true);
+
+
                             counter.setBuffer( ((float)  ((data - 2048) / 1.4)), counter.getDefault_channel()-1, counter.getO());
 
 

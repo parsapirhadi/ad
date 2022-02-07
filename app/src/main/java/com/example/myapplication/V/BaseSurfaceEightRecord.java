@@ -314,17 +314,16 @@ public class BaseSurfaceEightRecord extends SurfaceView implements SurfaceHolder
                                     int y = 0;
 
                                     for (i1 = counter.getStartdraw(); i1 < counter.getEnddraw(); i1++) {
+
+
+
                                         if (counter.getBuffere(j, i1) != counter.getPart_data()
                                                 && counter.getBuffere(j, i1 - 1) != counter.getPart_data()
-                                        )
-                                        {
-
-
-
+                                        ) {
 
 
                                             g = (i1 % 15000) - 1;
-                                            //Log.e("i=", "" + g);
+
 
                                             canvas.drawLine(
                                                     (float) (y * counter.getEight_step_x()),
@@ -332,10 +331,9 @@ public class BaseSurfaceEightRecord extends SurfaceView implements SurfaceHolder
                                                     (float) ((y + 1) * counter.getEight_step_x()),
                                                     (float) (((float) ((float) (getHeight() / (float) (counter.getDefault_channel() * 2))) * (((2 * j) + 1))) + (counter.getBuffere(j, (g + 1)) * counter.getEight_step_y())),
                                                     samplePaint1);
-                                            y++;
+
                                         }
-
-
+                                        y++;
 
                                     }
                                 }

@@ -1,5 +1,6 @@
 package com.example.myapplication.M.DataType;
 
+import android.graphics.Paint;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -59,6 +60,8 @@ static int show_record_ch=0;
 
 
 
+    static int Line_stop_counter=1;
+
 
     int count_of_set_i_channel=0;
     int count_of_set_j_channel=0;
@@ -96,7 +99,12 @@ static int show_record_ch=0;
     static boolean is_receive_activity_on =true;
 
 
+    static float stop_line[]=new float[40];
+
+     static Paint sp = new Paint();
+
     static boolean first_page=false;
+
 
 
     static boolean signal_is_weak=false;
@@ -114,6 +122,30 @@ static int show_record_ch=0;
 
    static int recordcount=0;
 
+
+    public float getStop_line(int i) {
+        return stop_line[i];
+    }
+
+    public Paint getSp() {
+        return sp;
+    }
+
+    public void setSp(Paint sp) {
+        this.sp = sp;
+    }
+
+    public void setStop_line(float stop_line,int i) {
+        this.stop_line[i] = stop_line;
+    }
+
+    public int getLine_stop_counter() {
+        return Line_stop_counter;
+    }
+
+    public void setLine_stop_counter(int line_stop_counter) {
+        Line_stop_counter = line_stop_counter;
+    }
 
     public int getSeconds_count0() {
         return Seconds_count0;

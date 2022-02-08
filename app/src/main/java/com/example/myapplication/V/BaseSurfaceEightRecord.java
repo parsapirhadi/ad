@@ -60,7 +60,10 @@ public class BaseSurfaceEightRecord extends SurfaceView implements SurfaceHolder
     private boolean drawingActive = false;
 
     private Paint samplePaint = new Paint();
+
     private Paint samplePaint0 = new Paint();
+
+
 
     private Paint samplePaint1 = new Paint();
     private Paint samplePaint2 = new Paint();
@@ -156,6 +159,10 @@ public class BaseSurfaceEightRecord extends SurfaceView implements SurfaceHolder
         samplePaint5.setColor(Color.GREEN);
         samplePaint6.setColor(Color.GREEN);
         samplePaint7.setColor(Color.GREEN);
+
+
+        counter.getSp().setColor(Color.rgb(230,230,230));
+
 
         samplePaintW.setColor(Color.WHITE);
 
@@ -309,8 +316,12 @@ public class BaseSurfaceEightRecord extends SurfaceView implements SurfaceHolder
                                 if (string1.getMontage().equals("mono")){
 
 
+                                    for (int p=0;p<=counter.getLine_stop_counter() ; p++) {
+                                        canvas.drawRect((float) (counter.getStop_line(p)-0.1), 2, 4 + counter.getStop_line(p), getHeight() - 4, counter.getSp());
+                                    }
 
-                                for (int j = 0; j < counter.getDefault_channel(); j++) {
+
+                                    for (int j = 0; j < counter.getDefault_channel(); j++) {
                                     int y = 0;
 
                                     for (i1 = counter.getStartdraw(); i1 < counter.getEnddraw(); i1++) {
@@ -400,6 +411,7 @@ for (int j=0;j<1000;j+=50) {
 
 
                                 canvas.drawColor(Color.rgb(230, 230, 230));
+                                canvas.drawRect(counter.getStop_line(0), 2, 4+counter.getStop_line(0), getHeight()-4, counter.getSp());
 
                                 //  canvas.drawColor(Color.rgb(230,230,230));
 

@@ -73,11 +73,11 @@ public class EightRecordActivity extends AppCompatActivity {
 
     static TextView ch[]=new TextView[65];
 
-
     private ArrayAdapter<String> adapter;
 
     public static TextView getCh1() {
         return ch[1];
+
     }
 
     TextInputEditText ech1;
@@ -300,30 +300,31 @@ public class EightRecordActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
+        record.setBackgroundResource(R.drawable.red_record_drawable);
         counter.set_draw_activity_on(false);
-     //   counter.set_receive_activity_on(false);
- //   for (int j2=0;j2<8;j2++){
-           // for (int j1=0;j1<16000;j1++) {
-              //  counter.setBuffer(counter.getPart_data(), j2, j1);
+        counter.set_receive_activity_on(false);
+   // for (int j2=0;j2<8;j2++){
+         //   for (int j1=0;j1<16000;j1++) {
+          //      counter.setBuffer(counter.getPart_data(), j2, j1);
+//
+         //   }
+      //  }
 
-          //  }
-       // }
+        String string = "NOP\r\n";
+        set_limit = 1;
 
-      //  String string = "NOP\r\n";
-      //  set_limit = 1;
-
-       // counter.setEightRecord_ispause(false);
+        counter.setEightRecord_ispause(false);
   if (objects.getSocket()!=null){
             try {
-               // sendReceive.write(string.getBytes());
-               // objects.getSocket().close();
+                sendReceive.write(string.getBytes());
+              //  objects.getSocket().close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
- // recordcount = 0;
+  recordcount = 0;
 
-      //  counter.setBuffer_count(0);
+        //counter.setBuffer_count(0);
  }
 
 
@@ -606,11 +607,13 @@ public class EightRecordActivity extends AppCompatActivity {
                 }
             }
         }).start();
-        snackbar_connecting=Snackbar.make(parentLayout, "' " + "Bluetooth" + " is connecting '"+"   "+"' Please approach the device '", Snackbar.LENGTH_LONG);
 
-        snackbar_connecting.setDuration(400000);
-       // snackbar_connecting.show();
+            snackbar_connecting = Snackbar.make(parentLayout, "' " + "Bluetooth" + " is connecting '" + "   " + "' Please approach the device '", Snackbar.LENGTH_LONG);
 
+            snackbar_connecting.setDuration(400000);
+        if (!objects.getSocket().isConnected()){
+            snackbar_connecting.show();
+        }
 
         if(counter.getHorizontal_scale()<8){
             getV1000().setVisibility(View.INVISIBLE);
@@ -976,7 +979,7 @@ public class EightRecordActivity extends AppCompatActivity {
                     case STATE_CONNECTED:
                        snackbar_connecting.dismiss();
                         View parentLayout = findViewById(android.R.id.content);
-                        Snackbar.make(parentLayout, "Connected To '"+bluetooth_name+"'", Snackbar.LENGTH_LONG).show();
+                        Snackbar.make(parentLayout, "' Connected To Device '", 500).show();
 
                         animation_bluetooth=false;
 
@@ -1080,9 +1083,23 @@ public class EightRecordActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+
+
                 if (objects.getSocket() != null ){
                     if (recordcount == 0 && is_connected) {
+
                         vibrator.vibrate(40);
+                        counter.getSp().setColor(Color.BLUE);
+                        counter.setLine_stop_counter(counter.getLine_stop_counter()+1);
+                        counter.setStop_line(((float) counter.getO()/4000)*counter.getSurface_width(),counter.getLine_stop_counter());
+
+                     counter.setLine_stop_counter(counter.getLine_stop_counter()+1);
+if (counter.getLine_stop_counter()==38){
+
+    counter.setLine_stop_counter(1);
+
+}
+
 
                         record.setBackgroundResource(R.drawable.rect_stop_record);
                         String string = "CONTB\r\n";
@@ -1287,6 +1304,12 @@ public class EightRecordActivity extends AppCompatActivity {
             public void onClick(View view) {
                 myListView =  choiceDialog.findViewById(R.id.choice_list_view);
                 ArrayList<String> myStringArray1 = new ArrayList<String>();
+                counter.setLine_stop_counter(-1);
+
+                for (int t=0;t<40;t++) {
+                    counter.setStop_line(0,t);
+                }
+
 
                 myStringArray1.add("Mono");
                 myStringArray1.add("Banana");

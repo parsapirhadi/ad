@@ -1082,7 +1082,11 @@ public class EightRecordActivity extends AppCompatActivity {
         record.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (counter.getRecordcount()>30){
+                   // Toast.makeText(EightRecordActivity.this, "30 is full", Toast.LENGTH_SHORT).show();
+                //   counter.setRecordcount(0);
 
+                }
 
 
                 if (objects.getSocket() != null ){
@@ -1090,16 +1094,16 @@ public class EightRecordActivity extends AppCompatActivity {
 
                         vibrator.vibrate(40);
                         counter.getSp().setColor(Color.BLUE);
-                        counter.setLine_stop_counter(counter.getLine_stop_counter()+1);
-                        counter.setStop_line(((float) counter.getO()/4000)*counter.getSurface_width(),counter.getLine_stop_counter());
 
-                     counter.setLine_stop_counter(counter.getLine_stop_counter()+1);
-if (counter.getLine_stop_counter()==38){
 
-    counter.setLine_stop_counter(1);
+                       if (counter.getO()>20) {
+                           counter.setLine_stop_counter(counter.getLine_stop_counter() + 1);
 
-}
 
+
+                           counter.setRecordcount(counter.getRecordcount() + 1);
+                           counter.setStop_line((float) (((float) counter.getO() / (0.99*counter.getHorizontal_scale()*counter.getRate_in_s())) * counter.getSurface_width()), counter.getRecordcount()%30);
+                       }
 
                         record.setBackgroundResource(R.drawable.rect_stop_record);
                         String string = "CONTB\r\n";
@@ -1307,7 +1311,7 @@ if (counter.getLine_stop_counter()==38){
                 counter.setLine_stop_counter(-1);
 
                 for (int t=0;t<40;t++) {
-                    counter.setStop_line(0,t);
+                    counter.setStop_line(10000,t);
                 }
 
 

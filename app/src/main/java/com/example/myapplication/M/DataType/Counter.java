@@ -60,7 +60,7 @@ static int show_record_ch=0;
 
 
 
-    static int Line_stop_counter=1;
+    static int Line_stop_counter=0;
 
 
     int count_of_set_i_channel=0;
@@ -113,7 +113,7 @@ static int show_record_ch=0;
 
     static float min_receive_data;
 
-
+    static int loop_counter=1;
 
     static float surface_width =0;
     static float surface_height=0;
@@ -125,6 +125,14 @@ static int show_record_ch=0;
 
     public float getStop_line(int i) {
         return stop_line[i];
+    }
+
+    public int getLoop_counter() {
+        return loop_counter;
+    }
+
+    public void setLoop_counter(int loop_counter) {
+        this.loop_counter = loop_counter;
     }
 
     public Paint getSp() {

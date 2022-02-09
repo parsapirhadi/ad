@@ -411,7 +411,7 @@ for (int j=0;j<1000;j+=50) {
 
 
                                 canvas.drawColor(Color.rgb(230, 230, 230));
-                                canvas.drawRect(counter.getStop_line(0), 2, 4+counter.getStop_line(0), getHeight()-4, counter.getSp());
+                                //canvas.drawRect(counter.getStop_line(0), 2, 4+counter.getStop_line(0), getHeight()-4, counter.getSp());
 
                                 //  canvas.drawColor(Color.rgb(230,230,230));
 
@@ -427,6 +427,22 @@ for (int j=0;j<1000;j+=50) {
                                 canvas.drawRect(((getWidth() / 4) * 5) - 1, 0, (getWidth() / 4) * 5, getHeight(), samplePaint);
                                 canvas.drawRect(((getWidth() / 4) * 6) - 1, 0, (getWidth() / 4) * 6, getHeight(), samplePaint);
                                 canvas.drawRect(((getWidth() / 4) * 7) - 1, 0, (getWidth() / 4) * 7, getHeight(), samplePaint);
+
+
+                                for (int p=counter.getLoop_counter();p<=counter.getLine_stop_counter() ; p++) {
+{                                  //      if (counter.getO()>200) {
+
+                            canvas.drawRect((float) (counter.getStop_line(p%30) - 0.1), 2, 4 + counter.getStop_line(p%30), getHeight() - 4, counter.getSp());
+}
+                              //  }
+                                    if (((float)counter.getO()/(0.99*counter.getHorizontal_scale()*counter.getRate_in_s()))*counter.getSurface_width()-counter.getStop_line(p%30)<-2
+                                    &&  ((float)counter.getO()/(0.99*counter.getHorizontal_scale()*counter.getRate_in_s()))*counter.getSurface_width()-counter.getStop_line(p%30)>-30
+
+                                    ){
+                                       // counter.setStop_line(10000,p%30);
+                                        counter.setLoop_counter(counter.getLoop_counter()+1);
+                                    }
+                                }
 
 
                                 canvas.drawRect(0, 0, getWidth(), 1, samplePaint);

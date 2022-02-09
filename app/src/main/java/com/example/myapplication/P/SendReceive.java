@@ -262,18 +262,7 @@ Counter counter;
 
                         channel++;
 
-                        if (counter.getO()%(counter.getHorizontal_scale()*counter.getRate_in_s()*0.95)==0) {
-
-
-                            if (counter.isEightRecord_ispause() ){
-
-
-
-
-
-
-
-                        }
+                        if (counter.getO()%(counter.getHorizontal_scale()*counter.getRate_in_s()*0.98)==0) {
 
                         }
 

@@ -148,8 +148,18 @@ Objects objects;
             @Override
             public void onClick(View v) {
 
-                  startActivity(new Intent(getActivity(),SettingsActivity.class));
-                  getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+
+                Dialog choiceDialog;
+                choiceDialog=new Dialog(getContext());
+                choiceDialog.setContentView(R.layout.settings);
+                choiceDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                choiceDialog.show();
+
+
+
+
+                 // startActivity(new Intent(getActivity(),SettingsActivity.class));
+                //  getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 
 
             }

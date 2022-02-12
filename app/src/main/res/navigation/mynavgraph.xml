@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mynavgraph"
+    >
+    <activity
+        android:id="@+id/settingsActivity2"
+        android:name="com.example.myapplication.V.Activity.SettingsActivity"
+        android:label="fragment_fragment1"
+        tools:layout="@layout/setting_fragment" />
+</navigation>

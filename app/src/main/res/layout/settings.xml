@@ -3,56 +3,35 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="#e1e1e1"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/main"
     tools:context=".V.Activity.SettingsActivity"
+    android:layout_gravity="center"
+    android:gravity="center"
     android:orientation="vertical"
+
     android:layout_height="match_parent">
+
     <LinearLayout
+        android:background="@drawable/main"
+        android:layout_width="300dp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_height="300dp"
+        tools:ignore="MissingConstraints">
+
+        <fragment
+        android:id="@+id/nav_host_fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="#e1e1e1"
-        android:orientation="horizontal"
+        android:layout_height="match_parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/setting_navigation" />
 
-
-        >
-        <Button
-            android:layout_margin="10dp"
-            android:layout_gravity="center|start"
-            android:layout_width="25dp"
-            android:background="@drawable/back_pointer_foreground"
-            android:layout_height="25dp"
-            android:id="@+id/back_pointer_settings"
-            />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="5dp"
-            android:textSize="15sp"
-            android:textColor="#929292"
-
-            />
     </LinearLayout>
-    <TextView
-
-        android:layout_margin="5dp"
-        android:layout_width="wrap_content"
-        android:text="Settings"
-        android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints"
-        />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:id="@+id/recyclesetting">
-
-
-    </androidx.recyclerview.widget.RecyclerView>
-
 
 </LinearLayout>

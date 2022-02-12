@@ -9,8 +9,10 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapplication.M.DataType.Objects;
 import com.example.myapplication.M.Item.ItemSetting;
 import com.example.myapplication.R;
 import com.example.myapplication.V.Activity.AdvancedSettingActivity;
@@ -25,6 +27,7 @@ import java.util.List;
 public class ItemSettingAdapter extends RecyclerView.Adapter<ItemSettingAdapter.MyViewHolder> {
     List<ItemSetting> itwm;
     Context context;
+    Objects objects;
     public ItemSettingAdapter(List<ItemSetting> itwm,Context context) {
         this.itwm = itwm;
         this.context=context;
@@ -34,7 +37,7 @@ public class ItemSettingAdapter extends RecyclerView.Adapter<ItemSettingAdapter.
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.item_setting,parent,false);
-
+        objects=new Objects();
         return new MyViewHolder(view);
     }
 
@@ -50,7 +53,8 @@ public class ItemSettingAdapter extends RecyclerView.Adapter<ItemSettingAdapter.
             public void onClick(View v) {
                 if(position==0){
 
-                    context.startActivity(new Intent(context, FilterActivity.class));
+                    Navigation.findNavController(objects.getSettingView()).navigate(R.id.action_setting_to_filter);
+                  //  context.startActivity(new Intent(context, FilterActivity.class));
                    //overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 
 

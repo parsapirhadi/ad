@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/setting_navigation"
+    app:startDestination="@id/setting_fragmnet">
+
+
+    <fragment
+        android:id="@+id/setting_fragmnet"
+        android:name="com.example.myapplication.V.Setting_Fragment"
+        android:label="Setting_Fragment" >
+        <action
+            android:id="@+id/action_setting_to_filter"
+            app:destination="@id/filter_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/filter_fragment"
+        android:name="com.example.myapplication.V.Filter_Fragment"
+        android:label="Filter_Fragment" />
+</navigation>

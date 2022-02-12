@@ -5,16 +5,27 @@ import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
 
 import com.example.myapplication.V.Activity.EightRecordActivity;
 
 public class Objects {
 
+
+    static View settingView;
    static BluetoothAdapter bluetoothAdapter;
    static BluetoothSocket socket;
 
   static Handler handler;
 
+
+    public View getSettingView() {
+        return settingView;
+    }
+
+    public void setSettingView(View settingView) {
+        this.settingView = settingView;
+    }
 
     public Handler getHandler() {
         return handler;

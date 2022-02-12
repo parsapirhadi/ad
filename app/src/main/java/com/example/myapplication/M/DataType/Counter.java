@@ -123,6 +123,18 @@ static int show_record_ch=0;
    static int recordcount=0;
 
 
+    static boolean on_pause=false;
+
+    public boolean isOn_pause() {
+        return on_pause;
+    }
+
+    public void setOn_pause(boolean on_pause) {
+        this.on_pause = on_pause;
+    }
+
+
+
     public float getStop_line(int i) {
         return stop_line[i];
     }

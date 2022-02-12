@@ -316,10 +316,20 @@ public class BaseSurfaceEightRecord extends SurfaceView implements SurfaceHolder
                                 if (string1.getMontage().equals("mono")){
 
 
-                                    for (int p=0;p<=counter.getLine_stop_counter() ; p++) {
-                                        canvas.drawRect((float) (counter.getStop_line(p)-0.1), 2, 4 + counter.getStop_line(p), getHeight() - 4, counter.getSp());
-                                    }
+                                    for (int p=counter.getLoop_counter();p<=counter.getLine_stop_counter() ; p++)
+                                        {                                  //      if (counter.getO()>200) {
 
+                                            canvas.drawRect((float) (counter.getStop_line(p%30) - 0.1), 2, 4 + counter.getStop_line(p%30), getHeight() - 4, counter.getSp());
+
+                                        //  }
+                                        if (((float)counter.getO()/(0.99*counter.getHorizontal_scale()*counter.getRate_in_s()))*counter.getSurface_width()-counter.getStop_line(p%30)<-2
+                                                &&  ((float)counter.getO()/(0.99*counter.getHorizontal_scale()*counter.getRate_in_s()))*counter.getSurface_width()-counter.getStop_line(p%30)>-30
+
+                                        ){
+                                             counter.setStop_line(10000,p%30);
+                                            counter.setLoop_counter(counter.getLoop_counter()+1);
+                                        }
+                                    }
 
                                     for (int j = 0; j < counter.getDefault_channel(); j++) {
                                     int y = 0;
@@ -439,7 +449,7 @@ for (int j=0;j<1000;j+=50) {
                                     &&  ((float)counter.getO()/(0.99*counter.getHorizontal_scale()*counter.getRate_in_s()))*counter.getSurface_width()-counter.getStop_line(p%30)>-30
 
                                     ){
-                                       // counter.setStop_line(10000,p%30);
+                                        counter.setStop_line(10000,p%30);
                                         counter.setLoop_counter(counter.getLoop_counter()+1);
                                     }
                                 }

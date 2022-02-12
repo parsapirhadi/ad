@@ -310,9 +310,14 @@ public class EightRecordActivity extends AppCompatActivity {
          //   }
       //  }
 
-        String string = "NOP\r\n";
-        set_limit = 1;
 
+
+
+        record.setBackgroundResource(R.drawable.red_record_drawable);
+        Recordcount=false;
+        SingleRecordActivity.setIs_isRecordcount(false);
+        set_limit = 1;
+        String string = "NOP\r\n";
         counter.setEightRecord_ispause(false);
   if (objects.getSocket()!=null){
             try {
@@ -336,26 +341,25 @@ public class EightRecordActivity extends AppCompatActivity {
 
 
         super.onResume();
-        Log.e("EonResume","EonResume");
+        Log.e("EonResume", "EonResume");
         counter.setShow_record_ch(0);
 
-        is_disconnected=false;
+        is_disconnected = false;
 
         counter.set_receive_activity_on(true);
         counter.set_draw_activity_on(true);
 
 
+        data_count = 0;
+        conter = 0;
+        is_connected = false;
+        is_open = false;
 
-        data_count=0;
-        conter=0;
-        is_connected=false;
-        is_open=false;
 
-
-       pivote50=50;
-        pivote100=100;
-        pivote_50=-50;
-        pivote_100=-100;
+        pivote50 = 50;
+        pivote100 = 100;
+        pivote_50 = -50;
+        pivote_100 = -100;
 
         row_100.setText("-100µV");
         row100.setText("100µV");
@@ -363,38 +367,38 @@ public class EightRecordActivity extends AppCompatActivity {
         row_50.setText("-50µV");
 
 
-          String string = "NOP\r\n";
-          set_limit = 1;
+        String string = "NOP\r\n";
+        set_limit = 1;
 
-        if (objects.getSocket()!=null){
+        if (objects.getSocket() != null) {
             try {
                 record.setBackgroundResource(R.drawable.red_record_drawable);
-                 sendReceive.write(string.getBytes());
-                 objects.getSocket().close();
+                sendReceive.write(string.getBytes());
+                objects.getSocket().close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
 
 
-      new Thread(new Runnable() {
-          @Override
-          public void run() {
-              try {
-                  Thread.sleep(1000);
-              } catch (InterruptedException e) {
-                  e.printStackTrace();
-              }
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
 
-              counter.setEightRecord_ispause(true);
-
-
-          }
-      }).start();
+                counter.setEightRecord_ispause(true);
 
 
-        animation1= AnimationUtils.loadAnimation(getApplicationContext(),R.anim.bluetooth_anim_1);
-        animation2=AnimationUtils.loadAnimation(getApplicationContext(),R.anim.bluetooth_anim_2);
+            }
+        }).start();
+
+
+        animation1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.bluetooth_anim_1);
+        animation2 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.bluetooth_anim_2);
         bluetooth.startAnimation(animation1);
         animation2.setAnimationListener(new Animation.AnimationListener() {
             @Override
@@ -436,17 +440,14 @@ public class EightRecordActivity extends AppCompatActivity {
         });
 
 
-
-
-
-        if (objects.getSocket()!=null){
-            if (objects.getSocket().isConnected()){
+        if (objects.getSocket() != null) {
+            if (objects.getSocket().isConnected()) {
 
             }
         }
 
 
-        if (counter.isBluetooth_drawabe()){
+        if (counter.isBluetooth_drawabe()) {
             bluetooth.setBackgroundResource(R.drawable.bluetooth_on_foreground);
         }
 
@@ -454,35 +455,30 @@ public class EightRecordActivity extends AppCompatActivity {
         counter.setSingle_step_y((float) counter.getSurface_height() / 200);
 
 
-        counter.setEight_step_x((float) counter.getSurface_width()/(counter.getRate_in_s()*counter.getHorizontal_scale()));
+        counter.setEight_step_x((float) counter.getSurface_width() / (counter.getRate_in_s() * counter.getHorizontal_scale()));
 
-          try {
-
-
-
-              EightRecordActivity.getV0().setText(counter.getSeconds_count0()+"s");
-              EightRecordActivity.getV1000().setText(counter.getSeconds_count1000()+"s");
-              EightRecordActivity.getV2000().setText(counter.getSeconds_count2000()+"s");
-              EightRecordActivity.getV3000().setText(counter.getSeconds_count3000()+"s");
-              EightRecordActivity.getV4000().setText(counter.getSeconds_count4000()+"s");
-              EightRecordActivity.getV5000().setText(counter.getSeconds_count5000()+"s");
-              EightRecordActivity.getV6000().setText(counter.getSeconds_count6000()+"s");
-              EightRecordActivity.getV7000().setText(counter.getSeconds_count7000()+"s");
-              EightRecordActivity.getV8000().setText(counter.getSeconds_count8000()+"s");
+        try {
 
 
+            EightRecordActivity.getV0().setText(counter.getSeconds_count0() + "s");
+            EightRecordActivity.getV1000().setText(counter.getSeconds_count1000() + "s");
+            EightRecordActivity.getV2000().setText(counter.getSeconds_count2000() + "s");
+            EightRecordActivity.getV3000().setText(counter.getSeconds_count3000() + "s");
+            EightRecordActivity.getV4000().setText(counter.getSeconds_count4000() + "s");
+            EightRecordActivity.getV5000().setText(counter.getSeconds_count5000() + "s");
+            EightRecordActivity.getV6000().setText(counter.getSeconds_count6000() + "s");
+            EightRecordActivity.getV7000().setText(counter.getSeconds_count7000() + "s");
+            EightRecordActivity.getV8000().setText(counter.getSeconds_count8000() + "s");
 
-          }catch (NullPointerException e){
-              e.printStackTrace();
-          }
 
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
 
+        // counter.setBuffer_count(0);
 
-       // counter.setBuffer_count(0);
-
-        if (string1.getPivote(0)!=null)
-        {
-            for (int y=0;y<counter.getDefault_channel();y++) {
+        if (string1.getPivote(0) != null) {
+            for (int y = 0; y < counter.getDefault_channel(); y++) {
                 ch[y].setText(string1.getPivote(y));
             }
 
@@ -490,14 +486,13 @@ public class EightRecordActivity extends AppCompatActivity {
         bluetooth.setBackgroundResource(R.drawable.bluetooth_off_foreground);
 
         try {
-            for (int m=1;m<65;m++){
-                SharedPreferences sharedPreferences=getApplicationContext().getSharedPreferences("bch"+m, MODE_PRIVATE);
-                ch[m].setText(sharedPreferences.getString("name","ch"+m).toString());
+            for (int m = 1; m < 65; m++) {
+                SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("bch" + m, MODE_PRIVATE);
+                ch[m].setText(sharedPreferences.getString("name", "ch" + m).toString());
 
             }
 
-        }
-        catch (NullPointerException e) {
+        } catch (NullPointerException e) {
             e.printStackTrace();
         }
 
@@ -509,7 +504,7 @@ public class EightRecordActivity extends AppCompatActivity {
 
                     //  Log.e("i=",""+i);
 
-                    if ( counter.isSignal_is_weak() &&(counter.getBuffer_count() - data_count) < counter.getMin_receive_data() && recordcount == 1 && objects.getSocket().isConnected()) {
+                    if (counter.isSignal_is_weak() && (counter.getBuffer_count() - data_count) < counter.getMin_receive_data() && recordcount == 1 && objects.getSocket().isConnected()) {
 
                         try {
                             metode(1);
@@ -523,7 +518,7 @@ public class EightRecordActivity extends AppCompatActivity {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    data_count= (int) counter.getBuffer_count();
+                    data_count = (int) counter.getBuffer_count();
                     try {
 
                         Thread.sleep(200);
@@ -534,39 +529,36 @@ public class EightRecordActivity extends AppCompatActivity {
             }
         }).start();
 
-        TextView ctext=findViewById(R.id.choise_channel_record);
-        ctext.setText(getApplicationContext().getSharedPreferences("bch1", MODE_PRIVATE).getString("name","ch1").toString());
-
+        TextView ctext = findViewById(R.id.choise_channel_record);
+        ctext.setText(getApplicationContext().getSharedPreferences("bch1", MODE_PRIVATE).getString("name", "ch1").toString());
 
 
         new Thread(new Runnable() {
             @Override
             public void run() {
                 while (set_dimens) {
-                    if (counter.getSurfaceview_height_eightrecord()>0){
+                    if (counter.getSurfaceview_height_eightrecord() > 0) {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
 
 
-                                int paint_screen=counter.getSurfaceview_height_eightrecord();
+                                int paint_screen = counter.getSurfaceview_height_eightrecord();
                                 float button_step = (float) paint_screen / (((counter.getDefault_channel()) * 2));
-                                int k=counter.getDefault_channel();
+                                int k = counter.getDefault_channel();
 
 
-                                for (int o=0;o<counter.getDefault_channel();o++){
-                                    ch[o+1].setTranslationY((float) (((2*o)+0.5) * button_step));
+                                for (int o = 0; o < counter.getDefault_channel(); o++) {
+                                    ch[o + 1].setTranslationY((float) (((2 * o) + 0.5) * button_step));
                                 }
-                                for (int s=1;s<65;s++)
-                                {
-                                    ch[s].setTranslationY((float) ((float) ch[s].getTranslationY()-(0.5*button_step)));
+                                for (int s = 1; s < 65; s++) {
+                                    ch[s].setTranslationY((float) ((float) ch[s].getTranslationY() - (0.5 * button_step)));
                                 }
-                                for (int o=counter.getDefault_channel();o<64;o++){
-                                    ch[o+1].setTranslationY(1000+paint_screen);
+                                for (int o = counter.getDefault_channel(); o < 64; o++) {
+                                    ch[o + 1].setTranslationY(1000 + paint_screen);
                                 }
-                                for (int s=1;s<65;s++)
-                                {
-                                    if (k>12) {
+                                for (int s = 1; s < 65; s++) {
+                                    if (k > 12) {
                                         ch[s].setScaleY((float) 1 - ((float) 1.25 * k / 100));
                                         ch[s].setScaleX((float) 1 - ((float) 1.25 * k / 100));
                                     }
@@ -575,32 +567,24 @@ public class EightRecordActivity extends AppCompatActivity {
                                 //   findViewById(R.id.left_linearlayout_re).setTranslationY((float) (button_step*-1));
 
 
-
-
-
-                                float f= counter.getSurfaceview_Width_eightrecord();
+                                float f = counter.getSurfaceview_Width_eightrecord();
 
                                 getV0().setTranslationX(0);
-                                getV1000().setTranslationX(((float) f/8)*1);
-                                getV2000().setTranslationX(((float)f/8)*2);
-                                getV3000().setTranslationX(((float)f/8)*3);
-                                getV4000().setTranslationX(((float)f/8)*4);
-                                getV5000().setTranslationX(((float)f/8)*5);
-                                getV6000().setTranslationX(((float)f/8)*6);
-                                getV7000().setTranslationX(((float)f/8)*7);
-                                getV8000().setTranslationX(((float)f/8)*8-30);
-
-
-
+                                getV1000().setTranslationX(((float) f / 8) * 1);
+                                getV2000().setTranslationX(((float) f / 8) * 2);
+                                getV3000().setTranslationX(((float) f / 8) * 3);
+                                getV4000().setTranslationX(((float) f / 8) * 4);
+                                getV5000().setTranslationX(((float) f / 8) * 5);
+                                getV6000().setTranslationX(((float) f / 8) * 6);
+                                getV7000().setTranslationX(((float) f / 8) * 7);
+                                getV8000().setTranslationX(((float) f / 8) * 8 - 30);
 
 
                             }
                         });
 
 
-
-                        set_dimens=false;
-
+                        set_dimens = false;
 
 
                     }
@@ -608,13 +592,14 @@ public class EightRecordActivity extends AppCompatActivity {
             }
         }).start();
 
-            snackbar_connecting = Snackbar.make(parentLayout, "' " + "Bluetooth" + " is connecting '" + "   " + "' Please approach the device '", Snackbar.LENGTH_LONG);
+        snackbar_connecting = Snackbar.make(parentLayout, "' " + "Bluetooth" + " is connecting '" + "   " + "' Please approach the device '", Snackbar.LENGTH_LONG);
 
-            snackbar_connecting.setDuration(400000);
-        if (!objects.getSocket().isConnected()){
+        snackbar_connecting.setDuration(400000);
+        if(objects.getSocket()!=null){
+        if (!objects.getSocket().isConnected()) {
             snackbar_connecting.show();
         }
-
+    }
         if(counter.getHorizontal_scale()<8){
             getV1000().setVisibility(View.INVISIBLE);
             getV3000().setVisibility(View.INVISIBLE);
@@ -639,6 +624,7 @@ public class EightRecordActivity extends AppCompatActivity {
     }
 
     private void metode(int i) throws InterruptedException {
+
 
         if (i==1){
             Log.e("start metode 1","start metode 1");
@@ -993,12 +979,23 @@ public class EightRecordActivity extends AppCompatActivity {
                                     } catch (InterruptedException e) {
                                         e.printStackTrace();
                                     }
+                                    if (counter.getO()>20) {
+                                        counter.setLine_stop_counter(counter.getLine_stop_counter() + 1);
 
+
+
+                                        counter.setRecordcount(counter.getRecordcount() + 1);
+                                        counter.setStop_line((float) (((float) counter.getO() / (0.99*counter.getHorizontal_scale()*counter.getRate_in_s())) * counter.getSurface_width()), counter.getRecordcount()%30);
+                                    }
                                     record.setBackgroundResource(R.drawable.rect_stop_record);
                                     String string = "CONTB\r\n";
                                     set_limit = 1;
-                                    sendReceive = new SendReceive(objects.getSocket(),counter,objects);
-                                    sendReceive.write(string.getBytes());
+                                   sendReceive = new SendReceive(objects.getSocket(),counter,objects);
+
+                                       sendReceive.write(string.getBytes());
+
+
+
                                     recordcount = 1;
                                 }
                             }).start();

@@ -29,11 +29,14 @@ public class MenuActivity extends AppCompatActivity {
     TextView textView;
     Objects objects;
 
+    Button back;
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
     Intent intent;
 
+    Dialog choiceDialog;
 
     private String mParam1;
     Counter counter;
@@ -90,9 +93,19 @@ public class MenuActivity extends AppCompatActivity {
         LinearLayout newrecord =findViewById(R.id.layoutnewrecord_menu);
         LinearLayout loadpatient =findViewById(R.id.layoutloadrecord_menu);
 
+
+
+        choiceDialog=new Dialog(MenuActivity.this);
+        choiceDialog.setContentView(R.layout.settings);
+        choiceDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+
+
         Button icon_setting=findViewById(R.id.icon_setting_menu);
         Button icon_newrecord=findViewById(R.id.icon_newpatient_menu);
         Button icon_loadrecord=findViewById(R.id.icon_loadpatient_menu);
+
+        back=choiceDialog.findViewById(R.id.back_pointer_settings);
 
 
         counter=new Counter();
@@ -118,8 +131,9 @@ public class MenuActivity extends AppCompatActivity {
         icon_setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                choiceDialog.show();
+               // startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
+               // overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
 
@@ -159,12 +173,15 @@ public class MenuActivity extends AppCompatActivity {
 
 
 
+
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(getApplicationContext(),SettingsActivity.class));
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                choiceDialog.show();
+
+               // startActivity(new Intent(getApplicationContext(),SettingsActivity.class));
+               // overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 
 
             }

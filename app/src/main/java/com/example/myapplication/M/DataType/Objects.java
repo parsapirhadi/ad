@@ -1,5 +1,6 @@
 package com.example.myapplication.M.DataType;
 
+import android.app.Dialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
@@ -17,6 +18,7 @@ public class Objects {
    static BluetoothSocket socket;
 
   static Handler handler;
+
 
 
     public View getSettingView() {

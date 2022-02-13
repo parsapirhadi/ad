@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.M.Item.ItemCustomMontageEditor;
@@ -72,8 +73,9 @@ public class ItemCustomMontageEditorAdapter extends RecyclerView.Adapter<ItemCus
                     view.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+                            Navigation.findNavController(view).navigate(R.id.action_montage_Fragment_to_renameChannelFragment);
 
-                            context.startActivity(new Intent(context, RenameChannelsActivity.class));
+                           // context.startActivity(new Intent(context, RenameChannelsActivity.class));
 
                         }
                     });
@@ -82,8 +84,9 @@ public class ItemCustomMontageEditorAdapter extends RecyclerView.Adapter<ItemCus
                     view.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+                            Navigation.findNavController(view).navigate(R.id.action_montage_Fragment_to_montageEditorFragment);
 
-                            context.startActivity(new Intent(context, MontageEditorActivity.class));
+                           // context.startActivity(new Intent(context, MontageEditorActivity.class));
 
                         }
                     });

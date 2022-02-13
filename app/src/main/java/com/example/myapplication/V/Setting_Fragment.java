@@ -1,15 +1,18 @@
 package com.example.myapplication.V;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
@@ -22,7 +25,7 @@ import com.example.myapplication.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Setting_Fragment extends Fragment implements View.OnClickListener {
+public class Setting_Fragment extends Fragment  {
     Button gotoFragment2;
 
     RecyclerView recyclerView;
@@ -34,7 +37,6 @@ public class Setting_Fragment extends Fragment implements View.OnClickListener {
 
 
 
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +44,8 @@ public class Setting_Fragment extends Fragment implements View.OnClickListener {
 
 
     }
+
+
 
     @Nullable
     @Override
@@ -60,7 +64,7 @@ public class Setting_Fragment extends Fragment implements View.OnClickListener {
 
 
        list.add(new ItemSetting(R.mipmap.notch_setting__foreground, "Filters"));
-        list.add(new ItemSetting(R.drawable.replay_root_foreground, "Replay"));
+        //list.add(new ItemSetting(R.drawable.replay_root_foreground, "Replay"));
         list.add(new ItemSetting(R.drawable.scale_root_foreground, "Scale"));
         list.add(new ItemSetting(R.drawable.montage_root_foreground, "Montage"));
        list.add(new ItemSetting(R.drawable.setting_foreground, "Advanced Setting"));
@@ -75,19 +79,22 @@ public class Setting_Fragment extends Fragment implements View.OnClickListener {
         back=view.findViewById(R.id.back_pointer_settings);
 
 
+      back.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v)
+          {
+
+
+         }
+      });
 
 
 
 
-        gotoFragment2 = view.findViewById(R.id.back_pointer_settings);
-        gotoFragment2.setOnClickListener(this);
 
         return view;
     }
 
-    @Override
-    public void onClick(View view) {
-        Navigation.findNavController(view).navigate(R.id.action_setting_to_filter);
 
-    }
+
 }

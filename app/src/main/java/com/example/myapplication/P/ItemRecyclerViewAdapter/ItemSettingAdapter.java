@@ -59,25 +59,29 @@ public class ItemSettingAdapter extends RecyclerView.Adapter<ItemSettingAdapter.
 
 
                 }
+
                 if(position==1){
-                    context.startActivity(new Intent(context, ReplayActivity.class));
 
-                    //context.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                    Navigation.findNavController(objects.getSettingView()).navigate(R.id.action_setting_fragmnet_to_scale_Fragment);
 
-                }
-                if(position==2){
-                    context.startActivity(new Intent(context, ScaleActivity.class));
+                    //  context.startActivity(new Intent(context, ScaleActivity.class));
                     //overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 
                 }
 
-                if(position==3){
-                    context.startActivity(new Intent(context, MontageActivity.class));
+                if(position==2){
+                    Navigation.findNavController(objects.getSettingView()).navigate(R.id.action_setting_fragmnet_to_montage_Fragment);
+
+                    // context.startActivity(new Intent(context, MontageActivity.class));
                     //context.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 
                 }
-                if(position==4){
-                    context.startActivity(new Intent(context, AdvancedSettingActivity.class));
+                if(position==3){
+
+                    Navigation.findNavController(objects.getSettingView()).navigate(R.id.action_setting_fragmnet_to_advancedStetting_Fragment);
+
+
+                    //  context.startActivity(new Intent(context, AdvancedSettingActivity.class));
                     //context.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 
                 }

@@ -152,7 +152,7 @@ public class EightRecordActivity extends AppCompatActivity {
     Button choise;
     ListView myListView;
 
-    boolean is_buffer_null=false;
+    boolean is_one_second=false;
 
     View parentLayout;
     int recordcount=0;
@@ -504,7 +504,7 @@ public class EightRecordActivity extends AppCompatActivity {
 
                     //  Log.e("i=",""+i);
 
-                    if (counter.isSignal_is_weak() && (counter.getBuffer_count() - data_count) < counter.getMin_receive_data() && recordcount == 1 && objects.getSocket().isConnected()) {
+                    if (is_one_second && counter.isSignal_is_weak() && (counter.getBuffer_count() - data_count) < counter.getMin_receive_data() && recordcount == 1 && objects.getSocket().isConnected()) {
 
                         try {
                             metode(1);
@@ -1079,7 +1079,9 @@ public class EightRecordActivity extends AppCompatActivity {
         record.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                is_one_second=false;
                 if (counter.getRecordcount()>30){
+
                    // Toast.makeText(EightRecordActivity.this, "30 is full", Toast.LENGTH_SHORT).show();
                 //   counter.setRecordcount(0);
 
@@ -1104,6 +1106,11 @@ public class EightRecordActivity extends AppCompatActivity {
 
                         record.setBackgroundResource(R.drawable.rect_stop_record);
                         String string = "CONTB\r\n";
+
+
+                       steponesecond();
+
+
                         set_limit = 1;
                         Recordcount=true;
                         SingleRecordActivity.setIs_isRecordcount(true);
@@ -1112,6 +1119,7 @@ public class EightRecordActivity extends AppCompatActivity {
                         recordcount = 1;
 
                     } else if (recordcount == 1) {
+
                         record.setBackgroundResource(R.drawable.red_record_drawable);
                         String string = "NOP\r\n";
                         Recordcount=false;
@@ -1934,6 +1942,21 @@ public class EightRecordActivity extends AppCompatActivity {
 
 
 
+    }
+
+    private void steponesecond() {
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                is_one_second=true;
+            }
+        }).start();
     }
 
     private void FindViewBiId() {

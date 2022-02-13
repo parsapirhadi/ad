@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:background="#e1e1e1"
-    tools:context=".V.Activity.FilterActivity"
+    tools:context=".V.Activity.RenameChannelsActivity"
     android:orientation="vertical"
     android:layout_height="match_parent">
     <LinearLayout
@@ -21,7 +21,7 @@
             android:layout_width="25dp"
             android:background="@drawable/back_pointer_foreground"
             android:layout_height="25dp"
-            android:id="@+id/back_pointer_filter"
+            android:id="@+id/back_pointer_renamechannel"
             />
 
         <TextView
@@ -39,41 +39,26 @@
     </LinearLayout>
     <TextView
 
-        android:paddingLeft="10dp"
+        android:padding="10dp"
         android:layout_width="wrap_content"
-        android:text="Filters"
-        android:layout_weight="0"
+        android:text="Rename Channel"
         android:layout_height="wrap_content"
         tools:ignore="MissingConstraints"
         />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclefilter"
+
         android:layout_width="match_parent"
         android:layout_weight="0"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:id="@+id/recyclerename_channel">
 
 
     </androidx.recyclerview.widget.RecyclerView>
-    <TextView
-
-        android:paddingLeft="10dp"
-        android:layout_width="wrap_content"
-        android:text="Notch"
-        android:layout_weight="0"
-        android:layout_marginTop="20dp"
-        android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints"
-        />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclenotch"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0"
-        >
 
 
-    </androidx.recyclerview.widget.RecyclerView>
+
+
+
 
 </LinearLayout>

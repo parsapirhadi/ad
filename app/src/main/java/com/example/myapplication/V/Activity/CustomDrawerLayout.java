@@ -1,6 +1,7 @@
 package com.example.myapplication.V.Activity;
 
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -87,8 +88,31 @@ Objects objects;
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
 
+        Dialog choiceDialog;
+        choiceDialog=new Dialog(getContext());
+        choiceDialog.setContentView(R.layout.settings);
+        choiceDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        choiceDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+
+
+            }
+        });
+
+
         save=dialog.findViewById(R.id.save);
         cancel=dialog.findViewById(R.id.cancel);
+
+
+        choiceDialog.findViewById(R.id.back_pointer_settings).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                choiceDialog.dismiss();
+            }
+        });
+
+
 
         icon_loadrecord.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,8 +127,12 @@ Objects objects;
         icon_setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), SettingsActivity.class));
-                getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+
+                choiceDialog.show();
+
+
+                //startActivity(new Intent(getActivity(), SettingsActivity.class));
+               // getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
 
@@ -149,11 +177,7 @@ Objects objects;
             public void onClick(View v) {
 
 
-                Dialog choiceDialog;
-                choiceDialog=new Dialog(getContext());
-                choiceDialog.setContentView(R.layout.settings);
-                choiceDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                choiceDialog.show();
+              choiceDialog.show();
 
 
 

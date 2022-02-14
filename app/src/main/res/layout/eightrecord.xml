@@ -27,8 +27,9 @@ xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:layout_margin="2dp"
+        android:id="@+id/banda_tools"
         android:orientation="horizontal"
-        android:background="@drawable/banda_tools"
+        android:background="@drawable/banda_tools_blue"
         tools:ignore="MissingConstraints"
         android:baselineAligned="false">
     <LinearLayout
@@ -104,7 +105,7 @@ xmlns:tools="http://schemas.android.com/tools"
         android:layout_height="40dp"
         android:layout_width="40dp"
         android:layout_weight="1"
-        android:background="#dcdcdc"
+        android:background="#1fc5ff"
         android:layout_gravity="center"
         >
         <Button
@@ -113,7 +114,7 @@ xmlns:tools="http://schemas.android.com/tools"
             android:layout_height="40dp"
             android:layout_gravity="center"
             android:id="@+id/montage_eightrecord"
-            android:background="@drawable/banda_tools"
+            android:background="@drawable/banda_tools_blue"
             android:layout_marginEnd="30dp"
             android:text="Mono"
             android:textColorHint="#bbbbbb"
@@ -333,10 +334,12 @@ xmlns:tools="http://schemas.android.com/tools"
             <TextView
                 android:id="@+id/axis_textview_1_re"
                 style="@style/axis_textview_root"
+
                 android:text="ch1"
                 tools:ignore="MissingConstraints" />
 
             <TextView
+
                 android:id="@+id/axis_textview_2_re"
                 style="@style/axis_textview_root"
                 android:text="ch2"
@@ -346,36 +349,42 @@ xmlns:tools="http://schemas.android.com/tools"
                 android:id="@+id/axis_textview_3_re"
                 style="@style/axis_textview_root"
                 android:text="ch3"
+
                 tools:ignore="MissingConstraints" />
 
             <TextView
                 android:id="@+id/axis_textview_4_re"
                 style="@style/axis_textview_root"
                 android:text="ch4"
+
                 tools:ignore="MissingConstraints" />
 
             <TextView
                 android:id="@+id/axis_textview_5_re"
                 style="@style/axis_textview_root"
                 android:text="ch5"
+
                 tools:ignore="MissingConstraints" />
 
             <TextView
                 android:id="@+id/axis_textview_6_re"
                 style="@style/axis_textview_root"
                 android:text="ch6"
+
                 tools:ignore="MissingConstraints" />
 
             <TextView
                 android:id="@+id/axis_textview_7_re"
                 style="@style/axis_textview_root"
                 android:text="ch7"
+
                 tools:ignore="MissingConstraints" />
 
             <TextView
                 android:id="@+id/axis_textview_8_re"
                 style="@style/axis_textview_root"
                 android:text="ch8"
+
                 tools:ignore="MissingConstraints" />
 
             <TextView

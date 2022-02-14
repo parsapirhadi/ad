@@ -39,7 +39,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="38dp"
                 android:layout_gravity="center"
-                android:textColor="#1BAAFA"
+                android:textColor="#1fc5ff"
                 android:background="#e6e6e6"
                 android:gravity="center"
                 android:paddingLeft="10dp"

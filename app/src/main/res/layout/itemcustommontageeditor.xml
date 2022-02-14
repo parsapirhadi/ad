@@ -18,8 +18,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
+
             android:textSize="12sp"
             android:fontFamily="sans-serif-medium"
             android:background="#e6e6e6"
@@ -41,11 +40,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="38dp"
                 android:layout_gravity="center"
-                android:textColor="#5a8fe5"
+                android:textColor="#1fc5ff"
                 android:background="#e6e6e6"
                 android:gravity="center"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
                 android:textSize="12sp"
 
                 />

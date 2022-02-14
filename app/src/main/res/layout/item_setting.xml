@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="51dp">
     <LinearLayout
-        android:background="@drawable/main"
+        android:background="@drawable/item_drawable"
         android:id="@+id/item_setting_layout"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -13,14 +13,15 @@
 
 
 <Button
-    android:layout_width="50dp"
-    android:layout_height="50dp"
+    android:layout_width="45dp"
+    android:layout_height="45dp"
     android:id="@+id/btn_item_setting"
     />
 
         <TextView
             android:id="@+id/txt_item_setting"
             android:layout_width="0dp"
+            android:textSize="12sp"
             android:layout_height="39dp"
             android:layout_weight="1" />
     </LinearLayout>

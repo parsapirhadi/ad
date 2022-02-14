@@ -64,6 +64,9 @@ public class BaseSurfaceEightRecord extends SurfaceView implements SurfaceHolder
     private Paint samplePaint0 = new Paint();
 
 
+   private Paint paint[]=new Paint[64];
+
+    private Paint single_paint = new Paint();
 
     private Paint samplePaint1 = new Paint();
     private Paint samplePaint2 = new Paint();
@@ -161,12 +164,40 @@ public class BaseSurfaceEightRecord extends SurfaceView implements SurfaceHolder
         samplePaint7.setColor(Color.GREEN);
 
 
+
+
+
+       for (int t=0;t<64;t++) {
+           paint[t] = new Paint();
+           paint[t].setStrokeWidth(3);
+       }
+
+
+        paint[0].setColor(Color.rgb(109, 195, 255));
+       paint[1].setColor(Color.rgb(43, 175, 20));
+       paint[2].setColor(Color.rgb(255, 20, 148));
+       paint[3].setColor(Color.rgb(248, 102, 38));
+       paint[4].setColor(Color.rgb(0, 38, 234));
+       paint[5].setColor(Color.rgb(46, 96, 122));
+       paint[6].setColor(Color.rgb(179, 146, 35));
+       paint[7].setColor(Color.rgb(214, 57, 20));
+
+
+        single_paint.setColor(Color.rgb(0, 158, 255));
+
+
+
+        single_paint.setStrokeWidth(3);
+
         counter.getSp().setColor(Color.rgb(230,230,230));
 
 
         samplePaintW.setColor(Color.WHITE);
 
         samplePaint1.setStrokeWidth(3);
+
+
+
 
         Canvas c = holder.lockCanvas(null);
 
@@ -351,7 +382,7 @@ public class BaseSurfaceEightRecord extends SurfaceView implements SurfaceHolder
                                                     (float) (((float) ((float) (getHeight() / (float) (counter.getDefault_channel() * 2))) * (((2 * j) + 1))) + (counter.getBuffere(j, g) * counter.getEight_step_y())),
                                                     (float) ((y + 1) * counter.getEight_step_x()),
                                                     (float) (((float) ((float) (getHeight() / (float) (counter.getDefault_channel() * 2))) * (((2 * j) + 1))) + (counter.getBuffere(j, (g + 1)) * counter.getEight_step_y())),
-                                                    samplePaint1);
+                                                    paint[j]);
 
                                         }
                                         y++;
@@ -384,7 +415,7 @@ public class BaseSurfaceEightRecord extends SurfaceView implements SurfaceHolder
                                                     (float) (((float) ((float) (getHeight() / (float) (counter.getDefault_channel() * 2))) * (((2 * j) + 1))) + (counter.getBuffere(j, g) * counter.getEight_step_y())),
                                                     (float) ((y + 1) * counter.getEight_step_x()),
                                                     (float) (((float) ((float) (getHeight() / (float) (counter.getDefault_channel() * 2))) * (((2 * j) + 1))) + (counter.getBuffere(j, (g + 1)) * counter.getEight_step_y())),
-                                                    samplePaint1);
+                                                    paint[j]);
 
                                         }
                                         y++;
@@ -485,7 +516,7 @@ for (int j=0;j<1000;j+=50) {
                                                 (float) (((float) ((float) (getHeight() / 2))) + (counter.getBuffere(j, g) * counter.getSingle_step_y())),
                                                 (float) ((y + 1) * counter.getSingle_step_x()),
                                                 (float) (((float) ((float) (getHeight() / 2))) + (counter.getBuffere(j, (g + 1)) * counter.getSingle_step_y())),
-                                                samplePaint1);
+                                                single_paint);
 
                                     }
                                     y++;

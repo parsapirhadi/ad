@@ -21,8 +21,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
             android:textSize="12sp"
             android:fontFamily="sans-serif-medium"
             android:background="#e6e6e6"
@@ -44,7 +42,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="38dp"
                 android:clickable="false"
-                app:buttonTint="#5a8fe5"
+                app:buttonTint="#1fc5ff"
                 android:layout_gravity="center"
                 android:gravity="center"
 
@@ -69,8 +67,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
+
             android:textSize="12sp"
             android:fontFamily="sans-serif-medium"
             android:background="#e6e6e6"
@@ -94,7 +91,7 @@
                 android:layout_height="38dp"
                 android:layout_gravity="center"
                 android:gravity="center"
-                app:buttonTint="#5a8fe5"
+                app:buttonTint="#1fc5ff"
                 tools:ignore="UseSwitchCompatOrMaterialXml" />
 
         </LinearLayout>

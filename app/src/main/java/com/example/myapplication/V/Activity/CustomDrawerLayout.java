@@ -181,7 +181,6 @@ Objects objects;
 
 
 
-
                  // startActivity(new Intent(getActivity(),SettingsActivity.class));
                 //  getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 

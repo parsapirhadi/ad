@@ -44,6 +44,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -616,9 +617,7 @@ public class EightRecordActivity extends AppCompatActivity {
         }
 
 
-
-
-
+        Toast.makeText(getApplicationContext(), ""+findViewById(R.id.banda_tools).getSolidColor(), Toast.LENGTH_SHORT).show();
 
 
     }
@@ -1092,7 +1091,7 @@ public class EightRecordActivity extends AppCompatActivity {
                     if (recordcount == 0 && is_connected) {
 
                         vibrator.vibrate(40);
-                        counter.getSp().setColor(Color.BLUE);
+                        counter.getSp().setColor(Color.RED);
 
 
                        if (counter.getO()>20) {
@@ -1358,6 +1357,8 @@ public class EightRecordActivity extends AppCompatActivity {
         eight_zoomin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
                 vibrator.vibrate(40);
                 counter.setEight_step_y((float) (counter.getEight_step_y() +(counter.getDefault_channel()*(counter.getEight_step_y()/50))));
             }

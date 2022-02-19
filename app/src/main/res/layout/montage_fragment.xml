@@ -15,7 +15,7 @@
 
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@drawable/banda_tools_blue"
+        android:background="@drawable/banda_tools_blue_setting"
         android:orientation="horizontal"
 
 
@@ -24,27 +24,38 @@
         <Button
             android:id="@+id/back_pointer_montage"
             android:layout_width="25dp"
-            android:layout_height="20dp"
+            android:layout_height="25dp"
 
             android:layout_gravity="center|start"
-            android:layout_margin="10dp"
+            android:layout_marginLeft="10dp"
             android:background="@drawable/back_pointer_foreground"
             android:gravity="center" />
 
         <TextView
+            android:id="@+id/name_version"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:fontFamily="sans-serif-condensed-medium"
-
             android:layout_gravity="center"
-            android:layout_marginRight="5dp"
-            android:textSize="15sp"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:gravity="center"
+            android:onClick="onClick"
+            android:text="NrSign1.0.0"
             android:textColor="#ffffff"
-            android:text="NrSign1.0.0          "
+            android:textSize="15sp"
 
-            />
+            tools:ignore="OnClick" />
+        <Button
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/close_foreground"
+            android:layout_gravity="center|start"
+            android:layout_marginEnd="10dp"
+            android:id="@+id/close"
+            android:onClick="onClick"
+
+
+            tools:ignore="OnClick" />
     </LinearLayout>
 
 

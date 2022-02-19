@@ -329,11 +329,11 @@ int check_non_two_end=0;
             @Override
             public void onClick(View view) {
                 if(notchcount==0) {
-                    notch.setBackgroundResource(R.mipmap.notch_);
+                   // notch.setBackgroundResource(R.mipmap.notch_);
                     notchcount=1;
                 }
                 else if(notchcount==1) {
-                    notch.setBackgroundResource(R.mipmap.notch_off_);
+                  //  notch.setBackgroundResource(R.mipmap.notch_off_);
                     notchcount=0;
 
                 }

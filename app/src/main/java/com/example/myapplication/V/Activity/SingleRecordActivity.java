@@ -918,11 +918,11 @@ counter.setShow_record_ch(0);
 
 
                 if(notchcount==0) {
-                    notch.setBackgroundResource(R.mipmap.notch_);
+                  //  notch.setBackgroundResource(R.mipmap.notch_);
                     notchcount=1;
                 }
                else if(notchcount==1) {
-                    notch.setBackgroundResource(R.mipmap.notch_off_);
+                   // notch.setBackgroundResource(R.mipmap.notch_off_);
                     notchcount=0;
                 }
             }

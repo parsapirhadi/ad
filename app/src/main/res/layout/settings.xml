@@ -8,7 +8,7 @@
     tools:context=".V.Activity.SettingsActivity"
     android:layout_gravity="center"
     android:gravity="center"
-    android:orientation="vertical"
+    android:orientation="horizontal"
 
     android:layout_height="match_parent">
 

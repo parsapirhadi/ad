@@ -5,13 +5,10 @@
 
     <corners
 
-                android:topRightRadius="20dp"
-        android:topLeftRadius="20dp"
-
+                android:radius="20dp"
 
         />
 <solid
     android:color="#1fc5ff"
-
     />
 </shape>

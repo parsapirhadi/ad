@@ -367,7 +367,7 @@ public class BaseSurfaceEightRecord extends SurfaceView implements SurfaceHolder
 
                                     for (i1 = counter.getStartdraw(); i1 < counter.getEnddraw(); i1++) {
 
-
+                                   //   Log.e("S = "+counter.getStartdraw(),"E ="+counter.getEnddraw());
 
                                         if (counter.getBuffere(j, i1) != counter.getPart_data()
                                                 && counter.getBuffere(j, i1 - 1) != counter.getPart_data()

@@ -7,7 +7,6 @@
         android:background="@drawable/main"
         android:id="@+id/item_advanced_setting_layout"
         android:layout_width="match_parent"
-        android:padding="10dp"
         android:gravity="center"
         android:layout_height="51dp"
         android:orientation="horizontal"
@@ -18,8 +17,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
             android:background="#e6e6e6"
             android:layout_gravity="center"
             android:gravity="center"
@@ -43,8 +40,6 @@
                 android:textColor="#1BAAFA"
                 android:background="#e6e6e6"
                 android:gravity="center"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
                 android:textSize="12sp"
 
                 />

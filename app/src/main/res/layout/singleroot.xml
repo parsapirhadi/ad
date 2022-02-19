@@ -87,8 +87,8 @@
                     android:layout_gravity="center"
                     android:id="@+id/notch_singleroot"
                     android:layout_marginRight="30dp"
-                    android:background="@mipmap/notch_off_"
-                    tools:layout_editor_absoluteX="623dp"
+
+                   tools:layout_editor_absoluteX="623dp"
                     tools:layout_editor_absoluteY="10dp" />
             </LinearLayout>
             <LinearLayout

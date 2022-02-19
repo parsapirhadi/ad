@@ -63,7 +63,7 @@ public class Setting_Fragment extends Fragment  {
 
 
 
-       list.add(new ItemSetting(R.mipmap.notch_setting__foreground, "Filters"));
+      // list.add(new ItemSetting(R.mipmap.notch_setting__foreground, "Filters"));
         //list.add(new ItemSetting(R.drawable.replay_root_foreground, "Replay"));
         list.add(new ItemSetting(R.drawable.scale_root_foreground, "Scale"));
         list.add(new ItemSetting(R.drawable.montage_root_foreground, "Montage"));
@@ -76,17 +76,7 @@ public class Setting_Fragment extends Fragment  {
 
 
 
-        back=view.findViewById(R.id.back_pointer_settings);
 
-
-      back.setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View v)
-          {
-
-
-         }
-      });
 
 
 

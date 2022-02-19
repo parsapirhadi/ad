@@ -7,7 +7,9 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -22,7 +24,7 @@ import com.example.myapplication.R;
 
 import java.util.Calendar;
 
-public class MenuActivity extends AppCompatActivity {
+public class MenuActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button save;
     Button cancel;
@@ -41,6 +43,15 @@ public class MenuActivity extends AppCompatActivity {
     private String mParam1;
     Counter counter;
     private String mParam2;
+
+
+
+
+
+
+
+
+
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -131,7 +142,7 @@ public class MenuActivity extends AppCompatActivity {
         icon_setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                choiceDialog.show();
+              //  choiceDialog.show();
                // startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
                // overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
@@ -172,16 +183,14 @@ public class MenuActivity extends AppCompatActivity {
 
 
 
-
-
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                choiceDialog.show();
-
+               choiceDialog.show();
+//               objects.setContext(MenuActivity.this);
                // startActivity(new Intent(getApplicationContext(),SettingsActivity.class));
                // overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+
 
 
             }
@@ -259,6 +268,40 @@ public class MenuActivity extends AppCompatActivity {
 
 
         }
+
+    }
+
+
+
+    @Override
+    public void onClick(View v) {
+
+
+        try {
+
+
+            if (v.getId() == R.id.close || v.getId() == R.id.back_pointer_settings) {
+
+                choiceDialog.dismiss();
+
+
+                counter.setSingle_step_x((float) counter.getSurface_width() / (500 * counter.getHorizontal_scale()));
+                counter.setSingle_step_y((float) counter.getSurface_height() / 200);
+
+
+                counter.setEight_step_x((float) counter.getSurface_width() / (counter.getRate_in_s() * counter.getHorizontal_scale()));
+
+                counter.setEnddraw(counter.getHorizontal_scale() * counter.getRate_in_s());
+
+
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+
 
     }
 }

@@ -617,7 +617,6 @@ public class EightRecordActivity extends AppCompatActivity {
         }
 
 
-        Toast.makeText(getApplicationContext(), ""+findViewById(R.id.banda_tools).getSolidColor(), Toast.LENGTH_SHORT).show();
 
 
     }
@@ -1153,11 +1152,11 @@ public class EightRecordActivity extends AppCompatActivity {
                 vibrator.vibrate(40);
 
                 if(notchcount==0) {
-                    notch.setBackgroundResource(R.mipmap.notch_);
+                    //notch.setBackgroundResource(R.mipmap.notch_);
                     notchcount=1;
                 }
                 else if(notchcount==1) {
-                    notch.setBackgroundResource(R.mipmap.notch_off_);
+                   // notch.setBackgroundResource(R.mipmap.notch_off_);
                     notchcount=0;
 
 
@@ -1336,7 +1335,7 @@ public class EightRecordActivity extends AppCompatActivity {
                     }
                 });
 
-                dialog1.show();
+               // dialog1.show();
 
 
 

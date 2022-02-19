@@ -1,5 +1,8 @@
 package com.example.myapplication;
 
+import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,14 +15,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.myapplication.M.DataType.Objects;
 import com.example.myapplication.M.Item.ItemCustomMontageEditor;
 import com.example.myapplication.M.Item.ItemMontage;
 import com.example.myapplication.P.ItemRecyclerViewAdapter.ItemCustomMontageEditorAdapter;
 import com.example.myapplication.P.ItemRecyclerViewAdapter.ItemMontageAdapter;
+import com.example.myapplication.V.Activity.MenuActivity;
 import com.example.myapplication.V.Activity.MontageActivity;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.example.myapplication.V.Activity.MenuActivity.dismiss;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -41,7 +48,7 @@ public class Montage_Fragment extends Fragment {
     List<ItemCustomMontageEditor> list2 = new ArrayList<>();
     ItemCustomMontageEditorAdapter itemAdapter2;
 
-
+    com.example.myapplication.M.DataType.Objects objects;
 
 
 
@@ -70,6 +77,7 @@ public class Montage_Fragment extends Fragment {
     public static Montage_Fragment newInstance(String param1, String param2) {
         Montage_Fragment fragment = new Montage_Fragment();
         Bundle args = new Bundle();
+
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
@@ -90,6 +98,8 @@ public class Montage_Fragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 view =inflater.inflate(R.layout.montage_fragment, container, false);
+
+objects=new Objects();
 
 
 
@@ -125,7 +135,9 @@ view =inflater.inflate(R.layout.montage_fragment, container, false);
             public void onClick(View view) {
 
 
-                Navigation.findNavController(view).navigate(R.id.action_montage_Fragment_to_setting_fragmnet);
+
+
+                 Navigation.findNavController(view).navigate(R.id.action_montage_Fragment_to_setting_fragmnet);
 
             }
         });

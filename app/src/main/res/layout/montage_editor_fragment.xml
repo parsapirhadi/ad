@@ -1,63 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="300dp"
+    android:background="@drawable/main"
     android:orientation="vertical"
-    android:background="#e1e1e1"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:layout_height="300dp"
+
+    >
     <LinearLayout
 
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="#cccccc"
+        android:background="@drawable/banda_tools_blue_setting"
         android:orientation="horizontal"
-        tools:ignore="MissingConstraints">
-        <Button
 
-            android:layout_margin="10dp"
-            android:layout_gravity="center|start"
-            android:layout_width="25dp"
-            android:gravity="center"
-            android:background="@drawable/back_pointer_foreground"
-            android:layout_height="25dp"
+
+        >
+
+        <Button
             android:id="@+id/back_pointer_montage_editor"
-            />
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+
+            android:layout_gravity="center|start"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/back_pointer_foreground"
+            android:gravity="center" />
+
 
         <TextView
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:fontFamily="sans-serif-condensed-medium"
             android:layout_gravity="center"
-            android:layout_marginRight="5dp"
             android:textSize="15sp"
-            android:textColor="#929292"
+            android:textColor="#ffffff"
             android:text="NrSign1.0.0"
+            />
+
+        <Button
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/close_foreground"
+            android:layout_gravity="center|start"
+            android:layout_marginEnd="10dp"
+            android:id="@+id/close"
+            android:onClick="onClick"
+
+
 
             />
+
     </LinearLayout>
 
     <ScrollView
 
         android:layout_width="match_parent"
-        android:background="#e1e1e1"
-        android:orientation="vertical"
         android:layout_height="match_parent"
-        >
+        android:orientation="vertical">
 
 
         <LinearLayout
+
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-            <TextView
-                android:padding="10dp"
-                android:layout_width="match_parent"
+
+
+        <TextView
                 android:text="Montage Editor"
                 android:textSize="15sp"
-                android:layout_height="wrap_content"
-                tools:ignore="MissingConstraints"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:padding="10dp"
+            android:textColor="#1fc5ff"
+            tools:ignore="MissingConstraints"
+
                 />
             <LinearLayout
                 android:layout_width="match_parent"
@@ -67,7 +91,7 @@
                     android:padding="10dp"
                     android:layout_width="0dp"
                     android:layout_weight="1"
-                    android:textColor="#1BAAFA"
+                    android:textColor="#1fc5ff"
                     android:textSize="13sp"
                     android:text="Default Name"
                     android:layout_height="wrap_content"
@@ -78,7 +102,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:text="From"
-                    android:textColor="#1BAAFA"
+                    android:textColor="#1fc5ff"
                     android:gravity="end"
                     android:textSize="13sp"
                     android:layout_height="wrap_content"
@@ -89,7 +113,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:text="To"
-                    android:textColor="#1BAAFA"
+                    android:textColor="#1fc5ff"
                     android:gravity="end"
                     android:textSize="15sp"
                     android:layout_height="wrap_content"
@@ -101,6 +125,8 @@
 
 
             <androidx.recyclerview.widget.RecyclerView
+                android:paddingStart="17dp"
+                android:paddingEnd="17dp"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"

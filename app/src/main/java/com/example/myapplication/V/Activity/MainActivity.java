@@ -2,8 +2,11 @@
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.LabeledIntent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
@@ -22,7 +25,6 @@ SetPivotName namePivote;
 SetPivotName pivotValue;
 Counter counter;
 
-
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +33,14 @@ Counter counter;
 
 
         setContentView(R.layout.activity_main);
+
+
+
+
+
+
+
+
 
 
 

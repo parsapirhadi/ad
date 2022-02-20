@@ -26,7 +26,6 @@ import com.example.myapplication.V.Activity.MontageActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.myapplication.V.Activity.MenuActivity.dismiss;
 
 /**
  * A simple {@link Fragment} subclass.

@@ -22,6 +22,7 @@
             android:background="@drawable/back_pointer_foreground"
             android:layout_height="25dp"
             android:id="@+id/back_pointer_renamechannel"
+
             />
 
         <TextView

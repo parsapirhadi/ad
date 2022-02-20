@@ -31,7 +31,7 @@ import com.google.android.material.snackbar.Snackbar;
 import java.util.Calendar;
 
 
-public class CustomDrawerLayout extends Fragment {
+public class CustomDrawerLayout extends Fragment implements View.OnClickListener {
 
 Button save;
 Button cancel;
@@ -42,7 +42,7 @@ Objects objects;
     private static final String ARG_PARAM2 = "param2";
 
     Intent intent;
-
+    Dialog choiceDialog;
 
     private String mParam1;
     private String mParam2;
@@ -88,7 +88,7 @@ Objects objects;
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
 
-        Dialog choiceDialog;
+
         choiceDialog=new Dialog(getContext());
         choiceDialog.setContentView(R.layout.settings);
         choiceDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -265,4 +265,17 @@ Objects objects;
 
     }
 
+
+    public void onClick_DrawerLayout(View v) {
+        Toast.makeText(getContext(), "5489", Toast.LENGTH_SHORT).show();
+        if (v.getId()==R.id.drawerlayout) {
+            choiceDialog.dismiss();
+        }
+    }
+
+
+    @Override
+    public void onClick(View v) {
+
+    }
 }

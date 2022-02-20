@@ -23,16 +23,16 @@
 
         <Button
             android:id="@+id/back_pointer_settings"
-            android:layout_width="25dp"
+            android:layout_width="23dp"
             android:layout_height="25dp"
             android:layout_gravity="center|start"
             android:layout_marginLeft="10dp"
             android:background="@drawable/back_pointer_foreground"
             android:gravity="center"
-            android:onClick="onClick"
+            android:onClick="onClick_Menu"
 
 
-            tools:ignore="OnClick"
+            tools:ignore="OnClick,UsingOnClickInXml"
 
             />
 
@@ -56,10 +56,25 @@
             android:layout_gravity="center|start"
             android:layout_marginEnd="10dp"
             android:id="@+id/close"
-            android:onClick="onClick"
+            android:onClick="onClick_Menu"
 
 
-            tools:ignore="OnClick" />
+            tools:ignore="OnClick,UsingOnClickInXml" />
+
+        <Button
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/close_foreground"
+            android:layout_gravity="center|start"
+            android:layout_marginEnd="10dp"
+            android:id="@+id/drawerlayout"
+            />
+            <!--
+            android:onClick="onClick_DrawerLayout"
+            -->
+
+
+
     </LinearLayout>
 
 

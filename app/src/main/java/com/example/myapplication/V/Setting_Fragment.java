@@ -1,19 +1,15 @@
 package com.example.myapplication.V;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
@@ -63,7 +59,7 @@ public class Setting_Fragment extends Fragment  {
 
 
 
-      // list.add(new ItemSetting(R.mipmap.notch_setting__foreground, "Filters"));
+      list.add(new ItemSetting(R.drawable.notch_on, "Filters"));
         //list.add(new ItemSetting(R.drawable.replay_root_foreground, "Replay"));
         list.add(new ItemSetting(R.drawable.scale_root_foreground, "Scale"));
         list.add(new ItemSetting(R.drawable.montage_root_foreground, "Montage"));

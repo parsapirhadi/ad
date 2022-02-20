@@ -7,6 +7,7 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
@@ -67,7 +68,7 @@ import java.util.Set;
 import java.util.UUID;
 
 
-public class EightRecordActivity extends AppCompatActivity {
+public class EightRecordActivity extends AppCompatActivity  {
 
     EditText ech2,ech3,ech4,ech5,ech6,ech7,ech8;
     Button bch1,bch2,bch3,bch4,bch5,bch6,bch7,bch8;
@@ -123,7 +124,7 @@ public class EightRecordActivity extends AppCompatActivity {
     Set<BluetoothDevice> pared;
     static Dialog dialog,dialog1,dialog2,dialog3,dialog4,dialog5,dialog6,dialog7,dialog8;
 
-    Dialog choiceDialog;
+    static Dialog choiceDialog;
 
     int metode_counter=1;
     int connect_counter=0;
@@ -702,7 +703,7 @@ public class EightRecordActivity extends AppCompatActivity {
         {
             if (!objects.getSocket().isConnected()) {
                 connect_counter++;
-                if (connect_counter==5){
+                if (connect_counter==7){
                     metode(2);
                 }
                 Log.e("try to conneect","try to conneect");
@@ -1137,7 +1138,7 @@ public class EightRecordActivity extends AppCompatActivity {
 
         });
 
-        notch.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.notch_eightrecord_layout).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -1152,11 +1153,11 @@ public class EightRecordActivity extends AppCompatActivity {
                 vibrator.vibrate(40);
 
                 if(notchcount==0) {
-                    //notch.setBackgroundResource(R.mipmap.notch_);
+                    notch.setBackgroundResource(R.drawable.notch_on);
                     notchcount=1;
                 }
                 else if(notchcount==1) {
-                   // notch.setBackgroundResource(R.mipmap.notch_off_);
+                   notch.setBackgroundResource(R.drawable.notch_off);
                     notchcount=0;
 
 
@@ -1942,6 +1943,7 @@ public class EightRecordActivity extends AppCompatActivity {
 
 
 
+
     }
 
     private void steponesecond() {
@@ -2118,6 +2120,12 @@ public class EightRecordActivity extends AppCompatActivity {
 
 
     }
+
+
+
+
+
+
     private class ClientClass extends Thread
     {
 

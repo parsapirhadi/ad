@@ -24,7 +24,8 @@ import com.example.myapplication.R;
 
 import java.util.Calendar;
 
-public class MenuActivity extends AppCompatActivity implements View.OnClickListener {
+
+public class MenuActivity extends AppCompatActivity  {
 
     Button save;
     Button cancel;
@@ -110,8 +111,6 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         choiceDialog.setContentView(R.layout.settings);
         choiceDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-
-
         Button icon_setting=findViewById(R.id.icon_setting_menu);
         Button icon_newrecord=findViewById(R.id.icon_newpatient_menu);
         Button icon_loadrecord=findViewById(R.id.icon_loadpatient_menu);
@@ -186,6 +185,8 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                choiceDialog.show();
 //               objects.setContext(MenuActivity.this);
                // startActivity(new Intent(getApplicationContext(),SettingsActivity.class));
@@ -273,32 +274,35 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
-    @Override
-    public void onClick(View v) {
+
+    public void onClick_Menu(View v) {
 
 
-        try {
+    try {
 
 
-            if (v.getId() == R.id.close || v.getId() == R.id.back_pointer_settings) {
+        if (v.getId() == R.id.close || v.getId() == R.id.back_pointer_settings) {
 
-                choiceDialog.dismiss();
-
-
-                counter.setSingle_step_x((float) counter.getSurface_width() / (500 * counter.getHorizontal_scale()));
-                counter.setSingle_step_y((float) counter.getSurface_height() / 200);
+            choiceDialog.dismiss();
 
 
-                counter.setEight_step_x((float) counter.getSurface_width() / (counter.getRate_in_s() * counter.getHorizontal_scale()));
 
-                counter.setEnddraw(counter.getHorizontal_scale() * counter.getRate_in_s());
+            counter.setSingle_step_x((float) counter.getSurface_width() / (500 * counter.getHorizontal_scale()));
+
+            counter.setSingle_step_y((float) counter.getSurface_height() / 200);
+
+            counter.setEight_step_x((float) counter.getSurface_width() / (counter.getRate_in_s() * counter.getHorizontal_scale()));
+
+            counter.setEnddraw(counter.getHorizontal_scale() * counter.getRate_in_s());
 
 
-            }
-
-        }catch (Exception e){
-            e.printStackTrace();
         }
+
+    } catch (Exception e) {
+        e.printStackTrace();
+        Toast.makeText(getApplicationContext(), ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+    }
+
 
 
 

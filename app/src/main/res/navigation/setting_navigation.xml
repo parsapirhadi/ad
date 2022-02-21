@@ -83,6 +83,9 @@
         <action
             android:id="@+id/action_montageEditorFragment_to_montage_Fragment"
             app:destination="@id/montage_Fragment" />
+        <action
+            android:id="@+id/action_montageEditorFragment_to_setting_fragmnet"
+            app:destination="@id/setting_fragmnet" />
     </fragment>
     <fragment
         android:id="@+id/renameChannelFragment"
@@ -91,5 +94,8 @@
         <action
             android:id="@+id/action_renameChannelFragment_to_montage_Fragment"
             app:destination="@id/montage_Fragment" />
+        <action
+            android:id="@+id/action_renameChannelFragment_to_setting_fragmnet"
+            app:destination="@id/setting_fragmnet" />
     </fragment>
 </navigation>

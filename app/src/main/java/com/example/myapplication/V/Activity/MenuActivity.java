@@ -39,7 +39,7 @@ public class MenuActivity extends AppCompatActivity  {
 
     Intent intent;
 
-    Dialog choiceDialog;
+    public static Dialog menuDialog;
 
     private String mParam1;
     Counter counter;
@@ -107,15 +107,15 @@ public class MenuActivity extends AppCompatActivity  {
 
 
 
-        choiceDialog=new Dialog(MenuActivity.this);
-        choiceDialog.setContentView(R.layout.settings);
-        choiceDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        menuDialog=new Dialog(MenuActivity.this);
+        menuDialog.setContentView(R.layout.settings);
+        menuDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         Button icon_setting=findViewById(R.id.icon_setting_menu);
         Button icon_newrecord=findViewById(R.id.icon_newpatient_menu);
         Button icon_loadrecord=findViewById(R.id.icon_loadpatient_menu);
 
-        back=choiceDialog.findViewById(R.id.back_pointer_settings);
+        back=menuDialog.findViewById(R.id.back_pointer_settings);
 
 
         counter=new Counter();
@@ -127,6 +127,12 @@ public class MenuActivity extends AppCompatActivity  {
 
         save=dialog.findViewById(R.id.save);
         cancel=dialog.findViewById(R.id.cancel);
+
+
+
+
+        menuDialog.setCancelable(false);
+
 
         icon_loadrecord.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,7 +147,7 @@ public class MenuActivity extends AppCompatActivity  {
         icon_setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              //  choiceDialog.show();
+                menuDialog.show();
                // startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
                // overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
@@ -187,7 +193,7 @@ public class MenuActivity extends AppCompatActivity  {
             public void onClick(View v) {
 
 
-               choiceDialog.show();
+                menuDialog.show();
 //               objects.setContext(MenuActivity.this);
                // startActivity(new Intent(getApplicationContext(),SettingsActivity.class));
                // overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
@@ -275,37 +281,19 @@ public class MenuActivity extends AppCompatActivity  {
 
 
 
-    public void onClick_Menu(View v) {
 
 
-    try {
+     static public void dismissmenu(){
+        menuDialog.dismiss();
+
+         Counter counter=new Counter();
+
+         counter.setEight_step_x((float) counter.getSurfaceviewhewidth()/(counter.getRate_in_s()*counter.getHorizontal_scale()));
+
+         counter.setEight_step_y((float) counter.getSurfaceviewhewidth()/200);
+         counter.setEight_step_y((counter.getEight_step_y()/counter.getDefault_channel())/2);
+
+     }
 
 
-        if (v.getId() == R.id.close || v.getId() == R.id.back_pointer_settings) {
-
-            choiceDialog.dismiss();
-
-
-
-            counter.setSingle_step_x((float) counter.getSurface_width() / (500 * counter.getHorizontal_scale()));
-
-            counter.setSingle_step_y((float) counter.getSurface_height() / 200);
-
-            counter.setEight_step_x((float) counter.getSurface_width() / (counter.getRate_in_s() * counter.getHorizontal_scale()));
-
-            counter.setEnddraw(counter.getHorizontal_scale() * counter.getRate_in_s());
-
-
-        }
-
-    } catch (Exception e) {
-        e.printStackTrace();
-        Toast.makeText(getApplicationContext(), ""+e.getMessage(), Toast.LENGTH_SHORT).show();
-    }
-
-
-
-
-
-    }
 }

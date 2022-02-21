@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,6 +21,12 @@ import com.example.myapplication.R;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.example.myapplication.V.Activity.CustomDrawerLayout.dismissDrawerlayout;
+import static com.example.myapplication.V.Activity.CustomDrawerLayout.drawerLayoutDialog;
+import static com.example.myapplication.V.Activity.MenuActivity.dismissmenu;
+import static com.example.myapplication.V.Activity.MenuActivity.menuDialog;
+
 
 public class Setting_Fragment extends Fragment  {
     Button gotoFragment2;
@@ -66,7 +73,28 @@ public class Setting_Fragment extends Fragment  {
        list.add(new ItemSetting(R.drawable.setting_foreground, "Advanced Setting"));
 
 
+        view.findViewById(R.id.close).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                try {
+                if (menuDialog.isShowing()) {
+                    menuDialog.dismiss();
+                }
+
+                if (drawerLayoutDialog.isShowing()) {
+
+                }
+                drawerLayoutDialog.dismiss();
+            }
+                catch (NullPointerException e){
+                    e.printStackTrace();
+                }
+        }
+
+
+
+        });
 
         itemAdapter.notifyDataSetChanged();
 

@@ -31,7 +31,7 @@ import com.google.android.material.snackbar.Snackbar;
 import java.util.Calendar;
 
 
-public class CustomDrawerLayout extends Fragment implements View.OnClickListener {
+public class CustomDrawerLayout extends Fragment {
 
 Button save;
 Button cancel;
@@ -41,11 +41,17 @@ Objects objects;
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+   Button close;
+
+
     Intent intent;
-    Dialog choiceDialog;
+   public static Dialog drawerLayoutDialog;
 
     private String mParam1;
     private String mParam2;
+
+    static Counter counter1;
+
 
     public CustomDrawerLayout() {
         // Required empty public constructor
@@ -66,6 +72,8 @@ Objects objects;
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+
+
             objects=new Objects();
         }
     }
@@ -89,10 +97,10 @@ Objects objects;
 
 
 
-        choiceDialog=new Dialog(getContext());
-        choiceDialog.setContentView(R.layout.settings);
-        choiceDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        choiceDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+        drawerLayoutDialog=new Dialog(getContext());
+        drawerLayoutDialog.setContentView(R.layout.settings);
+        drawerLayoutDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        drawerLayoutDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public void onDismiss(DialogInterface dialog) {
 
@@ -101,18 +109,18 @@ Objects objects;
         });
 
 
+
+
         save=dialog.findViewById(R.id.save);
         cancel=dialog.findViewById(R.id.cancel);
 
 
-        choiceDialog.findViewById(R.id.back_pointer_settings).setOnClickListener(new View.OnClickListener() {
+        drawerLayoutDialog.findViewById(R.id.back_pointer_settings).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                choiceDialog.dismiss();
+                drawerLayoutDialog.dismiss();
             }
         });
-
-
 
         icon_loadrecord.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,7 +136,8 @@ Objects objects;
             @Override
             public void onClick(View view) {
 
-                choiceDialog.show();
+                drawerLayoutDialog.show();
+
 
 
                 //startActivity(new Intent(getActivity(), SettingsActivity.class));
@@ -167,7 +176,7 @@ Objects objects;
 
 
 
-
+drawerLayoutDialog.setCancelable(false);
 
 
 
@@ -177,7 +186,7 @@ Objects objects;
             public void onClick(View v) {
 
 
-              choiceDialog.show();
+                drawerLayoutDialog.show();
 
 
 
@@ -243,7 +252,7 @@ Objects objects;
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         if(requestCode==1 && resultCode==-1) {
-            Counter counter =new Counter();
+            counter1 =new Counter();
             String1 string1=new String1();
             string1.setChannel_count(0);
 
@@ -252,7 +261,7 @@ Objects objects;
 
             string1.setFilepatch(data.getData().getPath());
 
-            counter.setLine_clecked(2);
+            counter1.setLine_clecked(2);
             Log.e("set to","1");
             intent.putExtra("h",string1);
             startActivity(intent);
@@ -264,18 +273,11 @@ Objects objects;
         }
 
     }
+   static public void dismissDrawerlayout(){
+
+       drawerLayoutDialog.dismiss();
+
+}
 
 
-    public void onClick_DrawerLayout(View v) {
-        Toast.makeText(getContext(), "5489", Toast.LENGTH_SHORT).show();
-        if (v.getId()==R.id.drawerlayout) {
-            choiceDialog.dismiss();
-        }
-    }
-
-
-    @Override
-    public void onClick(View v) {
-
-    }
 }

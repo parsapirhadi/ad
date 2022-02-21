@@ -1,6 +1,7 @@
 package com.example.myapplication.P.ItemRecyclerViewAdapter;
 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.myapplication.M.DataType.Counter;
 import com.example.myapplication.M.Item.ItemScale;
 import com.example.myapplication.R;
+import com.example.myapplication.V.Activity.EightRecordActivity;
 
 import java.util.List;
 
@@ -52,6 +54,7 @@ public class ItemScaleAdapter extends RecyclerView.Adapter<ItemScaleAdapter.MyVi
                 popup.getMenuInflater().inflate(R.menu.horizontal_menu, popup.getMenu());
 
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @SuppressLint("SetTextI18n")
                     @Override
                     public boolean onMenuItemClick(MenuItem menuItem) {
 
@@ -72,7 +75,35 @@ public class ItemScaleAdapter extends RecyclerView.Adapter<ItemScaleAdapter.MyVi
                         }
                             counter.setHorizontal_scale(Integer.parseInt(r));
 
+                        counter.setSingle_step_x((float) counter.getSurface_width() / (counter.getRate_in_s() * counter.getHorizontal_scale()));
+                        counter.setSingle_step_y((float) counter.getSurface_height() / 200);
 
+
+                        counter.setEight_step_x((float) counter.getSurface_width() / (counter.getRate_in_s() * counter.getHorizontal_scale()));
+
+
+                        for (int j2=0;j2<8;j2++){
+                            for (int j1=0;j1<16000;j1++) {
+                                counter.setBuffer(counter.getPart_data(), j2, j1);
+                            }
+                        }
+                        EightRecordActivity.getV0().setText(""+Math.round((counter.getBuffer_count()/(counter.getDefault_channel()*counter.getHorizontal_scale()))));
+                        counter.setBuffer_count(0);
+
+                        if(counter.getHorizontal_scale()<8){
+                            EightRecordActivity.getV1000().setVisibility(View.INVISIBLE);
+                            EightRecordActivity.getV3000().setVisibility(View.INVISIBLE);
+                            EightRecordActivity.getV5000().setVisibility(View.INVISIBLE);
+                            EightRecordActivity.getV7000().setVisibility(View.INVISIBLE);
+
+                        }
+                        else{
+                            EightRecordActivity.getV1000().setVisibility(View.VISIBLE);
+                            EightRecordActivity.getV3000().setVisibility(View.VISIBLE);
+                            EightRecordActivity.getV5000().setVisibility(View.VISIBLE);
+                            EightRecordActivity.getV7000().setVisibility(View.VISIBLE);
+
+                        }
 
 
 

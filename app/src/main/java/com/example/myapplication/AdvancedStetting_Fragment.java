@@ -20,6 +20,9 @@ import com.example.myapplication.P.ItemRecyclerViewAdapter.ItemNotchAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.myapplication.V.Activity.CustomDrawerLayout.drawerLayoutDialog;
+import static com.example.myapplication.V.Activity.MenuActivity.menuDialog;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link AdvancedStetting_Fragment#newInstance} factory method to
@@ -119,7 +122,30 @@ view=inflater.inflate(R.layout.advancedstetting_fragment, container, false);
         });
 
 
+        view.findViewById(R.id.close).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                try {
+                    if (menuDialog.isShowing()) {
+                        menuDialog.dismiss();
+                    }
+
+                    if (drawerLayoutDialog.isShowing()) {
+
+                    }
+                    drawerLayoutDialog.dismiss();
+                }
+                catch (NullPointerException e){
+                    e.printStackTrace();
+                }
+                Navigation.findNavController(view).navigate(R.id.action_advancedStetting_Fragment_to_setting_fragmnet);
+
+            }
+
+
+
+        });
 
 
 

@@ -211,7 +211,7 @@ public class BaseSurfaceEightRecord extends SurfaceView implements SurfaceHolder
         counter.setSurface_height(getHeight());
         counter.setSurface_width(getWidth());
 
-        counter.setSingle_step_x((float) counter.getSurface_width() / (500 * counter.getHorizontal_scale()));
+        counter.setSingle_step_x((float) counter.getSurface_width() / (counter.getRate_in_s() * counter.getHorizontal_scale()));
         counter.setSingle_step_y((float) counter.getSurface_height() / 200);
 
 
@@ -220,7 +220,7 @@ public class BaseSurfaceEightRecord extends SurfaceView implements SurfaceHolder
      //   counter.setEight_step_y((counter.getEight_step_y()/string1.getChannel_count())/2);
 
 
-        counter.setEight_step_x((float) counter.getSurface_width()/(500*counter.getHorizontal_scale()));
+        counter.setEight_step_x((float) counter.getSurface_width()/(counter.getRate_in_s()*counter.getHorizontal_scale()));
         counter.setEight_step_y((float) counter.getSurface_height()/200);
         counter.setEight_step_y((counter.getEight_step_y()/counter.getDefault_channel())/2);
     }
@@ -448,7 +448,6 @@ for (int j=0;j<1000;j+=50) {
                             }
                             else {
                              ///////////////////////////single record
-
 
 
                                 canvas.drawColor(Color.rgb(230, 230, 230));

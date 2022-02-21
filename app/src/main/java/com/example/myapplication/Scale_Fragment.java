@@ -19,6 +19,9 @@ import com.example.myapplication.P.ItemRecyclerViewAdapter.ItemScaleAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.myapplication.V.Activity.CustomDrawerLayout.drawerLayoutDialog;
+import static com.example.myapplication.V.Activity.MenuActivity.menuDialog;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link Scale_Fragment#newInstance} factory method to
@@ -111,7 +114,31 @@ public class Scale_Fragment extends Fragment {
 
             }
         });
+        view.findViewById(R.id.close).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+
+                try {
+                    if (menuDialog.isShowing()) {
+                        menuDialog.dismiss();
+                    }
+
+                    if (drawerLayoutDialog.isShowing()) {
+
+                    }
+                    drawerLayoutDialog.dismiss();
+                }
+                catch (NullPointerException e){
+                    e.printStackTrace();
+                }
+                Navigation.findNavController(view).navigate(R.id.action_scale_Fragment_to_setting_fragmnet);
+
+            }
+
+
+
+        });
         return view;
     }
 }

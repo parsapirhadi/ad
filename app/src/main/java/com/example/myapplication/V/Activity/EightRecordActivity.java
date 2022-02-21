@@ -68,7 +68,7 @@ import java.util.Set;
 import java.util.UUID;
 
 
-public class EightRecordActivity extends AppCompatActivity  {
+public class EightRecordActivity extends AppCompatActivity {
 
     EditText ech2,ech3,ech4,ech5,ech6,ech7,ech8;
     Button bch1,bch2,bch3,bch4,bch5,bch6,bch7,bch8;
@@ -453,7 +453,7 @@ public class EightRecordActivity extends AppCompatActivity  {
             bluetooth.setBackgroundResource(R.drawable.bluetooth_on_foreground);
         }
 
-        counter.setSingle_step_x((float) counter.getSurface_width() / (500 * counter.getHorizontal_scale()));
+        counter.setSingle_step_x((float) counter.getSurface_width() / (counter.getRate_in_s() * counter.getHorizontal_scale()));
         counter.setSingle_step_y((float) counter.getSurface_height() / 200);
 
 
@@ -602,6 +602,8 @@ public class EightRecordActivity extends AppCompatActivity  {
             snackbar_connecting.show();
         }
     }
+
+
         if(counter.getHorizontal_scale()<8){
             getV1000().setVisibility(View.INVISIBLE);
             getV3000().setVisibility(View.INVISIBLE);
@@ -1415,6 +1417,11 @@ public class EightRecordActivity extends AppCompatActivity  {
                     row_100.setText((int) (pivote_100)+"µV");
 
                     vibrator.vibrate(40);
+
+
+                    Toast.makeText(getApplicationContext(),
+                            (""+Math.round((counter.getBuffer_count()/(counter.getDefault_channel()*counter.getHorizontal_scale())))),
+                            Toast.LENGTH_SHORT).show();
 
 
                 }

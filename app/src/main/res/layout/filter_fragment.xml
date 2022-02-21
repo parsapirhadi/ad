@@ -50,10 +50,7 @@
             android:layout_gravity="center|start"
             android:layout_marginEnd="10dp"
             android:id="@+id/close"
-            android:onClick="onClick"
-
-
-            tools:ignore="OnClick" />
+           />
     </LinearLayout>
     <ScrollView
 

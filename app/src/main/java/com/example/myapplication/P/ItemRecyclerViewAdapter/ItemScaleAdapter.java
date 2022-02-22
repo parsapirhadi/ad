@@ -76,7 +76,7 @@ public class ItemScaleAdapter extends RecyclerView.Adapter<ItemScaleAdapter.MyVi
                             counter.setHorizontal_scale(Integer.parseInt(r));
 
                         counter.setSingle_step_x((float) counter.getSurface_width() / (counter.getRate_in_s() * counter.getHorizontal_scale()));
-                        counter.setSingle_step_y((float) counter.getSurface_height() / 200);
+                       // counter.setSingle_step_y((float) counter.getSurface_height() / 200);
 
 
                         counter.setEight_step_x((float) counter.getSurface_width() / (counter.getRate_in_s() * counter.getHorizontal_scale()));
@@ -87,7 +87,40 @@ public class ItemScaleAdapter extends RecyclerView.Adapter<ItemScaleAdapter.MyVi
                                 counter.setBuffer(counter.getPart_data(), j2, j1);
                             }
                         }
-                        EightRecordActivity.getV0().setText(""+Math.round((counter.getBuffer_count()/(counter.getDefault_channel()*counter.getHorizontal_scale()))));
+                        counter.setLine_stop_counter(0);
+                        counter.setLoop_counter(1);
+
+                        counter.setSeconds_count0(Math.round((counter.getTimer()/(counter.getDefault_channel()*counter.getRate_in_s())))-counter.getHorizontal_scale());
+
+
+
+                        EightRecordActivity.getV0().setText("");
+                        EightRecordActivity.getV1000().setText("");
+                        EightRecordActivity.getV2000().setText("");
+                        EightRecordActivity.getV3000().setText("");
+                        EightRecordActivity.getV4000().setText("");
+                        EightRecordActivity.getV5000().setText("");
+                        EightRecordActivity.getV6000().setText("");
+                        EightRecordActivity.getV7000().setText("");
+                        EightRecordActivity.getV8000().setText("");
+
+
+
+
+
+                        counter.setSeconds_count1000(counter.getSeconds_count0()+ ( (counter.getHorizontal_scale()*1)/8));
+                        counter.setSeconds_count2000(counter.getSeconds_count0()+ ( (counter.getHorizontal_scale()*2)/8));
+                        counter.setSeconds_count3000(counter.getSeconds_count0()+ ( (counter.getHorizontal_scale()*3)/8));
+                        counter.setSeconds_count4000(counter.getSeconds_count0()+ ( (counter.getHorizontal_scale()*4)/8));
+                        counter.setSeconds_count5000(counter.getSeconds_count0()+ ( (counter.getHorizontal_scale()*5)/8));
+                        counter.setSeconds_count6000(counter.getSeconds_count0()+ ( (counter.getHorizontal_scale()*6)/8));
+                        counter.setSeconds_count7000(counter.getSeconds_count0()+ ( (counter.getHorizontal_scale()*7)/8));
+                        counter.setSeconds_count8000(counter.getSeconds_count0()+ ( (counter.getHorizontal_scale())));
+
+
+
+
+
                         counter.setBuffer_count(0);
 
                         if(counter.getHorizontal_scale()<8){

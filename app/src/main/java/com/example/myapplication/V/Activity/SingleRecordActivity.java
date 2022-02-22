@@ -251,7 +251,7 @@ Thread bluetooth_thread;
                                     e.printStackTrace();
                                 }
                                 Log.e("is start", "is start");
-                                record.setBackgroundResource(R.drawable.rect_stop_record);
+                                record.setBackgroundResource(R.drawable.rect_stop_record_foreground);
                                 String string = "CONTB\r\n";
                                 set_limit = 1;
                                 sendReceive = new SingleRecordActivity.SendReceive(objects.getSocket());
@@ -266,7 +266,7 @@ Thread bluetooth_thread;
                     is_disconnected=false;
                     counter.setBluetooth_drawabe(true);
 
-                    record.setBackgroundResource(R.drawable.red_record_drawable);
+                    record.setBackgroundResource(R.drawable.red_record_foreground);
                     String string = "NOP\r\n";
                     set_limit = 1;
                     if (objects.getSocket()!=null){
@@ -649,7 +649,7 @@ counter.setShow_record_ch(0);
                             e.printStackTrace();
                         }
                         if (objects.getSocket().isConnected()) {
-                            record.setBackgroundResource(R.drawable.rect_stop_record);
+                            record.setBackgroundResource(R.drawable.rect_stop_record_foreground);
                             String string = "CONTB\r\n";
                             set_limit = 1;
                             sendReceive = new SingleRecordActivity.SendReceive(objects.getSocket());
@@ -854,7 +854,7 @@ counter.setShow_record_ch(0);
                 if (objects.getSocket() != null ) {
                     vibrator.vibrate(40);
                     if (recordcount == 0) {
-                        record.setBackgroundResource(R.drawable.rect_stop_record);
+                        record.setBackgroundResource(R.drawable.rect_stop_record_foreground);
                         String string = "CONTB\r\n";
                         set_limit = 1;
                         Recordcount=true;
@@ -864,7 +864,7 @@ counter.setShow_record_ch(0);
                         recordcount = 1;
 
                     } else if (recordcount == 1) {
-                        record.setBackgroundResource(R.drawable.red_record_drawable);
+                        record.setBackgroundResource(R.drawable.red_record_foreground);
                         String string = "NOP\r\n";
                         EightRecordActivity.setRecordcount(false);
                         Recordcount=false;

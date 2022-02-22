@@ -55,12 +55,12 @@ xmlns:tools="http://schemas.android.com/tools"
         android:layout_gravity="center"
         >
         <Button
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:id="@+id/record_eightrecord"
             android:layout_marginEnd="30dp"
             android:layout_gravity="center"
-            android:background="@drawable/red_record_drawable"
+            android:background="@drawable/red_record_foreground"
             tools:layout_editor_absoluteX="91dp"
             tools:layout_editor_absoluteY="10dp"
             />
@@ -103,14 +103,15 @@ xmlns:tools="http://schemas.android.com/tools"
             android:layout_weight="1"
             android:layout_gravity="center"
             >
+
             <Button
                 android:id="@+id/line_eightrecord"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
 
-                android:background="@drawable/multi_line_foreground"
                 android:layout_marginEnd="30dp"
+                android:background="@drawable/multi_line_foreground"
                 tools:layout_editor_absoluteX="201dp"
                 tools:layout_editor_absoluteY="10dp" />
         </LinearLayout>

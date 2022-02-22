@@ -24,6 +24,7 @@ static int show_record_ch=0;
     static int Surfaceview_Width_singlerecord=0;
 
 
+
     static int Surfaceview_height_eightrecord=0;
 
     static int Surfaceview_Width_eightrecord=0;
@@ -124,6 +125,17 @@ static int show_record_ch=0;
 
 
     static boolean on_pause=false;
+
+
+    static float timer=0;
+
+    public float getTimer() {
+        return timer;
+    }
+
+    public void setTimer(float timer) {
+        this.timer = timer;
+    }
 
     public boolean isOn_pause() {
         return on_pause;
@@ -436,7 +448,7 @@ static int show_record_ch=0;
         Counter.startdraw = startdraw;
     }
 
-    final static int rate_in_secound =512;
+    final static int rate_in_secound =515;
     public int getRate_in_s() {
         return rate_in_secound;
     }

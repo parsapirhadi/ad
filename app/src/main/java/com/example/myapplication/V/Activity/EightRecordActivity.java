@@ -302,7 +302,7 @@ public class EightRecordActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        record.setBackgroundResource(R.drawable.red_record_drawable);
+        record.setBackgroundResource(R.drawable.red_record_foreground);
         counter.set_draw_activity_on(false);
         counter.set_receive_activity_on(false);
    // for (int j2=0;j2<8;j2++){
@@ -315,7 +315,7 @@ public class EightRecordActivity extends AppCompatActivity {
 
 
 
-        record.setBackgroundResource(R.drawable.red_record_drawable);
+        record.setBackgroundResource(R.drawable.red_record_foreground);
         Recordcount=false;
         SingleRecordActivity.setIs_isRecordcount(false);
         set_limit = 1;
@@ -374,7 +374,7 @@ public class EightRecordActivity extends AppCompatActivity {
 
         if (objects.getSocket() != null) {
             try {
-                record.setBackgroundResource(R.drawable.red_record_drawable);
+                record.setBackgroundResource(R.drawable.red_record_foreground);
                 sendReceive.write(string.getBytes());
                 objects.getSocket().close();
             } catch (Exception e) {
@@ -636,7 +636,7 @@ public class EightRecordActivity extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            record.setBackgroundResource(R.drawable.red_record_drawable);
+                            record.setBackgroundResource(R.drawable.red_record_foreground);
                             String string = "NOP\r\n";
                             set_limit = 1;
                             conter = 0;
@@ -988,7 +988,7 @@ public class EightRecordActivity extends AppCompatActivity {
                                         counter.setRecordcount(counter.getRecordcount() + 1);
                                         counter.setStop_line((float) (((float) counter.getO() / (0.99*counter.getHorizontal_scale()*counter.getRate_in_s())) * counter.getSurface_width()), counter.getRecordcount()%30);
                                     }
-                                    record.setBackgroundResource(R.drawable.rect_stop_record);
+                                    record.setBackgroundResource(R.drawable.rect_stop_record_foreground);
                                     String string = "CONTB\r\n";
                                     set_limit = 1;
                                    sendReceive = new SendReceive(objects.getSocket(),counter,objects);
@@ -1007,7 +1007,7 @@ public class EightRecordActivity extends AppCompatActivity {
                         is_open=false;
                         is_connected=true;
                         is_disconnected=false;
-                        record.setBackgroundResource(R.drawable.red_record_drawable);
+                        record.setBackgroundResource(R.drawable.red_record_foreground);
                         String string = "NOP\r\n";
                         set_limit = 1;
                         if (objects.getSocket()!=null){
@@ -1105,7 +1105,7 @@ public class EightRecordActivity extends AppCompatActivity {
                            counter.setStop_line((float) (((float) counter.getO() / (0.99*counter.getHorizontal_scale()*counter.getRate_in_s())) * counter.getSurface_width()), counter.getRecordcount()%30);
                        }
 
-                        record.setBackgroundResource(R.drawable.rect_stop_record);
+                        record.setBackgroundResource(R.drawable.rect_stop_record_foreground);
                         String string = "CONTB\r\n";
 
 
@@ -1121,7 +1121,7 @@ public class EightRecordActivity extends AppCompatActivity {
 
                     } else if (recordcount == 1) {
 
-                        record.setBackgroundResource(R.drawable.red_record_drawable);
+                        record.setBackgroundResource(R.drawable.red_record_foreground);
                         String string = "NOP\r\n";
                         Recordcount=false;
                         SingleRecordActivity.setIs_isRecordcount(false);
@@ -1314,11 +1314,8 @@ public class EightRecordActivity extends AppCompatActivity {
             public void onClick(View view) {
                 myListView =  choiceDialog.findViewById(R.id.choice_list_view);
                 ArrayList<String> myStringArray1 = new ArrayList<String>();
-                counter.setLine_stop_counter(-1);
 
-                for (int t=0;t<40;t++) {
-                    counter.setStop_line(10000,t);
-                }
+
 
 
                 myStringArray1.add("Mono");
@@ -1420,7 +1417,7 @@ public class EightRecordActivity extends AppCompatActivity {
 
 
                     Toast.makeText(getApplicationContext(),
-                            (""+Math.round((counter.getBuffer_count()/(counter.getDefault_channel()*counter.getHorizontal_scale())))),
+                            (""+((float)counter.getTimer()/(counter.getRate_in_s()*counter.getDefault_channel()))),
                             Toast.LENGTH_SHORT).show();
 
 

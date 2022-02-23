@@ -75,20 +75,7 @@ public class ItemScaleAdapter extends RecyclerView.Adapter<ItemScaleAdapter.MyVi
                         }
                             counter.setHorizontal_scale(Integer.parseInt(r));
 
-                        counter.setSingle_step_x((float) counter.getSurface_width() / (counter.getRate_in_s() * counter.getHorizontal_scale()));
-                       // counter.setSingle_step_y((float) counter.getSurface_height() / 200);
 
-
-                        counter.setEight_step_x((float) counter.getSurface_width() / (counter.getRate_in_s() * counter.getHorizontal_scale()));
-
-
-                        for (int j2=0;j2<8;j2++){
-                            for (int j1=0;j1<16000;j1++) {
-                                counter.setBuffer(counter.getPart_data(), j2, j1);
-                            }
-                        }
-                        counter.setLine_stop_counter(0);
-                        counter.setLoop_counter(1);
 
                         counter.setSeconds_count0(Math.round((counter.getTimer()/(counter.getDefault_channel()*counter.getRate_in_s())))-counter.getHorizontal_scale());
 
@@ -117,8 +104,29 @@ public class ItemScaleAdapter extends RecyclerView.Adapter<ItemScaleAdapter.MyVi
                         counter.setSeconds_count7000(counter.getSeconds_count0()+ ( (counter.getHorizontal_scale()*7)/8));
                         counter.setSeconds_count8000(counter.getSeconds_count0()+ ( (counter.getHorizontal_scale())));
 
+                        counter.setSingle_step_x((float) counter.getSurface_width() / (counter.getRate_in_s() * counter.getHorizontal_scale()));
+                        // counter.setSingle_step_y((float) counter.getSurface_height() / 200);
 
 
+                        counter.setEight_step_x((float) counter.getSurface_width() / (counter.getRate_in_s() * counter.getHorizontal_scale()));
+
+
+                        for (int j2=0;j2<8;j2++){
+                            for (int j1=0;j1<16000;j1++) {
+                                counter.setBuffer(counter.getPart_data(), j2, j1);
+                            }
+                        }
+
+
+
+                        for (int p=0;p<40;p++){
+                            counter.setStop_line(10000,p);
+                        }
+
+                        //counter.setStop_line(10000,counter.getRecordcount()%30);
+
+                        //  counter.setLine_stop_counter(0);
+                        // counter.setLoop_counter(1);
 
 
                         counter.setBuffer_count(0);

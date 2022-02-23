@@ -1102,7 +1102,6 @@ public class EightRecordActivity extends AppCompatActivity {
 
 
                            counter.setRecordcount(counter.getRecordcount() + 1);
-                           counter.setStop_line((float) (((float) counter.getO() / (0.99*counter.getHorizontal_scale()*counter.getRate_in_s())) * counter.getSurface_width()), counter.getRecordcount()%30);
                        }
 
                         record.setBackgroundResource(R.drawable.rect_stop_record_foreground);
@@ -1129,6 +1128,19 @@ public class EightRecordActivity extends AppCompatActivity {
                         sendReceive.write(string.getBytes());
 
                         recordcount = 0;
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    Thread.sleep(100);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                                counter.setStop_line((float) (((float) counter.getO() / (0.99*counter.getHorizontal_scale()*counter.getRate_in_s())) * counter.getSurface_width()), counter.getRecordcount()%30);
+                            }
+                        }).start();
+
+
                     }
 
                 }

@@ -329,6 +329,9 @@ public class BaseSurfaceEightRecord extends SurfaceView implements SurfaceHolder
                             //  canvas.drawRect(0, ((getHeight() / 4)*3)-1, getWidth(), (getHeight() / 4)*3, samplePaint);
 
 
+
+
+
                             canvas.drawRect(((getWidth() / 4) * 1) - 1, 0, (getWidth() / 4) * 1, getHeight(), samplePaint);
                             canvas.drawRect(((getWidth() / 4) * 2) - 1, 0, (getWidth() / 4) * 2, getHeight(), samplePaint);
                             canvas.drawRect(((getWidth() / 4) * 3) - 1, 0, (getWidth() / 4) * 3, getHeight(), samplePaint);
@@ -498,7 +501,7 @@ for (int j=0;j<1000;j+=50) {
 
                                 int y = 0;
                                 int j = counter.getShow_record_ch();
-                                for (i1 = counter.getStartdraw(); i1 < counter.getEnddraw(); i1++) {
+                                for (i1 = counter.getStartdraw(); i1 < (counter.getEnddraw()+200); i1++) {
 
 
 

@@ -28,6 +28,8 @@ public class SendReceive extends Thread {
 
     float data=0;
 
+    int conter=0;
+
     int zarib=0;
 
     int change_counter=1;
@@ -81,8 +83,14 @@ Counter counter;
             try {
 
                 s=inputStream.read();
+
+            //    Log.e("22222222",""+s);
+
+
                 counter.setSignal_is_weak(false);
 
+
+                conter++;
 
 
 
@@ -301,7 +309,12 @@ Counter counter;
             }
             if (y==2)
             {
+
+
+
+
                 y=0;
+                conter=0;
 
 
 

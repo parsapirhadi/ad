@@ -49,7 +49,7 @@ static int show_record_ch=0;
     static boolean bluetooth_drawabe =false;
 
 
-     static int Seconds_count0;
+     static int Seconds_count0=0;
     static int Seconds_count1000;
     static int Seconds_count2000;
     static int Seconds_count3000;
@@ -93,6 +93,9 @@ static int show_record_ch=0;
 
     static int counter_changescreeen=1;
 
+
+    static boolean record_activity= false;
+
     static long buffer_count=0;
 
     static boolean is_draw_activity_on =true;
@@ -106,7 +109,7 @@ static int show_record_ch=0;
 
     static boolean first_page=false;
 
-
+    static boolean first_page1=false;
 
     static boolean signal_is_weak=false;
 
@@ -121,7 +124,7 @@ static int show_record_ch=0;
 
     static int x=1;
 
-   static int recordcount=0;
+   static int recordcount=1;
 
 
     static boolean on_pause=false;
@@ -145,7 +148,13 @@ static int show_record_ch=0;
         this.on_pause = on_pause;
     }
 
+    public boolean isRecord_activity() {
+        return record_activity;
+    }
 
+    public void setRecord_activity(boolean record_activity) {
+        this.record_activity = record_activity;
+    }
 
     public float getStop_line(int i) {
         return stop_line[i];

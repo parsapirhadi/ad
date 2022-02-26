@@ -501,7 +501,7 @@ for (int j=0;j<1000;j+=50) {
 
                                 int y = 0;
                                 int j = counter.getShow_record_ch();
-                                for (i1 = counter.getStartdraw(); i1 < (counter.getEnddraw()+200); i1++) {
+                                for (i1 = counter.getStartdraw(); i1 < (counter.getEnddraw()); i1++) {
 
 
 

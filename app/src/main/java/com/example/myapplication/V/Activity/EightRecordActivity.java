@@ -596,6 +596,10 @@ public class EightRecordActivity extends AppCompatActivity {
 
         snackbar_connecting = Snackbar.make(parentLayout, "' " + "Bluetooth" + " is connecting '" + "   " + "' Please approach the device '", Snackbar.LENGTH_LONG);
 
+
+
+
+
         snackbar_connecting.setDuration(400000);
         if(objects.getSocket()!=null){
         if (!objects.getSocket().isConnected()) {
@@ -625,7 +629,7 @@ public class EightRecordActivity extends AppCompatActivity {
     }
 
     private void metode(int i) throws InterruptedException {
-
+        counter.setStop_line((float) (((float) counter.getO() / (0.99*counter.getHorizontal_scale()*counter.getRate_in_s())) * counter.getSurface_width()), counter.getRecordcount()%30);
 
         if (i==1){
             Log.e("start metode 1","start metode 1");
@@ -816,6 +820,8 @@ public class EightRecordActivity extends AppCompatActivity {
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
 
+
+
         choiceDialog=new Dialog(EightRecordActivity.this);
         choiceDialog.setContentView(R.layout.choice_dialog);
         choiceDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -864,6 +870,7 @@ public class EightRecordActivity extends AppCompatActivity {
         vibrator= (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         objects.setBluetoothAdapter(BluetoothAdapter.getDefaultAdapter());
 
+        counter.setRecord_activity(true);
 
         counter.setEight_step_x((float) counter.getSurfaceviewhewidth()/(counter.getRate_in_s()*counter.getHorizontal_scale()));
 
@@ -969,7 +976,13 @@ public class EightRecordActivity extends AppCompatActivity {
                         Snackbar.make(parentLayout, "' Connected To Device '", 500).show();
 
                         animation_bluetooth=false;
+                        if (counter.getO()>20) {
+                            counter.setLine_stop_counter(counter.getLine_stop_counter() + 1);
 
+
+
+                            counter.setRecordcount(counter.getRecordcount() + 1);
+                        }
 
                         if (SingleRecordActivity.isRecordcount()){
                             new Thread(new Runnable() {
@@ -980,14 +993,7 @@ public class EightRecordActivity extends AppCompatActivity {
                                     } catch (InterruptedException e) {
                                         e.printStackTrace();
                                     }
-                                    if (counter.getO()>20) {
-                                        counter.setLine_stop_counter(counter.getLine_stop_counter() + 1);
 
-
-
-                                        counter.setRecordcount(counter.getRecordcount() + 1);
-                                        counter.setStop_line((float) (((float) counter.getO() / (0.99*counter.getHorizontal_scale()*counter.getRate_in_s())) * counter.getSurface_width()), counter.getRecordcount()%30);
-                                    }
                                     record.setBackgroundResource(R.drawable.rect_stop_record_foreground);
                                     String string = "CONTB\r\n";
                                     set_limit = 1;
@@ -1428,9 +1434,7 @@ public class EightRecordActivity extends AppCompatActivity {
                     vibrator.vibrate(40);
 
 
-                    Toast.makeText(getApplicationContext(),
-                            (""+((float)counter.getTimer()/(counter.getRate_in_s()*counter.getDefault_channel()))),
-                            Toast.LENGTH_SHORT).show();
+
 
 
                 }

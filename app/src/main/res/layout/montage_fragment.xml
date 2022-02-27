@@ -39,7 +39,6 @@
             android:layout_weight="1"
             android:fontFamily="sans-serif-condensed-medium"
             android:gravity="center"
-            android:text="NrSign1.0.0"
             android:textColor="#ffffff"
             android:textSize="15sp"
 

@@ -1,6 +1,8 @@
 package com.example.myapplication.V.Activity;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.Dialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -11,10 +13,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Vibrator;
@@ -28,6 +33,7 @@ import android.view.View;
 
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.webkit.PermissionRequest;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -43,6 +49,7 @@ import android.widget.Toast;
 //import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -60,6 +67,11 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -1162,6 +1174,30 @@ public class EightRecordActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                performFileSearch();
+
+
+
+
+
+if (Build.VERSION.SDK_INT >=Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+      != PackageManager.PERMISSION_GRANTED)
+{
+    requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1000 );
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -2191,5 +2227,71 @@ public class EightRecordActivity extends AppCompatActivity {
     }
 
 
+    private void performFileSearch(){
+        Intent intent=new Intent(Intent.ACTION_OPEN_DOCUMENT);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        intent.setType("text/*");
+        startActivityForResult(intent,42);
+
+
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode==42 && resultCode== Activity.RESULT_OK){
+            if (data!=null){
+                Uri uri=data.getData();
+                String path=uri.getPath();
+                path=path.substring(path.indexOf(":")+1) ;
+                Toast.makeText(getApplicationContext(), ""+path, Toast.LENGTH_SHORT).show();
+
+                 montage.setText(readText(path));
+            }
+        }
+
+
+    }
+
+    private String readText(String input){
+        File file=new File(Environment.getExternalStorageDirectory(),input);
+        StringBuilder text =new StringBuilder();
+        try {
+            BufferedReader br=new BufferedReader(new FileReader(file));
+            String line;
+            while ((line=br.readLine())!=null){
+                text.append(line);
+
+
+            }
+            br.close();
+
+        }catch (IOException e){
+
+            e.printStackTrace();
+
+        }
+        return text.toString();
+
+    }
+
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull @NotNull String[] permissions, @NonNull @NotNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode==1000){
+            if (grantResults[0]==PackageManager.PERMISSION_GRANTED){
+                Toast.makeText(getApplicationContext(), "Permission granted", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                Toast.makeText(getApplicationContext(), "Permission not granted", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        }
+
+
+    }
 }
 

@@ -14,8 +14,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.myapplication.M.DataType.Objects;
+import com.example.myapplication.M.DataType.String1;
 import com.example.myapplication.M.Item.ItemCustomMontageEditor;
 import com.example.myapplication.M.Item.ItemMontage;
 import com.example.myapplication.P.ItemRecyclerViewAdapter.ItemCustomMontageEditorAdapter;
@@ -44,7 +46,7 @@ public class Montage_Fragment extends Fragment {
     List<ItemMontage> list1 = new ArrayList<>();
     ItemMontageAdapter itemAdapter1;
     Button back;
-
+String1 string1;
 
     RecyclerView recyclerView2;
     List<ItemCustomMontageEditor> list2 = new ArrayList<>();
@@ -102,7 +104,7 @@ public class Montage_Fragment extends Fragment {
 view =inflater.inflate(R.layout.montage_fragment, container, false);
 
 objects=new Objects();
-
+string1=new String1();
 
 
 
@@ -126,6 +128,9 @@ objects=new Objects();
 
         list2.add(new ItemCustomMontageEditor("Montage Editor",""));
 
+        TextView textView;
+        textView=view.findViewById(R.id.name_version);
+        textView.setText(string1.getNameVersion());
 
 
         itemAdapter1.notifyDataSetChanged();

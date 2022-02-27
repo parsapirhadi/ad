@@ -11,7 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
+import com.example.myapplication.M.DataType.String1;
 import com.example.myapplication.M.Item.ItemAdvancedSetting;
 import com.example.myapplication.M.Item.ItemNotch;
 import com.example.myapplication.P.ItemRecyclerViewAdapter.ItemAdvancedSettingAdapter;
@@ -35,6 +37,7 @@ View view;
     List<ItemAdvancedSetting> list1 = new ArrayList<>();
     ItemAdvancedSettingAdapter itemAdapter1;
 
+    String1 string1;
 
     RecyclerView recyclerView2;
     List<ItemNotch> list2 = new ArrayList<>();
@@ -101,13 +104,16 @@ view=inflater.inflate(R.layout.advancedstetting_fragment, container, false);
 
         list1.add(new ItemAdvancedSetting("β","1.4"));
 
-        list1.add(new ItemAdvancedSetting("TO DO","0.002"));
+        list1.add(new ItemAdvancedSetting("TO DO","512"));
 
-
+        string1=new String1();
 
 
         itemAdapter1.notifyDataSetChanged();
 
+        TextView textView;
+        textView=view.findViewById(R.id.name_version);
+        textView.setText(string1.getNameVersion());
 
 
         back=view.findViewById(R.id.back_pointer_advanced_setting);
@@ -125,6 +131,9 @@ view=inflater.inflate(R.layout.advancedstetting_fragment, container, false);
         view.findViewById(R.id.close).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
+
 
                 try {
                     if (menuDialog.isShowing()) {
@@ -150,5 +159,8 @@ view=inflater.inflate(R.layout.advancedstetting_fragment, container, false);
 
 
         return view;
+    }
+    void setInformation(){
+
     }
 }

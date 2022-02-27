@@ -3,6 +3,7 @@ package com.example.myapplication.P.ItemRecyclerViewAdapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -20,6 +21,8 @@ import com.example.myapplication.R;
 import com.example.myapplication.V.Activity.EightRecordActivity;
 
 import java.util.List;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class ItemScaleAdapter extends RecyclerView.Adapter<ItemScaleAdapter.MyViewHolder> {
     List<ItemScale> itwm;
@@ -76,6 +79,16 @@ public class ItemScaleAdapter extends RecyclerView.Adapter<ItemScaleAdapter.MyVi
 
                         }
                             counter.setHorizontal_scale(Integer.parseInt(r));
+
+                        SharedPreferences horizontal_scale= context.getSharedPreferences("horizontal_scale", MODE_PRIVATE);
+                        SharedPreferences.Editor editor_start_1 = horizontal_scale.edit();
+                        editor_start_1.putString("horizontal_scale", r );
+                        editor_start_1.apply();
+
+
+
+
+
                         counter.setSeconds_count0(Math.round((counter.getTimer()/(counter.getDefault_channel()*counter.getRate_in_s())))-counter.getHorizontal_scale());
 
                         if (counter.isRecord_activity()) {

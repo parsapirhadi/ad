@@ -36,13 +36,13 @@ public class SendReceive extends Thread {
     int y =0;
     int o;
 
-int s;
+    int s;
 
     InputStream inputStream;
     OutputStream outputStream;
     Objects objects;
 
-Counter counter;
+    Counter counter;
 
 
 
@@ -190,7 +190,7 @@ Counter counter;
 
                         }
 
-                        counter.setBuffer(((float) ((data - 2048) / 1.4)), channel, counter.getO());
+                        counter.setBuffer(((float) ((data - counter.getAlpha()) / counter.getBeta())), channel, counter.getO());
                         if (counter.isChangeScreen_eight() && counter.isFrist_page() && (counter.getO())==10){
                             counter.setChangeScreen_eight(false);
                             counter.setSeconds_count0(counter.getSeconds_count0()+  counter.getHorizontal_scale());
@@ -279,7 +279,7 @@ Counter counter;
                             counter.setRefresh(true);
 
 
-                            counter.setBuffer( ((float)  ((data - 2048) / 1.4)), counter.getDefault_channel()-1, counter.getO());
+                            counter.setBuffer( ((float)  ((data - counter.getAlpha()) / counter.getBeta())), counter.getDefault_channel()-1, counter.getO());
 
 
                         }

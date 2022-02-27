@@ -35,13 +35,12 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:fontFamily="sans-serif-condensed-medium"
-
             android:layout_gravity="center"
             android:textSize="15sp"
             android:textColor="#ffffff"
-            android:text="NrSign1.0.0"
 
-            tools:ignore="OnClick" />
+          android:id="@+id/name_version"
+            />
         <Button
             android:layout_width="25dp"
             android:layout_height="25dp"

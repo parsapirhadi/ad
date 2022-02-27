@@ -345,7 +345,6 @@ public class BaseSurfaceEightRecord extends SurfaceView implements SurfaceHolder
                             canvas.drawRect(0, getHeight() - 4, getWidth(), getHeight(), samplePaint);
 
 
-
                                 counter.setSignal_is_weak(true);
                                 if (string1.getMontage().equals("mono")){
 

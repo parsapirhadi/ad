@@ -37,10 +37,10 @@
             android:gravity="center"
             android:fontFamily="sans-serif-condensed-medium"
 
+            android:id="@+id/name_version"
             android:layout_gravity="center"
             android:textSize="15sp"
             android:textColor="#ffffff"
-            android:text="NrSign1.0.0"
 
             />
         <Button

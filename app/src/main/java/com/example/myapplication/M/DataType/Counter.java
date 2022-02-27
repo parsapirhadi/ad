@@ -12,6 +12,14 @@ import java.io.Serializable;
 public class Counter {
 
 
+
+    static float alpha=2048;
+
+
+    static float beta= (float) 1.4;
+
+
+
 static int exist_in_secound=0;
 
 static int row_montage[]=new int[64];
@@ -131,6 +139,23 @@ static int show_record_ch=0;
 
 
     static float timer=0;
+
+
+    public float getAlpha() {
+        return alpha;
+    }
+
+    public void setAlpha(float alpha) {
+        this.alpha = alpha;
+    }
+
+    public float getBeta() {
+        return beta;
+    }
+
+    public void setBeta(float beta) {
+        this.beta = beta;
+    }
 
     public float getTimer() {
         return timer;

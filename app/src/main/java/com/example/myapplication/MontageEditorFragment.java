@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.myapplication.M.DataType.Counter;
 import com.example.myapplication.M.DataType.String1;
@@ -240,6 +241,9 @@ public class MontageEditorFragment extends Fragment {
                 ""+getContext().getSharedPreferences("bch8_end", MODE_PRIVATE).getString("name","ch8")));
 
 
+        TextView textView;
+        textView=view.findViewById(R.id.name_version);
+        textView.setText(string1.getNameVersion());
 
 
         itemAdapter.notifyDataSetChanged();

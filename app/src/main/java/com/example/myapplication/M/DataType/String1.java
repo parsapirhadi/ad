@@ -6,6 +6,9 @@ import java.io.Serializable;
 
 public class String1 implements Serializable {
     static String montage="mono";
+
+    static String nameVersion="NrSign1.0.0";
+
     static String filepatch="";
     static int line_count=0;
     static String filename="";
@@ -71,7 +74,13 @@ public static Paint paint[]=new Paint[64];
         return paint[t];
     }
 
+    public String getNameVersion() {
+        return nameVersion;
+    }
 
+    public void setNameVersion(String nameVersion) {
+        this.nameVersion = nameVersion;
+    }
 
     public int getLine_count() {
         return line_count;

@@ -41,7 +41,8 @@
             android:layout_gravity="center"
             android:textSize="15sp"
             android:textColor="#ffffff"
-            android:text="NrSign1.0.0"
+
+            android:id="@+id/name_version"
         />
         <Button
             android:layout_width="25dp"

@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.myapplication.M.DataType.Counter;
 import com.example.myapplication.M.DataType.String1;
@@ -177,6 +178,10 @@ public class RenameChannelFragment extends Fragment {
 
 
         itemAdapter.notifyDataSetChanged();
+
+        TextView textView;
+        textView=view.findViewById(R.id.name_version);
+        textView.setText(string1.getNameVersion());
 
 
         back=view.findViewById(R.id.back_pointer_renamechannel);

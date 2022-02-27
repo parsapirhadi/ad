@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.hardware.biometrics.BiometricManager;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,8 +12,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.myapplication.M.DataType.Counter;
+import com.example.myapplication.M.DataType.String1;
 import com.example.myapplication.M.Item.ItemScale;
 import com.example.myapplication.P.ItemRecyclerViewAdapter.ItemScaleAdapter;
 
@@ -42,7 +45,7 @@ public class Scale_Fragment extends Fragment {
     Counter counter;
     Button back;
 
-
+    String1 string1;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -89,6 +92,7 @@ public class Scale_Fragment extends Fragment {
 
 
         counter=new Counter();
+        string1=new String1();
         recyclerView = view.findViewById(R.id.recyclerscale);
         itemAdapter = new ItemScaleAdapter(list, getContext());
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL));
@@ -100,6 +104,10 @@ public class Scale_Fragment extends Fragment {
 
 
         itemAdapter.notifyDataSetChanged();
+
+        TextView textView;
+        textView=view.findViewById(R.id.name_version);
+        textView.setText(string1.getNameVersion());
 
 
         back=view.findViewById(R.id.back_pointer_scale);

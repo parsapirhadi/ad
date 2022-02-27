@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,6 +14,7 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import com.example.myapplication.M.DataType.String1;
 import com.example.myapplication.M.Item.ItemFilter;
 import com.example.myapplication.M.Item.ItemNotch;
 import com.example.myapplication.P.ItemRecyclerViewAdapter.ItemFilterAdapter;
@@ -33,7 +35,7 @@ public class Filter_Fragment extends Fragment {
     ItemFilterAdapter itemAdapter1;
     Button back;
 
-
+    String1 string1;
     RecyclerView recyclerView2;
     List<ItemNotch> list2 = new ArrayList<>();
     ItemNotchAdapter itemAdapter2;
@@ -52,7 +54,7 @@ public class Filter_Fragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.filter_fragment, container, false);
-
+        string1=new String1();
 
         recyclerView1 = view.findViewById(R.id.recyclefilter);
         itemAdapter1 = new ItemFilterAdapter(list1, getContext());
@@ -69,6 +71,12 @@ public class Filter_Fragment extends Fragment {
         recyclerView2.setAdapter(itemAdapter2);
         list2.add(new ItemNotch(true,"50 Hz",true,"60 Hz"));
         itemAdapter1.notifyDataSetChanged();
+
+
+        TextView textView;
+        textView=view.findViewById(R.id.name_version);
+        textView.setText(string1.getNameVersion());
+
 
 
         back=view.findViewById(R.id.back_pointer_filter);

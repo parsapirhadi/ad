@@ -2,14 +2,18 @@
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.LabeledIntent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.myapplication.M.DataType.Counter;
 import com.example.myapplication.M.DataType.String1;
@@ -23,8 +27,10 @@ public class MainActivity extends AppCompatActivity {
 String1 string1;
 SetPivotName namePivote;
 SetPivotName pivotValue;
+TextView name_version;
 Counter counter;
 
+    @SuppressLint("SetTextI18n")
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +57,16 @@ Counter counter;
         counter.setStartdraw(1);
         Intent intent=new Intent(this,MenuActivity.class);
 
+
+
+        counter.setHorizontal_scale(Integer.parseInt(getSharedPreferences("horizontal_scale",MODE_PRIVATE).getString("horizontal_scale","")));
+
+
+
+
+
+
+     
         for (int o=0;o<counter.getDefault_channel();o++){
         for (int p=0;p<800000;p++) {
             counter.setChannel(1000, o, p);

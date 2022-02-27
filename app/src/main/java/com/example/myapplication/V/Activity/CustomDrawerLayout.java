@@ -42,7 +42,7 @@ Objects objects;
     private static final String ARG_PARAM2 = "param2";
 
    Button close;
-
+String1 string1;
 
     Intent intent;
    public static Dialog drawerLayoutDialog;
@@ -108,6 +108,11 @@ Objects objects;
             }
         });
 
+        string1 = new String1();
+
+        TextView textView1;
+        textView1=view.findViewById(R.id.name_version);
+        textView1.setText(string1.getNameVersion());
 
 
 

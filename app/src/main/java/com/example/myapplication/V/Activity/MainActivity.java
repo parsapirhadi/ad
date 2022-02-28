@@ -58,9 +58,14 @@ Counter counter;
         Intent intent=new Intent(this,MenuActivity.class);
 
 
+try {
 
-        counter.setHorizontal_scale(Integer.parseInt(getSharedPreferences("horizontal_scale",MODE_PRIVATE).getString("horizontal_scale","")));
 
+    counter.setHorizontal_scale(Integer.parseInt(getSharedPreferences("horizontal_scale", MODE_PRIVATE).getString("horizontal_scale", "")));
+}
+catch (Exception e){
+    e.printStackTrace();
+}
 
 
 

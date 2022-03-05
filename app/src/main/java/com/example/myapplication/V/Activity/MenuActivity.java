@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -265,8 +266,8 @@ public class MenuActivity extends AppCompatActivity  {
 
 
             Intent intent = (new Intent(getApplicationContext(), EightRootActivity.class));
-
-            string1.setFilepatch(data.getData().getPath());
+            Uri uri = data.getData();
+            string1.setFilepatch(uri);
 
             counter.setLine_clecked(2);
             Log.e("set to", "1");

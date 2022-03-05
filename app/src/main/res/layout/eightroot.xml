@@ -81,17 +81,31 @@
                 android:layout_weight="1"
                 android:layout_gravity="center"
                 >
-                <ImageView
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_height="50dp"
 
-                    android:layout_marginBottom="2dp"
-                    android:layout_width="42dp"
-                    android:layout_height="42dp"
+                    android:id="@+id/notch_eightroot_layout"
+                    android:layout_width="50dp"
                     android:layout_gravity="center"
-                    android:id="@+id/notch_eightroot"
-                    android:layout_marginRight="30dp"
+                    android:gravity="center"
+                    >
 
-                   tools:layout_editor_absoluteX="623dp"
-                    tools:layout_editor_absoluteY="10dp" />
+                    <ImageView
+
+                        android:id="@+id/notch_eightroot"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:background="@drawable/notch_off"
+                        android:gravity="center"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
             </LinearLayout>
             <LinearLayout
                 android:layout_height="40dp"
@@ -158,6 +172,28 @@
                     tools:layout_editor_absoluteX="512dp"
                     tools:layout_editor_absoluteY="10dp" />
 
+
+
+
+                <Button
+                    android:visibility="gone"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:id="@+id/zoomout_singleroot"
+                    android:background="@drawable/zoom_out_foreground"
+                    tools:layout_editor_absoluteX="512dp"
+                    tools:layout_editor_absoluteY="10dp" />
+                <Button
+                    android:visibility="gone"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:id="@+id/zoomin_singleroot"
+                    android:background="@drawable/zoom_in_foreground"
+                    tools:layout_editor_absoluteX="512dp"
+                    tools:layout_editor_absoluteY="10dp" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -166,6 +202,21 @@
                 android:layout_weight="1"
                 android:layout_gravity="center"
                 >
+
+                <Button
+                    android:visibility="invisible"
+                    android:id="@+id/choise_channel_root"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="30dp"
+                    android:background="@drawable/banda_tools"
+                    android:hint="CHOOSE"
+                    android:textColorHint="#bbbbbb"
+                    tools:ignore="HardcodedText"
+                    tools:layout_editor_absoluteX="356dp"
+                    tools:layout_editor_absoluteY="10dp" />
+
 
 
             </LinearLayout>

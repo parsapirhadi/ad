@@ -55,11 +55,14 @@ public void y(){
         ft = Float.parseFloat(sum.toString());
 
 
+        ft= (float) ((ft-2048)/1.4);
+        Log.e("asdfg",""+ft);
+
         counter.setChannel(ft,counter.getCount_of_set_i_channel(),counter.getCount_of_set_j_channel());
 
 
 counter.setCount_of_set_i_channel(counter.getCount_of_set_i_channel()+1);
-if (counter.getCount_of_set_i_channel()==string1.getChannel_count()){
+if (counter.getCount_of_set_i_channel()==10){
 
     counter.setCount_of_set_i_channel(0);
     counter.setCount_of_set_j_channel(counter.getCount_of_set_j_channel()+1);
@@ -76,9 +79,9 @@ if (counter.getCount_of_set_i_channel()==string1.getChannel_count()){
 
     public void findcountvalue(){///////////////////////////////////sd
         for(int b=7;b<fileContent.length();b++){
-            if(fileContent.charAt(b)==' '){
+            if(fileContent.charAt(b)==','){
                 for(int y=b-1;y>b-8;y--){
-                    if(fileContent.charAt(y)==' '){
+                    if(fileContent.charAt(y)==','){
 
                         setvalue(y+1,b-1);
                         y=-1;
@@ -97,12 +100,13 @@ if (counter.getCount_of_set_i_channel()==string1.getChannel_count()){
         float d=0;
         int s=0;
         for(s=0;s<7;s++){
-            if(fileContent.charAt(s)!=' '){
+            if((int) fileContent.charAt(s)!=44){
                 h+=fileContent.charAt(s);
             }
             else {break;}
         }
-        setvalue(0,s);
+       // Log.e("askiiiiiiiiiiii",""+(int)fileContent.charAt(4));
+        setvalue(0,s-1);
         //Log.e("eeeeeeeeeeee1",""+d);
     }
 }

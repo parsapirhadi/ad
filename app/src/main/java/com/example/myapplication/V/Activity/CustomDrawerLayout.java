@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -264,8 +265,8 @@ drawerLayoutDialog.setCancelable(false);
 
             Intent intent=(new Intent(getContext(), EightRootActivity.class));
 
-            string1.setFilepatch(data.getData().getPath());
-
+            Uri uri = data.getData();
+            string1.setFilepatch(uri);
             counter1.setLine_clecked(2);
             Log.e("set to","1");
             intent.putExtra("h",string1);

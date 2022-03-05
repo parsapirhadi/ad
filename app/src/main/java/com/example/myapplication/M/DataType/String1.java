@@ -1,6 +1,7 @@
 package com.example.myapplication.M.DataType;
 
 import android.graphics.Paint;
+import android.net.Uri;
 
 import java.io.Serializable;
 
@@ -9,7 +10,7 @@ public class String1 implements Serializable {
 
     static String nameVersion="NrSign1.0.0";
 
-    static String filepatch="";
+    static Uri filepatch=null;
     static int line_count=0;
     static String filename="";
     static int  channel_count=0;
@@ -89,11 +90,16 @@ public static Paint paint[]=new Paint[64];
     public void setLine_count(int line_count) {
         this.line_count = line_count;
     }
-    public String getFilepatch() {
+
+
+
+
+
+    public Uri getFilepatch() {
         return filepatch;
     }
 
-    public void setFilepatch(String filepatch) {
+    public void setFilepatch(Uri filepatch) {
         this.filepatch = filepatch;
     }
 

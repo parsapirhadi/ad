@@ -46,7 +46,7 @@ import java.util.Set;
 
 public class EightRootActivity extends AppCompatActivity {
 
-    Button line,btn,bluetooth,montage,play,zoomout,zoomin;
+    Button line,btn,bluetooth,montage,play,zoomout_eight,zoomin_eight,zoomout_single,zoomin_single;
     ImageView notch;
     TextView textplay;
     ListView listView;
@@ -67,6 +67,10 @@ public class EightRootActivity extends AppCompatActivity {
     int acces_to_paly_animation =0;
 
     int acces_to_set_change =0;
+    boolean single_root=false;
+
+
+    Button choise;
 
 
     int set_stop_play =0;
@@ -128,7 +132,7 @@ int is_change_text=0;
         counter.setEnddraw(counter.getHorizontal_scale()*counter.getRate_in_s()*2);
 
         counter.setEight_step_x((float) counter.getSurface_width()/(counter.getRate_in_s()*counter.getHorizontal_scale()));
-        counter.setEight_step_y((float) counter.getSurface_height()/200);
+        counter.setEight_step_y((float) counter.getSurface_height()/10000);
         counter.setEight_step_y((counter.getEight_step_y()/string1.getChannel_count())/2);
 
         Log.e("on resume.....",""+string1.getChannel_count());
@@ -453,7 +457,7 @@ ch[1]=findViewById(R.id.axis_textview_1);
 
 
         counter.setEight_step_x((float) counter.getSurface_width()/(counter.getRate_in_s()*counter.getHorizontal_scale()));
-        counter.setEight_step_y((float) counter.getSurface_height()/200);
+        counter.setEight_step_y((float) counter.getSurface_height()/10000);
         counter.setEight_step_y((counter.getEight_step_y()/string1.getChannel_count())/2);
 
 
@@ -599,15 +603,42 @@ ch[1]=findViewById(R.id.axis_textview_1);
         line.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                counter.setLine_clecked(0);
+                if (!single_root) {
+                    counter.setLine_clecked(0);
+                    choise.setVisibility(View.VISIBLE);
+                    line.setBackgroundResource(R.drawable.one_line_foreground);
+                    single_root=true;
+                    zoomin_single.setVisibility(View.VISIBLE);
+                    zoomout_single.setVisibility(View.VISIBLE);
+
+                    zoomin_eight.setVisibility(View.GONE);
+                    zoomout_eight.setVisibility(View.GONE);
+
+
+                }
+                else {
+                    line.setBackgroundResource(R.drawable.multi_line_foreground);
+                   choise.setVisibility(View.INVISIBLE);
+                    single_root=false;
+
+                    zoomin_single.setVisibility(View.GONE);
+                    zoomin_single.setVisibility(View.GONE);
+
+                    zoomin_eight.setVisibility(View.VISIBLE);
+                    zoomout_eight.setVisibility(View.VISIBLE);
+
+
+                }
+
+
                 Log.e("set to","0");
-                Intent intent=new Intent(getApplicationContext(),SingleRootActivity.class);
-                startActivity(intent);
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                //Intent intent=new Intent(getApplicationContext(),SingleRootActivity.class);
+                //startActivity(intent);
+                //overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 vibrator.vibrate(70);
 
 
-                finish();
+              //  finish();
 
             }
         });
@@ -621,18 +652,18 @@ ch[1]=findViewById(R.id.axis_textview_1);
             }
         });
 
-        zoomout.setOnClickListener(new View.OnClickListener() {
+        zoomout_eight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                if(counter.getEight_step_y()>0) {
+
                     vibrator.vibrate(40);
                     counter.setEight_step_y((float) ((float) (counter.getEight_step_y() -(string1.getChannel_count()*(counter.getEight_step_y()/100)))));
-                }
+
             }
 
         });
-        zoomin.setOnClickListener(new View.OnClickListener() {
+        zoomin_eight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 vibrator.vibrate(40);
@@ -705,7 +736,7 @@ new Thread(new Runnable() {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    FileReader fileReader = new FileReader(activity,string1, counter, namePivote, pivotValue);
+                    FileReader fileReader = new FileReader(getApplicationContext(),activity,string1, counter, namePivote, pivotValue);
                     fileReader.read();
 
                     if (string1.getChannel_count()>31){
@@ -771,8 +802,16 @@ new Thread(new Runnable() {
         notch=findViewById(R.id.notch_eightroot);
         montage=findViewById(R.id.montage_eightroot);
         listView=dialog.findViewById(R.id.list_device);
-        zoomout=findViewById(R.id.zoomout_eightroot);
-        zoomin=findViewById(R.id.zoomin_eightroot);
+
+        zoomout_eight=findViewById(R.id.zoomout_eightroot);
+        zoomin_eight=findViewById(R.id.zoomin_eightroot);
+
+        zoomout_single=findViewById(R.id.zoomout_singleroot);
+        zoomin_single=findViewById(R.id.zoomin_singleroot);
+
+
+
+        choise=findViewById( R.id.choise_channel_root);
 
         V0=findViewById(R.id.SM_0);
         V1000=findViewById(R.id.SM_1000);

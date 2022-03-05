@@ -37,7 +37,7 @@ static int show_record_ch=0;
 
     static int Surfaceview_Width_eightrecord=0;
 
-    public static float [][] channel=new float[16][800000];
+    public static float [][] channel=new float[32][800000];
 
     public static float [][] buffer=new float[16][16100];
 

@@ -44,6 +44,7 @@ Objects objects;
 
    Button close;
 String1 string1;
+Counter counter;
 
     Intent intent;
    public static Dialog drawerLayoutDialog;
@@ -96,7 +97,7 @@ String1 string1;
         dialog.setContentView(R.layout.new_record);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-
+        counter=new Counter();
 
         drawerLayoutDialog=new Dialog(getContext());
         drawerLayoutDialog.setContentView(R.layout.settings);

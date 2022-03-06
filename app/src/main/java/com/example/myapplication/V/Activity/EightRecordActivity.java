@@ -881,14 +881,65 @@ public class EightRecordActivity extends AppCompatActivity {
         string1=new String1();
         objects=new Objects();
 
+        counter.setLine_stop_counter(0);
+        counter.setLoop_counter(1);
+        counter.setRecordcount(1);
+        for (int t=0;t<40;t++){
+            counter.setStop_line(10000,t);
+        }
+
         for (int j2=0;j2<8;j2++){
             for (int j1=0;j1<16100;j1++) {
                 counter.setBuffer(counter.getPart_data(), j2, j1);
             }
         }
 
+
+
+
+
+
+
         counter.setBuffer_count(0);
         FindViewBiId();
+
+        try {
+            counter.setSeconds_count0(0);
+            counter.setSeconds_count1000(counter.getSeconds_count0()+(1 * counter.getHorizontal_scale() / 8));
+            counter.setSeconds_count2000(counter.getSeconds_count0()+(2 *  counter.getHorizontal_scale() / 8));
+            counter.setSeconds_count3000(counter.getSeconds_count0()+(3 *  counter.getHorizontal_scale() / 8));
+            counter.setSeconds_count4000(counter.getSeconds_count0()+(4 *  counter.getHorizontal_scale() / 8));
+            counter.setSeconds_count5000(counter.getSeconds_count0()+(5 *  counter.getHorizontal_scale() / 8));
+            counter.setSeconds_count6000(counter.getSeconds_count0()+(6 *  counter.getHorizontal_scale() / 8));
+            counter.setSeconds_count7000(counter.getSeconds_count0()+(7 * counter.getHorizontal_scale() / 8));
+            counter.setSeconds_count8000(counter.getSeconds_count0()+(8 *  counter.getHorizontal_scale() / 8));
+
+
+
+
+
+
+            EightRecordActivity.getV0().setText(counter.getSeconds_count0()+"s");
+            EightRecordActivity.getV1000().setText(counter.getSeconds_count1000()+"s");
+            EightRecordActivity.getV2000().setText(counter.getSeconds_count2000()+"s");
+            EightRecordActivity.getV3000().setText(counter.getSeconds_count3000()+"s");
+            EightRecordActivity.getV4000().setText(counter.getSeconds_count4000()+"s");
+            EightRecordActivity.getV5000().setText(counter.getSeconds_count5000()+"s");
+            EightRecordActivity.getV6000().setText(counter.getSeconds_count6000()+"s");
+            EightRecordActivity.getV7000().setText(counter.getSeconds_count7000()+"s");
+            EightRecordActivity.getV8000().setText(counter.getSeconds_count8000()+"s");
+
+
+
+
+
+        }
+        catch (NullPointerException e){
+            e.printStackTrace();
+        }
+
+
+
 
         string1.setSview("eight");
 

@@ -250,13 +250,13 @@ int is_change_text=0;
                             @Override
                             public void run() {
                                 int paint_screen=counter.getSurfaceviewheheight();
-                                float button_step = (float) paint_screen / ((counter.getDefault_channel()+1) * 2);
+                                float button_step = (float) paint_screen / ((counter.getDefault_channel()) * 2);
                                 int k=counter.getDefault_channel();
 
 
                                 for (int o=0;o<counter.getDefault_channel();o++){
                                     Log.e(""+(float) (((2*o)+1) * button_step),""+(float) (((2*o)+1) * button_step));
-                                    ch[o+1].setTranslationY((float) (((2*o)+1) * button_step));
+                                    ch[o+1].setTranslationY((float) (((2*o)+0.5) * button_step));
                                 }
                                 for (int o=counter.getDefault_channel();o<64;o++){
                                     ch[o+1].setTranslationY(1000+paint_screen);
@@ -413,7 +413,12 @@ ch[1]=findViewById(R.id.axis_textview_1);
 
 string1.setSview("eight");
 
-
+counter.setLine_stop_counter(0);
+counter.setLoop_counter(1);
+counter.setRecordcount(1);
+for (int t=0;t<40;t++){
+    counter.setStop_line(10000,t);
+}
 
         counter.setSurface_height(height);
         counter.setSurface_width(width);

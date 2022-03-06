@@ -25,7 +25,7 @@ BaseSurfaceEightRoot extends SurfaceView implements SurfaceHolder.Callback, View
 {
 float x=0 ,y =0;
 float dy,dx;
-
+    private Paint paint[]=new Paint[64];
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -217,6 +217,23 @@ float f=Float.parseFloat(EightRootActivity.getV0().getText().toString())-1;
         surfaceReady = true;
         startDrawThread(0);
 
+        for (int t=0;t<64;t++) {
+            paint[t] = new Paint();
+            paint[t].setStrokeWidth(3);
+        }
+
+
+
+        paint[0].setColor(Color.rgb(109, 195, 255));
+        paint[1].setColor(Color.rgb(43, 175, 20));
+        paint[2].setColor(Color.rgb(255, 20, 148));
+        paint[3].setColor(Color.rgb(248, 102, 38));
+        paint[4].setColor(Color.rgb(0, 38, 234));
+        paint[5].setColor(Color.rgb(46, 96, 122));
+        paint[6].setColor(Color.rgb(179, 146, 35));
+        paint[7].setColor(Color.rgb(214, 57, 20));
+
+
 
 
         counter.setSurfaceviewheheight(getHeight());
@@ -337,7 +354,7 @@ float f=Float.parseFloat(EightRootActivity.getV0().getText().toString())-1;
                                                 (float) (((float) ((float) (getHeight() / (float) (string1.getChannel_count() * 2))) * (((2 * j) + 1))) + (counter.getChannel(j, i) * counter.getEight_step_y())),
                                                 (float) ((y + 1) * counter.getEight_step_x()),
                                                 (float) (((float) ((float) (getHeight() / (float) (string1.getChannel_count() * 2))) * (((2 * j) + 1))) + (counter.getChannel(j, i + 1) * counter.getEight_step_y())),
-                                                samplePaint1);
+                                                paint[j]);
                                     }
                                     y++;
 

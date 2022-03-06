@@ -124,19 +124,20 @@ xmlns:tools="http://schemas.android.com/tools"
         android:background="#1fc5ff"
         android:layout_gravity="center"
         >
+
         <Button
-            android:textSize="12sp"
+            android:id="@+id/montage_eightrecord"
             android:layout_width="70dp"
             android:layout_height="40dp"
-            android:background="@drawable/banda_tools"
             android:layout_gravity="center"
-            android:id="@+id/montage_eightrecord"
             android:layout_marginEnd="30dp"
+            android:background="@drawable/banda_tools"
             android:text="Mono"
             android:textColorHint="#bbbbbb"
+            android:textSize="12sp"
+            tools:ignore="HardcodedText"
             tools:layout_editor_absoluteX="356dp"
-            tools:layout_editor_absoluteY="10dp"
-            tools:ignore="HardcodedText" />
+            tools:layout_editor_absoluteY="10dp" />
     </LinearLayout>
 
         <Button
@@ -196,6 +197,7 @@ xmlns:tools="http://schemas.android.com/tools"
         <Button
 
             android:id="@+id/choise_channel_record"
+
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_gravity="center"
@@ -206,7 +208,8 @@ xmlns:tools="http://schemas.android.com/tools"
             android:textColorHint="#bbbbbb"
             tools:ignore="HardcodedText"
             tools:layout_editor_absoluteX="356dp"
-            tools:layout_editor_absoluteY="10dp" />
+            tools:layout_editor_absoluteY="10dp"
+            />
 
 
         <Button

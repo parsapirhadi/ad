@@ -300,51 +300,49 @@ float f=Float.parseFloat(EightRootActivity.getV0().getText().toString())-1;
                     {
                         int t=0;
 
-
-                        canvas.drawColor(Color.rgb(230,230,230));
-
-                        //  canvas.drawColor(Color.rgb(230,230,230));
-
-                      //  canvas.drawRect(0, ((getHeight() / 4)*1)-1, getWidth(), (getHeight() / 4)*1, samplePaint);
-                       // canvas.drawRect(0, ((getHeight() / 4)*2)-1, getWidth(), (getHeight() / 4)*2, samplePaint);
-                      //  canvas.drawRect(0, ((getHeight() / 4)*3)-1, getWidth(), (getHeight() / 4)*3, samplePaint);
+                        if (string1.getSview().equals(string1.getSeight())) {
 
 
+                            canvas.drawColor(Color.rgb(230, 230, 230));
 
-                        canvas.drawRect( ((getWidth() / 4)*1)-1,0, (getWidth() / 4)*1 , getHeight(), samplePaint);
-                        canvas.drawRect( ((getWidth() / 4)*2)-1,0, (getWidth() / 4)*2, getHeight(), samplePaint);
-                        canvas.drawRect( ((getWidth() / 4)*3)-1,0, (getWidth() / 4)*3, getHeight(), samplePaint);
-                        canvas.drawRect( ((getWidth() / 4)*4)-1,0, (getWidth() / 4)*4, getHeight(), samplePaint);
-                        canvas.drawRect( ((getWidth() / 4)*5)-1,0, (getWidth() / 4)*5 , getHeight(), samplePaint);
-                        canvas.drawRect( ((getWidth() / 4)*6)-1,0, (getWidth() / 4)*6 , getHeight(), samplePaint);
-                        canvas.drawRect( ((getWidth() / 4)*7)-1,0, (getWidth() / 4)*7, getHeight(), samplePaint);
+                            //  canvas.drawColor(Color.rgb(230,230,230));
 
+                            //  canvas.drawRect(0, ((getHeight() / 4)*1)-1, getWidth(), (getHeight() / 4)*1, samplePaint);
+                            // canvas.drawRect(0, ((getHeight() / 4)*2)-1, getWidth(), (getHeight() / 4)*2, samplePaint);
+                            //  canvas.drawRect(0, ((getHeight() / 4)*3)-1, getWidth(), (getHeight() / 4)*3, samplePaint);
 
 
+                            canvas.drawRect(((getWidth() / 4) * 1) - 1, 0, (getWidth() / 4) * 1, getHeight(), samplePaint);
+                            canvas.drawRect(((getWidth() / 4) * 2) - 1, 0, (getWidth() / 4) * 2, getHeight(), samplePaint);
+                            canvas.drawRect(((getWidth() / 4) * 3) - 1, 0, (getWidth() / 4) * 3, getHeight(), samplePaint);
+                            canvas.drawRect(((getWidth() / 4) * 4) - 1, 0, (getWidth() / 4) * 4, getHeight(), samplePaint);
+                            canvas.drawRect(((getWidth() / 4) * 5) - 1, 0, (getWidth() / 4) * 5, getHeight(), samplePaint);
+                            canvas.drawRect(((getWidth() / 4) * 6) - 1, 0, (getWidth() / 4) * 6, getHeight(), samplePaint);
+                            canvas.drawRect(((getWidth() / 4) * 7) - 1, 0, (getWidth() / 4) * 7, getHeight(), samplePaint);
 
-                        canvas.drawRect(0, 0 ,getWidth(),1, samplePaint);
-                        canvas.drawRect( 0,getHeight()-4, getWidth(), getHeight(), samplePaint);
+
+                            canvas.drawRect(0, 0, getWidth(), 1, samplePaint);
+                            canvas.drawRect(0, getHeight() - 4, getWidth(), getHeight(), samplePaint);
 
 
+                            samplePaint1.setColor(Color.RED);
 
-                        samplePaint1.setColor(Color.RED);
 
+                            for (int j = 0; j < string1.getChannel_count(); j++) {
+                                int y = 0;
+                                for (int i = counter.getStartdraw(); i < counter.getEnddraw(); i++) {
+                                    if (counter.getChannel(j, i) != 1000.0) {
+                                        canvas.drawLine(
+                                                (float) (y * counter.getEight_step_x()),
+                                                (float) (((float) ((float) (getHeight() / (float) (string1.getChannel_count() * 2))) * (((2 * j) + 1))) + (counter.getChannel(j, i) * counter.getEight_step_y())),
+                                                (float) ((y + 1) * counter.getEight_step_x()),
+                                                (float) (((float) ((float) (getHeight() / (float) (string1.getChannel_count() * 2))) * (((2 * j) + 1))) + (counter.getChannel(j, i + 1) * counter.getEight_step_y())),
+                                                samplePaint1);
+                                    }
+                                    y++;
 
-                        for (int j=0;j<string1.getChannel_count();j++) {
-                            int y=0;
-                            for (int i = counter.getStartdraw(); i < counter.getEnddraw(); i++) {
-                               if (counter.getChannel(j,i)!=1000.0) {
-                                   canvas.drawLine(
-                                           (float) (y * counter.getEight_step_x()),
-                                           (float) (((float) ((float) (getHeight() / (float) (string1.getChannel_count() * 2))) * (((2 * j) + 1))) + (counter.getChannel(j, i) * counter.getEight_step_y())),
-                                           (float) ((y + 1) * counter.getEight_step_x()),
-                                           (float) (((float) ((float) (getHeight() / (float) (string1.getChannel_count() * 2))) * (((2 * j) + 1))) + (counter.getChannel(j, i + 1) * counter.getEight_step_y())),
-                                           samplePaint1);
-                               }
-                                y++;
-
+                                }
                             }
-                        }
 /*
 for (int j=0;j<1000;j+=50) {
     if (t==255){
@@ -360,6 +358,61 @@ for (int j=0;j<1000;j+=50) {
 }
 
  */
+                        }else               //////single root
+                            {
+
+
+                                canvas.drawColor(Color.rgb(230,230,230));
+
+                                //  canvas.drawColor(Color.rgb(230,230,230));
+
+
+
+
+
+                                canvas.drawRect(0, ((getHeight() / 4)*1)-1, getWidth(), (getHeight() / 4)*1, samplePaint);
+                                canvas.drawRect(0, ((getHeight() / 4)*2)-1, getWidth(), (getHeight() / 4)*2, samplePaint);
+                                canvas.drawRect(0, ((getHeight() / 4)*3)-1, getWidth(), (getHeight() / 4)*3, samplePaint);
+
+
+
+                                canvas.drawRect( ((getWidth() / 4)*1)-1,0,(getWidth() / 4)*1 , getHeight(), samplePaint);
+                                canvas.drawRect( ((getWidth() / 4)*2)-1,0, (getWidth() / 4)*2, getHeight(), samplePaint);
+                                canvas.drawRect( ((getWidth() / 4)*3)-1,0, (getWidth() / 4)*3, getHeight(), samplePaint);
+                                canvas.drawRect( ((getWidth() / 4)*4)-1,0, (getWidth() / 4)*4, getHeight(), samplePaint);
+                                canvas.drawRect( ((getWidth() / 4)*5)-1,0,(getWidth() / 4)*5 , getHeight(), samplePaint);
+                                canvas.drawRect( ((getWidth() / 4)*6)-1,0,(getWidth() / 4)*6 , getHeight(), samplePaint);
+                                canvas.drawRect( ((getWidth() / 4)*7)-1,0, (getWidth() / 4)*7, getHeight(), samplePaint);
+
+
+                                canvas.drawRect( 0,getHeight()-4, getWidth(), getHeight(), samplePaint);
+
+                                canvas.drawRect(0, 0 ,1500,1, samplePaint);
+
+
+
+                                samplePaint1.setColor(Color.rgb(65, 148, 255));
+                                samplePaint1.setStrokeWidth(3);
+
+
+                                int y=0;
+                                for (int i=counter.getStartdraw();i<counter.getEnddraw();i++) {
+
+                                    if (counter.getChannel(cannel_count,i)!=1000.0) {
+                                        canvas.drawLine(y * counter.getSingle_step_x(), (getHeight() / 2) + (counter.getChannel(cannel_count, i) * counter.getSingle_step_y()), (y + 1) * counter.getSingle_step_x(), (getHeight() / 2) + (counter.getChannel(cannel_count, i + 1) * counter.getSingle_step_y()), samplePaint1);
+                                    }
+                                    y++;
+                                }
+
+
+
+
+
+
+                            }
+
+
+
 
                     } finally
                     {

@@ -129,7 +129,7 @@ int check_non_two_end=0;
         counter.setEnddraw(counter.getHorizontal_scale()*1000);
 
         counter.setSingle_step_x((float) counter.getSurface_width()/(500*counter.getHorizontal_scale()));
-        counter.setSingle_step_y((float) counter.getSurface_height()/10000);
+        counter.setSingle_step_y((float) counter.getSurface_height()/200);
 
         Log.e("on resume.....",""+counter.getHorizontal_scale());
 
@@ -198,7 +198,7 @@ int check_non_two_end=0;
 
 
         counter.setSingle_step_x((float) counter.getSurface_width()/((500)*counter.getHorizontal_scale()));
-        counter.setSingle_step_y((float) counter.getSurface_height()/10000);
+        counter.setSingle_step_y((float) counter.getSurface_height()/200);
 
         textplay.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -58,7 +58,22 @@ public class EightRootActivity extends AppCompatActivity {
     SetPivotName namePivote;
     SetPivotValue pivotValue;
 
+
+
+    float pivote50=50;
+    float pivote100=100;
+    float pivote_50=-50;
+    float pivote_100=-100;
+
+
+    TextView row100,row50,row_100,row_50,row0;
+
+
+    boolean b_notch=false;
+
     boolean set_dimens=true;
+
+    boolean k=true;
 
     ObjectAnimator animatorX;
     AnimatorSet animatorSet;
@@ -132,7 +147,7 @@ int is_change_text=0;
         counter.setEnddraw(counter.getHorizontal_scale()*counter.getRate_in_s()*2);
 
         counter.setEight_step_x((float) counter.getSurface_width()/(counter.getRate_in_s()*counter.getHorizontal_scale()));
-        counter.setEight_step_y((float) counter.getSurface_height()/10000);
+        counter.setEight_step_y((float) counter.getSurface_height()/200);
         counter.setEight_step_y((counter.getEight_step_y()/string1.getChannel_count())/2);
 
         Log.e("on resume.....",""+string1.getChannel_count());
@@ -312,6 +327,7 @@ int is_change_text=0;
         setContentView(R.layout.eightroot);
 
 
+
 ch[1]=findViewById(R.id.axis_textview_1);
 
         ch[2]=findViewById(R.id.axis_textview_2);
@@ -395,7 +411,7 @@ ch[1]=findViewById(R.id.axis_textview_1);
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
 
 
-
+string1.setSview("eight");
 
 
 
@@ -457,7 +473,7 @@ ch[1]=findViewById(R.id.axis_textview_1);
 
 
         counter.setEight_step_x((float) counter.getSurface_width()/(counter.getRate_in_s()*counter.getHorizontal_scale()));
-        counter.setEight_step_y((float) counter.getSurface_height()/10000);
+        counter.setEight_step_y((float) counter.getSurface_height()/200);
         counter.setEight_step_y((counter.getEight_step_y()/string1.getChannel_count())/2);
 
 
@@ -603,7 +619,22 @@ ch[1]=findViewById(R.id.axis_textview_1);
         line.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
+
                 if (!single_root) {
+
+
+
+                        findViewById(R.id.left_linearlayout_singlere).setVisibility(View.VISIBLE);
+                        findViewById(R.id.left_linearlayout).setVisibility(View.GONE);
+                    if (k) {
+
+                    counter.setSingle_step_x((float) counter.getSurface_width()/(counter.getRate_in_s()*counter.getHorizontal_scale()));
+                    counter.setSingle_step_y((float) counter.getSurface_height()/200);
+                        k=false;
+                    }
+
                     counter.setLine_clecked(0);
                     choise.setVisibility(View.VISIBLE);
                     line.setBackgroundResource(R.drawable.one_line_foreground);
@@ -613,19 +644,23 @@ ch[1]=findViewById(R.id.axis_textview_1);
 
                     zoomin_eight.setVisibility(View.GONE);
                     zoomout_eight.setVisibility(View.GONE);
-
+                    string1.setSview(string1.getSsingle());
 
                 }
                 else {
+                    findViewById(R.id.left_linearlayout_singlere).setVisibility(View.GONE);
+                    findViewById(R.id.left_linearlayout).setVisibility(View.VISIBLE);
+
                     line.setBackgroundResource(R.drawable.multi_line_foreground);
                    choise.setVisibility(View.INVISIBLE);
                     single_root=false;
 
                     zoomin_single.setVisibility(View.GONE);
-                    zoomin_single.setVisibility(View.GONE);
+                    zoomout_single.setVisibility(View.GONE);
 
                     zoomin_eight.setVisibility(View.VISIBLE);
                     zoomout_eight.setVisibility(View.VISIBLE);
+                    string1.setSview(string1.getSeight());
 
 
                 }
@@ -676,6 +711,100 @@ ch[1]=findViewById(R.id.axis_textview_1);
 
 
         });
+
+
+
+
+
+        zoomout_single.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onClick(View view) {
+
+
+                if(counter.getEight_step_y()>0) {
+                    counter.setSingle_step_y((float) (counter.getSingle_step_y() / (1.1)));
+                    pivote_50 = (float) (pivote_50 * 1.1);
+                    pivote_100 = (float) (pivote_100 * 1.1);
+                    pivote50 = (float) (pivote50 * 1.1);
+                    pivote100 = (float) (pivote100 * 1.1);
+
+
+                    row50.setText("" + (int) (pivote50));
+                    row100.setText("" + (int) (pivote100));
+                    row_50.setText("" + (int) (pivote_50));
+                    row_100.setText("" + (int) (pivote_100));
+
+
+                    vibrator.vibrate(40);
+
+                }
+
+
+
+
+
+
+            }
+        });
+        zoomin_single.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onClick(View view) {
+
+                if(Float.parseFloat(row50.getText().toString())>3) {
+                    counter.setSingle_step_y((float) (counter.getSingle_step_y() * (1.1)));
+
+                    pivote50 = (float) (pivote50 / 1.1);
+                    pivote100 = (float) (pivote100 / 1.1);
+                    pivote_100 = (float) (pivote_100 / 1.1);
+                    pivote_50 = (float) (pivote_50 / 1.1);
+
+
+                    row50.setText("" + (int) (pivote50));
+                    row100.setText("" + (int) (pivote100));
+                    row_50.setText("" + (int) (pivote_50));
+                    row_100.setText("" + (int) (pivote_100));
+
+                    vibrator.vibrate(40);
+
+
+                }
+
+            }
+        });
+
+
+
+
+
+
+
+
+
+
+        notch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+                vibrator.vibrate(40);
+
+                if(!b_notch) {
+                    notch.setBackgroundResource(R.drawable.notch_on);
+                   b_notch=true;
+                }
+                else {
+                    notch.setBackgroundResource(R.drawable.notch_off);
+                    b_notch=false;
+
+
+                }
+
+            }
+        });
+
 
 
     /////////////////////////////////////////////////////////////////////////////////////////////
@@ -824,6 +953,14 @@ new Thread(new Runnable() {
         V8000=findViewById(R.id.SM_8000);
 
 
+        row100=findViewById(R.id.VS100);
+        row50=findViewById(R.id.VS50);
+        row0=findViewById(R.id.VS0);
+        row_50=findViewById(R.id.VS_50);
+        row_100=findViewById(R.id.VS_100);
+
+
+
         lineplay=findViewById(R.id.eightroot_playline1);
 
         //graphView1=findViewById(R.id.eightgraphview1);
@@ -884,14 +1021,14 @@ while (t>t1)
             float z = Float.parseFloat(EightRootActivity.getV0().getText().toString()) + (counter.getHorizontal_scale());
             EightRootActivity.getV0().setText("" + z);
 
-            EightRootActivity.getV1000().setText("" + (z + ((counter.getRate_in_s()/4) * counter.getHorizontal_scale())));
-            EightRootActivity.getV2000().setText("" + (z + (2 * (counter.getRate_in_s()/4) * counter.getHorizontal_scale())));
-            EightRootActivity.getV3000().setText("" + (z + (3 * (counter.getRate_in_s()/4) * counter.getHorizontal_scale())));
-            EightRootActivity.getV4000().setText("" + (z + (4 * (counter.getRate_in_s()/4) * counter.getHorizontal_scale())));
-            EightRootActivity.getV5000().setText("" + (z + (5 * (counter.getRate_in_s()/4) * counter.getHorizontal_scale())));
-            EightRootActivity.getV6000().setText("" + (z + (6 * (counter.getRate_in_s()/4) * counter.getHorizontal_scale())));
-            EightRootActivity.getV7000().setText("" + (z + (7 * (counter.getRate_in_s()/4) * counter.getHorizontal_scale())));
-            EightRootActivity.getV8000().setText("" + (z + (8 * (counter.getRate_in_s()/4) * counter.getHorizontal_scale())));
+            EightRootActivity.getV1000().setText("" + (z + ((0.5/4) * counter.getHorizontal_scale())));
+            EightRootActivity.getV2000().setText("" + (z + (2 * (0.5/4) * counter.getHorizontal_scale())));
+            EightRootActivity.getV3000().setText("" + (z + (3 * (0.5/4) * counter.getHorizontal_scale())));
+            EightRootActivity.getV4000().setText("" + (z + (4 * (0.5/4) * counter.getHorizontal_scale())));
+            EightRootActivity.getV5000().setText("" + (z + (5 * (0.5/4) * counter.getHorizontal_scale())));
+            EightRootActivity.getV6000().setText("" + (z + (6 * (0.5/4) * counter.getHorizontal_scale())));
+            EightRootActivity.getV7000().setText("" + (z + (7 * (0.5/4) * counter.getHorizontal_scale())));
+            EightRootActivity.getV8000().setText("" + (z + (8 * (0.5/4) * counter.getHorizontal_scale())));
 
         }
     });

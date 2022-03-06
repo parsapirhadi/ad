@@ -3,7 +3,6 @@ package com.example.myapplication.P;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Environment;
-import android.util.Log;
 
 import com.example.myapplication.M.DataType.Counter;
 import com.example.myapplication.M.DataType.String1;
@@ -49,7 +48,6 @@ public class FileReader {
 
         // String d=string1.getFilepatch().
         String fileName =  f1;
-        Log.e("%%%%%%%%%%%",f1);
         String s = "";
         String fileContent = "";
 
@@ -100,11 +98,10 @@ public class FileReader {
         ///pivotValue.setvalueofeachchannel();
         pivotValue.y();
 
-        //  Log.e("{{{{{{{{{{{",""+counter.getAll(5));
 
 
         counter.setEight_step_x((float) counter.getSurface_width()/(counter.getRate_in_s()*counter.getHorizontal_scale()));
-        counter.setEight_step_y((float) counter.getSurface_height()/10000);
+        counter.setEight_step_y((float) counter.getSurface_height()/200);
         counter.setEight_step_y((counter.getEight_step_y()/string1.getChannel_count())/2);
 
 

@@ -1,6 +1,6 @@
 package com.example.myapplication.P;
 
-import android.util.Log;
+
 import android.widget.Toast;
 
 import com.example.myapplication.M.DataType.Counter;
@@ -37,7 +37,7 @@ public class SetPivotValue {
 
      */
 public void y(){
-        Log.e("/////////",""+counter.getChannel(7,1000));
+
 }
     public void set(){
         one_item();
@@ -56,7 +56,7 @@ public void y(){
 
 
         ft= (float) ((ft-2048)/1.4);
-        Log.e("asdfg",""+ft);
+
 
         counter.setChannel(ft,counter.getCount_of_set_i_channel(),counter.getCount_of_set_j_channel());
 

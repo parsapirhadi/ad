@@ -491,11 +491,15 @@ public class EightRecordActivity extends AppCompatActivity {
 
         // counter.setBuffer_count(0);
 
-        if (string1.getPivote(0) != null) {
-            for (int y = 0; y < counter.getDefault_channel(); y++) {
-                ch[y].setText(string1.getPivote(y));
-            }
+        try {
+            if (string1.getPivote(0) != null) {
+                for (int y = 0; y < counter.getDefault_channel(); y++) {
+                    ch[y].setText(string1.getPivote(y));
+                }
 
+            }
+        }catch (NullPointerException e){
+            e.printStackTrace();
         }
         bluetooth.setBackgroundResource(R.drawable.bluetooth_off_foreground);
 
@@ -877,8 +881,17 @@ public class EightRecordActivity extends AppCompatActivity {
         string1=new String1();
         objects=new Objects();
 
+        for (int j2=0;j2<8;j2++){
+            for (int j1=0;j1<16100;j1++) {
+                counter.setBuffer(counter.getPart_data(), j2, j1);
+            }
+        }
+
         counter.setBuffer_count(0);
         FindViewBiId();
+
+        string1.setSview("eight");
+
         vibrator= (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         objects.setBluetoothAdapter(BluetoothAdapter.getDefaultAdapter());
 
@@ -1170,41 +1183,9 @@ public class EightRecordActivity extends AppCompatActivity {
 
         });
 
-        findViewById(R.id.notch_eightrecord_layout).setOnClickListener(new View.OnClickListener() {
+        notch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                performFileSearch();
-
-
-
-
-
-if (Build.VERSION.SDK_INT >=Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
-      != PackageManager.PERMISSION_GRANTED)
-{
-    requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1000 );
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                 vibrator.vibrate(40);
 
@@ -1226,10 +1207,10 @@ if (Build.VERSION.SDK_INT >=Build.VERSION_CODES.M && checkSelfPermission(Manifes
             public void onClick(View view) {
 
 
-                vibrator.vibrate(40);
-
-                 startActivity(new Intent(getApplicationContext(), EightRootActivity.class));
-                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+              //  vibrator.vibrate(40);
+//
+               //  startActivity(new Intent(getApplicationContext(), EightRootActivity.class));
+              //   overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 
 
 
@@ -2227,15 +2208,7 @@ if (Build.VERSION.SDK_INT >=Build.VERSION_CODES.M && checkSelfPermission(Manifes
     }
 
 
-    private void performFileSearch(){
-        Intent intent=new Intent(Intent.ACTION_OPEN_DOCUMENT);
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
-        intent.setType("text/*");
-        startActivityForResult(intent,42);
 
-
-
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {

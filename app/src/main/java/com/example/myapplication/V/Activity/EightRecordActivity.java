@@ -454,10 +454,10 @@ public class EightRecordActivity extends AppCompatActivity {
         }
 
         counter.setSingle_step_x((float) counter.getSurface_width() / (counter.getRate_in_s() * counter.getHorizontal_scale()));
-        counter.setSingle_step_y((float) counter.getSurface_height() / 200);
+       counter.setSingle_step_y((float) counter.getSurface_height() / 200);
 
 
-        counter.setEight_step_x((float) counter.getSurface_width() / (counter.getRate_in_s() * counter.getHorizontal_scale()));
+      counter.setEight_step_x((float) counter.getSurface_width() / (counter.getRate_in_s() * counter.getHorizontal_scale()));
 
         try {
 
@@ -869,6 +869,17 @@ public class EightRecordActivity extends AppCompatActivity {
         string1=new String1();
         objects=new Objects();
 
+        counter.setFrist_page(false);
+
+        if (counter.getHorizontal_scale()>10){
+
+        counter.setHorizontal_scale(8);
+        }
+
+        counter.setStartdraw_record(1);
+        counter.setEnddraw_record(counter.getHorizontal_scale()*counter.getRate_in_s()*2);
+
+
         counter.setLine_stop_counter(0);
         counter.setLoop_counter(1);
         counter.setRecordcount(1);
@@ -897,11 +908,10 @@ public class EightRecordActivity extends AppCompatActivity {
             counter.setSeconds_count2000_record(counter.getSeconds_count0_record()+(2 *  counter.getHorizontal_scale() / 8));
             counter.setSeconds_count3000_record(counter.getSeconds_count0_record()+(3 *  counter.getHorizontal_scale() / 8));
             counter.setSeconds_count4000_record(counter.getSeconds_count0_record()+(4 *  counter.getHorizontal_scale() / 8));
-            counter.setSeconds_count5000_record(counter.getSeconds_count0_record()+(5 *  counter.getHorizontal_scale() / 8));
-            counter.setSeconds_count6000_record(counter.getSeconds_count0_record()+(6 *  counter.getHorizontal_scale() / 8));
+           counter.setSeconds_count5000_record(counter.getSeconds_count0_record()+(5 *  counter.getHorizontal_scale() / 8));
+          counter.setSeconds_count6000_record(counter.getSeconds_count0_record()+(6 *  counter.getHorizontal_scale() / 8));
             counter.setSeconds_count7000_record(counter.getSeconds_count0_record()+(7 * counter.getHorizontal_scale() / 8));
-            counter.setSeconds_count8000_record(counter.getSeconds_count0_record()+(8 *  counter.getHorizontal_scale() / 8));
-
+           counter.setSeconds_count8000_record(counter.getSeconds_count0_record()+(8 *  counter.getHorizontal_scale() / 8));
 
 
 

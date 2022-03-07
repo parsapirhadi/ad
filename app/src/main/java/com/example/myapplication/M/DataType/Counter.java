@@ -12,6 +12,7 @@ public class Counter {
     static float beta= (float) 1.4;
 
 
+    final static int rate_in_secound =515;
 
 static int exist_in_secound=0;
 
@@ -563,11 +564,6 @@ static int show_record_ch=0;
         Counter.startdraw_record = startdraw;
     }
 
-    final static int rate_in_secound =515;
-    public int getRate_in_s() {
-        return rate_in_secound;
-    }
-
     public int getEnddraw_record() {
         return enddraw_record;
     }
@@ -577,6 +573,21 @@ static int show_record_ch=0;
     }
 
 
+    public int getStartdraw_root() {
+        return startdraw_root;
+    }
+
+    public void setStartdraw_root(int startdraw_root) {
+        Counter.startdraw_root = startdraw_root;
+    }
+
+    public int getEnddraw_root() {
+        return enddraw_root;
+    }
+
+    public void setEnddraw_root(int enddraw_root) {
+        Counter.enddraw_root = enddraw_root;
+    }
 
     public int getHorizontal_scale() {
         return horizontal_scale;
@@ -589,7 +600,9 @@ static int show_record_ch=0;
 
 
 
-
+    public int getRate_in_s() {
+        return rate_in_secound;
+    }
 
     public  int getDefault_channel() {
         return default_channel;

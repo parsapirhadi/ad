@@ -211,9 +211,9 @@ public class BaseSurfaceEightRecord extends SurfaceView implements SurfaceHolder
         counter.setSingle_step_y((float) counter.getSurface_height() / 200);
 
 
-       // counter.setEight_step_x((float) counter.getSurface_width()/(500*counter.getHorizontal_scale()));
-       // counter.setEight_step_y((float) counter.getSurface_height()/200);
-     //   counter.setEight_step_y((counter.getEight_step_y()/string1.getChannel_count())/2);
+        counter.setEight_step_x((float) counter.getSurface_width()/(500*counter.getHorizontal_scale()));
+        counter.setEight_step_y((float) counter.getSurface_height()/200);
+        counter.setEight_step_y((counter.getEight_step_y()/string1.getChannel_count())/2);
 
 
         counter.setEight_step_x((float) counter.getSurface_width()/(counter.getRate_in_s()*counter.getHorizontal_scale()));

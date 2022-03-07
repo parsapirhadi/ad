@@ -101,6 +101,8 @@ public class ItemScaleAdapter extends RecyclerView.Adapter<ItemScaleAdapter.MyVi
                                 }
                             }
 
+                            counter.setStartdraw_root(1);
+                            counter.setEnddraw_root(counter.getHorizontal_scale()*counter.getRate_in_s()*2);
 
 
 
@@ -116,18 +118,23 @@ public class ItemScaleAdapter extends RecyclerView.Adapter<ItemScaleAdapter.MyVi
                             counter.setSeconds_count7000_root(counter.getSeconds_count0_root()+(7 * counter.getHorizontal_scale() / 8));
                             counter.setSeconds_count8000_root(counter.getSeconds_count0_root()+(8 *  counter.getHorizontal_scale() / 8));
 
+try {
 
 
-                            EightRootActivity.getV0().setText(counter.getSeconds_count0_root()+"s");
-                            EightRootActivity.getV1000().setText(counter.getSeconds_count1000_root()+"s");
-                            EightRootActivity.getV2000().setText(counter.getSeconds_count2000_root()+"s");
-                            EightRootActivity.getV3000().setText(counter.getSeconds_count3000_root()+"s");
-                            EightRootActivity.getV4000().setText(counter.getSeconds_count4000_root()+"s");
-                            EightRootActivity.getV5000().setText(counter.getSeconds_count5000_root()+"s");
-                            EightRootActivity.getV6000().setText(counter.getSeconds_count6000_root()+"s");
-                            EightRootActivity.getV7000().setText(counter.getSeconds_count7000_root()+"s");
-                            EightRootActivity.getV8000().setText(counter.getSeconds_count8000_root()+"s");
-
+    EightRootActivity.getV0().setText(counter.getSeconds_count0_root() + "s");
+    EightRootActivity.getV1000().setText(counter.getSeconds_count1000_root() + "s");
+    EightRootActivity.getV2000().setText(counter.getSeconds_count2000_root() + "s");
+    EightRootActivity.getV3000().setText(counter.getSeconds_count3000_root() + "s");
+    EightRootActivity.getV4000().setText(counter.getSeconds_count4000_root() + "s");
+    EightRootActivity.getV5000().setText(counter.getSeconds_count5000_root() + "s");
+    EightRootActivity.getV6000().setText(counter.getSeconds_count6000_root() + "s");
+    EightRootActivity.getV7000().setText(counter.getSeconds_count7000_root() + "s");
+    EightRootActivity.getV8000().setText(counter.getSeconds_count8000_root() + "s");
+}
+catch (NullPointerException e)
+{
+    e.printStackTrace();
+}
 
 
 
@@ -219,12 +226,24 @@ public class ItemScaleAdapter extends RecyclerView.Adapter<ItemScaleAdapter.MyVi
 
 
                                 if (counter.getHorizontal_scale() < 8) {
+
+                                    EightRootActivity.getV1000().setVisibility(View.INVISIBLE);
+                                    EightRootActivity.getV3000().setVisibility(View.INVISIBLE);
+                                    EightRootActivity.getV5000().setVisibility(View.INVISIBLE);
+                                    EightRootActivity.getV7000().setVisibility(View.INVISIBLE);
+
                                     EightRecordActivity.getV1000().setVisibility(View.INVISIBLE);
                                     EightRecordActivity.getV3000().setVisibility(View.INVISIBLE);
                                     EightRecordActivity.getV5000().setVisibility(View.INVISIBLE);
                                     EightRecordActivity.getV7000().setVisibility(View.INVISIBLE);
 
                                 } else {
+
+                                    EightRootActivity.getV1000().setVisibility(View.VISIBLE);
+                                    EightRootActivity.getV3000().setVisibility(View.VISIBLE);
+                                    EightRootActivity.getV5000().setVisibility(View.VISIBLE);
+                                    EightRootActivity.getV7000().setVisibility(View.VISIBLE);
+
                                     EightRecordActivity.getV1000().setVisibility(View.VISIBLE);
                                     EightRecordActivity.getV3000().setVisibility(View.VISIBLE);
                                     EightRecordActivity.getV5000().setVisibility(View.VISIBLE);

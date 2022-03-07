@@ -128,7 +128,7 @@ public class SendReceive extends Thread {
                         }
 
                         if (counter.getO()==5   ||
-                                counter.getO()==(counter.getHorizontal_scale()*counter.getRate_in_s())/16  ||
+                        counter.getO()==(counter.getHorizontal_scale()*counter.getRate_in_s())/16  ||
                         counter.getO()==(counter.getHorizontal_scale()*counter.getRate_in_s()*3)/16   ||
                         counter.getO()==(counter.getHorizontal_scale()*counter.getRate_in_s()*5)/16   ||
                         counter.getO()==(counter.getHorizontal_scale()*counter.getRate_in_s()*7)/16   ||

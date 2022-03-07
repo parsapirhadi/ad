@@ -63,8 +63,8 @@ float f=counter.getSeconds_count0_root()-1;
                 if (dx>dy)
                 {
 
-                    counter.setStartdraw_record(counter.getStartdraw_record()-(counter.getRate_in_s()*counter.getHorizontal_scale()));
-                    counter.setEnddraw_record(counter.getEnddraw_record()-(counter.getRate_in_s()*counter.getHorizontal_scale()));
+                    counter.setStartdraw_root(counter.getStartdraw_root()-(counter.getRate_in_s()*counter.getHorizontal_scale()));
+                    counter.setEnddraw_root(counter.getEnddraw_root()-(counter.getRate_in_s()*counter.getHorizontal_scale()));
 
 
 
@@ -118,8 +118,8 @@ float f=counter.getSeconds_count0_root()-1;
 
 
 
-                    counter.setStartdraw_record(counter.getStartdraw_record()+(counter.getRate_in_s()*counter.getHorizontal_scale()));
-                    counter.setEnddraw_record(counter.getEnddraw_record()+(counter.getRate_in_s()*counter.getHorizontal_scale()));
+                    counter.setStartdraw_root(counter.getStartdraw_root()+(counter.getRate_in_s()*counter.getHorizontal_scale()));
+                    counter.setEnddraw_root(counter.getEnddraw_root()+(counter.getRate_in_s()*counter.getHorizontal_scale()));
 
 
                     counter.setSeconds_count0_root(counter.getSeconds_count0_root()+  counter.getHorizontal_scale());
@@ -403,7 +403,7 @@ float f=counter.getSeconds_count0_root()-1;
 
                             for (int j = 0; j < string1.getChannel_count(); j++) {
                                 int y = 0;
-                                for (int i = counter.getStartdraw_record(); i < counter.getEnddraw_record(); i++) {
+                                for (int i = counter.getStartdraw_root(); i < counter.getEnddraw_root(); i++) {
                                     if (counter.getChannel(j, i) != 1000.0) {
                                         canvas.drawLine(
                                                 (float) (y * counter.getEight_step_x()),
@@ -469,7 +469,7 @@ for (int j=0;j<1000;j+=50) {
 
 
                                 int y=0;
-                                for (int i = counter.getStartdraw_record(); i<counter.getEnddraw_record(); i++) {
+                                for (int i = counter.getStartdraw_root(); i<counter.getEnddraw_root(); i++) {
 
                                     if (counter.getChannel(cannel_count,i)!=1000.0) {
                                         canvas.drawLine(y * counter.getSingle_step_x(), (getHeight() / 2) + (counter.getChannel(cannel_count, i) * counter.getSingle_step_y()), (y + 1) * counter.getSingle_step_x(), (getHeight() / 2) + (counter.getChannel(cannel_count, i + 1) * counter.getSingle_step_y()), samplePaint1);

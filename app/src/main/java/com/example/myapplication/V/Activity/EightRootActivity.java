@@ -22,7 +22,6 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
@@ -143,8 +142,9 @@ int is_change_text=0;
 
 
         surface.startDrawThread(0);
-        counter.setStartdraw(1);
-        counter.setEnddraw(counter.getHorizontal_scale()*counter.getRate_in_s()*2);
+
+        counter.setStartdraw_record(1);
+        counter.setEnddraw_record(counter.getHorizontal_scale()*counter.getRate_in_s()*2);
 
         counter.setEight_step_x((float) counter.getSurface_width()/(counter.getRate_in_s()*counter.getHorizontal_scale()));
         counter.setEight_step_y((float) counter.getSurface_height()/200);
@@ -152,41 +152,55 @@ int is_change_text=0;
 
         Log.e("on resume.....",""+string1.getChannel_count());
 
-        V0.setText(""+0);
-        V1000.setText(""+(float)(int)((125*counter.getHorizontal_scale()))/1000);
-        V2000.setText(""+(float)(int)((2*125*counter.getHorizontal_scale()))/1000);
-        V3000.setText(""+(float)(int)((3*125*counter.getHorizontal_scale()))/1000);
-        V4000.setText(""+(float)(int)((4*125*counter.getHorizontal_scale()))/1000);
-        V5000.setText(""+(float)(int)((5*125*counter.getHorizontal_scale()))/1000);
-        V6000.setText(""+(float)(int)((6*125*counter.getHorizontal_scale()))/1000);
-        V7000.setText(""+(float)(int)((7*125*counter.getHorizontal_scale()))/1000);
-        V8000.setText(""+(float)(int)((8*125*counter.getHorizontal_scale()))/1000);
+
 
         try {
-            counter.setSeconds_count0(0);
-            counter.setSeconds_count1000(counter.getSeconds_count0()+(1 * counter.getHorizontal_scale() / 8));
-            counter.setSeconds_count2000(counter.getSeconds_count0()+(2 *  counter.getHorizontal_scale() / 8));
-            counter.setSeconds_count3000(counter.getSeconds_count0()+(3 *  counter.getHorizontal_scale() / 8));
-            counter.setSeconds_count4000(counter.getSeconds_count0()+(4 *  counter.getHorizontal_scale() / 8));
-            counter.setSeconds_count5000(counter.getSeconds_count0()+(5 *  counter.getHorizontal_scale() / 8));
-            counter.setSeconds_count6000(counter.getSeconds_count0()+(6 *  counter.getHorizontal_scale() / 8));
-            counter.setSeconds_count7000(counter.getSeconds_count0()+(7 * counter.getHorizontal_scale() / 8));
-            counter.setSeconds_count8000(counter.getSeconds_count0()+(8 *  counter.getHorizontal_scale() / 8));
+            counter.setSeconds_count0_root(0);
+            counter.setSeconds_count1000_root(counter.getSeconds_count0_root()+(1 * counter.getHorizontal_scale() / 8));
+            counter.setSeconds_count2000_root(counter.getSeconds_count0_root()+(2 *  counter.getHorizontal_scale() / 8));
+            counter.setSeconds_count3000_root(counter.getSeconds_count0_root()+(3 *  counter.getHorizontal_scale() / 8));
+            counter.setSeconds_count4000_root(counter.getSeconds_count0_root()+(4 *  counter.getHorizontal_scale() / 8));
+            counter.setSeconds_count5000_root(counter.getSeconds_count0_root()+(5 *  counter.getHorizontal_scale() / 8));
+            counter.setSeconds_count6000_root(counter.getSeconds_count0_root()+(6 *  counter.getHorizontal_scale() / 8));
+            counter.setSeconds_count7000_root(counter.getSeconds_count0_root()+(7 * counter.getHorizontal_scale() / 8));
+            counter.setSeconds_count8000_root(counter.getSeconds_count0_root()+(8 *  counter.getHorizontal_scale() / 8));
+
+            counter.setSeconds_count0_root(0);
+            counter.setSeconds_count1000_record(counter.getSeconds_count0_record()+(1 * counter.getHorizontal_scale() / 8));
+            counter.setSeconds_count2000_record(counter.getSeconds_count0_record()+(2 *  counter.getHorizontal_scale() / 8));
+            counter.setSeconds_count3000_record(counter.getSeconds_count0_record()+(3 *  counter.getHorizontal_scale() / 8));
+            counter.setSeconds_count4000_record(counter.getSeconds_count0_record()+(4 *  counter.getHorizontal_scale() / 8));
+            counter.setSeconds_count5000_record(counter.getSeconds_count0_record()+(5 *  counter.getHorizontal_scale() / 8));
+            counter.setSeconds_count6000_record(counter.getSeconds_count0_record()+(6 *  counter.getHorizontal_scale() / 8));
+            counter.setSeconds_count7000_record(counter.getSeconds_count0_record()+(7 * counter.getHorizontal_scale() / 8));
+            counter.setSeconds_count8000_record(counter.getSeconds_count0_record()+(8 *  counter.getHorizontal_scale() / 8));
+
+
+
+
+            EightRootActivity.getV0().setText(counter.getSeconds_count0_root()+"s");
+            EightRootActivity.getV1000().setText(counter.getSeconds_count1000_root()+"s");
+            EightRootActivity.getV2000().setText(counter.getSeconds_count2000_root()+"s");
+            EightRootActivity.getV3000().setText(counter.getSeconds_count3000_root()+"s");
+            EightRootActivity.getV4000().setText(counter.getSeconds_count4000_root()+"s");
+            EightRootActivity.getV5000().setText(counter.getSeconds_count5000_root()+"s");
+            EightRootActivity.getV6000().setText(counter.getSeconds_count6000_root()+"s");
+            EightRootActivity.getV7000().setText(counter.getSeconds_count7000_root()+"s");
+            EightRootActivity.getV8000().setText(counter.getSeconds_count8000_root()+"s");
 
 
 
 
 
-
-            EightRecordActivity.getV0().setText(counter.getSeconds_count0()+"s");
-            EightRecordActivity.getV1000().setText(counter.getSeconds_count1000()+"s");
-            EightRecordActivity.getV2000().setText(counter.getSeconds_count2000()+"s");
-            EightRecordActivity.getV3000().setText(counter.getSeconds_count3000()+"s");
-            EightRecordActivity.getV4000().setText(counter.getSeconds_count4000()+"s");
-            EightRecordActivity.getV5000().setText(counter.getSeconds_count5000()+"s");
-            EightRecordActivity.getV6000().setText(counter.getSeconds_count6000()+"s");
-            EightRecordActivity.getV7000().setText(counter.getSeconds_count7000()+"s");
-            EightRecordActivity.getV8000().setText(counter.getSeconds_count8000()+"s");
+            EightRecordActivity.getV0().setText(counter.getSeconds_count0_record()+"s");
+            EightRecordActivity.getV1000().setText(counter.getSeconds_count1000_record()+"s");
+            EightRecordActivity.getV2000().setText(counter.getSeconds_count2000_record()+"s");
+            EightRecordActivity.getV3000().setText(counter.getSeconds_count3000_record()+"s");
+            EightRecordActivity.getV4000().setText(counter.getSeconds_count4000_record()+"s");
+            EightRecordActivity.getV5000().setText(counter.getSeconds_count5000_record()+"s");
+            EightRecordActivity.getV6000().setText(counter.getSeconds_count6000_record()+"s");
+            EightRecordActivity.getV7000().setText(counter.getSeconds_count7000_record()+"s");
+            EightRecordActivity.getV8000().setText(counter.getSeconds_count8000_record()+"s");
 
 
 
@@ -1020,8 +1034,11 @@ while (t>t1)
     runOnUiThread(new Runnable() {
         @Override
         public void run() {
-            counter.setStartdraw(counter.getStartdraw() + (counter.getRate_in_s() * counter.getHorizontal_scale()));
-            counter.setEnddraw(counter.getEnddraw() + (counter.getRate_in_s() * counter.getHorizontal_scale()));
+            counter.setStartdraw_record(counter.getStartdraw_record() + (counter.getRate_in_s() * counter.getHorizontal_scale()));
+            counter.setEnddraw_record(counter.getEnddraw_record() + (counter.getRate_in_s() * counter.getHorizontal_scale()));
+
+
+
 
             float z = Float.parseFloat(EightRootActivity.getV0().getText().toString()) + (counter.getHorizontal_scale());
             EightRootActivity.getV0().setText("" + z);

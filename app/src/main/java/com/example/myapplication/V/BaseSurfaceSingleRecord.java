@@ -20,11 +20,7 @@ import android.widget.Toast;
 import com.example.myapplication.M.DataType.Counter;
 import com.example.myapplication.M.DataType.String1;
 import com.example.myapplication.R;
-import com.example.myapplication.V.Activity.EightRecordActivity;
-import com.example.myapplication.V.Activity.EightRootActivity;
 import com.example.myapplication.V.Activity.SingleRecordActivity;
-
-import org.w3c.dom.Text;
 
 public class BaseSurfaceSingleRecord extends SurfaceView implements SurfaceHolder.Callback, View.OnTouchListener
 {
@@ -271,12 +267,12 @@ public class BaseSurfaceSingleRecord extends SurfaceView implements SurfaceHolde
                                     SingleRecordActivity.getV8000().setText(((counter.getHorizontal_scale()) + Float.parseFloat(SingleRecordActivity.getV8000().getText().toString())) + "");
 
 
-                                    counter.setEnddraw(counter.getEnddraw() + (counter.getHorizontal_scale() * 500));
-                                    counter.setStartdraw(counter.getStartdraw() + (counter.getHorizontal_scale() * 500));
+                                    counter.setEnddraw_record(counter.getEnddraw_record() + (counter.getHorizontal_scale() * 500));
+                                    counter.setStartdraw_record(counter.getStartdraw_record() + (counter.getHorizontal_scale() * 500));
                                     counter.setCounter_changescreeen(counter.getCounter_changescreeen() + 1);
 
-                                    Log.e("(single((start)))", "" + counter.getStartdraw());
-                                    Log.e("(single((end)))", "" + counter.getEnddraw());
+                                    Log.e("(single((start)))", "" + counter.getStartdraw_record());
+                                    Log.e("(single((end)))", "" + counter.getEnddraw_record());
 
 
                                 }
@@ -287,7 +283,7 @@ public class BaseSurfaceSingleRecord extends SurfaceView implements SurfaceHolde
 
                             int y = 0;
                             int j = counter.getShow_record_ch();
-                            for (i1 = counter.getStartdraw(); i1 < counter.getEnddraw(); i1++) {
+                            for (i1 = counter.getStartdraw_record(); i1 < counter.getEnddraw_record(); i1++) {
                                 if (counter.getBuffere(j, i1) != counter.getPart_data()
                                         && counter.getBuffere(j, i1 - 1) != counter.getPart_data()
 
@@ -307,8 +303,8 @@ public class BaseSurfaceSingleRecord extends SurfaceView implements SurfaceHolde
                                         SingleRecordActivity.getV8000().setText(((counter.getHorizontal_scale()) + Float.parseFloat(SingleRecordActivity.getV8000().getText().toString())) + "");
 
 
-                                        counter.setStartdraw(1);
-                                        counter.setEnddraw(counter.getHorizontal_scale() * counter.getRate_in_s());
+                                        counter.setStartdraw_record(1);
+                                        counter.setEnddraw_record(counter.getHorizontal_scale() * counter.getRate_in_s());
                                         i1 = 1;
 
 

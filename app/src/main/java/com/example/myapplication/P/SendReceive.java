@@ -191,67 +191,69 @@ public class SendReceive extends Thread {
                         }
 
                         counter.setBuffer(((float) ((data - counter.getAlpha()) / counter.getBeta())), channel, counter.getO());
+
+
                         if (counter.isChangeScreen_eight() && counter.isFrist_page() && (counter.getO())==10){
                             counter.setChangeScreen_eight(false);
-                            counter.setSeconds_count0(counter.getSeconds_count0()+  counter.getHorizontal_scale());
-                            EightRecordActivity.getV0().setText(counter.getSeconds_count0()+"s");
+                            counter.setSeconds_count0_record(counter.getSeconds_count0_record()+  counter.getHorizontal_scale());
+                            EightRecordActivity.getV0().setText(counter.getSeconds_count0_record()+"s");
                         }
 
                         if (counter.isChangeScreen_eight() && counter.isFrist_page() &&
                                 counter.getO()==(counter.getHorizontal_scale()*counter.getRate_in_s()*2)/16
                         ){
                             counter.setChangeScreen_eight(false);
-                            counter.setSeconds_count1000(counter.getSeconds_count0()+ ( (counter.getHorizontal_scale()/8)*1));
-                            EightRecordActivity.getV1000().setText(counter.getSeconds_count1000()+"s");
+                            counter.setSeconds_count1000_record(counter.getSeconds_count0_record()+ ( (counter.getHorizontal_scale()/8)*1));
+                            EightRecordActivity.getV1000().setText(counter.getSeconds_count1000_record()+"s");
                         }
                         if (counter.isChangeScreen_eight() && counter.isFrist_page() &&
                                 counter.getO()==(counter.getHorizontal_scale()*counter.getRate_in_s()*4)/16
                         ){
                             counter.setChangeScreen_eight(false);
-                            counter.setSeconds_count2000(counter.getSeconds_count0()+ ( (counter.getHorizontal_scale()*2)/8));
-                            EightRecordActivity.getV2000().setText(counter.getSeconds_count2000()+"s");
+                            counter.setSeconds_count2000_record(counter.getSeconds_count0_record()+ ( (counter.getHorizontal_scale()*2)/8));
+                            EightRecordActivity.getV2000().setText(counter.getSeconds_count2000_record()+"s");
                         }
                         if (counter.isChangeScreen_eight() && counter.isFrist_page() &&
                                 counter.getO()==(counter.getHorizontal_scale()*counter.getRate_in_s()*6)/16
                         ){
                             counter.setChangeScreen_eight(false);
-                            counter.setSeconds_count3000(counter.getSeconds_count0()+ ( (counter.getHorizontal_scale()*3)/8));
-                            EightRecordActivity.getV3000().setText(counter.getSeconds_count3000()+"s");
+                            counter.setSeconds_count3000_record(counter.getSeconds_count0_record()+ ( (counter.getHorizontal_scale()*3)/8));
+                            EightRecordActivity.getV3000().setText(counter.getSeconds_count3000_record()+"s");
                         }
                         if (counter.isChangeScreen_eight() && counter.isFrist_page() &&
                                 counter.getO()==(counter.getHorizontal_scale()*counter.getRate_in_s()*8)/16
                         ){
                             counter.setChangeScreen_eight(false);
-                            counter.setSeconds_count4000(counter.getSeconds_count0()+ ( (counter.getHorizontal_scale()*4)/8));
-                            EightRecordActivity.getV4000().setText(counter.getSeconds_count4000()+"s");
+                            counter.setSeconds_count4000_record(counter.getSeconds_count0_record()+ ( (counter.getHorizontal_scale()*4)/8));
+                            EightRecordActivity.getV4000().setText(counter.getSeconds_count4000_record()+"s");
                         }
                         if (counter.isChangeScreen_eight() && counter.isFrist_page() &&
                                 counter.getO()==(counter.getHorizontal_scale()*counter.getRate_in_s()*10)/16
                         ){
                             counter.setChangeScreen_eight(false);
-                            counter.setSeconds_count5000(counter.getSeconds_count0()+ ( (counter.getHorizontal_scale()*5)/8));
-                            EightRecordActivity.getV5000().setText(counter.getSeconds_count5000()+"s");
+                            counter.setSeconds_count5000_record(counter.getSeconds_count0_record()+ ( (counter.getHorizontal_scale()*5)/8));
+                            EightRecordActivity.getV5000().setText(counter.getSeconds_count5000_record()+"s");
                         }
                         if (counter.isChangeScreen_eight() && counter.isFrist_page() &&
                                 counter.getO()==(counter.getHorizontal_scale()*counter.getRate_in_s()*12)/16
                         ){
                             counter.setChangeScreen_eight(false);
-                            counter.setSeconds_count6000(counter.getSeconds_count0()+ ( (counter.getHorizontal_scale()*6)/8));
-                            EightRecordActivity.getV6000().setText(counter.getSeconds_count6000()+"s");
+                            counter.setSeconds_count6000_record(counter.getSeconds_count0_record()+ ( (counter.getHorizontal_scale()*6)/8));
+                            EightRecordActivity.getV6000().setText(counter.getSeconds_count6000_record()+"s");
                         }
                         if (counter.isChangeScreen_eight() && counter.isFrist_page() &&
                                 counter.getO()==(counter.getHorizontal_scale()*counter.getRate_in_s()*14)/16
                         ){
                             counter.setChangeScreen_eight(false);
-                            counter.setSeconds_count7000(counter.getSeconds_count0()+ ( (counter.getHorizontal_scale()*7)/8));
-                            EightRecordActivity.getV7000().setText(counter.getSeconds_count7000()+"s");
+                            counter.setSeconds_count7000_record(counter.getSeconds_count0_record()+ ( (counter.getHorizontal_scale()*7)/8));
+                            EightRecordActivity.getV7000().setText(counter.getSeconds_count7000_record()+"s");
                         }
                         if (counter.isChangeScreen_eight() && counter.isFrist_page() &&
                                 counter.getO()==(counter.getHorizontal_scale()*counter.getRate_in_s())-60
                         ){
                             counter.setChangeScreen_eight(false);
-                            counter.setSeconds_count8000(counter.getSeconds_count0()+ ( (counter.getHorizontal_scale())));
-                            EightRecordActivity.getV8000().setText(counter.getSeconds_count8000()+"s");
+                            counter.setSeconds_count8000_record(counter.getSeconds_count0_record()+ ( (counter.getHorizontal_scale())));
+                            EightRecordActivity.getV8000().setText(counter.getSeconds_count8000_record()+"s");
                         }
 
 

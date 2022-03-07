@@ -1,15 +1,12 @@
 package com.example.myapplication.V.Activity;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
-import android.bluetooth.BluetoothSocket;
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
@@ -27,22 +24,16 @@ import android.text.Editable;
 
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.webkit.PermissionRequest;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.PopupMenu;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 //import android.widget.Toast;
@@ -52,7 +43,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -73,8 +63,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.UUID;
@@ -474,15 +462,15 @@ public class EightRecordActivity extends AppCompatActivity {
         try {
 
 
-            EightRecordActivity.getV0().setText(counter.getSeconds_count0() + "s");
-            EightRecordActivity.getV1000().setText(counter.getSeconds_count1000() + "s");
-            EightRecordActivity.getV2000().setText(counter.getSeconds_count2000() + "s");
-            EightRecordActivity.getV3000().setText(counter.getSeconds_count3000() + "s");
-            EightRecordActivity.getV4000().setText(counter.getSeconds_count4000() + "s");
-            EightRecordActivity.getV5000().setText(counter.getSeconds_count5000() + "s");
-            EightRecordActivity.getV6000().setText(counter.getSeconds_count6000() + "s");
-            EightRecordActivity.getV7000().setText(counter.getSeconds_count7000() + "s");
-            EightRecordActivity.getV8000().setText(counter.getSeconds_count8000() + "s");
+            EightRecordActivity.getV0().setText(counter.getSeconds_count0_record() + "s");
+            EightRecordActivity.getV1000().setText(counter.getSeconds_count1000_record() + "s");
+            EightRecordActivity.getV2000().setText(counter.getSeconds_count2000_record() + "s");
+            EightRecordActivity.getV3000().setText(counter.getSeconds_count3000_record() + "s");
+            EightRecordActivity.getV4000().setText(counter.getSeconds_count4000_record() + "s");
+            EightRecordActivity.getV5000().setText(counter.getSeconds_count5000_record() + "s");
+            EightRecordActivity.getV6000().setText(counter.getSeconds_count6000_record() + "s");
+            EightRecordActivity.getV7000().setText(counter.getSeconds_count7000_record() + "s");
+            EightRecordActivity.getV8000().setText(counter.getSeconds_count8000_record() + "s");
 
 
         } catch (NullPointerException e) {
@@ -904,30 +892,30 @@ public class EightRecordActivity extends AppCompatActivity {
         FindViewBiId();
 
         try {
-            counter.setSeconds_count0(0);
-            counter.setSeconds_count1000(counter.getSeconds_count0()+(1 * counter.getHorizontal_scale() / 8));
-            counter.setSeconds_count2000(counter.getSeconds_count0()+(2 *  counter.getHorizontal_scale() / 8));
-            counter.setSeconds_count3000(counter.getSeconds_count0()+(3 *  counter.getHorizontal_scale() / 8));
-            counter.setSeconds_count4000(counter.getSeconds_count0()+(4 *  counter.getHorizontal_scale() / 8));
-            counter.setSeconds_count5000(counter.getSeconds_count0()+(5 *  counter.getHorizontal_scale() / 8));
-            counter.setSeconds_count6000(counter.getSeconds_count0()+(6 *  counter.getHorizontal_scale() / 8));
-            counter.setSeconds_count7000(counter.getSeconds_count0()+(7 * counter.getHorizontal_scale() / 8));
-            counter.setSeconds_count8000(counter.getSeconds_count0()+(8 *  counter.getHorizontal_scale() / 8));
+            counter.setSeconds_count0_record(0);
+            counter.setSeconds_count1000_record(counter.getSeconds_count0_record()+(1 * counter.getHorizontal_scale() / 8));
+            counter.setSeconds_count2000_record(counter.getSeconds_count0_record()+(2 *  counter.getHorizontal_scale() / 8));
+            counter.setSeconds_count3000_record(counter.getSeconds_count0_record()+(3 *  counter.getHorizontal_scale() / 8));
+            counter.setSeconds_count4000_record(counter.getSeconds_count0_record()+(4 *  counter.getHorizontal_scale() / 8));
+            counter.setSeconds_count5000_record(counter.getSeconds_count0_record()+(5 *  counter.getHorizontal_scale() / 8));
+            counter.setSeconds_count6000_record(counter.getSeconds_count0_record()+(6 *  counter.getHorizontal_scale() / 8));
+            counter.setSeconds_count7000_record(counter.getSeconds_count0_record()+(7 * counter.getHorizontal_scale() / 8));
+            counter.setSeconds_count8000_record(counter.getSeconds_count0_record()+(8 *  counter.getHorizontal_scale() / 8));
 
 
 
 
 
 
-            EightRecordActivity.getV0().setText(counter.getSeconds_count0()+"s");
-            EightRecordActivity.getV1000().setText(counter.getSeconds_count1000()+"s");
-            EightRecordActivity.getV2000().setText(counter.getSeconds_count2000()+"s");
-            EightRecordActivity.getV3000().setText(counter.getSeconds_count3000()+"s");
-            EightRecordActivity.getV4000().setText(counter.getSeconds_count4000()+"s");
-            EightRecordActivity.getV5000().setText(counter.getSeconds_count5000()+"s");
-            EightRecordActivity.getV6000().setText(counter.getSeconds_count6000()+"s");
-            EightRecordActivity.getV7000().setText(counter.getSeconds_count7000()+"s");
-            EightRecordActivity.getV8000().setText(counter.getSeconds_count8000()+"s");
+            EightRecordActivity.getV0().setText(counter.getSeconds_count0_record()+"s");
+            EightRecordActivity.getV1000().setText(counter.getSeconds_count1000_record()+"s");
+            EightRecordActivity.getV2000().setText(counter.getSeconds_count2000_record()+"s");
+            EightRecordActivity.getV3000().setText(counter.getSeconds_count3000_record()+"s");
+            EightRecordActivity.getV4000().setText(counter.getSeconds_count4000_record()+"s");
+            EightRecordActivity.getV5000().setText(counter.getSeconds_count5000_record()+"s");
+            EightRecordActivity.getV6000().setText(counter.getSeconds_count6000_record()+"s");
+            EightRecordActivity.getV7000().setText(counter.getSeconds_count7000_record()+"s");
+            EightRecordActivity.getV8000().setText(counter.getSeconds_count8000_record()+"s");
 
 
 

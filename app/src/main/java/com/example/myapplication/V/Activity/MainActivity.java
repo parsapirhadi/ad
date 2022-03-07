@@ -3,21 +3,12 @@
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
-import android.app.Dialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.pm.LabeledIntent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.myapplication.M.DataType.Counter;
 import com.example.myapplication.M.DataType.String1;
-import com.example.myapplication.P.FileReader;
 import com.example.myapplication.P.SetPivotName;
 import com.example.myapplication.R;
 
@@ -54,7 +45,9 @@ Counter counter;
         getResources().getConfiguration().setLocale(locale_us);
         string1=new String1();
         counter=new Counter();
-        counter.setStartdraw(1);
+        counter.setStartdraw_record(1);
+
+
         Intent intent=new Intent(this,MenuActivity.class);
 
 

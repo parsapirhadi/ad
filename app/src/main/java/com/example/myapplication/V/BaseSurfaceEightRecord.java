@@ -17,14 +17,10 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
-import android.widget.Toast;
 
 import com.example.myapplication.M.DataType.Counter;
 import com.example.myapplication.M.DataType.String1;
 import com.example.myapplication.R;
-import com.example.myapplication.V.Activity.EightRecordActivity;
-import com.example.myapplication.V.Activity.EightRootActivity;
-import com.example.myapplication.V.Activity.SingleRecordActivity;
 
 public class BaseSurfaceEightRecord extends SurfaceView implements SurfaceHolder.Callback, View.OnTouchListener
 {
@@ -367,7 +363,7 @@ public class BaseSurfaceEightRecord extends SurfaceView implements SurfaceHolder
                                     for (int j = 0; j < counter.getDefault_channel(); j++) {
                                     int y = 0;
 
-                                    for (i1 = counter.getStartdraw(); i1 < (counter.getEnddraw()+200); i1++) {
+                                    for (i1 = counter.getStartdraw_record(); i1 < (counter.getEnddraw_record()+200); i1++) {
 
                                    //   Log.e("S = "+counter.getStartdraw(),"E ="+counter.getEnddraw());
 
@@ -404,7 +400,7 @@ public class BaseSurfaceEightRecord extends SurfaceView implements SurfaceHolder
 
                                 for (int j = 0; j < counter.getDefault_channel(); j++) {
                                     int y = 0;
-                                    for (i1 = (counter.getStartdraw()+10); i1 < counter.getEnddraw(); i1++) {
+                                    for (i1 = (counter.getStartdraw_record()+10); i1 < counter.getEnddraw_record(); i1++) {
                                         if (counter.getBuffere(j, i1 + 1) != counter.getPart_data()) {
 
 
@@ -500,7 +496,7 @@ for (int j=0;j<1000;j+=50) {
 
                                 int y = 0;
                                 int j = counter.getShow_record_ch();
-                                for (i1 = counter.getStartdraw(); i1 < (counter.getEnddraw()+200); i1++) {
+                                for (i1 = counter.getStartdraw_record(); i1 < (counter.getEnddraw_record()+200); i1++) {
 
 
 

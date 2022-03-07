@@ -11,10 +11,8 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
-import android.widget.Toast;
 
 import com.example.myapplication.M.DataType.Counter;
-import com.example.myapplication.V.Activity.EightRootActivity;
 import com.example.myapplication.V.Activity.SingleRootActivity;
 
 public class BaseSurfaceSingleRoot extends SurfaceView implements SurfaceHolder.Callback, View.OnTouchListener, Runnable
@@ -86,8 +84,8 @@ Counter counter;
                 if (dx>dy)
                 {
 
-                    counter.setStartdraw(counter.getStartdraw()-(500*counter.getHorizontal_scale()));
-                    counter.setEnddraw(counter.getEnddraw()-(500*counter.getHorizontal_scale()));
+                    counter.setStartdraw_record(counter.getStartdraw_record()-(500*counter.getHorizontal_scale()));
+                    counter.setEnddraw_record(counter.getEnddraw_record()-(500*counter.getHorizontal_scale()));
 
                     float z=Float.parseFloat(SingleRootActivity.getV0().getText().toString())-(counter.getHorizontal_scale());
 
@@ -113,8 +111,8 @@ Counter counter;
 
 
 
-                    counter.setStartdraw(counter.getStartdraw()+(500*counter.getHorizontal_scale()));
-                    counter.setEnddraw(counter.getEnddraw()+(500*counter.getHorizontal_scale()));
+                    counter.setStartdraw_record(counter.getStartdraw_record()+(500*counter.getHorizontal_scale()));
+                    counter.setEnddraw_record(counter.getEnddraw_record()+(500*counter.getHorizontal_scale()));
 
                     float z=Float.parseFloat(SingleRootActivity.getV0().getText().toString())+(counter.getHorizontal_scale());
                     SingleRootActivity.getV0().setText(""+z);
@@ -316,7 +314,7 @@ Counter counter;
 
 
                         int y=0;
-                        for (int i=counter.getStartdraw();i<counter.getEnddraw();i++) {
+                        for (int i = counter.getStartdraw_record(); i<counter.getEnddraw_record(); i++) {
 
                             if (counter.getChannel(cannel_count,i)!=1000.0) {
                                 canvas.drawLine(y * counter.getSingle_step_x(), (getHeight() / 2) + (counter.getChannel(cannel_count, i) * counter.getSingle_step_y()), (y + 1) * counter.getSingle_step_x(), (getHeight() / 2) + (counter.getChannel(cannel_count, i + 1) * counter.getSingle_step_y()), samplePaint1);

@@ -1,13 +1,6 @@
 package com.example.myapplication.M.DataType;
 
 import android.graphics.Paint;
-import android.os.Parcel;
-import android.os.Parcelable;
-
-import androidx.databinding.BaseObservable;
-import androidx.databinding.Bindable;
-
-import java.io.Serializable;
 
 public class Counter {
 
@@ -49,24 +42,39 @@ static int show_record_ch=0;
     static int surfaceviewhewidth=0;
 
     static int horizontal_scale=8;
-    static int startdraw=0;
-    static int enddraw=8000;
+    static int startdraw_record =0;
+    static int enddraw_record =8000;
+
+     static int startdraw_root =0;
+    static int enddraw_root =8000;
+
 
     static long anim_sleep=0;
 
     static boolean bluetooth_drawabe =false;
 
 
-     static int Seconds_count0=0;
-    static int Seconds_count1000;
-    static int Seconds_count2000;
-    static int Seconds_count3000;
-    static int Seconds_count4000;
-    static int Seconds_count5000;
-    static int Seconds_count6000;
-     static int Seconds_count7000;
-    static int Seconds_count8000;
+     static int Seconds_count0_record =0;
+    static int Seconds_count1000_record;
+    static int Seconds_count2000_record;
+    static int Seconds_count3000_record;
+    static int Seconds_count4000_record;
+    static int Seconds_count5000_record;
+    static int Seconds_count6000_record;
+     static int Seconds_count7000_record;
+    static int Seconds_count8000_record;
 
+
+
+   static int Seconds_count0_root =0;
+   static int Seconds_count1000_root;
+    static int Seconds_count2000_root;
+   static int Seconds_count3000_root;
+   static int Seconds_count4000_root;
+    static int Seconds_count5000_root;
+    static int Seconds_count6000_root;
+  static int Seconds_count7000_root;
+    static int Seconds_count8000_root;
 
 
     static int Line_stop_counter=0;
@@ -213,76 +221,149 @@ static int show_record_ch=0;
         Line_stop_counter = line_stop_counter;
     }
 
-    public int getSeconds_count0() {
-        return Seconds_count0;
+    public int getSeconds_count0_record() {
+        return Seconds_count0_record;
     }
 
-    public void setSeconds_count0(int seconds_count0) {
-        Seconds_count0 = seconds_count0;
+    public void setSeconds_count0_record(int seconds_count0) {
+        Seconds_count0_record = seconds_count0;
     }
 
-    public int getSeconds_count1000() {
-        return Seconds_count1000;
+    public int getSeconds_count1000_record() {
+        return Seconds_count1000_record;
     }
 
-    public void setSeconds_count1000(int seconds_count1000) {
-        Seconds_count1000 = seconds_count1000;
+    public void setSeconds_count1000_record(int seconds_count1000) {
+        Seconds_count1000_record = seconds_count1000;
     }
 
-    public int getSeconds_count2000() {
-        return Seconds_count2000;
+    public int getSeconds_count2000_record() {
+        return Seconds_count2000_record;
     }
 
-    public void setSeconds_count2000(int seconds_count2000) {
-        Seconds_count2000 = seconds_count2000;
+    public void setSeconds_count2000_record(int seconds_count2000) {
+        Seconds_count2000_record = seconds_count2000;
     }
 
-    public int getSeconds_count3000() {
-        return Seconds_count3000;
+    public int getSeconds_count3000_record() {
+        return Seconds_count3000_record;
     }
 
-    public void setSeconds_count3000(int seconds_count3000) {
-        Seconds_count3000 = seconds_count3000;
+    public void setSeconds_count3000_record(int seconds_count3000) {
+        Seconds_count3000_record = seconds_count3000;
     }
 
-    public int getSeconds_count4000() {
-        return Seconds_count4000;
+    public int getSeconds_count4000_record() {
+        return Seconds_count4000_record;
     }
 
-    public void setSeconds_count4000(int seconds_count4000) {
-        Seconds_count4000 = seconds_count4000;
+    public void setSeconds_count4000_record(int seconds_count4000) {
+        Seconds_count4000_record = seconds_count4000;
     }
 
-    public int getSeconds_count5000() {
-        return Seconds_count5000;
+    public int getSeconds_count5000_record() {
+        return Seconds_count5000_record;
     }
 
-    public void setSeconds_count5000(int seconds_count5000) {
-        Seconds_count5000 = seconds_count5000;
+    public void setSeconds_count5000_record(int seconds_count5000) {
+        Seconds_count5000_record = seconds_count5000;
     }
 
-    public int getSeconds_count6000() {
-        return Seconds_count6000;
+    public int getSeconds_count6000_record() {
+        return Seconds_count6000_record;
     }
 
-    public void setSeconds_count6000(int seconds_count6000) {
-        Seconds_count6000 = seconds_count6000;
+    public void setSeconds_count6000_record(int seconds_count6000) {
+        Seconds_count6000_record = seconds_count6000;
     }
 
-    public int getSeconds_count7000() {
-        return Seconds_count7000;
+    public int getSeconds_count7000_record() {
+        return Seconds_count7000_record;
     }
 
-    public void setSeconds_count7000(int seconds_count7000) {
-        Seconds_count7000 = seconds_count7000;
+    public void setSeconds_count7000_record(int seconds_count7000) {
+        Seconds_count7000_record = seconds_count7000;
     }
 
-    public int getSeconds_count8000() {
-        return Seconds_count8000;
+    public int getSeconds_count8000_record() {
+        return Seconds_count8000_record;
     }
 
-    public void setSeconds_count8000(int seconds_count8000) {
-        Seconds_count8000 = seconds_count8000;
+    public void setSeconds_count8000_record(int seconds_count8000) {
+        Seconds_count8000_record = seconds_count8000;
+    }
+
+
+    public int getSeconds_count0_root() {
+        return Seconds_count0_root;
+    }
+
+    public void setSeconds_count0_root(int seconds_count0_root) {
+        Seconds_count0_root = seconds_count0_root;
+    }
+
+    public int getSeconds_count1000_root() {
+        return Seconds_count1000_root;
+    }
+
+    public void setSeconds_count1000_root(int seconds_count1000_root) {
+        Seconds_count1000_root = seconds_count1000_root;
+    }
+
+    public int getSeconds_count2000_root() {
+        return Seconds_count2000_root;
+    }
+
+    public void setSeconds_count2000_root(int seconds_count2000_root) {
+        Seconds_count2000_root = seconds_count2000_root;
+    }
+
+    public int getSeconds_count3000_root() {
+        return Seconds_count3000_root;
+    }
+
+    public void setSeconds_count3000_root(int seconds_count3000_root) {
+        Seconds_count3000_root = seconds_count3000_root;
+    }
+
+    public int getSeconds_count4000_root() {
+        return Seconds_count4000_root;
+    }
+
+    public void setSeconds_count4000_root(int seconds_count4000_root) {
+        Seconds_count4000_root = seconds_count4000_root;
+    }
+
+    public int getSeconds_count5000_root() {
+        return Seconds_count5000_root;
+    }
+
+    public void setSeconds_count5000_root(int seconds_count5000_root) {
+        Seconds_count5000_root = seconds_count5000_root;
+    }
+
+    public int getSeconds_count6000_root() {
+        return Seconds_count6000_root;
+    }
+
+    public void setSeconds_count6000_root(int seconds_count6000_root) {
+        Seconds_count6000_root = seconds_count6000_root;
+    }
+
+    public int getSeconds_count7000_root() {
+        return Seconds_count7000_root;
+    }
+
+    public void setSeconds_count7000_root(int seconds_count7000_root) {
+        Seconds_count7000_root = seconds_count7000_root;
+    }
+
+    public int getSeconds_count8000_root() {
+        return Seconds_count8000_root;
+    }
+
+    public void setSeconds_count8000_root(int seconds_count8000_root) {
+        Seconds_count8000_root = seconds_count8000_root;
     }
 
     public int getRecordcount() {
@@ -474,12 +555,12 @@ static int show_record_ch=0;
         this.surfaceviewhewidth = surfaceviewhewidth;
     }
 
-    public int getStartdraw() {
-        return startdraw;
+    public int getStartdraw_record() {
+        return startdraw_record;
     }
 
-    public void setStartdraw(int startdraw) {
-        Counter.startdraw = startdraw;
+    public void setStartdraw_record(int startdraw) {
+        Counter.startdraw_record = startdraw;
     }
 
     final static int rate_in_secound =515;
@@ -487,13 +568,15 @@ static int show_record_ch=0;
         return rate_in_secound;
     }
 
-    public int getEnddraw() {
-        return enddraw;
+    public int getEnddraw_record() {
+        return enddraw_record;
     }
 
-    public void setEnddraw(int enddraw) {
-        Counter.enddraw = enddraw;
+    public void setEnddraw_record(int enddraw) {
+        Counter.enddraw_record = enddraw;
     }
+
+
 
     public int getHorizontal_scale() {
         return horizontal_scale;

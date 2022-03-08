@@ -74,7 +74,7 @@
                 android:fontFamily="sans-serif-condensed-medium"
                 android:padding="10dp"
                 android:text="Montage"
-                android:textColor="#1fc5ff"
+                android:textColor="@color/actionbarcolor"
                 tools:ignore="MissingConstraints"
                 />
 
@@ -98,7 +98,7 @@
                 android:fontFamily="sans-serif-condensed-medium"
                 android:padding="10dp"
                 android:text="Custom Montage Editor"
-                android:textColor="#1fc5ff"
+                android:textColor="@color/actionbarcolor"
                 tools:ignore="MissingConstraints" />
 
             <androidx.recyclerview.widget.RecyclerView

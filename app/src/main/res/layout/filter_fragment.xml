@@ -70,7 +70,7 @@
                 android:fontFamily="sans-serif-condensed-medium"
                 android:padding="10dp"
                 android:text="Filters"
-                android:textColor="#1fc5ff"
+                android:textColor="@color/actionbarcolor"
                 tools:ignore="MissingConstraints"
                 />
 
@@ -85,6 +85,7 @@
 
 
     </androidx.recyclerview.widget.RecyclerView>
+
             <TextView
 
                 android:layout_width="wrap_content"
@@ -92,10 +93,10 @@
                 android:fontFamily="sans-serif-condensed-medium"
                 android:padding="10dp"
                 android:text="Notch"
-                android:textColor="#1fc5ff"
+                android:textColor="@color/actionbarcolor"
                 tools:ignore="MissingConstraints" />
 
-    <androidx.recyclerview.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclenotch"
         android:paddingStart="17dp"
         android:paddingEnd="17dp"

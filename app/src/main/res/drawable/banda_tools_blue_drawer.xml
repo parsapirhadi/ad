@@ -11,7 +11,7 @@
 
         />
 <solid
-    android:color="#1fc5ff"
+    android:color="@color/actionbarcolor"
 
     />
 </shape>

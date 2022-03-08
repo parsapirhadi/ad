@@ -79,7 +79,7 @@
         android:padding="10dp"
         android:text="Setting"
         android:layout_gravity="start"
-        android:textColor="#1fc5ff"
+        android:textColor="@color/actionbarcolor"
         tools:ignore="MissingConstraints"
         />
 

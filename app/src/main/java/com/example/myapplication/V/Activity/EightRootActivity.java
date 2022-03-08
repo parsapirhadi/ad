@@ -45,7 +45,7 @@ import java.util.Set;
 
 public class EightRootActivity extends AppCompatActivity {
 
-    Button line,btn,bluetooth,montage,play,zoomout_eight,zoomin_eight,zoomout_single,zoomin_single;
+    Button line,btn,touch,bluetooth,montage,play,zoomout_eight,zoomin_eight,zoomout_single,zoomin_single;
     ImageView notch;
     TextView textplay;
     ListView listView;
@@ -156,6 +156,12 @@ int is_change_text=0;
 
         Log.e("on resume.....",""+string1.getChannel_count());
 
+        counter.setCount_of_set_i_channel(0);
+        counter.setCount_of_set_j_channel(0);
+
+
+
+        counter.setChannel_load(0);
 
 
         try {
@@ -446,6 +452,10 @@ ch[1]=findViewById(R.id.axis_textview_1);
         string1=new String1();
         counter=new Counter();
 
+        counter.setExist_in_secound(0);
+
+        counter.setCount_of_set_i_channel(0);
+        counter.setCount_of_set_j_channel(0);
 
 
         DisplayMetrics displayMetrics = new DisplayMetrics();
@@ -598,24 +608,23 @@ for (int t=0;t<40;t++){
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                if(playcount==0) {
+                if (!counter.isB_touch()){
+                if (playcount == 0) {
                     play.setBackgroundResource(R.drawable.pause_root_foreground);
-                    playcount=1;
-                    set_stop_play=0;
-                    acces_to_paly_animation=1;
+                    playcount = 1;
+                    set_stop_play = 0;
+                    acces_to_paly_animation = 1;
                     lineplay.setTranslationX(0);
                     lineplay.setVisibility(View.VISIBLE);
                     Setlinebtnanim();
-                }
-                else if(playcount==1) {
+                } else if (playcount == 1) {
                     play.setBackgroundResource(R.drawable.play_foreground);
-                    playcount=0;
-                    set_stop_play=1;
-                    acces_to_paly_animation=0;
+                    playcount = 0;
+                    set_stop_play = 1;
+                    acces_to_paly_animation = 0;
                     lineplay.setVisibility(View.INVISIBLE);
                     lineplay.setTranslationX(0);
-                    is_change_text=0;
+                    is_change_text = 0;
                     animatorSet.end();
                     animatorSet.removeAllListeners();
                     animatorSet.removeListener(animatorListener);
@@ -624,8 +633,7 @@ for (int t=0;t<40;t++){
                 }
 
 
-
-
+            }
 
             }});
 
@@ -648,6 +656,45 @@ for (int t=0;t<40;t++){
 
             }
         });
+
+
+
+        choise.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PopupMenu popup = new PopupMenu(EightRootActivity.this,choise);
+                popup.getMenuInflater().inflate(R.menu.choose_channel, popup.getMenu());
+                for(int v=0;v<string1.getChannel_count();v++) {
+                    popup.getMenu().add(string1.getPivote(v));
+
+
+
+                     Log.e("&&&&&&&", "" + string1.getPivote(v));
+
+
+                }
+                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem) {
+
+
+                        for(int v=0;v<string1.getChannel_count();v++) {
+                            if(menuItem.getTitle()==string1.getPivote(v)){
+                                surface.startDrawThread(v);
+
+                            }
+                        }
+                        choise.setText(menuItem.getTitle());
+
+                        return true;
+                    }
+                });
+                popup.show();
+
+            }
+        });
+
+
         notch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -851,7 +898,35 @@ for (int t=0;t<40;t++){
             }
         });
 
+    touch.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            vibrator.vibrate(40);
+            if (!counter.isB_touch()){
+                counter.setB_touch(true);
 
+                touch.setBackgroundResource(R.drawable.touch_foreground);
+                textplay.setVisibility(View.INVISIBLE);
+                play.setBackgroundResource(R.drawable.play_disable_foreground);
+
+
+
+            }
+            else {
+
+                counter.setB_touch(false);
+                touch.setBackgroundResource(R.drawable.touch_off_foreground);
+                textplay.setVisibility(View.VISIBLE);
+                play.setBackgroundResource(R.drawable.play_foreground);
+
+
+            }
+
+
+
+
+        }
+    });
 
     /////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -972,11 +1047,12 @@ new Thread(new Runnable() {
         surface = (BaseSurfaceEightRoot) findViewById(R.id.eightrootsurfaceview);
         line=findViewById(R.id.line_eightroot);
         textplay=findViewById(R.id.eighttextplay);
-        play=findViewById(R.id.plsy_eightroot);
+        play=findViewById(R.id.play_eightroot);
         btn=findViewById(R.id.note_eightroot);
         notch=findViewById(R.id.notch_eightroot);
         montage=findViewById(R.id.montage_eightroot);
         listView=dialog.findViewById(R.id.list_device);
+        touch=findViewById(R.id.touch_eightrecord);
 
         zoomout_eight=findViewById(R.id.zoomout_eightroot);
         zoomin_eight=findViewById(R.id.zoomin_eightroot);
@@ -1029,7 +1105,7 @@ new Thread(new Runnable() {
 
 
 
-        float t =(float)(counter.getExist_in_secound()*2)/counter.getRate_in_s()*2;
+        float t =(float)(counter.getExist_in_secound())/(counter.getRate_in_s());
         float t1=counter.getSeconds_count8000_root();
 
         for (line_play = 0; line_play <= width; line_play++) {
@@ -1053,6 +1129,7 @@ new Thread(new Runnable() {
 
 while (t>t1)
 {
+    Log.e(""+t,">"+t1);
     if (acces_to_paly_animation==0){
         lineplay.setTranslationX(0);
 

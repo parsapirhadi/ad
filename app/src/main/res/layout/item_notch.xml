@@ -40,7 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="38dp"
                 android:clickable="false"
-                app:buttonTint="#1BAAFA"
+                app:buttonTint="@color/actionbarcolor"
                 android:layout_gravity="center"
                 android:gravity="center"
 
@@ -86,7 +86,7 @@
                 android:layout_height="38dp"
                 android:layout_gravity="center"
                 android:gravity="center"
-                app:buttonTint="#1BAAFA"
+                app:buttonTint="@color/actionbarcolor"
                 tools:ignore="UseSwitchCompatOrMaterialXml" />
 
         </LinearLayout>

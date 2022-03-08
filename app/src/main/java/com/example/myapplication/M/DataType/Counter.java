@@ -12,7 +12,12 @@ public class Counter {
     static float beta= (float) 1.4;
 
 
-    final static int rate_in_secound =515;
+    static int channel_load=0;
+
+
+    static boolean b_touch =false;
+
+    final static int rate_in_secound =512;
 
 static int exist_in_secound=0;
 
@@ -150,6 +155,14 @@ static int show_record_ch=0;
     static float timer=0;
 
 
+    public int getChannel_load() {
+        return channel_load;
+    }
+
+    public void setChannel_load(int channel_load) {
+        Counter.channel_load = channel_load;
+    }
+
     public float getAlpha() {
         return alpha;
     }
@@ -236,6 +249,14 @@ static int show_record_ch=0;
 
     public void setSeconds_count1000_record(int seconds_count1000) {
         Seconds_count1000_record = seconds_count1000;
+    }
+
+    public boolean isB_touch() {
+        return b_touch;
+    }
+
+    public void setB_touch(boolean b_touch) {
+        Counter.b_touch = b_touch;
     }
 
     public int getSeconds_count2000_record() {

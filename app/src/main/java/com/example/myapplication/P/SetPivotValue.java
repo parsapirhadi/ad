@@ -62,7 +62,7 @@ public void y(){
 
 
 counter.setCount_of_set_i_channel(counter.getCount_of_set_i_channel()+1);
-if (counter.getCount_of_set_i_channel()==10){
+if (counter.getCount_of_set_i_channel()==counter.getChannel_load()){
 
     counter.setCount_of_set_i_channel(0);
     counter.setCount_of_set_j_channel(counter.getCount_of_set_j_channel()+1);
@@ -95,6 +95,7 @@ if (counter.getCount_of_set_i_channel()==10){
 
         }
     }
+
     private void one_item() {
         String h="";
         float d=0;

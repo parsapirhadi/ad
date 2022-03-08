@@ -77,7 +77,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-condensed-medium"
         android:padding="10dp"
-        android:textColor="#1fc5ff"
+        android:textColor="@color/actionbarcolor"
         tools:ignore="MissingConstraints"
         />
 

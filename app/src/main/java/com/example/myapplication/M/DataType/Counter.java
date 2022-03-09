@@ -47,12 +47,23 @@ static int show_record_ch=0;
     static int surfaceviewheheight=0;
     static int surfaceviewhewidth=0;
 
-    static int horizontal_scale=8;
+    static float horizontal_scale=8;
+
+    static  float horizontal_scale_clone=8;
+
     static int startdraw_record =0;
     static int enddraw_record =8000;
 
      static int startdraw_root =0;
     static int enddraw_root =8000;
+
+    static int startdraw_root_clone =0;
+    static int enddraw_root_clone =8000;
+
+    static float Seconds_count0_root_clone =0;
+    static float Seconds_count8000_root_clone;
+
+
 
 
     static long anim_sleep=0;
@@ -60,27 +71,27 @@ static int show_record_ch=0;
     static boolean bluetooth_drawabe =false;
 
 
-     static int Seconds_count0_record =0;
-    static int Seconds_count1000_record;
-    static int Seconds_count2000_record;
-    static int Seconds_count3000_record;
-    static int Seconds_count4000_record;
-    static int Seconds_count5000_record;
-    static int Seconds_count6000_record;
-     static int Seconds_count7000_record;
-    static int Seconds_count8000_record;
+     static float Seconds_count0_record =0;
+    static float Seconds_count1000_record;
+    static float Seconds_count2000_record;
+    static float Seconds_count3000_record;
+    static float Seconds_count4000_record;
+    static float Seconds_count5000_record;
+    static float Seconds_count6000_record;
+     static float Seconds_count7000_record;
+    static float Seconds_count8000_record;
 
 
 
-   static int Seconds_count0_root =0;
-   static int Seconds_count1000_root;
-    static int Seconds_count2000_root;
-   static int Seconds_count3000_root;
-   static int Seconds_count4000_root;
-    static int Seconds_count5000_root;
-    static int Seconds_count6000_root;
-  static int Seconds_count7000_root;
-    static int Seconds_count8000_root;
+   static float Seconds_count0_root =0;
+   static float Seconds_count1000_root;
+    static float Seconds_count2000_root;
+   static float Seconds_count3000_root;
+   static float Seconds_count4000_root;
+    static float Seconds_count5000_root;
+    static float Seconds_count6000_root;
+  static float Seconds_count7000_root;
+    static float Seconds_count8000_root;
 
 
     static int Line_stop_counter=0;
@@ -94,6 +105,10 @@ static int show_record_ch=0;
 
     static float eight_step_y =0;
     static float eight_step_x =0;
+
+    static float single_step_x_clone =0;
+
+    static float eight_step_x_clone =0;
 
     static int o=-1;
 
@@ -144,6 +159,8 @@ static int show_record_ch=0;
     static float surface_width =0;
     static float surface_height=0;
 
+
+
     static int x=1;
 
    static int recordcount=1;
@@ -154,6 +171,62 @@ static int show_record_ch=0;
 
     static float timer=0;
 
+
+    public float getHorizontal_scale_clone() {
+        return horizontal_scale_clone;
+    }
+
+    public void setHorizontal_scale_clone(float horizontal_scale_clone) {
+        Counter.horizontal_scale_clone = horizontal_scale_clone;
+    }
+
+    public  float getSingle_step_x_clone() {
+        return single_step_x_clone;
+    }
+
+    public  void setSingle_step_x_clone(float single_step_x_clone) {
+        Counter.single_step_x_clone = single_step_x_clone;
+    }
+
+    public  float getEight_step_x_clone() {
+        return eight_step_x_clone;
+    }
+
+    public  void setEight_step_x_clone(float eight_step_x_clone) {
+        Counter.eight_step_x_clone = eight_step_x_clone;
+    }
+
+    public  int getStartdraw_root_clone() {
+        return startdraw_root_clone;
+    }
+
+    public void setStartdraw_root_clone(int startdraw_root_clone) {
+        Counter.startdraw_root_clone = startdraw_root_clone;
+    }
+
+    public int getEnddraw_root_clone() {
+        return enddraw_root_clone;
+    }
+
+    public void setEnddraw_root_clone(int enddraw_root_clone) {
+        Counter.enddraw_root_clone = enddraw_root_clone;
+    }
+
+    public float getSeconds_count0_root_clone() {
+        return Seconds_count0_root_clone;
+    }
+
+    public  void setSeconds_count0_root_clone(float seconds_count0_root_clone) {
+        Seconds_count0_root_clone = seconds_count0_root_clone;
+    }
+
+    public float getSeconds_count8000_root_clone() {
+        return Seconds_count8000_root_clone;
+    }
+
+    public  void setSeconds_count8000_root_clone(int seconds_count8000_root_clone) {
+        Seconds_count8000_root_clone = seconds_count8000_root_clone;
+    }
 
     public int getChannel_load() {
         return channel_load;
@@ -235,19 +308,19 @@ static int show_record_ch=0;
         Line_stop_counter = line_stop_counter;
     }
 
-    public int getSeconds_count0_record() {
+    public float getSeconds_count0_record() {
         return Seconds_count0_record;
     }
 
-    public void setSeconds_count0_record(int seconds_count0) {
+    public void setSeconds_count0_record(float seconds_count0) {
         Seconds_count0_record = seconds_count0;
     }
 
-    public int getSeconds_count1000_record() {
+    public float getSeconds_count1000_record() {
         return Seconds_count1000_record;
     }
 
-    public void setSeconds_count1000_record(int seconds_count1000) {
+    public void setSeconds_count1000_record(float seconds_count1000) {
         Seconds_count1000_record = seconds_count1000;
     }
 
@@ -259,132 +332,132 @@ static int show_record_ch=0;
         Counter.b_touch = b_touch;
     }
 
-    public int getSeconds_count2000_record() {
+    public float getSeconds_count2000_record() {
         return Seconds_count2000_record;
     }
 
-    public void setSeconds_count2000_record(int seconds_count2000) {
+    public void setSeconds_count2000_record(float seconds_count2000) {
         Seconds_count2000_record = seconds_count2000;
     }
 
-    public int getSeconds_count3000_record() {
+    public float getSeconds_count3000_record() {
         return Seconds_count3000_record;
     }
 
-    public void setSeconds_count3000_record(int seconds_count3000) {
+    public void setSeconds_count3000_record(float seconds_count3000) {
         Seconds_count3000_record = seconds_count3000;
     }
 
-    public int getSeconds_count4000_record() {
+    public float getSeconds_count4000_record() {
         return Seconds_count4000_record;
     }
 
-    public void setSeconds_count4000_record(int seconds_count4000) {
+    public void setSeconds_count4000_record(float seconds_count4000) {
         Seconds_count4000_record = seconds_count4000;
     }
 
-    public int getSeconds_count5000_record() {
+    public float getSeconds_count5000_record() {
         return Seconds_count5000_record;
     }
 
-    public void setSeconds_count5000_record(int seconds_count5000) {
+    public void setSeconds_count5000_record(float seconds_count5000) {
         Seconds_count5000_record = seconds_count5000;
     }
 
-    public int getSeconds_count6000_record() {
+    public float getSeconds_count6000_record() {
         return Seconds_count6000_record;
     }
 
-    public void setSeconds_count6000_record(int seconds_count6000) {
+    public void setSeconds_count6000_record(float seconds_count6000) {
         Seconds_count6000_record = seconds_count6000;
     }
 
-    public int getSeconds_count7000_record() {
+    public float getSeconds_count7000_record() {
         return Seconds_count7000_record;
     }
 
-    public void setSeconds_count7000_record(int seconds_count7000) {
+    public void setSeconds_count7000_record(float seconds_count7000) {
         Seconds_count7000_record = seconds_count7000;
     }
 
-    public int getSeconds_count8000_record() {
+    public float getSeconds_count8000_record() {
         return Seconds_count8000_record;
     }
 
-    public void setSeconds_count8000_record(int seconds_count8000) {
+    public void setSeconds_count8000_record(float seconds_count8000) {
         Seconds_count8000_record = seconds_count8000;
     }
 
 
-    public int getSeconds_count0_root() {
+    public float getSeconds_count0_root() {
         return Seconds_count0_root;
     }
 
-    public void setSeconds_count0_root(int seconds_count0_root) {
+    public void setSeconds_count0_root(float seconds_count0_root) {
         Seconds_count0_root = seconds_count0_root;
     }
 
-    public int getSeconds_count1000_root() {
+    public float getSeconds_count1000_root() {
         return Seconds_count1000_root;
     }
 
-    public void setSeconds_count1000_root(int seconds_count1000_root) {
+    public void setSeconds_count1000_root(float seconds_count1000_root) {
         Seconds_count1000_root = seconds_count1000_root;
     }
 
-    public int getSeconds_count2000_root() {
+    public float getSeconds_count2000_root() {
         return Seconds_count2000_root;
     }
 
-    public void setSeconds_count2000_root(int seconds_count2000_root) {
+    public void setSeconds_count2000_root(float seconds_count2000_root) {
         Seconds_count2000_root = seconds_count2000_root;
     }
 
-    public int getSeconds_count3000_root() {
+    public float getSeconds_count3000_root() {
         return Seconds_count3000_root;
     }
 
-    public void setSeconds_count3000_root(int seconds_count3000_root) {
+    public void setSeconds_count3000_root(float seconds_count3000_root) {
         Seconds_count3000_root = seconds_count3000_root;
     }
 
-    public int getSeconds_count4000_root() {
+    public float getSeconds_count4000_root() {
         return Seconds_count4000_root;
     }
 
-    public void setSeconds_count4000_root(int seconds_count4000_root) {
+    public void setSeconds_count4000_root(float seconds_count4000_root) {
         Seconds_count4000_root = seconds_count4000_root;
     }
 
-    public int getSeconds_count5000_root() {
+    public float getSeconds_count5000_root() {
         return Seconds_count5000_root;
     }
 
-    public void setSeconds_count5000_root(int seconds_count5000_root) {
+    public void setSeconds_count5000_root(float seconds_count5000_root) {
         Seconds_count5000_root = seconds_count5000_root;
     }
 
-    public int getSeconds_count6000_root() {
+    public float getSeconds_count6000_root() {
         return Seconds_count6000_root;
     }
 
-    public void setSeconds_count6000_root(int seconds_count6000_root) {
+    public void setSeconds_count6000_root(float seconds_count6000_root) {
         Seconds_count6000_root = seconds_count6000_root;
     }
 
-    public int getSeconds_count7000_root() {
+    public float getSeconds_count7000_root() {
         return Seconds_count7000_root;
     }
 
-    public void setSeconds_count7000_root(int seconds_count7000_root) {
+    public void setSeconds_count7000_root(float seconds_count7000_root) {
         Seconds_count7000_root = seconds_count7000_root;
     }
 
-    public int getSeconds_count8000_root() {
+    public float getSeconds_count8000_root() {
         return Seconds_count8000_root;
     }
 
-    public void setSeconds_count8000_root(int seconds_count8000_root) {
+    public void setSeconds_count8000_root(float seconds_count8000_root) {
         Seconds_count8000_root = seconds_count8000_root;
     }
 
@@ -610,11 +683,11 @@ static int show_record_ch=0;
         Counter.enddraw_root = enddraw_root;
     }
 
-    public int getHorizontal_scale() {
+    public float getHorizontal_scale() {
         return horizontal_scale;
 
     }
-    public void setHorizontal_scale(int horizontal_scale) {
+    public void setHorizontal_scale(float horizontal_scale) {
         Counter.horizontal_scale = horizontal_scale;
 
     }

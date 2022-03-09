@@ -251,7 +251,7 @@ public class BaseSurfaceSingleRecord extends SurfaceView implements SurfaceHolde
                             canvas.drawRect(0, 0, getWidth(), 1, samplePaint);
                             canvas.drawRect(0, getHeight() - 4, getWidth(), getHeight(), samplePaint);
 
-                            if (counter.getBuffere(0, (counter.getHorizontal_scale() * counter.getRate_in_s() * counter.getCounter_changescreeen())) != counter.getPart_data()) {
+                            if (counter.getBuffere(0, ((int)counter.getHorizontal_scale() * counter.getRate_in_s() * counter.getCounter_changescreeen())) != counter.getPart_data()) {
                                 if (counter.isChangeScreen_single()) {
 
 
@@ -267,8 +267,8 @@ public class BaseSurfaceSingleRecord extends SurfaceView implements SurfaceHolde
                                     SingleRecordActivity.getV8000().setText(((counter.getHorizontal_scale()) + Float.parseFloat(SingleRecordActivity.getV8000().getText().toString())) + "");
 
 
-                                    counter.setEnddraw_record(counter.getEnddraw_record() + (counter.getHorizontal_scale() * 500));
-                                    counter.setStartdraw_record(counter.getStartdraw_record() + (counter.getHorizontal_scale() * 500));
+                                    counter.setEnddraw_record(counter.getEnddraw_record() + ((int)counter.getHorizontal_scale() * 500));
+                                    counter.setStartdraw_record(counter.getStartdraw_record() + ((int)counter.getHorizontal_scale() * 500));
                                     counter.setCounter_changescreeen(counter.getCounter_changescreeen() + 1);
 
                                     Log.e("(single((start)))", "" + counter.getStartdraw_record());
@@ -304,7 +304,7 @@ public class BaseSurfaceSingleRecord extends SurfaceView implements SurfaceHolde
 
 
                                         counter.setStartdraw_record(1);
-                                        counter.setEnddraw_record(counter.getHorizontal_scale() * counter.getRate_in_s());
+                                        counter.setEnddraw_record((int)counter.getHorizontal_scale() * counter.getRate_in_s());
                                         i1 = 1;
 
 

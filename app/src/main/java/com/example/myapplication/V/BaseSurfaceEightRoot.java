@@ -64,8 +64,8 @@ boolean drag=true;
             if (dx > 100 && f > -1) {
                 if (dx > dy) {
 
-                    counter.setStartdraw_root(counter.getStartdraw_root() - (counter.getRate_in_s() * counter.getHorizontal_scale()));
-                    counter.setEnddraw_root(counter.getEnddraw_root() - (counter.getRate_in_s() * counter.getHorizontal_scale()));
+                    counter.setStartdraw_root(counter.getStartdraw_root() - (counter.getRate_in_s() *(int) counter.getHorizontal_scale()));
+                    counter.setEnddraw_root(counter.getEnddraw_root() - (counter.getRate_in_s() * (int)counter.getHorizontal_scale()));
 
 
                     counter.setSeconds_count0_root(counter.getSeconds_count0_root() - counter.getHorizontal_scale());
@@ -110,10 +110,10 @@ boolean drag=true;
                 float t1 = counter.getSeconds_count8000_root();
 
                 if (dx < dy && t > t1) {
+                  Log.e(""+counter.getStartdraw_root()+"................",counter.getEnddraw_root()+"");
 
-
-                    counter.setStartdraw_root(counter.getStartdraw_root() + (counter.getRate_in_s() * counter.getHorizontal_scale()));
-                    counter.setEnddraw_root(counter.getEnddraw_root() + (counter.getRate_in_s() * counter.getHorizontal_scale()));
+                    counter.setStartdraw_root(counter.getStartdraw_root() + (counter.getRate_in_s() * (int) counter.getHorizontal_scale()));
+                    counter.setEnddraw_root(counter.getEnddraw_root() + (counter.getRate_in_s() * (int)counter.getHorizontal_scale()));
 
 
                     counter.setSeconds_count0_root(counter.getSeconds_count0_root() + counter.getHorizontal_scale());
@@ -166,18 +166,77 @@ else {
             if (event.getAction()==MotionEvent.ACTION_DOWN && drag){
 
                 drag=false;
-              //  point_x1=((float) event.getX()/getWidth())*(counter.getRate_in_s()*counter.getSeconds_count8000_root());
-              //  Log.e("................ :", "down......."+point_x1);
+                point_x1=((((float) event.getX()/getWidth())*(counter.getHorizontal_scale()*counter.getRate_in_s()))+((float) counter.getRate_in_s()*counter.getSeconds_count0_root()));
+
+
+
 
 
             }
             if (event.getAction()==MotionEvent.ACTION_UP){
-               // point_x2=((float) event.getX()/getWidth())*(counter.getRate_in_s()*counter.getSeconds_count8000_root());
-              //  Log.e("................ :", "down......."+point_x2);
+
+                point_x2=((((float) event.getX()/getWidth())*(counter.getHorizontal_scale()*counter.getRate_in_s()))+((float) counter.getRate_in_s()*counter.getSeconds_count0_root()));
+
                 drag=true;
 
-            // counter.setStartdraw_root(1);
-             //   counter.setEnddraw_root((int) point_x2);
+
+
+
+
+
+               if (point_x1 < point_x2){
+                   counter.setStartdraw_root((int) point_x1);
+                   counter.setEnddraw_root((int) point_x2);
+                counter.setHorizontal_scale((point_x2-point_x1)/counter.getRate_in_s());
+               }else {
+                   counter.setStartdraw_root((int) point_x2);
+                   counter.setEnddraw_root((int) point_x1);
+                   counter.setHorizontal_scale((point_x1-point_x2)/counter.getRate_in_s());
+
+               }
+
+                counter.setEight_step_x(counter.getEight_step_x()*(counter.getHorizontal_scale_clone()/counter.getHorizontal_scale()));
+
+
+                counter.setSingle_step_x(counter.getSingle_step_x()*(counter.getHorizontal_scale_clone()/counter.getHorizontal_scale()));
+
+
+                ///////////4 s         4048
+               ///////// 8 s         6144
+                ////////12 s        8192
+               //////// 16 s        10240
+               /////// 20 s        12288
+
+
+                counter.setSeconds_count0_root( (point_x1/counter.getRate_in_s()));
+
+                counter.setSeconds_count4000_root( ((float)counter.getEnddraw_root()+counter.getStartdraw_root())/(counter.getRate_in_s()*2));
+
+                counter.setSeconds_count8000_root((point_x2/counter.getRate_in_s()));
+
+
+
+
+                if (point_x1 < point_x2){
+                    EightRootActivity.getV0().setText(counter.getSeconds_count0_root()+" s");
+                    EightRootActivity.getV4000().setText(counter.getSeconds_count4000_root()+" s");
+                    EightRootActivity.getV8000().setText(counter.getSeconds_count8000_root()+" s");
+                }else {
+                    EightRootActivity.getV0().setText(counter.getSeconds_count8000_root()+" s");
+                    EightRootActivity.getV4000().setText(counter.getSeconds_count4000_root()+" s");
+                    EightRootActivity.getV8000().setText(counter.getSeconds_count0_root()+" s");
+
+                }
+
+
+                EightRootActivity.getV1000().setVisibility(INVISIBLE);
+                EightRootActivity.getV2000().setVisibility(INVISIBLE);
+                EightRootActivity.getV3000().setVisibility(INVISIBLE);
+                EightRootActivity.getV5000().setVisibility(INVISIBLE);
+                EightRootActivity.getV6000().setVisibility(INVISIBLE);
+                EightRootActivity.getV7000().setVisibility(INVISIBLE);
+
+
             }
            // Log.e("start :"+counter.getStartdraw_root(), "end:"+counter.getEnddraw_root());
 

@@ -127,7 +127,7 @@ int check_non_two_end=0;
         surface.startDrawThread(0);
 
         counter.setStartdraw_record(1);
-        counter.setEnddraw_record(counter.getHorizontal_scale()*1000);
+        counter.setEnddraw_record((int)counter.getHorizontal_scale()*1000);
 
         counter.setSingle_step_x((float) counter.getSurface_width()/(500*counter.getHorizontal_scale()));
         counter.setSingle_step_y((float) counter.getSurface_height()/200);
@@ -150,7 +150,7 @@ int check_non_two_end=0;
         animatorSet = new AnimatorSet();
         lineplay.setTranslationX(0);
         animatorX = ObjectAnimator.ofFloat(lineplay, "x", counter.getSurface_width()-10);
-        animatorX.setDuration(1000*counter.getHorizontal_scale());
+        animatorX.setDuration(1000*(int)counter.getHorizontal_scale());
         animatorSet.playTogether(animatorX);
 
         play.setBackgroundResource(R.drawable.play_foreground);
@@ -552,8 +552,8 @@ vibrator.vibrate(40);
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            counter.setStartdraw_record(counter.getStartdraw_record() + (500 * counter.getHorizontal_scale()));
-                            counter.setEnddraw_record(counter.getEnddraw_record() + (500 * counter.getHorizontal_scale()));
+                            counter.setStartdraw_record(counter.getStartdraw_record() + (500 * (int)counter.getHorizontal_scale()));
+                            counter.setEnddraw_record(counter.getEnddraw_record() + (500 *(int) counter.getHorizontal_scale()));
 
                             float z = Float.parseFloat(SingleRootActivity.getV0().getText().toString()) + (counter.getHorizontal_scale());
                             SingleRootActivity.getV0().setText("" + z);

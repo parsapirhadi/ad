@@ -200,7 +200,7 @@ public class BaseSurfaceEightRecord extends SurfaceView implements SurfaceHolder
         ondraw(c);
         holder.unlockCanvasAndPost(c);
 
-        no_limit=24990-(counter.getHorizontal_scale()*counter.getRate_in_s()*3);
+        no_limit=24990-((int)counter.getHorizontal_scale()*counter.getRate_in_s()*3);
 
 
 

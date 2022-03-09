@@ -84,8 +84,8 @@ Counter counter;
                 if (dx>dy)
                 {
 
-                    counter.setStartdraw_record(counter.getStartdraw_record()-(500*counter.getHorizontal_scale()));
-                    counter.setEnddraw_record(counter.getEnddraw_record()-(500*counter.getHorizontal_scale()));
+                    counter.setStartdraw_record(counter.getStartdraw_record()-(500*(int)counter.getHorizontal_scale()));
+                    counter.setEnddraw_record(counter.getEnddraw_record()-(500*(int)counter.getHorizontal_scale()));
 
                     float z=Float.parseFloat(SingleRootActivity.getV0().getText().toString())-(counter.getHorizontal_scale());
 
@@ -111,8 +111,8 @@ Counter counter;
 
 
 
-                    counter.setStartdraw_record(counter.getStartdraw_record()+(500*counter.getHorizontal_scale()));
-                    counter.setEnddraw_record(counter.getEnddraw_record()+(500*counter.getHorizontal_scale()));
+                    counter.setStartdraw_record(counter.getStartdraw_record()+(500*(int)counter.getHorizontal_scale()));
+                    counter.setEnddraw_record(counter.getEnddraw_record()+(500*(int)counter.getHorizontal_scale()));
 
                     float z=Float.parseFloat(SingleRootActivity.getV0().getText().toString())+(counter.getHorizontal_scale());
                     SingleRootActivity.getV0().setText(""+z);

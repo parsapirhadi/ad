@@ -877,7 +877,7 @@ public class EightRecordActivity extends AppCompatActivity {
         }
 
         counter.setStartdraw_record(1);
-        counter.setEnddraw_record(counter.getHorizontal_scale()*counter.getRate_in_s()*2);
+        counter.setEnddraw_record((int)counter.getHorizontal_scale()*counter.getRate_in_s()*2);
 
 
         counter.setLine_stop_counter(0);

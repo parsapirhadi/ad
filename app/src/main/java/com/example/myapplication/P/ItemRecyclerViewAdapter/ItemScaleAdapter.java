@@ -102,7 +102,7 @@ public class ItemScaleAdapter extends RecyclerView.Adapter<ItemScaleAdapter.MyVi
                             }
 
                             counter.setStartdraw_root(1);
-                            counter.setEnddraw_root(counter.getHorizontal_scale()*counter.getRate_in_s()*2);
+                            counter.setEnddraw_root((int)counter.getHorizontal_scale()*counter.getRate_in_s()*2);
 
 
 

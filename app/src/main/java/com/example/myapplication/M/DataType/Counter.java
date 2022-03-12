@@ -133,6 +133,13 @@ static int show_record_ch=0;
 
     static boolean record_activity= false;
 
+    static boolean touchDraw=false;
+
+    static float start_touch_draw=0;
+
+    static float end_touch_draw=0;
+
+
     static long buffer_count=0;
 
     static boolean is_draw_activity_on =true;
@@ -171,6 +178,21 @@ static int show_record_ch=0;
 
     static float timer=0;
 
+    public float getStart_touch_draw() {
+        return start_touch_draw;
+    }
+
+    public void setStart_touch_draw(float start_touch_draw) {
+        Counter.start_touch_draw = start_touch_draw;
+    }
+
+    public float getEnd_touch_draw() {
+        return end_touch_draw;
+    }
+
+    public void setEnd_touch_draw(float end_touch_draw) {
+        Counter.end_touch_draw = end_touch_draw;
+    }
 
     public float getHorizontal_scale_clone() {
         return horizontal_scale_clone;
@@ -443,6 +465,14 @@ static int show_record_ch=0;
 
     public void setSeconds_count6000_root(float seconds_count6000_root) {
         Seconds_count6000_root = seconds_count6000_root;
+    }
+
+    public boolean isTouchDraw() {
+        return touchDraw;
+    }
+
+    public void setTouchDraw(boolean touchDraw) {
+        Counter.touchDraw = touchDraw;
     }
 
     public float getSeconds_count7000_root() {

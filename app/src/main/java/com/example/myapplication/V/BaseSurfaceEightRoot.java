@@ -27,6 +27,7 @@ float x=0 ,y =0;
 float dy,dx;
 boolean drag=true;
     private Paint paint[]=new Paint[64];
+    Paint touch=new Paint();
     float point_x1=0;
     float point_x2=0;
 
@@ -162,38 +163,43 @@ boolean drag=true;
         }
 
     }
+
 else {
             if (event.getAction()==MotionEvent.ACTION_DOWN && drag){
 
+                counter.setTouchDraw(true);
                 drag=false;
                 point_x1=((((float) event.getX()/getWidth())*(counter.getHorizontal_scale()*counter.getRate_in_s()))+((float) counter.getRate_in_s()*counter.getSeconds_count0_root()));
 
 
-
+                counter.setStart_touch_draw(event.getX());
 
 
             }
             if (event.getAction()==MotionEvent.ACTION_UP){
 
-                point_x2=((((float) event.getX()/getWidth())*(counter.getHorizontal_scale()*counter.getRate_in_s()))+((float) counter.getRate_in_s()*counter.getSeconds_count0_root()));
 
+
+
+                point_x2=((((float) event.getX()/getWidth())*(counter.getHorizontal_scale()*counter.getRate_in_s()))+((float) counter.getRate_in_s()*counter.getSeconds_count0_root()));
+                counter.setTouchDraw(false);
                 drag=true;
 
 
 
 
 
+               if (point_x1 > point_x2){
+                  float t=point_x1;
+                  point_x1=point_x2;
+                  point_x2=t;
 
-               if (point_x1 < point_x2){
-                   counter.setStartdraw_root((int) point_x1);
-                   counter.setEnddraw_root((int) point_x2);
-                counter.setHorizontal_scale((point_x2-point_x1)/counter.getRate_in_s());
-               }else {
-                   counter.setStartdraw_root((int) point_x2);
-                   counter.setEnddraw_root((int) point_x1);
-                   counter.setHorizontal_scale((point_x1-point_x2)/counter.getRate_in_s());
 
                }
+
+                counter.setStartdraw_root((int) point_x1);
+                counter.setEnddraw_root((int) point_x2);
+                counter.setHorizontal_scale((point_x2-point_x1)/counter.getRate_in_s());
 
                 counter.setEight_step_x(counter.getEight_step_x()*(counter.getHorizontal_scale_clone()/counter.getHorizontal_scale()));
 
@@ -213,8 +219,7 @@ else {
 
 
                 if (point_x1 < point_x2){
-                    Log.e("gggggggg",""+String.format("%.1f", counter.getSeconds_count0_root()));
-                    EightRootActivity.getV0().setText(String.format("%.1f", counter.getSeconds_count0_root())+" s");
+                   EightRootActivity.getV0().setText(String.format("%.1f", counter.getSeconds_count0_root())+" s");
                     EightRootActivity.getV4000().setText(String.format("%.1f", counter.getSeconds_count4000_root())+" s");
                     EightRootActivity.getV8000().setText(String.format("%.1f", counter.getSeconds_count8000_root())+" s");
 
@@ -237,12 +242,19 @@ else {
                 EightRootActivity.getV7000().setVisibility(INVISIBLE);
 
 
+
+
+              Log.e("start :"+counter.getStartdraw_root(), "end:"+counter.getEnddraw_root());
+
+
             }
-           // Log.e("start :"+counter.getStartdraw_root(), "end:"+counter.getEnddraw_root());
+
 
 
 
         }
+
+        counter.setEnd_touch_draw(event.getX());
 
         return true;
 
@@ -344,7 +356,7 @@ else {
             paint[t].setStrokeWidth(3);
         }
 
-
+         touch.setColor(Color.rgb(173, 214, 255));
 
         paint[0].setColor(Color.rgb(109, 195, 255));
         paint[1].setColor(Color.rgb(43, 175, 20));
@@ -439,7 +451,11 @@ else {
                     {
                         int t=0;
 
+
+
+
                         if (string1.getSview().equals(string1.getSeight())) {
+
 
 
                             canvas.drawColor(Color.rgb(230, 230, 230));
@@ -449,7 +465,9 @@ else {
                             //  canvas.drawRect(0, ((getHeight() / 4)*1)-1, getWidth(), (getHeight() / 4)*1, samplePaint);
                             // canvas.drawRect(0, ((getHeight() / 4)*2)-1, getWidth(), (getHeight() / 4)*2, samplePaint);
                             //  canvas.drawRect(0, ((getHeight() / 4)*3)-1, getWidth(), (getHeight() / 4)*3, samplePaint);
-
+                            if (counter.isTouchDraw()) {
+                                canvas.drawRect(counter.getStart_touch_draw(),0,counter.getEnd_touch_draw(), getHeight(), touch);
+                            }
 
                             canvas.drawRect(((getWidth() / 4) * 1) - 1, 0, (getWidth() / 4) * 1, getHeight(), samplePaint);
                             canvas.drawRect(((getWidth() / 4) * 2) - 1, 0, (getWidth() / 4) * 2, getHeight(), samplePaint);
@@ -506,7 +524,9 @@ for (int j=0;j<1000;j+=50) {
                                 //  canvas.drawColor(Color.rgb(230,230,230));
 
 
-
+                                if (counter.isTouchDraw()) {
+                                    canvas.drawRect(counter.getStart_touch_draw(),0,counter.getEnd_touch_draw(), getHeight(), touch);
+                                }
 
 
                                 canvas.drawRect(0, ((getHeight() / 4)*1)-1, getWidth(), (getHeight() / 4)*1, samplePaint);

@@ -29,7 +29,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:layout_margin="2dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
             android:id="@+id/tools"
             android:orientation="horizontal"
             android:background="@drawable/banda_tools_blue"
@@ -231,7 +233,7 @@
                     android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:background="@drawable/ruler_on"
+                    android:background="@drawable/ruler_off"
                     app:layout_constraintEnd_toEndOf="parent"
                     tools:layout_editor_absoluteY="10dp" />
             </LinearLayout>

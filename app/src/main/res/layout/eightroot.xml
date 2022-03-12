@@ -231,7 +231,7 @@
                     android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:background="@drawable/touch_off_foreground"
+                    android:background="@drawable/ruler_on"
                     app:layout_constraintEnd_toEndOf="parent"
                     tools:layout_editor_absoluteY="10dp" />
             </LinearLayout>

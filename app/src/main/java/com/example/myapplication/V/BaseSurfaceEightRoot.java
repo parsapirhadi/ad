@@ -32,7 +32,7 @@ boolean drag=true;
 
 
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint({"SetTextI18n", "DefaultLocale"})
     @Override
     public boolean onTouchEvent(MotionEvent event) {
 
@@ -68,40 +68,40 @@ boolean drag=true;
                     counter.setEnddraw_root(counter.getEnddraw_root() - (counter.getRate_in_s() * (int)counter.getHorizontal_scale()));
 
 
-                    counter.setSeconds_count0_root(counter.getSeconds_count0_root() - counter.getHorizontal_scale());
-                    EightRootActivity.getV0().setText(counter.getSeconds_count0_root() + "s");
+                    counter.setSeconds_count0_root(counter.getSeconds_count0_root() - (int)counter.getHorizontal_scale());
+                    EightRootActivity.getV0().setText((int)counter.getSeconds_count0_root() + "s");
 
 
-                    counter.setSeconds_count1000_root(counter.getSeconds_count1000_root() - counter.getHorizontal_scale());
-                    EightRootActivity.getV1000().setText(counter.getSeconds_count1000_root() + "s");
+                    counter.setSeconds_count1000_root(counter.getSeconds_count1000_root() - (int)counter.getHorizontal_scale());
+                    EightRootActivity.getV1000().setText((int)counter.getSeconds_count1000_root() + "s");
 
 
-                    counter.setSeconds_count2000_root(counter.getSeconds_count2000_root() - counter.getHorizontal_scale());
-                    EightRootActivity.getV2000().setText(counter.getSeconds_count2000_root() + "s");
+                    counter.setSeconds_count2000_root(counter.getSeconds_count2000_root() -(int) counter.getHorizontal_scale());
+                    EightRootActivity.getV2000().setText((int)counter.getSeconds_count2000_root() + "s");
 
 
-                    counter.setSeconds_count3000_root(counter.getSeconds_count3000_root() - counter.getHorizontal_scale());
-                    EightRootActivity.getV3000().setText(counter.getSeconds_count3000_root() + "s");
+                    counter.setSeconds_count3000_root(counter.getSeconds_count3000_root() - (int)counter.getHorizontal_scale());
+                    EightRootActivity.getV3000().setText((int)counter.getSeconds_count3000_root() + "s");
 
 
-                    counter.setSeconds_count4000_root(counter.getSeconds_count4000_root() - counter.getHorizontal_scale());
-                    EightRootActivity.getV4000().setText(counter.getSeconds_count4000_root() + "s");
+                    counter.setSeconds_count4000_root(counter.getSeconds_count4000_root() -(int) counter.getHorizontal_scale());
+                    EightRootActivity.getV4000().setText((int)counter.getSeconds_count4000_root() + "s");
 
 
-                    counter.setSeconds_count5000_root(counter.getSeconds_count5000_root() - counter.getHorizontal_scale());
-                    EightRootActivity.getV5000().setText(counter.getSeconds_count5000_root() + "s");
+                    counter.setSeconds_count5000_root(counter.getSeconds_count5000_root() -(int) counter.getHorizontal_scale());
+                    EightRootActivity.getV5000().setText((int)counter.getSeconds_count5000_root() + "s");
 
 
-                    counter.setSeconds_count6000_root(counter.getSeconds_count6000_root() - counter.getHorizontal_scale());
-                    EightRootActivity.getV6000().setText(counter.getSeconds_count6000_root() + "s");
+                    counter.setSeconds_count6000_root(counter.getSeconds_count6000_root() -(int) counter.getHorizontal_scale());
+                    EightRootActivity.getV6000().setText((int)counter.getSeconds_count6000_root() + "s");
 
 
-                    counter.setSeconds_count7000_root(counter.getSeconds_count7000_root() - counter.getHorizontal_scale());
-                    EightRootActivity.getV7000().setText(counter.getSeconds_count7000_root() + "s");
+                    counter.setSeconds_count7000_root(counter.getSeconds_count7000_root() -(int) counter.getHorizontal_scale());
+                    EightRootActivity.getV7000().setText((int)counter.getSeconds_count7000_root() + "s");
 
 
-                    counter.setSeconds_count8000_root(counter.getSeconds_count8000_root() - counter.getHorizontal_scale());
-                    EightRootActivity.getV8000().setText(counter.getSeconds_count8000_root() + "s");
+                    counter.setSeconds_count8000_root(counter.getSeconds_count8000_root() - (int)counter.getHorizontal_scale());
+                    EightRootActivity.getV8000().setText((int)counter.getSeconds_count8000_root() + "s");
 
 
                 }
@@ -116,40 +116,40 @@ boolean drag=true;
                     counter.setEnddraw_root(counter.getEnddraw_root() + (counter.getRate_in_s() * (int)counter.getHorizontal_scale()));
 
 
-                    counter.setSeconds_count0_root(counter.getSeconds_count0_root() + counter.getHorizontal_scale());
-                    EightRootActivity.getV0().setText(counter.getSeconds_count0_root() + "s");
+                    counter.setSeconds_count0_root(counter.getSeconds_count0_root() +(int) counter.getHorizontal_scale());
+                    EightRootActivity.getV0().setText((int)counter.getSeconds_count0_root() + "s");
 
 
-                    counter.setSeconds_count1000_root(counter.getSeconds_count0_root() + ((counter.getHorizontal_scale() / 8) * 1));
-                    EightRootActivity.getV1000().setText(counter.getSeconds_count1000_root() + "s");
+                    counter.setSeconds_count1000_root(counter.getSeconds_count0_root() + (((int)counter.getHorizontal_scale() / 8) * 1));
+                    EightRootActivity.getV1000().setText((int)counter.getSeconds_count1000_root() + "s");
 
 
-                    counter.setSeconds_count2000_root(counter.getSeconds_count0_root() + ((counter.getHorizontal_scale() * 2) / 8));
-                    EightRootActivity.getV2000().setText(counter.getSeconds_count2000_root() + "s");
+                    counter.setSeconds_count2000_root(counter.getSeconds_count0_root() + (((int)counter.getHorizontal_scale() * 2) / 8));
+                    EightRootActivity.getV2000().setText((int)counter.getSeconds_count2000_root() + "s");
 
 
-                    counter.setSeconds_count3000_root(counter.getSeconds_count0_root() + ((counter.getHorizontal_scale() * 3) / 8));
-                    EightRootActivity.getV3000().setText(counter.getSeconds_count3000_root() + "s");
+                    counter.setSeconds_count3000_root(counter.getSeconds_count0_root() + (((int)counter.getHorizontal_scale() * 3) / 8));
+                    EightRootActivity.getV3000().setText((int)counter.getSeconds_count3000_root() + "s");
 
 
-                    counter.setSeconds_count4000_root(counter.getSeconds_count0_root() + ((counter.getHorizontal_scale() * 4) / 8));
-                    EightRootActivity.getV4000().setText(counter.getSeconds_count4000_root() + "s");
+                    counter.setSeconds_count4000_root(counter.getSeconds_count0_root() + (((int)counter.getHorizontal_scale() * 4) / 8));
+                    EightRootActivity.getV4000().setText((int)counter.getSeconds_count4000_root() + "s");
 
 
-                    counter.setSeconds_count5000_root(counter.getSeconds_count0_root() + ((counter.getHorizontal_scale() * 5) / 8));
-                    EightRootActivity.getV5000().setText(counter.getSeconds_count5000_root() + "s");
+                    counter.setSeconds_count5000_root(counter.getSeconds_count0_root() + (((int)counter.getHorizontal_scale() * 5) / 8));
+                    EightRootActivity.getV5000().setText((int)counter.getSeconds_count5000_root() + "s");
 
 
-                    counter.setSeconds_count6000_root(counter.getSeconds_count0_root() + ((counter.getHorizontal_scale() * 6) / 8));
-                    EightRootActivity.getV6000().setText(counter.getSeconds_count6000_root() + "s");
+                    counter.setSeconds_count6000_root(counter.getSeconds_count0_root() + (((int)counter.getHorizontal_scale() * 6) / 8));
+                    EightRootActivity.getV6000().setText((int)counter.getSeconds_count6000_root() + "s");
 
 
-                    counter.setSeconds_count7000_root(counter.getSeconds_count0_root() + ((counter.getHorizontal_scale() * 7) / 8));
-                    EightRootActivity.getV7000().setText(counter.getSeconds_count7000_root() + "s");
+                    counter.setSeconds_count7000_root(counter.getSeconds_count0_root() + (((int)counter.getHorizontal_scale() * 7) / 8));
+                    EightRootActivity.getV7000().setText((int)counter.getSeconds_count7000_root() + "s");
 
 
-                    counter.setSeconds_count8000_root(counter.getSeconds_count0_root() + ((counter.getHorizontal_scale())));
-                    EightRootActivity.getV8000().setText(counter.getSeconds_count8000_root() + "s");
+                    counter.setSeconds_count8000_root(counter.getSeconds_count0_root() + (((int)counter.getHorizontal_scale())));
+                    EightRootActivity.getV8000().setText((int)counter.getSeconds_count8000_root() + "s");
 
 
                 }
@@ -201,11 +201,6 @@ else {
                 counter.setSingle_step_x(counter.getSingle_step_x()*(counter.getHorizontal_scale_clone()/counter.getHorizontal_scale()));
 
 
-                ///////////4 s         4048
-               ///////// 8 s         6144
-                ////////12 s        8192
-               //////// 16 s        10240
-               /////// 20 s        12288
 
 
                 counter.setSeconds_count0_root( (point_x1/counter.getRate_in_s()));
@@ -218,13 +213,18 @@ else {
 
 
                 if (point_x1 < point_x2){
-                    EightRootActivity.getV0().setText(counter.getSeconds_count0_root()+" s");
-                    EightRootActivity.getV4000().setText(counter.getSeconds_count4000_root()+" s");
-                    EightRootActivity.getV8000().setText(counter.getSeconds_count8000_root()+" s");
+                    Log.e("gggggggg",""+String.format("%.1f", counter.getSeconds_count0_root()));
+                    EightRootActivity.getV0().setText(String.format("%.1f", counter.getSeconds_count0_root())+" s");
+                    EightRootActivity.getV4000().setText(String.format("%.1f", counter.getSeconds_count4000_root())+" s");
+                    EightRootActivity.getV8000().setText(String.format("%.1f", counter.getSeconds_count8000_root())+" s");
+
+
                 }else {
-                    EightRootActivity.getV0().setText(counter.getSeconds_count8000_root()+" s");
-                    EightRootActivity.getV4000().setText(counter.getSeconds_count4000_root()+" s");
-                    EightRootActivity.getV8000().setText(counter.getSeconds_count0_root()+" s");
+                    EightRootActivity.getV0().setText(String.format("%.1f", counter.getSeconds_count8000_root())+" s");
+                    EightRootActivity.getV4000().setText(String.format("%.1f", counter.getSeconds_count4000_root())+" s");
+                    EightRootActivity.getV8000().setText(String.format("%.1f", counter.getSeconds_count0_root())+" s");
+
+
 
                 }
 

@@ -99,7 +99,7 @@ public class Scale_Fragment extends Fragment {
         recyclerView.setAdapter(itemAdapter);
 
 
-        list.add(new ItemScale("Horizontal Scale",counter.getHorizontal_scale()+" sec per page"));
+        list.add(new ItemScale("Horizontal Scale",(int)counter.getHorizontal_scale()+" sec per page"));
         //list.add(new ItemScale("EEG Sensivity","70µV per page"));
 
 

@@ -45,7 +45,7 @@ import java.util.Set;
 
 public class EightRootActivity extends AppCompatActivity {
 
-    Button line,btn,touch,bluetooth,montage,play,zoomout_eight,zoomin_eight,zoomout_single,zoomin_single;
+    Button line, note,touch,bluetooth,montage,play,zoomout_eight,zoomin_eight,zoomout_single,zoomin_single;
     ImageView notch;
     TextView textplay;
     ListView listView;
@@ -56,6 +56,15 @@ public class EightRootActivity extends AppCompatActivity {
    Button lineplay;
     SetPivotName namePivote;
     SetPivotValue pivotValue;
+
+
+
+
+
+
+
+  boolean bnote=true;
+
 
 
 
@@ -500,7 +509,8 @@ for (int t=0;t<40;t++){
 
 
 
-
+        counter.setSingle_step_x((float) counter.getSurface_width()/(counter.getRate_in_s()*counter.getHorizontal_scale()));
+        counter.setSingle_step_y((float) counter.getSurface_height()/200);
 
 
 
@@ -695,20 +705,7 @@ for (int t=0;t<40;t++){
         });
 
 
-        notch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(notchcount==0) {
-                  //  notch.setBackgroundResource(R.mipmap.notch_);
-                    notchcount=1;
-                }
-               else if(notchcount==1) {
-                   // notch.setBackgroundResource(R.mipmap.notch_off_);
-                    notchcount=0;
 
-                }
-            }
-        });
         line.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -723,8 +720,7 @@ for (int t=0;t<40;t++){
                         findViewById(R.id.left_linearlayout).setVisibility(View.GONE);
                     if (k) {
 
-                    counter.setSingle_step_x((float) counter.getSurface_width()/(counter.getRate_in_s()*counter.getHorizontal_scale()));
-                    counter.setSingle_step_y((float) counter.getSurface_height()/200);
+
                         k=false;
                     }
 
@@ -771,11 +767,17 @@ for (int t=0;t<40;t++){
             }
         });
         DrawerLayout drawerLayout=findViewById(R.id.draver_eightroot);
-        btn.setOnClickListener(new View.OnClickListener() {
+        note.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                        drawerLayout.openDrawer(GravityCompat.START);
+                if (bnote) {
+                    drawerLayout.openDrawer(GravityCompat.START);
+                }
+                else {
+
+                }
+
 
             }
         });
@@ -881,7 +883,6 @@ for (int t=0;t<40;t++){
             public void onClick(View v) {
 
 
-
                 vibrator.vibrate(40);
 
                 if(!b_notch) {
@@ -901,6 +902,7 @@ counter.setB_touch(false);
     touch.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+
             vibrator.vibrate(40);
             if (!counter.isB_touch()){
 
@@ -913,26 +915,28 @@ counter.setB_touch(false);
 
                 counter.setHorizontal_scale_clone(counter.getHorizontal_scale());
 
+                bnote=false;
 
                 counter.setB_touch(true);
 
-                touch.setBackgroundResource(R.drawable.touch_foreground);
+                touch.setBackgroundResource(R.drawable.ruler_on);
                 textplay.setVisibility(View.INVISIBLE);
                 play.setBackgroundResource(R.drawable.play_disable_foreground);
-
+                note.setBackgroundResource(R.drawable.note_off_foreground);
 
 
             }
             else {
 
                 counter.setB_touch(false);
-                touch.setBackgroundResource(R.drawable.touch_off_foreground);
+                touch.setBackgroundResource(R.drawable.ruler_off);
                 textplay.setVisibility(View.VISIBLE);
                 play.setBackgroundResource(R.drawable.play_foreground);
 
+                note.setBackgroundResource(R.drawable.notes_foreground);
 
 
-
+                bnote=true;
 
 
 
@@ -949,7 +953,9 @@ counter.setB_touch(false);
                 counter.setHorizontal_scale((int)counter.getHorizontal_scale_clone());
 
 
-                EightRootActivity.getV0().setText((int) counter.getSeconds_count0_root()+"s");
+
+
+
                 counter.setSeconds_count1000_root((int)counter.getSeconds_count0_root()+(1 * counter.getHorizontal_scale() / 8));
                 counter.setSeconds_count2000_root((int)counter.getSeconds_count0_root()+(2 *  counter.getHorizontal_scale() / 8));
                 counter.setSeconds_count3000_root((int)counter.getSeconds_count0_root()+(3 *  counter.getHorizontal_scale() / 8));
@@ -959,7 +965,7 @@ counter.setB_touch(false);
                 counter.setSeconds_count7000_root((int)counter.getSeconds_count0_root()+(7 * counter.getHorizontal_scale() / 8));
                 counter.setSeconds_count8000_root((int)counter.getSeconds_count0_root()+(8 *  counter.getHorizontal_scale() / 8));
 
-
+                EightRootActivity.getV0().setText((int) counter.getSeconds_count0_root()+"s");
                 EightRootActivity.getV1000().setText((int)counter.getSeconds_count1000_root()+"s");
                 EightRootActivity.getV2000().setText((int)counter.getSeconds_count2000_root()+"s");
                 EightRootActivity.getV3000().setText((int)counter.getSeconds_count3000_root()+"s");
@@ -1117,7 +1123,7 @@ new Thread(new Runnable() {
         line=findViewById(R.id.line_eightroot);
         textplay=findViewById(R.id.eighttextplay);
         play=findViewById(R.id.play_eightroot);
-        btn=findViewById(R.id.note_eightroot);
+        note =findViewById(R.id.note_eightroot);
         notch=findViewById(R.id.notch_eightroot);
         montage=findViewById(R.id.montage_eightroot);
         listView=dialog.findViewById(R.id.list_device);
@@ -1216,40 +1222,40 @@ while (t>t1)
 
 
             counter.setSeconds_count0_root(counter.getSeconds_count0_root()+ counter.getHorizontal_scale());
-            EightRootActivity.getV0().setText(counter.getSeconds_count0_root()+"s");
+            EightRootActivity.getV0().setText((int)counter.getSeconds_count0_root()+"s");
 
 
 
             counter.setSeconds_count1000_root(counter.getSeconds_count1000_root()+ counter.getHorizontal_scale());
-            EightRootActivity.getV1000().setText(counter.getSeconds_count1000_root()+"s");
+            EightRootActivity.getV1000().setText((int)counter.getSeconds_count1000_root()+"s");
 
 
             counter.setSeconds_count2000_root(counter.getSeconds_count2000_root()+ counter.getHorizontal_scale());
-            EightRootActivity.getV2000().setText(counter.getSeconds_count2000_root()+"s");
+            EightRootActivity.getV2000().setText((int)counter.getSeconds_count2000_root()+"s");
 
 
             counter.setSeconds_count3000_root(counter.getSeconds_count3000_root()+  counter.getHorizontal_scale());
-            EightRootActivity.getV3000().setText(counter.getSeconds_count3000_root()+"s");
+            EightRootActivity.getV3000().setText((int)counter.getSeconds_count3000_root()+"s");
 
 
             counter.setSeconds_count4000_root(counter.getSeconds_count4000_root()+ counter.getHorizontal_scale());
-            EightRootActivity.getV4000().setText(counter.getSeconds_count4000_root()+"s");
+            EightRootActivity.getV4000().setText((int)counter.getSeconds_count4000_root()+"s");
 
 
             counter.setSeconds_count5000_root(counter.getSeconds_count5000_root()+  counter.getHorizontal_scale());
-            EightRootActivity.getV5000().setText(counter.getSeconds_count5000_root()+"s");
+            EightRootActivity.getV5000().setText((int)counter.getSeconds_count5000_root()+"s");
 
 
             counter.setSeconds_count6000_root(counter.getSeconds_count6000_root()+  counter.getHorizontal_scale());
-            EightRootActivity.getV6000().setText(counter.getSeconds_count6000_root()+"s");
+            EightRootActivity.getV6000().setText((int)counter.getSeconds_count6000_root()+"s");
 
 
             counter.setSeconds_count7000_root(counter.getSeconds_count7000_root()+  counter.getHorizontal_scale());
-            EightRootActivity.getV7000().setText(counter.getSeconds_count7000_root()+"s");
+            EightRootActivity.getV7000().setText((int)counter.getSeconds_count7000_root()+"s");
 
 
             counter.setSeconds_count8000_root(counter.getSeconds_count8000_root()+  counter.getHorizontal_scale());
-            EightRootActivity.getV8000().setText(counter.getSeconds_count8000_root()+"s");
+            EightRootActivity.getV8000().setText((int)counter.getSeconds_count8000_root()+"s");
 
 
         }

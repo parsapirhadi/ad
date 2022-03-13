@@ -352,7 +352,8 @@ for (int j=0;j<1000;j+=50) {
 
                         }
                            else {
-                               Toast.makeText(getContext(),"single",Toast.LENGTH_LONG).show();
+
+
                            }
 
                         } finally

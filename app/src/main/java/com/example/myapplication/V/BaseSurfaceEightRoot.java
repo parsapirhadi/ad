@@ -107,7 +107,7 @@ boolean drag=true;
 
                 }
             } else if (dx < -100) {
-                float t = (float) (counter.getExist_in_secound() * 2) / 1000;
+                float t = (float) (counter.getExist_in_secound() )/(counter.getRate_in_s());
                 float t1 = counter.getSeconds_count8000_root();
 
                 if (dx < dy && t > t1) {
@@ -182,67 +182,70 @@ else {
 
 
                 point_x2=((((float) event.getX()/getWidth())*(counter.getHorizontal_scale()*counter.getRate_in_s()))+((float) counter.getRate_in_s()*counter.getSeconds_count0_root()));
-                counter.setTouchDraw(false);
-                drag=true;
 
 
+               if (point_x2!=point_x1) {
+                   counter.setTouchDraw(false);
+                   drag = true;
 
 
+                   if (point_x1 > point_x2) {
+                       float t = point_x1;
+                       point_x1 = point_x2;
+                       point_x2 = t;
 
-               if (point_x1 > point_x2){
-                  float t=point_x1;
-                  point_x1=point_x2;
-                  point_x2=t;
+
+                   }
+
+                   if (counter.getSeconds_count0_root()*counter.getRate_in_s()>point_x1){
+                       point_x1=counter.getSeconds_count0_root()*counter.getRate_in_s();
+                   }
+
+                   counter.setStartdraw_root((int) point_x1);
+                   counter.setEnddraw_root((int) point_x2);
+
+                   counter.setHorizontal_scale((point_x2 - point_x1) / counter.getRate_in_s());
+
+                   counter.setSingle_step_x((float) counter.getSurface_width() / (counter.getRate_in_s() * counter.getHorizontal_scale()));
+                   counter.setEight_step_x((float) counter.getSurface_width() / (counter.getRate_in_s() * counter.getHorizontal_scale()));
+
+                   // counter.setEight_step_x(counter.getEight_step_x()*(counter.getHorizontal_scale_clone()/counter.getHorizontal_scale()));
+
+
+                   //counter.setSingle_step_x(counter.getSingle_step_x()*(counter.getHorizontal_scale_clone()/counter.getHorizontal_scale()));
+
+
+                   counter.setSeconds_count0_root((point_x1 / counter.getRate_in_s()));
+
+                   counter.setSeconds_count4000_root(((float) counter.getEnddraw_root() + counter.getStartdraw_root()) / (counter.getRate_in_s() * 2));
+
+                   counter.setSeconds_count8000_root((point_x2 / counter.getRate_in_s()));
+
+
+                   if (point_x1 < point_x2) {
+                       EightRootActivity.getV0().setText(String.format("%.1f", counter.getSeconds_count0_root()) + " s");
+                       EightRootActivity.getV4000().setText(String.format("%.1f", counter.getSeconds_count4000_root()) + " s");
+                       EightRootActivity.getV8000().setText(String.format("%.1f", counter.getSeconds_count8000_root()) + " s");
+
+
+                   } else {
+                       EightRootActivity.getV0().setText(String.format("%.1f", counter.getSeconds_count8000_root()) + " s");
+                       EightRootActivity.getV4000().setText(String.format("%.1f", counter.getSeconds_count4000_root()) + " s");
+                       EightRootActivity.getV8000().setText(String.format("%.1f", counter.getSeconds_count0_root()) + " s");
+
+
+                   }
+
+
+                   EightRootActivity.getV1000().setVisibility(INVISIBLE);
+                   EightRootActivity.getV2000().setVisibility(INVISIBLE);
+                   EightRootActivity.getV3000().setVisibility(INVISIBLE);
+                   EightRootActivity.getV5000().setVisibility(INVISIBLE);
+                   EightRootActivity.getV6000().setVisibility(INVISIBLE);
+                   EightRootActivity.getV7000().setVisibility(INVISIBLE);
 
 
                }
-
-                counter.setStartdraw_root((int) point_x1);
-                counter.setEnddraw_root((int) point_x2);
-                counter.setHorizontal_scale((point_x2-point_x1)/counter.getRate_in_s());
-
-                counter.setEight_step_x(counter.getEight_step_x()*(counter.getHorizontal_scale_clone()/counter.getHorizontal_scale()));
-
-
-                counter.setSingle_step_x(counter.getSingle_step_x()*(counter.getHorizontal_scale_clone()/counter.getHorizontal_scale()));
-
-
-
-
-                counter.setSeconds_count0_root( (point_x1/counter.getRate_in_s()));
-
-                counter.setSeconds_count4000_root( ((float)counter.getEnddraw_root()+counter.getStartdraw_root())/(counter.getRate_in_s()*2));
-
-                counter.setSeconds_count8000_root((point_x2/counter.getRate_in_s()));
-
-
-
-
-                if (point_x1 < point_x2){
-                   EightRootActivity.getV0().setText(String.format("%.1f", counter.getSeconds_count0_root())+" s");
-                    EightRootActivity.getV4000().setText(String.format("%.1f", counter.getSeconds_count4000_root())+" s");
-                    EightRootActivity.getV8000().setText(String.format("%.1f", counter.getSeconds_count8000_root())+" s");
-
-
-                }else {
-                    EightRootActivity.getV0().setText(String.format("%.1f", counter.getSeconds_count8000_root())+" s");
-                    EightRootActivity.getV4000().setText(String.format("%.1f", counter.getSeconds_count4000_root())+" s");
-                    EightRootActivity.getV8000().setText(String.format("%.1f", counter.getSeconds_count0_root())+" s");
-
-
-
-                }
-
-
-                EightRootActivity.getV1000().setVisibility(INVISIBLE);
-                EightRootActivity.getV2000().setVisibility(INVISIBLE);
-                EightRootActivity.getV3000().setVisibility(INVISIBLE);
-                EightRootActivity.getV5000().setVisibility(INVISIBLE);
-                EightRootActivity.getV6000().setVisibility(INVISIBLE);
-                EightRootActivity.getV7000().setVisibility(INVISIBLE);
-
-
-
 
               Log.e("start :"+counter.getStartdraw_root(), "end:"+counter.getEnddraw_root());
 
@@ -279,7 +282,6 @@ else {
     String1 string1;
 
 
-    private static final int MAX_FRAME_TIME = (int) (1000.0 / 60.0);
 
     private static final String LOGTAG = "surface";
 
@@ -372,6 +374,17 @@ else {
 
         counter.setSurfaceviewheheight(getHeight());
         counter.setSurfaceviewhewidth(getWidth());
+
+        counter.setSurface_height(getHeight());
+        counter.setSurface_width(getWidth());
+
+        counter.setSingle_step_x((float) counter.getSurface_width()/(counter.getRate_in_s()*counter.getHorizontal_scale()));
+        counter.setSingle_step_y((float) counter.getSurface_height()/200);
+
+        counter.setEight_step_x((float) counter.getSurface_width()/(counter.getRate_in_s()*counter.getHorizontal_scale()));
+        counter.setEight_step_y((float) counter.getSurface_height()/200);
+        counter.setEight_step_y((counter.getEight_step_y()/string1.getChannel_count())/2);
+
 
     }
 
@@ -546,7 +559,7 @@ for (int j=0;j<1000;j+=50) {
 
                                 canvas.drawRect( 0,getHeight()-4, getWidth(), getHeight(), samplePaint);
 
-                                canvas.drawRect(0, 0 ,1500,1, samplePaint);
+                                canvas.drawRect(0, 0 ,getWidth(),1, samplePaint);
 
 
 

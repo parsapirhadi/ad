@@ -453,24 +453,19 @@ public class EightRecordActivity extends AppCompatActivity {
             bluetooth.setBackgroundResource(R.drawable.bluetooth_on_foreground);
         }
 
-        counter.setSingle_step_x((float) counter.getSurface_width() / (counter.getRate_in_s() * counter.getHorizontal_scale()));
-       counter.setSingle_step_y((float) counter.getSurface_height() / 200);
-
-
-      counter.setEight_step_x((float) counter.getSurface_width() / (counter.getRate_in_s() * counter.getHorizontal_scale()));
 
         try {
 
 
-            EightRecordActivity.getV0().setText(counter.getSeconds_count0_record() + "s");
-            EightRecordActivity.getV1000().setText(counter.getSeconds_count1000_record() + "s");
-            EightRecordActivity.getV2000().setText(counter.getSeconds_count2000_record() + "s");
-            EightRecordActivity.getV3000().setText(counter.getSeconds_count3000_record() + "s");
-            EightRecordActivity.getV4000().setText(counter.getSeconds_count4000_record() + "s");
-            EightRecordActivity.getV5000().setText(counter.getSeconds_count5000_record() + "s");
-            EightRecordActivity.getV6000().setText(counter.getSeconds_count6000_record() + "s");
-            EightRecordActivity.getV7000().setText(counter.getSeconds_count7000_record() + "s");
-            EightRecordActivity.getV8000().setText(counter.getSeconds_count8000_record() + "s");
+            EightRecordActivity.getV0().setText( (int)counter.getSeconds_count0_record() + "s");
+            EightRecordActivity.getV1000().setText( (int)counter.getSeconds_count1000_record() + "s");
+            EightRecordActivity.getV2000().setText( (int)counter.getSeconds_count2000_record() + "s");
+            EightRecordActivity.getV3000().setText( (int)counter.getSeconds_count3000_record() + "s");
+            EightRecordActivity.getV4000().setText( (int)counter.getSeconds_count4000_record() + "s");
+            EightRecordActivity.getV5000().setText( (int)counter.getSeconds_count5000_record() + "s");
+            EightRecordActivity.getV6000().setText( (int)counter.getSeconds_count6000_record() + "s");
+            EightRecordActivity.getV7000().setText( (int)counter.getSeconds_count7000_record() + "s");
+            EightRecordActivity.getV8000().setText( (int)counter.getSeconds_count8000_record() + "s");
 
 
         } catch (NullPointerException e) {
@@ -873,11 +868,11 @@ public class EightRecordActivity extends AppCompatActivity {
 
         if (counter.getHorizontal_scale()>10){
 
-        counter.setHorizontal_scale(8);
+        //counter.setHorizontal_scale(8);
         }
 
         counter.setStartdraw_record(1);
-        counter.setEnddraw_record((int)counter.getHorizontal_scale()*counter.getRate_in_s()*2);
+        counter.setEnddraw_record((int)counter.getHorizontal_scale()*counter.getRate_in_s());
 
 
         counter.setLine_stop_counter(0);
@@ -917,15 +912,15 @@ public class EightRecordActivity extends AppCompatActivity {
 
 
 
-            EightRecordActivity.getV0().setText(counter.getSeconds_count0_record()+"s");
-            EightRecordActivity.getV1000().setText(counter.getSeconds_count1000_record()+"s");
-            EightRecordActivity.getV2000().setText(counter.getSeconds_count2000_record()+"s");
-            EightRecordActivity.getV3000().setText(counter.getSeconds_count3000_record()+"s");
-            EightRecordActivity.getV4000().setText(counter.getSeconds_count4000_record()+"s");
-            EightRecordActivity.getV5000().setText(counter.getSeconds_count5000_record()+"s");
-            EightRecordActivity.getV6000().setText(counter.getSeconds_count6000_record()+"s");
-            EightRecordActivity.getV7000().setText(counter.getSeconds_count7000_record()+"s");
-            EightRecordActivity.getV8000().setText(counter.getSeconds_count8000_record()+"s");
+            EightRecordActivity.getV0().setText( (int)counter.getSeconds_count0_record()+"s");
+            EightRecordActivity.getV1000().setText( (int)counter.getSeconds_count1000_record()+"s");
+            EightRecordActivity.getV2000().setText( (int)counter.getSeconds_count2000_record()+"s");
+            EightRecordActivity.getV3000().setText( (int)counter.getSeconds_count3000_record()+"s");
+            EightRecordActivity.getV4000().setText( (int)counter.getSeconds_count4000_record()+"s");
+            EightRecordActivity.getV5000().setText( (int)counter.getSeconds_count5000_record()+"s");
+            EightRecordActivity.getV6000().setText( (int)counter.getSeconds_count6000_record()+"s");
+            EightRecordActivity.getV7000().setText( (int)counter.getSeconds_count7000_record()+"s");
+            EightRecordActivity.getV8000().setText( (int)counter.getSeconds_count8000_record()+"s");
 
 
 
@@ -1360,6 +1355,16 @@ public class EightRecordActivity extends AppCompatActivity {
                     findViewById(R.id.zoomout_eightrecord).setVisibility(View.GONE);
 
 
+                    Log.e("start",""+counter.getStartdraw_record());
+                    Log.e("end",""+counter.getEnddraw_record());
+                    Log.e("buffercount",""+counter.getBuffer_count());
+                    Log.e("timer",""+counter.getTimer());
+                    Log.e("ooo",""+counter.getO());
+                    Log.e("timer",""+counter.getTimer());
+                    Log.e("ooo",""+counter.getO());
+
+                    Log.e("singleX",""+counter.getSingle_step_x());
+                    Log.e("eightX",""+counter.getEight_step_x());
 
 
 

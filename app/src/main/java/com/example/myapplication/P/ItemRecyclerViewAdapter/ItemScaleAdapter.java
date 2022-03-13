@@ -105,8 +105,17 @@ public class ItemScaleAdapter extends RecyclerView.Adapter<ItemScaleAdapter.MyVi
                             counter.setEnddraw_root((int)counter.getHorizontal_scale()*counter.getRate_in_s()*2);
 
 
+                          try
+                          {
+                              Log.e("lllll",""+counter.getHorizontal_scale());
+                              counter.setStartdraw_record(1);
+                              counter.setEnddraw_record((int)counter.getHorizontal_scale()*counter.getRate_in_s());
 
+                          }
+catch (Exception e){
+                              e.printStackTrace();
 
+}
 
                             counter.setSeconds_count0_root(0);
                             counter.setSeconds_count1000_root(counter.getSeconds_count0_root()+(1 * counter.getHorizontal_scale() / 8));
@@ -121,15 +130,17 @@ public class ItemScaleAdapter extends RecyclerView.Adapter<ItemScaleAdapter.MyVi
 try {
 
 
-    EightRootActivity.getV0().setText(counter.getSeconds_count0_root() + "s");
-    EightRootActivity.getV1000().setText(counter.getSeconds_count1000_root() + "s");
-    EightRootActivity.getV2000().setText(counter.getSeconds_count2000_root() + "s");
-    EightRootActivity.getV3000().setText(counter.getSeconds_count3000_root() + "s");
-    EightRootActivity.getV4000().setText(counter.getSeconds_count4000_root() + "s");
-    EightRootActivity.getV5000().setText(counter.getSeconds_count5000_root() + "s");
-    EightRootActivity.getV6000().setText(counter.getSeconds_count6000_root() + "s");
-    EightRootActivity.getV7000().setText(counter.getSeconds_count7000_root() + "s");
-    EightRootActivity.getV8000().setText(counter.getSeconds_count8000_root() + "s");
+    EightRootActivity.getV0().setText((int) counter.getSeconds_count0_root() + "s");
+    EightRootActivity.getV1000().setText((int)counter.getSeconds_count1000_root() + "s");
+    EightRootActivity.getV2000().setText((int)counter.getSeconds_count2000_root() + "s");
+    EightRootActivity.getV3000().setText((int)counter.getSeconds_count3000_root() + "s");
+    EightRootActivity.getV4000().setText((int)counter.getSeconds_count4000_root() + "s");
+    EightRootActivity.getV5000().setText((int)counter.getSeconds_count5000_root() + "s");
+    EightRootActivity.getV6000().setText((int)counter.getSeconds_count6000_root() + "s");
+    EightRootActivity.getV7000().setText((int)counter.getSeconds_count7000_root() + "s");
+    EightRootActivity.getV8000().setText((int)counter.getSeconds_count8000_root() + "s");
+
+
 }
 catch (NullPointerException e)
 {
@@ -222,38 +233,51 @@ catch (NullPointerException e)
 
                             counter.setBuffer_count(0);
 
-                            try {
 
 
-                                if (counter.getHorizontal_scale() < 8) {
-
-                                    EightRootActivity.getV1000().setVisibility(View.INVISIBLE);
-                                    EightRootActivity.getV3000().setVisibility(View.INVISIBLE);
-                                    EightRootActivity.getV5000().setVisibility(View.INVISIBLE);
-                                    EightRootActivity.getV7000().setVisibility(View.INVISIBLE);
-
-                                    EightRecordActivity.getV1000().setVisibility(View.INVISIBLE);
-                                    EightRecordActivity.getV3000().setVisibility(View.INVISIBLE);
-                                    EightRecordActivity.getV5000().setVisibility(View.INVISIBLE);
-                                    EightRecordActivity.getV7000().setVisibility(View.INVISIBLE);
-
+                                if (counter.getHorizontal_scale() < 7) {
+                                      try {
+                                          EightRootActivity.getV1000().setVisibility(View.INVISIBLE);
+                                          EightRootActivity.getV3000().setVisibility(View.INVISIBLE);
+                                          EightRootActivity.getV5000().setVisibility(View.INVISIBLE);
+                                          EightRootActivity.getV7000().setVisibility(View.INVISIBLE);
+                                      }
+                                      catch (NullPointerException e){
+                                          e.printStackTrace();
+                                      }
+                                      try{
+                                          EightRecordActivity.getV1000().setVisibility(View.INVISIBLE);
+                                          EightRecordActivity.getV3000().setVisibility(View.INVISIBLE);
+                                          EightRecordActivity.getV5000().setVisibility(View.INVISIBLE);
+                                          EightRecordActivity.getV7000().setVisibility(View.INVISIBLE);
+                                      }
+                                      catch (NullPointerException e){
+                                          e.printStackTrace();
+                                      }
                                 } else {
+                                   try {
 
-                                    EightRootActivity.getV1000().setVisibility(View.VISIBLE);
-                                    EightRootActivity.getV3000().setVisibility(View.VISIBLE);
-                                    EightRootActivity.getV5000().setVisibility(View.VISIBLE);
-                                    EightRootActivity.getV7000().setVisibility(View.VISIBLE);
 
-                                    EightRecordActivity.getV1000().setVisibility(View.VISIBLE);
-                                    EightRecordActivity.getV3000().setVisibility(View.VISIBLE);
-                                    EightRecordActivity.getV5000().setVisibility(View.VISIBLE);
-                                    EightRecordActivity.getV7000().setVisibility(View.VISIBLE);
+                                       EightRootActivity.getV1000().setVisibility(View.VISIBLE);
+                                       EightRootActivity.getV3000().setVisibility(View.VISIBLE);
+                                       EightRootActivity.getV5000().setVisibility(View.VISIBLE);
+                                       EightRootActivity.getV7000().setVisibility(View.VISIBLE);
+                                   }
+                                   catch (NullPointerException e){
+                                       e.printStackTrace();
+                                   }
+                                    try {
 
+                                       EightRecordActivity.getV1000().setVisibility(View.VISIBLE);
+                                       EightRecordActivity.getV3000().setVisibility(View.VISIBLE);
+                                       EightRecordActivity.getV5000().setVisibility(View.VISIBLE);
+                                       EightRecordActivity.getV7000().setVisibility(View.VISIBLE);
+                                   }
+                                   catch (NullPointerException e){
+                                       e.printStackTrace();
+                                   }
                                 }
-                            }
-                            catch (NullPointerException e){
-                                e.printStackTrace();
-                            }
+
 
 
                             return true;

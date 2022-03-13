@@ -509,9 +509,6 @@ for (int t=0;t<40;t++){
 
 
 
-        counter.setSingle_step_x((float) counter.getSurface_width()/(counter.getRate_in_s()*counter.getHorizontal_scale()));
-        counter.setSingle_step_y((float) counter.getSurface_height()/200);
-
 
 
         animatorSet = new AnimatorSet();
@@ -537,10 +534,6 @@ for (int t=0;t<40;t++){
 
 
 
-
-        counter.setEight_step_x((float) counter.getSurface_width()/(counter.getRate_in_s()*counter.getHorizontal_scale()));
-        counter.setEight_step_y((float) counter.getSurface_height()/200);
-        counter.setEight_step_y((counter.getEight_step_y()/string1.getChannel_count())/2);
 
 
 
@@ -650,6 +643,7 @@ for (int t=0;t<40;t++){
         montage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 PopupMenu popup = new PopupMenu(EightRootActivity.this,montage);
                 popup.getMenuInflater().inflate(R.menu.montage, popup.getMenu());
 
@@ -770,6 +764,7 @@ for (int t=0;t<40;t++){
         note.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
 
                 if (bnote) {
                     drawerLayout.openDrawer(GravityCompat.START);

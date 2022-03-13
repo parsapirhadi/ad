@@ -51,17 +51,17 @@ static int show_record_ch=0;
 
     static  float horizontal_scale_clone=8;
 
-    static int startdraw_record =0;
-    static int enddraw_record =8000;
+    static int startdraw_record =1;
+    static int enddraw_record =8192;
 
-     static int startdraw_root =0;
-    static int enddraw_root =8000;
+     static int startdraw_root =1;
+    static int enddraw_root =8192;
 
-    static int startdraw_root_clone =0;
-    static int enddraw_root_clone =8000;
+    static int startdraw_root_clone =1;
+    static int enddraw_root_clone =8192;
 
-    static float Seconds_count0_root_clone =0;
-    static float Seconds_count8000_root_clone;
+    static float Seconds_count0_root_clone =1;
+    static float Seconds_count8000_root_clone=8192;
 
 
 

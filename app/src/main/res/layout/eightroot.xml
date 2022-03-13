@@ -29,9 +29,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:layout_marginTop="2dp"
-            android:layout_marginLeft="2dp"
-            android:layout_marginRight="2dp"
+            android:layout_marginTop="1dp"
+
             android:id="@+id/tools"
             android:orientation="horizontal"
             android:background="@drawable/banda_tools_blue"

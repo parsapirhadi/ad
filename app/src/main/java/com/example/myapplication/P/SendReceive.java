@@ -281,7 +281,7 @@ public class SendReceive extends Thread {
                             counter.setRefresh(true);
 
 
-                            counter.setBuffer( ((float)  ((data - counter.getAlpha()) / counter.getBeta())), counter.getDefault_channel()-1, counter.getO());
+                            counter.setBuffer( ((float)  ((data - counter.getAlpha()) / counter.getBeta())*-1), counter.getDefault_channel()-1, counter.getO());
 
 
 

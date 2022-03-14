@@ -5,14 +5,14 @@
     >
     <item
         android:id="@+id/todo1"
-        android:title="0.005"
+        android:title="256"
         />
     <item
         android:id="@+id/todo2"
-        android:title="0.002"/>
+        android:title="512"/>
     <item
         android:id="@+id/todo3"
-        android:title="0.001"/>
+        android:title="1024"/>
 
 
 </menu>

@@ -42,6 +42,7 @@ public class MenuActivity extends AppCompatActivity  {
 
     private String mParam1;
     Counter counter;
+    String1 string1;
     private String mParam2;
 
 
@@ -118,6 +119,7 @@ public class MenuActivity extends AppCompatActivity  {
 
 
         counter=new Counter();
+        string1=new String1();
 
         Dialog dialog=new Dialog(MenuActivity.this);
         dialog.setContentView(R.layout.new_record);
@@ -241,6 +243,8 @@ public class MenuActivity extends AppCompatActivity  {
                 intent=new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setType("*/*");
                 startActivityForResult(intent,1);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+
 
             }
         });
@@ -257,20 +261,33 @@ public class MenuActivity extends AppCompatActivity  {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1 && resultCode == -1) {
-            Counter counter = new Counter();
-            String1 string1 = new String1();
+        if(requestCode==1 && resultCode==-1) {
             string1.setChannel_count(0);
-
-
-            Intent intent = (new Intent(getApplicationContext(), EightRootActivity.class));
-            Uri uri = data.getData();
-            string1.setFilepatch(uri);
-
-            counter.setLine_clecked(2);
-            Log.e("set to", "1");
-            intent.putExtra("h", string1);
+            Intent intent=(new Intent(getApplicationContext(), EightRootActivity.class));
             startActivity(intent);
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+
+
+
+
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    Uri uri = data.getData();
+                    string1.setFilepatch(uri);
+                    counter.setLine_clecked(2);
+                    Log.e("set to","1");
+                    intent.putExtra("h",string1);
+
+                }
+            }).start();
+
+
+
+
+
+
+
 
 
         }

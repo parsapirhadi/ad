@@ -3,6 +3,7 @@ package com.example.myapplication.P;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Environment;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.myapplication.M.DataType.Counter;
@@ -22,13 +23,14 @@ public class FileReader {
     Counter counter;
     int y1=0;
     String f1="";
-   // SetPivotName namePivote;
     SetPivotValue pivotValue;
     String patch;
     Context context;
+    String s = "";
+    String fileContent = "";
     Activity activity;
 
-    public FileReader(Context context,Activity activity, String1 string1, Counter counter, SetPivotName namePivote, SetPivotValue pivotValue) {
+    public FileReader(Context context,Activity activity, String1 string1, Counter counter, SetPivotValue pivotValue) {
         this.string1 = string1;
         this.counter = counter;
        // this.namePivote = namePivote;
@@ -43,18 +45,14 @@ public class FileReader {
 
 
         // Log.e("%%%%%%%%%%%","4444");
-        for (int i=0;i<32;i++) {
-            for (int j=0;j<800000;j++) {
-                counter.setChannel((float) 1000.0,i,j);
-            }
-        }
+
 
 
 
         // String d=string1.getFilepatch().
         String fileName =  f1;
-        String s = "";
-        String fileContent = "";
+
+
 
         try {
 
@@ -79,7 +77,7 @@ public class FileReader {
             counter.setCount_of_set_j_channel(0);
 
 
-            if ((s = myReader.readLine()) != null) {
+            if ((s = myReader.readLine()) != null && counter.isLoadfor()) {
 
                 for (int e=0;e<s.length();e++){
                     if (s.charAt(e)==','){
@@ -98,31 +96,53 @@ public class FileReader {
 
             }
 
+
+
             string1.setChannel_count((counter.getChannel_load()/8)*8);
 
             for (int f=0;f<string1.getChannel_count();f++) {
                 string1.setPivote(f, "ch"+(f+1));
             }
 
+             new Thread(new Runnable() {
+                 @Override
+                 public void run() {
 
-            while ((s = myReader.readLine()) != null) {
-                counter.setExist_in_secound(counter.getExist_in_secound()+1);
-                fileContent = s ;
-                string1.setLine_count(string1.getLine_count()+1);
-                pivotValue=new SetPivotValue(fileContent,string1,counter);
-                pivotValue.set();
 
-            }
+                     try {
+
+
+
+                         while ((s = myReader.readLine()) != null && counter.isLoadfor()) {
+                             counter.setExist_in_secound(counter.getExist_in_secound() + 1);
+                             fileContent = s;
+                             string1.setLine_count(string1.getLine_count() + 1);
+                             pivotValue = new SetPivotValue(fileContent, string1, counter);
+                             pivotValue.set();
+
+
+                         }
+                         try {
+                             myReader.close();
+                         } catch (IOException | NullPointerException e) {
+                             e.printStackTrace();
+                         }
+
+                     }
+                     catch (IOException e){
+                         e.printStackTrace();
+                         Log.e("mmmmmmm",""+e.getMessage());
+                     }
+
+                 }
+             }).start();
+
 
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        try {
-            myReader.close();
-        } catch (IOException | NullPointerException e) {
-            e.printStackTrace();
-        }
+
 
 
 

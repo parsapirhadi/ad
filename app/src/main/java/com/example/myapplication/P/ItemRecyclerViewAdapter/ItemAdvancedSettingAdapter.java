@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapplication.M.DataType.Counter;
 import com.example.myapplication.M.Item.ItemAdvancedSetting;
 import com.example.myapplication.R;
 
@@ -19,9 +20,11 @@ import java.util.List;
 public class ItemAdvancedSettingAdapter extends RecyclerView.Adapter<ItemAdvancedSettingAdapter.MyViewHolder> {
     List<ItemAdvancedSetting> itwm;
     Context context;
+    Counter counter;
     public ItemAdvancedSettingAdapter(List<ItemAdvancedSetting> itwm,Context context) {
         this.itwm = itwm;
         this.context=context;
+        counter=new Counter();
     }
 
     @Override
@@ -42,18 +45,19 @@ public class ItemAdvancedSettingAdapter extends RecyclerView.Adapter<ItemAdvance
 if(position==2){
 
     PopupMenu popup = new PopupMenu(context,view);
-    popup.getMenuInflater().inflate(R.menu.to_do,popup.getMenu());
+    popup.getMenuInflater().inflate(R.menu.baud_rate,popup.getMenu());
 
 
     popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
         @Override
         public boolean onMenuItemClick(MenuItem menuItem) {
-            holder.title.setText(menuItem.getTitle());
+            holder.icon.setText(menuItem.getTitle());
+            counter.setRate_in_s(Integer.parseInt(menuItem.getTitle()+""));
 
             return true;
         }
     });
-    popup.show();
+   // popup.show();
 
 }
 

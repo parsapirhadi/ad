@@ -104,7 +104,8 @@ view=inflater.inflate(R.layout.advancedstetting_fragment, container, false);
 
         list1.add(new ItemAdvancedSetting("β","1.4"));
 
-        list1.add(new ItemAdvancedSetting("TO DO","512"));
+        list1.add(new ItemAdvancedSetting("\n" +
+                "Baud Rate","512"));
 
         string1=new String1();
 

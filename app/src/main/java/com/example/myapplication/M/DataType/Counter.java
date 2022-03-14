@@ -17,7 +17,9 @@ public class Counter {
 
     static boolean b_touch =false;
 
-    final static int rate_in_secound =512;
+    static int rate_in_secound =512;
+
+   static boolean loadfor=true;
 
 static int exist_in_secound=0;
 
@@ -36,7 +38,9 @@ static int show_record_ch=0;
 
     static int Surfaceview_Width_eightrecord=0;
 
-    public static float [][] channel=new float[32][800000];
+    public static float [][] channel=new float[32][1300000];
+
+
 
     public static float [][] buffer=new float[16][16100];
 
@@ -97,8 +101,8 @@ static int show_record_ch=0;
     static int Line_stop_counter=0;
 
 
-    int count_of_set_i_channel=0;
-    int count_of_set_j_channel=0;
+    static int count_of_set_i_channel=0;
+    static int count_of_set_j_channel=0;
 
     static float single_step_y =0;
     static float single_step_x =0;
@@ -250,9 +254,19 @@ static int show_record_ch=0;
         Seconds_count8000_root_clone = seconds_count8000_root_clone;
     }
 
+    public boolean isLoadfor() {
+        return loadfor;
+    }
+
+    public void setLoadfor(boolean loadfor) {
+        Counter.loadfor = loadfor;
+    }
+
     public int getChannel_load() {
         return channel_load;
     }
+
+
 
     public void setChannel_load(int channel_load) {
         Counter.channel_load = channel_load;
@@ -728,6 +742,12 @@ static int show_record_ch=0;
         return rate_in_secound;
     }
 
+
+
+    public static void setRate_in_s(int rate_in_secound) {
+        Counter.rate_in_secound = rate_in_secound;
+    }
+
     public  int getDefault_channel() {
         return default_channel;
     }
@@ -863,9 +883,7 @@ static int show_record_ch=0;
     public float getChannel(int i,int j) {
         return channel[i][j];
     }
-    public float[] getChannel(int i){
-        return channel[i];
-    }
+
 
     public void setChannel(float f,int i,int j) {
         this.channel[i][j]=f;

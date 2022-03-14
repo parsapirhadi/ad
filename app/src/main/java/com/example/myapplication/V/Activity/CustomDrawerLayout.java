@@ -1,6 +1,7 @@
 package com.example.myapplication.V.Activity;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -38,6 +39,7 @@ Button save;
 Button cancel;
 TextView textView;
 Objects objects;
+Context context;
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -58,15 +60,7 @@ Counter counter;
     public CustomDrawerLayout() {
         // Required empty public constructor
     }
-    public static CustomDrawerLayout newInstance(String param1, String param2) {
-        CustomDrawerLayout fragment = new CustomDrawerLayout();
-        Bundle args = new Bundle();
 
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -75,7 +69,7 @@ Counter counter;
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
 
-
+context=getContext();
             objects=new Objects();
         }
     }
@@ -111,6 +105,9 @@ Counter counter;
         });
 
         string1 = new String1();
+        counter1 =new Counter();
+
+
 
         TextView textView1;
         textView1=view.findViewById(R.id.name_version);
@@ -239,10 +236,22 @@ drawerLayoutDialog.setCancelable(false);
         loadpatient.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    for (int i=0;i<32;i++) {
+                        for (int j=0;j<1300000;j++) {
+                            counter.setChannel((float) 1000.0,i,j);
+                        }
+                    }
+                }
+            }).start();
+                counter.setLoadfor(false);
                  intent=new Intent(Intent.ACTION_GET_CONTENT);
                  intent.setType("*/*");
                  startActivityForResult(intent,1);
+                getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+
 
             }
         });
@@ -259,19 +268,32 @@ drawerLayoutDialog.setCancelable(false);
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         if(requestCode==1 && resultCode==-1) {
-            counter1 =new Counter();
-            String1 string1=new String1();
+
             string1.setChannel_count(0);
 
 
             Intent intent=(new Intent(getContext(), EightRootActivity.class));
-
-            Uri uri = data.getData();
-            string1.setFilepatch(uri);
-            counter1.setLine_clecked(2);
-            Log.e("set to","1");
-            intent.putExtra("h",string1);
             startActivity(intent);
+            getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+
+
+
+
+            new Thread(new Runnable() {
+    @Override
+    public void run() {
+  Uri uri = data.getData();
+        string1.setFilepatch(uri);
+        counter1.setLine_clecked(2);
+        Log.e("set to","1");
+        intent.putExtra("h",string1);
+
+    }
+}).start();
+
+
+
+
 
 
 

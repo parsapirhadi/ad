@@ -170,6 +170,18 @@ int is_change_text=0;
 
 
 
+
+        pivote50 = 50;
+        pivote100 = 100;
+        pivote_50 = -50;
+        pivote_100 = -100;
+
+        row_100.setText("-100µV");
+        row100.setText("100µV");
+        row50.setText("50µV");
+        row_50.setText("-50µV");
+
+
         counter.setChannel_load(0);
 
 
@@ -355,7 +367,7 @@ int is_change_text=0;
 
     public void restchannel(){
         for (int i=0;i<32;i++) {
-            for (int j=0;j<800000;j++) {
+            for (int j=0;j<1300000;j++) {
                 counter.setChannel((float) 1000.0,i,j);
             }
         }
@@ -365,7 +377,7 @@ int is_change_text=0;
     protected void onPause()
     {
 
-        surface.stopDrawThread();
+
         super.onPause();
     }
 
@@ -820,10 +832,10 @@ for (int t=0;t<40;t++){
                     pivote100 = (float) (pivote100 * 1.1);
 
 
-                    row50.setText("" + (int) (pivote50));
-                    row100.setText("" + (int) (pivote100));
-                    row_50.setText("" + (int) (pivote_50));
-                    row_100.setText("" + (int) (pivote_100));
+                    row50.setText( (int) (pivote50)+"µV");
+                    row100.setText((int) (pivote100)+"µV");
+                    row_50.setText ((int) (pivote_50)+"µV");
+                    row_100.setText( (int) (pivote_100)+"µV");
 
 
                     vibrator.vibrate(40);
@@ -842,7 +854,7 @@ for (int t=0;t<40;t++){
             @Override
             public void onClick(View view) {
 
-                if(Float.parseFloat(row50.getText().toString())>3) {
+                if(pivote50>3) {
                     counter.setSingle_step_y((float) (counter.getSingle_step_y() * (1.1)));
 
                     pivote50 = (float) (pivote50 / 1.1);
@@ -851,12 +863,15 @@ for (int t=0;t<40;t++){
                     pivote_50 = (float) (pivote_50 / 1.1);
 
 
-                    row50.setText("" + (int) (pivote50));
-                    row100.setText("" + (int) (pivote100));
-                    row_50.setText("" + (int) (pivote_50));
-                    row_100.setText("" + (int) (pivote_100));
+                    row50.setText ((int) (pivote50)+"µV");
+                    row100.setText((int) (pivote100)+"µV");
+                    row_50.setText((int) (pivote_50)+"µV");
+                    row_100.setText((int) (pivote_100)+"µV");
 
                     vibrator.vibrate(40);
+
+
+
 
 
                 }
@@ -1026,37 +1041,16 @@ if (counter.getHorizontal_scale()>7){
 new Thread(new Runnable() {
     @Override
     public void run() {
+if(counter.getLine_clecked()==2) {
+ counter.setCount_of_set_i_channel(0);
+    counter.setCount_of_set_j_channel(0);
 
-        //  FileReader fileReader = new FileReader(string1, counter, namePivote, pivotValue);
-        //  fileReader.read();
-        if (counter.getLine_clecked()==0){
-            Log.e("is","0");
-            // graphView1.removeAllSeries();
-            //  ConnectGraphview drawGraphview=new ConnectGraphview(graphView1,counter,string1);
-            // drawGraphview.draw();
-        }
-        else if (counter.getLine_clecked()==1 && string1.getLine_count()!=0){
-            Intent intent1=getIntent();
-            string1=new String1();
-            // Log.e("ccccccccccccccccc",""+string1.getChannel_count());
-            //Log.e("ccccccccccccccccc",""+string1.getChannel_count());
-            // Log.e("ccccccccccccccccc",""+counter.getChannel(5,6));
+    counter.setLoadfor(true);
 
-            //  Log.e("is", " 1");
-
-
-
-            // Log.e("is","null && 1");
-            ConnectGraphview drawGraphview1=new ConnectGraphview(graphView1,counter,string1);
-           // drawGraphview1.draw();
-        }
-
-
-        else if(counter.getLine_clecked()==2) {
-            runOnUiThread(new Runnable() {
+   runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    FileReader fileReader = new FileReader(getApplicationContext(),activity,string1, counter, namePivote, pivotValue);
+                    FileReader fileReader = new FileReader(getApplicationContext(),activity,string1, counter, pivotValue);
                     fileReader.read();
 
                     if (string1.getChannel_count()>31){
@@ -1091,6 +1085,7 @@ new Thread(new Runnable() {
                    // drawGraphview1.draw();
                 }
             });
+
 
 
             //  Log.e("is", " 2");

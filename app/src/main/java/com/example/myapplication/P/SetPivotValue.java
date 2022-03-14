@@ -59,7 +59,6 @@ public void y(){
         ft= (float) ((ft-2048)/-1.4);
 
 
-        Log.e("11111",""+ft);
 
         counter.setChannel(ft,counter.getCount_of_set_i_channel(),counter.getCount_of_set_j_channel());
 

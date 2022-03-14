@@ -184,11 +184,11 @@ else {
                 point_x2=((((float) event.getX()/getWidth())*(counter.getHorizontal_scale()*counter.getRate_in_s()))+((float) counter.getRate_in_s()*counter.getSeconds_count0_root()));
 
 
-               if (point_x2!=point_x1) {
+
                    counter.setTouchDraw(false);
                    drag = true;
 
-
+                if (point_x2!=point_x1) {
                    if (point_x1 > point_x2) {
                        float t = point_x1;
                        point_x1 = point_x2;
@@ -247,7 +247,8 @@ else {
 
                }
 
-              Log.e("start :"+counter.getStartdraw_root(), "end:"+counter.getEnddraw_root());
+
+
 
 
             }

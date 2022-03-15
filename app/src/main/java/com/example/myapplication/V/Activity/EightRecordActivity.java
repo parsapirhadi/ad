@@ -124,7 +124,7 @@ public class EightRecordActivity extends AppCompatActivity {
     Set<BluetoothDevice> pared;
     static Dialog dialog,dialog1,dialog2,dialog3,dialog4,dialog5,dialog6,dialog7,dialog8;
 
-    static Dialog choiceDialog;
+   Dialog choiceDialog;
 
     int metode_counter=1;
     int connect_counter=0;
@@ -600,11 +600,9 @@ public class EightRecordActivity extends AppCompatActivity {
 
 
         snackbar_connecting.setDuration(400000);
-        if(objects.getSocket()!=null){
-        if (!objects.getSocket().isConnected()) {
+
             snackbar_connecting.show();
-        }
-    }
+
 
 
         if(counter.getHorizontal_scale()<8){

@@ -20,6 +20,8 @@ import android.view.Display;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -41,6 +43,7 @@ import com.example.myapplication.V.ConnectGraphview;
 import com.jjoe64.graphview.GraphView;
 
 import java.io.BufferedReader;
+import java.util.ArrayList;
 import java.util.Set;
 
 public class EightRootActivity extends AppCompatActivity {
@@ -59,6 +62,7 @@ public class EightRootActivity extends AppCompatActivity {
 
 
 
+    ListView myListView;
 
 
 
@@ -83,6 +87,9 @@ public class EightRootActivity extends AppCompatActivity {
 
     boolean k=true;
 
+
+    private ArrayAdapter<String> adapter;
+
     ObjectAnimator animatorX;
     AnimatorSet animatorSet;
     Animator.AnimatorListener animatorListener;
@@ -92,6 +99,7 @@ public class EightRootActivity extends AppCompatActivity {
     int acces_to_set_change =0;
     boolean single_root=false;
 
+    Dialog choiceDialog;
 
     Button choise;
 
@@ -500,6 +508,9 @@ for (int t=0;t<40;t++){
         Log.e("Screen height",""+height);
 
 
+        choiceDialog=new Dialog(EightRootActivity.this);
+        choiceDialog.setContentView(R.layout.choice_dialog);
+        choiceDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
 
 
@@ -655,61 +666,102 @@ for (int t=0;t<40;t++){
         montage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                myListView =  choiceDialog.findViewById(R.id.choice_list_view);
+                ArrayList<String> myStringArray1 = new ArrayList<String>();
 
-                PopupMenu popup = new PopupMenu(EightRootActivity.this,montage);
-                popup.getMenuInflater().inflate(R.menu.montage, popup.getMenu());
 
-                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+
+
+                myStringArray1.add("Mono");
+                myStringArray1.add("Banana");
+
+                adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1, myStringArray1);
+                myListView.setAdapter(adapter);
+                myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
-                    public boolean onMenuItemClick(MenuItem menuItem) {
-                        montage.setText(menuItem.getTitle());
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                        return true;
+                        montage.setText(myStringArray1.get(i));
+                        choiceDialog.dismiss();
+                        //  myStringArray1.clear();
+
+
                     }
                 });
-                popup.show();
+
+                // dialog1.show();
+
 
 
             }
         });
-
 
 
         choise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PopupMenu popup = new PopupMenu(EightRootActivity.this,choise);
-                popup.getMenuInflater().inflate(R.menu.choose_channel, popup.getMenu());
-                for(int v=0;v<string1.getChannel_count();v++) {
-                    popup.getMenu().add(string1.getPivote(v));
+
+                myListView =  choiceDialog.findViewById(R.id.choice_list_view);
+                ArrayList<String> myStringArray1 = new ArrayList<String>();
+
+
+for (int t=0 ; t<counter.getDefault_channel();t++){
+    myStringArray1.add(string1.getPivote(t));
+}
 
 
 
-                     Log.e("&&&&&&&", "" + string1.getPivote(v));
+
+                adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1, myStringArray1);
+                myListView.setAdapter(adapter);
 
 
-                }
-                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+
+
+
+
+                myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
-                    public boolean onMenuItemClick(MenuItem menuItem) {
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        choise.setText(myStringArray1.get(i));
 
+                        surface.startDrawThread(i);
 
-                        for(int v=0;v<string1.getChannel_count();v++) {
-                            if(menuItem.getTitle()==string1.getPivote(v)){
-                                surface.startDrawThread(v);
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        choiceDialog.dismiss();
+                                    }
+                                });
 
                             }
-                        }
-                        choise.setText(menuItem.getTitle());
+                        }).start();
 
-                        return true;
+                        // myStringArray1.clear();
+
+
                     }
                 });
-                popup.show();
 
+
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                choiceDialog.show();
+                            }
+                        });
+                    }
+                }).start();
+
+//////////////
             }
         });
-
 
 
         line.setOnClickListener(new View.OnClickListener() {

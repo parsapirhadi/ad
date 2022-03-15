@@ -394,7 +394,7 @@ else {
     {
 
         stopDrawThread();
-
+        Log.e("((((((((((((((((((","");
         holder.getSurface().release();
 
         this.holder = null;
@@ -449,7 +449,7 @@ else {
 
         try
         {
-            while (drawingActive)
+            while (counter.isActivity_on_load())
             {
                 if (holder == null)
                 {

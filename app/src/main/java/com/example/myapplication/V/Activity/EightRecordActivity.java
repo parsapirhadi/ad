@@ -304,7 +304,9 @@ public class EightRecordActivity extends AppCompatActivity {
         super.onPause();
         record.setBackgroundResource(R.drawable.red_record_foreground);
         counter.set_draw_activity_on(false);
+        set_dimens=false;
         counter.set_receive_activity_on(false);
+        Log.e("onPause","onPause");
    // for (int j2=0;j2<8;j2++){
          //   for (int j1=0;j1<16000;j1++) {
           //      counter.setBuffer(counter.getPart_data(), j2, j1);
@@ -317,7 +319,7 @@ public class EightRecordActivity extends AppCompatActivity {
 
         record.setBackgroundResource(R.drawable.red_record_foreground);
         Recordcount=false;
-        SingleRecordActivity.setIs_isRecordcount(false);
+      //  SingleRecordActivity.setIs_isRecordcount(false);
         set_limit = 1;
         String string = "NOP\r\n";
         counter.setEightRecord_ispause(false);
@@ -357,6 +359,7 @@ public class EightRecordActivity extends AppCompatActivity {
         is_connected = false;
         is_open = false;
 
+        set_dimens=true;
 
         pivote50 = 50;
         pivote100 = 100;
@@ -368,6 +371,7 @@ public class EightRecordActivity extends AppCompatActivity {
         row50.setText("50µV");
         row_50.setText("-50µV");
 
+        Log.e("onResume","onResume");
 
         String string = "NOP\r\n";
         set_limit = 1;
@@ -499,11 +503,13 @@ public class EightRecordActivity extends AppCompatActivity {
 
 
         new Thread(new Runnable() {
+            @SuppressLint("LongLogTag")
             @Override
             public void run() {
                 while (counter.is_draw_activity_on()) {
 
-                    //  Log.e("i=",""+i);
+
+                      Log.e("counter.is_draw_activity_on","counter.is_draw_activity_on");
 
                     if (is_one_second && counter.isSignal_is_weak() && (counter.getBuffer_count() - data_count) < counter.getMin_receive_data() && recordcount == 1 && objects.getSocket().isConnected()) {
 
@@ -543,7 +549,7 @@ public class EightRecordActivity extends AppCompatActivity {
                             @Override
                             public void run() {
 
-
+                              Log.e("set_dimens","set_dimens");
                                 int paint_screen = counter.getSurfaceview_height_eightrecord();
                                 float button_step = (float) paint_screen / (((counter.getDefault_channel()) * 2));
                                 int k = counter.getDefault_channel();
@@ -626,6 +632,7 @@ public class EightRecordActivity extends AppCompatActivity {
     }
 
     private void metode(int i) throws InterruptedException {
+
         counter.setStop_line((float) (((float) counter.getO() / (0.99*counter.getHorizontal_scale()*counter.getRate_in_s())) * counter.getSurface_width()), counter.getRecordcount()%30);
 
         if (i==1){

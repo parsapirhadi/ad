@@ -240,7 +240,7 @@ drawerLayoutDialog.setCancelable(false);
                 @Override
                 public void run() {
                     for (int i=0;i<32;i++) {
-                        for (int j=0;j<1300000;j++) {
+                        for (int j=0;j<800000;j++) {
                             counter.setChannel((float) 1000.0,i,j);
                         }
                     }

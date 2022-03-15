@@ -178,6 +178,7 @@ int is_change_text=0;
 
 
 
+        counter.setActivity_on_load(true);
 
         pivote50 = 50;
         pivote100 = 100;
@@ -375,7 +376,7 @@ int is_change_text=0;
 
     public void restchannel(){
         for (int i=0;i<32;i++) {
-            for (int j=0;j<1300000;j++) {
+            for (int j=0;j<800_000;j++) {
                 counter.setChannel((float) 1000.0,i,j);
             }
         }
@@ -387,6 +388,10 @@ int is_change_text=0;
 
 
         super.onPause();
+        counter.setActivity_on_load(false);
+        counter.setLoadfor(false);
+
+
     }
 
     @Override

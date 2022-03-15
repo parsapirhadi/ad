@@ -66,7 +66,7 @@ catch (Exception e){
 
      
         for (int o=0;o<counter.getDefault_channel();o++){
-        for (int p=0;p<1300000;p++) {
+        for (int p=0;p<800000;p++) {
             counter.setChannel(1000, o, p);
         }}
 

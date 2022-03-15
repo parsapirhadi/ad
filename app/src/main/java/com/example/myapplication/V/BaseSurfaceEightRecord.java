@@ -292,7 +292,7 @@ public class BaseSurfaceEightRecord extends SurfaceView implements SurfaceHolder
 
             try
             {
-                while (drawingActive)
+                while (counter.is_draw_activity_on())
                 {
 
 

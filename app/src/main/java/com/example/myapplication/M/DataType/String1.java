@@ -6,19 +6,19 @@ import android.net.Uri;
 import java.io.Serializable;
 
 public class String1 implements Serializable {
-    static String montage="mono";
+    static String montage = "mono";
 
-    static String nameVersion="NrSign1.0.0";
+    static String nameVersion = "NrSign1.0.0";
 
-    static Uri filepatch=null;
-    static int line_count=0;
-    static String filename="";
-    static int  channel_count=0;
+    static Uri filepatch = null;
+    static int line_count = 0;
+    static String filename = "";
+    static int channel_count = 0;
 
-   static String sview="eight";
+    static String sview = "eight";
 
-   static String seight="eight";
-   static String ssingle="single";
+    static String seight = "eight";
+    static String ssingle = "single";
 
 
     public String getSview() {
@@ -45,33 +45,31 @@ public class String1 implements Serializable {
         this.ssingle = ssingle;
     }
 
-    public static String[] pivote_from =new String[64];
-public static String[] pivote_to =new String[64];
+    public static String[] pivote_from = new String[64];
+    public static String[] pivote_to = new String[64];
 
     public String getPivote_from(int i) {
         return pivote_from[i];
     }
 
-    public void setPivote_from(int i,String s) {
-        pivote_from[i]=s;
+    public void setPivote_from(int i, String s) {
+        pivote_from[i] = s;
     }
 
     public String getPivote_to(int i) {
         return pivote_to[i];
     }
 
-    public void setPivote_to(int i,String s) {
-        pivote_to[i]=s;
+    public void setPivote_to(int i, String s) {
+        pivote_to[i] = s;
     }
 
 
+    public static String[] pivote = new String[64];
 
+    public static Paint paint[] = new Paint[64];
 
-    public static String[] pivote =new String[64];
-
-public static Paint paint[]=new Paint[64];
-
-    public  Paint getPaint(int t) {
+    public Paint getPaint(int t) {
         return paint[t];
     }
 
@@ -92,9 +90,6 @@ public static Paint paint[]=new Paint[64];
     }
 
 
-
-
-
     public Uri getFilepatch() {
         return filepatch;
     }
@@ -107,10 +102,9 @@ public static Paint paint[]=new Paint[64];
         return pivote[i];
     }
 
-    public void setPivote(int i,String s) {
-        pivote[i]=s;
+    public void setPivote(int i, String s) {
+        pivote[i] = s;
     }
-
 
 
     public String getMontage() {
@@ -128,9 +122,6 @@ public static Paint paint[]=new Paint[64];
     public void setChannel_count(int channel_count) {
         this.channel_count = channel_count;
     }
-
-
-
 
 
 }

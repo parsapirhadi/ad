@@ -38,9 +38,9 @@ static int show_record_ch=0;
 
     static int Surfaceview_Width_eightrecord=0;
 
-    public static float [][] channel=new float[32][1300000];
+    public static float [][] channel=new float[32][800000];
 
-
+    static boolean activity_on_load=true;
 
     public static float [][] buffer=new float[16][16100];
 
@@ -236,6 +236,14 @@ static int show_record_ch=0;
 
     public void setEnddraw_root_clone(int enddraw_root_clone) {
         Counter.enddraw_root_clone = enddraw_root_clone;
+    }
+
+    public  boolean isActivity_on_load() {
+        return activity_on_load;
+    }
+
+    public  void setActivity_on_load(boolean activity_on_load) {
+        Counter.activity_on_load = activity_on_load;
     }
 
     public float getSeconds_count0_root_clone() {
@@ -544,6 +552,15 @@ static int show_record_ch=0;
     public void set_draw_activity_on(boolean is_draw_activity_on) {
         this.is_draw_activity_on = is_draw_activity_on;
     }
+
+    public static boolean isIs_draw_activity_on() {
+        return is_draw_activity_on;
+    }
+
+    public static boolean isIs_receive_activity_on() {
+        return is_receive_activity_on;
+    }
+
     public boolean is_receive_activity_on() {
         return is_receive_activity_on;
     }

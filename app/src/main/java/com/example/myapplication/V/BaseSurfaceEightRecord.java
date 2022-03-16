@@ -446,6 +446,7 @@ for (int j=0;j<1000;j+=50) {
                              ///////////////////////////single record
 
 
+
                                 canvas.drawColor(Color.rgb(230, 230, 230));
                                 //canvas.drawRect(counter.getStop_line(0), 2, 4+counter.getStop_line(0), getHeight()-4, counter.getSp());
 

@@ -1,5 +1,6 @@
 package com.example.myapplication.V;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.view.LayoutInflater;
@@ -53,6 +54,7 @@ public class Setting_Fragment extends Fragment  {
 
 
 
+    @SuppressLint("SetTextI18n")
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -79,7 +81,7 @@ public class Setting_Fragment extends Fragment  {
 
         TextView textView;
         textView=view.findViewById(R.id.name_version);
-        textView.setText(string1.getNameVersion());
+        textView.setText(string1.getNameVersion()+""+string1.getVersionId());
 
 
 

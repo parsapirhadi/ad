@@ -151,6 +151,8 @@ public class EightRecordActivity extends AppCompatActivity {
     int data_count=0;
     int conter=0;
 
+    long bluetoothDelay=100;
+
     Button choise;
     ListView myListView;
 
@@ -302,11 +304,24 @@ public class EightRecordActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
+
+        String string = "NOP\r\n";
+        counter.setEightRecord_ispause(false);
+        if (objects.getSocket()!=null){
+            try {
+                sendReceive.write(string.getBytes());
+                //  objects.getSocket().close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
         record.setBackgroundResource(R.drawable.red_record_foreground);
         counter.set_draw_activity_on(false);
         set_dimens=false;
         counter.set_receive_activity_on(false);
-        Log.e("onPause","onPause");
+
+
    // for (int j2=0;j2<8;j2++){
          //   for (int j1=0;j1<16000;j1++) {
           //      counter.setBuffer(counter.getPart_data(), j2, j1);
@@ -321,16 +336,7 @@ public class EightRecordActivity extends AppCompatActivity {
         Recordcount=false;
       //  SingleRecordActivity.setIs_isRecordcount(false);
         set_limit = 1;
-        String string = "NOP\r\n";
-        counter.setEightRecord_ispause(false);
-  if (objects.getSocket()!=null){
-            try {
-                sendReceive.write(string.getBytes());
-              //  objects.getSocket().close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+
   recordcount = 0;
 
         //counter.setBuffer_count(0);
@@ -343,7 +349,6 @@ public class EightRecordActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
 
-
         super.onResume();
         Log.e("EonResume", "EonResume");
         counter.setShow_record_ch(0);
@@ -352,6 +357,7 @@ public class EightRecordActivity extends AppCompatActivity {
 
         counter.set_receive_activity_on(true);
         counter.set_draw_activity_on(true);
+
 
 
         data_count = 0;
@@ -507,7 +513,7 @@ public class EightRecordActivity extends AppCompatActivity {
             @Override
             public void run() {
                 while (counter.is_draw_activity_on()) {
-
+                    bluetoothDelay=100;
 
                       Log.e("counter.is_draw_activity_on","counter.is_draw_activity_on");
 
@@ -686,8 +692,8 @@ public class EightRecordActivity extends AppCompatActivity {
             objects.getBluetoothAdapter().disable();
 
 
-            Thread.sleep(500);
-
+            Thread.sleep(bluetoothDelay);
+            bluetoothDelay+=500;
 
             objects.getBluetoothAdapter().enable();
 

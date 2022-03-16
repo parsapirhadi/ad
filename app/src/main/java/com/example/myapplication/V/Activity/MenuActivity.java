@@ -33,8 +33,8 @@ public class MenuActivity extends AppCompatActivity  {
 
     Button back;
 
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+
+
 
     Intent intent;
 
@@ -45,7 +45,7 @@ public class MenuActivity extends AppCompatActivity  {
     String1 string1;
     private String mParam2;
 
-
+ TextView version_name;
 
 
 
@@ -97,6 +97,7 @@ public class MenuActivity extends AppCompatActivity  {
 
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -115,11 +116,21 @@ public class MenuActivity extends AppCompatActivity  {
         Button icon_newrecord=findViewById(R.id.icon_newpatient_menu);
         Button icon_loadrecord=findViewById(R.id.icon_loadpatient_menu);
 
+
+        version_name=findViewById(R.id.name_version_name_menu);
+
+
+
+
+
         back=menuDialog.findViewById(R.id.back_pointer_settings);
 
 
         counter=new Counter();
         string1=new String1();
+
+
+        version_name.setText(string1.getNameVersion()+""+string1.getVersionId());
 
         Dialog dialog=new Dialog(MenuActivity.this);
         dialog.setContentView(R.layout.new_record);

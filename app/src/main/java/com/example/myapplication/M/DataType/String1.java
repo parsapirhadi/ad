@@ -8,7 +8,9 @@ import java.io.Serializable;
 public class String1 implements Serializable {
     static String montage = "mono";
 
-    static String nameVersion = "NrSign1.0.0";
+    static String nameVersion = "Negand ";
+    static String VersionId = "1.0.0";
+
 
     static Uri filepatch = null;
     static int line_count = 0;
@@ -71,6 +73,15 @@ public class String1 implements Serializable {
 
     public Paint getPaint(int t) {
         return paint[t];
+    }
+
+
+    public String getVersionId() {
+        return VersionId;
+    }
+
+    public void setVersionId(String versionId) {
+        VersionId = versionId;
     }
 
     public String getNameVersion() {

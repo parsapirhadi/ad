@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.annotation.SuppressLint;
 import android.hardware.biometrics.BiometricManager;
 import android.os.Bundle;
 
@@ -84,6 +85,7 @@ public class Scale_Fragment extends Fragment {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -107,7 +109,7 @@ public class Scale_Fragment extends Fragment {
 
         TextView textView;
         textView=view.findViewById(R.id.name_version);
-        textView.setText(string1.getNameVersion());
+        textView.setText(string1.getNameVersion()+""+string1.getVersionId());
 
 
         back=view.findViewById(R.id.back_pointer_scale);

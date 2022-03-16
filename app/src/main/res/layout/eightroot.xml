@@ -227,12 +227,12 @@
                 >
                 <Button
 
-                    android:id="@+id/touch_eightrecord"
+                    android:id="@+id/crop_eightrecord"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:background="@drawable/ruler_off"
+                    android:background="@drawable/crop_off_foreground"
                     app:layout_constraintEnd_toEndOf="parent"
                     tools:layout_editor_absoluteY="10dp" />
             </LinearLayout>

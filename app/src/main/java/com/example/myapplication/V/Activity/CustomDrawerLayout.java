@@ -1,5 +1,6 @@
 package com.example.myapplication.V.Activity;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -74,6 +75,7 @@ context=getContext();
         }
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -111,7 +113,7 @@ context=getContext();
 
         TextView textView1;
         textView1=view.findViewById(R.id.name_version);
-        textView1.setText(string1.getNameVersion());
+        textView1.setText(string1.getNameVersion()+""+string1.getVersionId());
 
 
 

@@ -17,7 +17,6 @@ import android.os.Vibrator;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.widget.AdapterView;
@@ -25,7 +24,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -39,7 +37,6 @@ import com.example.myapplication.P.FileReader;
 import com.example.myapplication.P.SetPivotName;
 import com.example.myapplication.P.SetPivotValue;
 import com.example.myapplication.R;
-import com.example.myapplication.V.ConnectGraphview;
 import com.jjoe64.graphview.GraphView;
 
 import java.io.BufferedReader;
@@ -48,7 +45,7 @@ import java.util.Set;
 
 public class EightRootActivity extends AppCompatActivity {
 
-    Button line, note,touch,bluetooth,montage,play,zoomout_eight,zoomin_eight,zoomout_single,zoomin_single;
+    Button line, note, crop,bluetooth,montage,play,zoomout_eight,zoomin_eight,zoomout_single,zoomin_single;
     ImageView notch;
     TextView textplay;
     ListView listView;
@@ -59,6 +56,8 @@ public class EightRootActivity extends AppCompatActivity {
    Button lineplay;
     SetPivotName namePivote;
     SetPivotValue pivotValue;
+
+
 
 
 
@@ -626,14 +625,53 @@ for (int t=0;t<40;t++){
 
                 }
 
-                play.setBackgroundResource(R.drawable.play_foreground);
-                playcount=0;
-                set_stop_play=1;
-                acces_to_paly_animation=0;
-                lineplay.setVisibility(View.INVISIBLE);
-                lineplay.setTranslationX(0);
-                is_change_text=0;
-                lineplay.setTranslationX(0);
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (playcount==1){
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+
+
+                                play.setBackgroundResource(R.drawable.play_foreground);
+
+                                set_stop_play = 1;
+                                acces_to_paly_animation = 0;
+                                lineplay.setVisibility(View.INVISIBLE);
+                                lineplay.setTranslationX(0);
+                                is_change_text = 0;
+                                animatorSet.end();
+                                animatorSet.removeAllListeners();
+                                animatorSet.removeListener(animatorListener);
+
+
+                                try {
+                                    Thread.sleep(100);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+
+
+                                play.setBackgroundResource(R.drawable.pause_root_foreground);
+                                playcount = 1;
+                                set_stop_play = 0;
+                                acces_to_paly_animation = 1;
+                                lineplay.setTranslationX(0);
+                                lineplay.setVisibility(View.VISIBLE);
+                                Setlinebtnanim();
+
+
+                            }
+                        });
+
+                    }
+                }
+                }
+                ).start();
+
+
+
             }
         });
         play.setOnClickListener(new View.OnClickListener() {
@@ -648,7 +686,9 @@ for (int t=0;t<40;t++){
                     lineplay.setTranslationX(0);
                     lineplay.setVisibility(View.VISIBLE);
                     Setlinebtnanim();
-                } else if (playcount == 1) {
+
+                }
+                else if (playcount == 1) {
                     play.setBackgroundResource(R.drawable.play_foreground);
                     playcount = 0;
                     set_stop_play = 1;
@@ -662,9 +702,7 @@ for (int t=0;t<40;t++){
 
 
                 }
-
-
-            }
+                }
 
             }});
 
@@ -966,9 +1004,19 @@ for (int t=0 ; t<counter.getDefault_channel();t++){
             }
         });
 counter.setB_touch(false);
-    touch.setOnClickListener(new View.OnClickListener() {
+    crop.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            play.setBackgroundResource(R.drawable.play_foreground);
+            playcount = 0;
+            set_stop_play = 1;
+            acces_to_paly_animation = 0;
+            lineplay.setVisibility(View.INVISIBLE);
+            lineplay.setTranslationX(0);
+            is_change_text = 0;
+            animatorSet.end();
+            animatorSet.removeAllListeners();
+            animatorSet.removeListener(animatorListener);
 
             vibrator.vibrate(40);
             if (!counter.isB_touch()){
@@ -986,7 +1034,7 @@ counter.setB_touch(false);
 
                 counter.setB_touch(true);
 
-                touch.setBackgroundResource(R.drawable.ruler_on);
+                crop.setBackgroundResource(R.drawable.crop_on_foreground);
                 textplay.setVisibility(View.INVISIBLE);
                 play.setBackgroundResource(R.drawable.play_disable_foreground);
                 note.setBackgroundResource(R.drawable.note_off_foreground);
@@ -996,7 +1044,7 @@ counter.setB_touch(false);
             else {
 
                 counter.setB_touch(false);
-                touch.setBackgroundResource(R.drawable.ruler_off);
+                crop.setBackgroundResource(R.drawable.crop_off_foreground);
                 textplay.setVisibility(View.VISIBLE);
                 play.setBackgroundResource(R.drawable.play_foreground);
 
@@ -1174,7 +1222,7 @@ if(counter.getLine_clecked()==2) {
         notch=findViewById(R.id.notch_eightroot);
         montage=findViewById(R.id.montage_eightroot);
         listView=dialog.findViewById(R.id.list_device);
-        touch=findViewById(R.id.touch_eightrecord);
+        crop =findViewById(R.id.crop_eightrecord);
 
         zoomout_eight=findViewById(R.id.zoomout_eightroot);
         zoomin_eight=findViewById(R.id.zoomin_eightroot);
@@ -1212,7 +1260,7 @@ if(counter.getLine_clecked()==2) {
     private void Setlinebtnanim(){
         lineplay.setVisibility(View.VISIBLE);
 
-new Thread(new Runnable() {
+    new Thread(new Runnable() {
     @SuppressLint("SetTextI18n")
     @Override
     public void run() {
@@ -1223,9 +1271,11 @@ new Thread(new Runnable() {
         else {
             width = counter.getSurfaceviewhewidth();
         }
-        counter.setAnim_sleep((long) ((long) (( counter.getHorizontal_scale()*counter.getRate_in_s()*2)/width)*play_text));
+        counter.setAnim_sleep((long) ((float) ( counter.getHorizontal_scale()*play_text*1000)/width));
 
 
+
+        Log.e("llllllllllllll",""+counter.getAnim_sleep());
 
         float t =(float)(counter.getExist_in_secound())/(counter.getRate_in_s());
         float t1=counter.getSeconds_count8000_root();

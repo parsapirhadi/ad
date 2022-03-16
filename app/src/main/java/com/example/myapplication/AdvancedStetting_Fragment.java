@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -85,6 +86,7 @@ View view;
         }
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -114,7 +116,8 @@ view=inflater.inflate(R.layout.advancedstetting_fragment, container, false);
 
         TextView textView;
         textView=view.findViewById(R.id.name_version);
-        textView.setText(string1.getNameVersion());
+
+        textView.setText(string1.getNameVersion()+""+string1.getVersionId());
 
 
         back=view.findViewById(R.id.back_pointer_advanced_setting);

@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -97,6 +98,7 @@ String1 string1;
         }
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -130,7 +132,7 @@ string1=new String1();
 
         TextView textView;
         textView=view.findViewById(R.id.name_version);
-        textView.setText(string1.getNameVersion());
+        textView.setText(string1.getNameVersion()+""+string1.getVersionId());
 
 
         itemAdapter1.notifyDataSetChanged();

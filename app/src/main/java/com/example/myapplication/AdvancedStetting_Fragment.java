@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -14,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.myapplication.M.DataType.Counter;
 import com.example.myapplication.M.DataType.String1;
 import com.example.myapplication.M.Item.ItemAdvancedSetting;
 import com.example.myapplication.M.Item.ItemNotch;
@@ -23,6 +25,7 @@ import com.example.myapplication.P.ItemRecyclerViewAdapter.ItemNotchAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.content.Context.MODE_PRIVATE;
 import static com.example.myapplication.V.Activity.CustomDrawerLayout.drawerLayoutDialog;
 import static com.example.myapplication.V.Activity.MenuActivity.menuDialog;
 
@@ -39,6 +42,7 @@ View view;
     ItemAdvancedSettingAdapter itemAdapter1;
 
     String1 string1;
+    Counter counter;
 
     RecyclerView recyclerView2;
     List<ItemNotch> list2 = new ArrayList<>();
@@ -78,6 +82,13 @@ View view;
     }
 
     @Override
+    public void onPause() {
+        super.onPause();
+
+
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
@@ -101,15 +112,19 @@ view=inflater.inflate(R.layout.advancedstetting_fragment, container, false);
         recyclerView1.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL));
         recyclerView1.setAdapter(itemAdapter1);
 
+        string1=new String1();
+        counter= new Counter();
 
-        list1.add(new ItemAdvancedSetting("α","2048"));
 
-        list1.add(new ItemAdvancedSetting("β","1.4"));
+        list1.add(new ItemAdvancedSetting("α",""+counter.getAlpha()));
+
+
+        list1.add(new ItemAdvancedSetting("β",""+counter.getBeta()));
 
         list1.add(new ItemAdvancedSetting("\n" +
-                "Baud Rate","512"));
+                "Sampling Rate (Sps)",""+counter.getRate_in_s()));
 
-        string1=new String1();
+
 
 
         itemAdapter1.notifyDataSetChanged();

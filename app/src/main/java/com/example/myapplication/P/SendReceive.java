@@ -190,7 +190,7 @@ public class SendReceive extends Thread {
 
                         }
 
-                        counter.setBuffer(((float) ((data - counter.getAlpha()) / counter.getBeta())), channel, counter.getO());
+                        counter.setBuffer(((float) ((data - counter.getAlpha()) * counter.getBeta()*-1)), channel, counter.getO());
 
 
                         if (counter.isChangeScreen_eight() && counter.isFrist_page() && (counter.getO())==10){
@@ -281,7 +281,7 @@ public class SendReceive extends Thread {
                             counter.setRefresh(true);
 
 
-                            counter.setBuffer( ((float)  ((data - counter.getAlpha()) / counter.getBeta())*-1), counter.getDefault_channel()-1, counter.getO());
+                            counter.setBuffer( ((float)  ((data - counter.getAlpha()) * counter.getBeta())*-1), counter.getDefault_channel()-1, counter.getO());
 
 
 

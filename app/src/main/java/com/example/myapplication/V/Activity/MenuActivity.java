@@ -3,6 +3,7 @@ package com.example.myapplication.V.Activity;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -89,6 +90,7 @@ public class MenuActivity extends AppCompatActivity  {
 
 
 
+
         }
         catch (NullPointerException e){
             e.printStackTrace();
@@ -144,6 +146,16 @@ public class MenuActivity extends AppCompatActivity  {
 
 
         menuDialog.setCancelable(false);
+
+        SharedPreferences sharedPreferences_alpha = getApplicationContext().getSharedPreferences("alpha", MODE_PRIVATE);
+        counter.setAlpha(Float.parseFloat(sharedPreferences_alpha.getString("name", ""+counter.getAlpha()).toString()));
+
+        SharedPreferences sharedPreferences_beta = getApplicationContext().getSharedPreferences("beta", MODE_PRIVATE);
+        counter.setBeta(Float.parseFloat(sharedPreferences_beta.getString("name", ""+counter.getBeta()).toString()));
+
+
+        SharedPreferences sharedPreferences_rate_in_s = getApplicationContext().getSharedPreferences("rate_in_s", MODE_PRIVATE);
+        counter.setRate_in_s(Integer.parseInt(sharedPreferences_rate_in_s.getString("name", ""+counter.getRate_in_s()).toString()));
 
 
         icon_loadrecord.setOnClickListener(new View.OnClickListener() {

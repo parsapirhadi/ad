@@ -37,6 +37,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="38dp"
                 android:layout_gravity="center"
+                android:imeOptions="actionDone"
+                android:inputType="text"
                 android:textColor="#1BAAFA"
                 android:background="#e6e6e6"
                 android:gravity="center"

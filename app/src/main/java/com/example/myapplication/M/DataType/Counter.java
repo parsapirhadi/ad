@@ -761,7 +761,7 @@ static int show_record_ch=0;
 
 
 
-    public static void setRate_in_s(int rate_in_secound) {
+    public  void setRate_in_s(int rate_in_secound) {
         Counter.rate_in_secound = rate_in_secound;
     }
 

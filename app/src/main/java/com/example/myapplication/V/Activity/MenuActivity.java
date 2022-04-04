@@ -2,7 +2,11 @@ package com.example.myapplication.V.Activity;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.bluetooth.BluetoothAdapter;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -35,6 +39,7 @@ public class MenuActivity extends AppCompatActivity  {
     Button back;
 
 
+    int REQUEST_ENABLE_BLUETOOTH=10;
 
 
     Intent intent;
@@ -130,6 +135,7 @@ public class MenuActivity extends AppCompatActivity  {
 
         counter=new Counter();
         string1=new String1();
+        objects=new Objects();
 
 
         version_name.setText(string1.getNameVersion()+""+string1.getVersionId());
@@ -180,8 +186,52 @@ public class MenuActivity extends AppCompatActivity  {
         icon_newrecord.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dialog.show();
-                textView=dialog.findViewById(R.id.textView11);
+                textView = dialog.findViewById(R.id.textView11);
+
+
+                objects.setBluetoothAdapter(BluetoothAdapter.getDefaultAdapter());
+                if(!objects.getBluetoothAdapter().isEnabled())
+                {
+                    Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                    startActivityForResult(enableIntent,REQUEST_ENABLE_BLUETOOTH);
+
+                }
+                else {
+                    dialog.show();
+
+                }
+
+                IntentFilter scanintentFilter=new IntentFilter(BluetoothAdapter.ACTION_SCAN_MODE_CHANGED);
+                BroadcastReceiver scanmodereceiver=new BroadcastReceiver() {
+                    @Override
+                    public void onReceive(Context context, Intent intent) {
+                        String action=intent.getAction();
+                        if(action.equals(BluetoothAdapter.ACTION_SCAN_MODE_CHANGED))
+                        {
+                            int modevalue = intent.getIntExtra(BluetoothAdapter.EXTRA_SCAN_MODE,BluetoothAdapter.ERROR);
+                            if (modevalue==BluetoothAdapter.SCAN_MODE_CONNECTABLE){
+
+                            }else if (modevalue==BluetoothAdapter.SCAN_MODE_CONNECTABLE_DISCOVERABLE)
+                            {
+
+
+                            }else if (modevalue==BluetoothAdapter.SCAN_MODE_NONE)
+                            {
+
+
+
+                            }
+                            else {
+                            }
+                        }
+
+                    }
+                };
+                registerReceiver(scanmodereceiver,scanintentFilter);
+
+            }
+            });
+
                 save.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -199,11 +249,10 @@ public class MenuActivity extends AppCompatActivity  {
                     }
                 });
 
-            }
 
 
 
-        });
+
 
 
 
@@ -227,11 +276,55 @@ public class MenuActivity extends AppCompatActivity  {
             }
         });
         newrecord.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //  startActivity(new Intent(getContext(),NewRecordActivity.class));
-                dialog.show();
-                textView=dialog.findViewById(R.id.textView11);
+                                         @Override
+                                         public void onClick(View v) {
+
+                                             textView = dialog.findViewById(R.id.textView11);
+
+
+                                             objects.setBluetoothAdapter(BluetoothAdapter.getDefaultAdapter());
+                                             if(!objects.getBluetoothAdapter().isEnabled())
+                                             {
+                                                 Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                                                 startActivityForResult(enableIntent,REQUEST_ENABLE_BLUETOOTH);
+
+                                             }
+                                             else {
+                                                 dialog.show();
+
+                                             }
+
+                                             IntentFilter scanintentFilter=new IntentFilter(BluetoothAdapter.ACTION_SCAN_MODE_CHANGED);
+                                             BroadcastReceiver scanmodereceiver=new BroadcastReceiver() {
+                                                 @Override
+                                                 public void onReceive(Context context, Intent intent) {
+                                                     String action=intent.getAction();
+                                                     if(action.equals(BluetoothAdapter.ACTION_SCAN_MODE_CHANGED))
+                                                     {
+                                                         int modevalue = intent.getIntExtra(BluetoothAdapter.EXTRA_SCAN_MODE,BluetoothAdapter.ERROR);
+                                                         if (modevalue==BluetoothAdapter.SCAN_MODE_CONNECTABLE){
+
+                                                         }else if (modevalue==BluetoothAdapter.SCAN_MODE_CONNECTABLE_DISCOVERABLE)
+                                                         {
+
+
+                                                         }else if (modevalue==BluetoothAdapter.SCAN_MODE_NONE)
+                                                         {
+
+
+
+                                                         }
+                                                         else {
+                                                         }
+                                                     }
+
+                                                 }
+                                             };
+                                             registerReceiver(scanmodereceiver,scanintentFilter);
+
+
+                                         }
+                                     });
                 save.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -250,9 +343,7 @@ public class MenuActivity extends AppCompatActivity  {
                     public void onClick(View v) {
                         dialog.dismiss();
                     }
-                });
 
-            }
 
 
 

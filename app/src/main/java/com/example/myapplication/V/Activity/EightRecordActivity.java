@@ -24,6 +24,7 @@ import android.text.Editable;
 
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 
 import android.view.animation.Animation;
@@ -304,23 +305,25 @@ public class EightRecordActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
+        Toast.makeText(getApplicationContext(), "onPause", Toast.LENGTH_SHORT).show();
+Log.e("onPause","onPause");
+
 
         String string = "NOP\r\n";
         counter.setEightRecord_ispause(false);
-        if (objects.getSocket()!=null){
-            try {
+
+        try {
                 sendReceive.write(string.getBytes());
-                //  objects.getSocket().close();
+                //objects.getSocket().close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
+
 
         record.setBackgroundResource(R.drawable.red_record_foreground);
         counter.set_draw_activity_on(false);
         set_dimens=false;
         counter.set_receive_activity_on(false);
-
 
    // for (int j2=0;j2<8;j2++){
          //   for (int j1=0;j1<16000;j1++) {
@@ -350,13 +353,44 @@ public class EightRecordActivity extends AppCompatActivity {
     protected void onResume() {
 
         super.onResume();
-        Log.e("EonResume", "EonResume");
+        Toast.makeText(getApplicationContext(), "onResume", Toast.LENGTH_SHORT).show();
+
+
         counter.setShow_record_ch(0);
 
         is_disconnected = false;
 
         counter.set_receive_activity_on(true);
         counter.set_draw_activity_on(true);
+
+
+
+
+        counter.setStartdraw_record(1);
+        counter.setEnddraw_record((int)counter.getHorizontal_scale()*counter.getRate_in_s());
+
+
+        counter.setLine_stop_counter(0);
+        counter.setLoop_counter(1);
+        counter.setRecordcount(1);
+
+        vibrator= (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        objects.setBluetoothAdapter(BluetoothAdapter.getDefaultAdapter());
+
+        counter.setRecord_activity(true);
+
+        counter.setEight_step_x((float) counter.getSurfaceviewhewidth()/(counter.getRate_in_s()*counter.getHorizontal_scale()));
+
+        counter.setEight_step_y((float) counter.getSurfaceviewhewidth()/200);
+        counter.setEight_step_y((counter.getEight_step_y()/counter.getDefault_channel())/2);
+
+
+        counter.setMin_receive_data((float) (counter.getRate_in_s()*counter.getDefault_channel()*0.2*0.37));
+
+
+
+
+
 
 
 
@@ -513,7 +547,9 @@ public class EightRecordActivity extends AppCompatActivity {
             @Override
             public void run() {
                 while (counter.is_draw_activity_on()) {
-                    bluetoothDelay=100;
+                    if (!counter.isSignal_is_weak()) {
+                        bluetoothDelay = 100;
+                    }
 
                       Log.e("counter.is_draw_activity_on","counter.is_draw_activity_on");
 
@@ -696,7 +732,7 @@ public class EightRecordActivity extends AppCompatActivity {
             bluetoothDelay+=500;
 
             objects.getBluetoothAdapter().enable();
-
+             Log.e("7777777",""+bluetoothDelay);
 
 
 
@@ -814,6 +850,16 @@ public class EightRecordActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean dispatchKeyEvent(KeyEvent event) {
+        if (event.getKeyCode() == KeyEvent.KEYCODE_POWER) {
+
+        }
+
+        return super.dispatchKeyEvent(event);
+    }
+
+
+    @Override
     public void onBackPressed() {
         Intent intent=new Intent(Intent.ACTION_MAIN);
         intent.addCategory(Intent.CATEGORY_HOME);
@@ -828,6 +874,7 @@ public class EightRecordActivity extends AppCompatActivity {
         dialog=new Dialog(EightRecordActivity.this);
         dialog.setContentView(R.layout.bluetooth_alert);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        Toast.makeText(getApplicationContext(), "onCreate", Toast.LENGTH_SHORT).show();
 
 
 
@@ -961,39 +1008,7 @@ public class EightRecordActivity extends AppCompatActivity {
    counter.setMin_receive_data((float) (counter.getRate_in_s()*counter.getDefault_channel()*0.2*0.37));
 
 
-        if(!objects.getBluetoothAdapter().isEnabled())
-        {
-            Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-            startActivityForResult(enableIntent,REQUEST_ENABLE_BLUETOOTH);
-        }
 
-        IntentFilter scanintentFilter=new IntentFilter(BluetoothAdapter.ACTION_SCAN_MODE_CHANGED);
-        BroadcastReceiver scanmodereceiver=new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                String action=intent.getAction();
-                if(action.equals(BluetoothAdapter.ACTION_SCAN_MODE_CHANGED))
-                {
-                    int modevalue = intent.getIntExtra(BluetoothAdapter.EXTRA_SCAN_MODE,BluetoothAdapter.ERROR);
-                    if (modevalue==BluetoothAdapter.SCAN_MODE_CONNECTABLE){
-
-
-                    }else if (modevalue==BluetoothAdapter.SCAN_MODE_CONNECTABLE_DISCOVERABLE)
-                    {
-
-                    }else if (modevalue==BluetoothAdapter.SCAN_MODE_NONE)
-                    {
-
-
-
-                    }
-                    else {
-                    }
-                }
-
-            }
-        };
-        registerReceiver(scanmodereceiver,scanintentFilter);
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -1064,30 +1079,8 @@ public class EightRecordActivity extends AppCompatActivity {
                             counter.setRecordcount(counter.getRecordcount() + 1);
                         }
 
-                        if (SingleRecordActivity.isRecordcount()){
-                            new Thread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    try {
-                                        Thread.sleep(100);
-                                    } catch (InterruptedException e) {
-                                        e.printStackTrace();
-                                    }
-
-                                    record.setBackgroundResource(R.drawable.rect_stop_record_foreground);
-                                    String string = "CONTB\r\n";
-                                    set_limit = 1;
-                                   sendReceive = new SendReceive(objects.getSocket(),counter,objects);
-
-                                       sendReceive.write(string.getBytes());
 
 
-
-                                    recordcount = 1;
-                                }
-                            }).start();
-
-                        }
                         bluetooth.setBackgroundResource(R.drawable.bluetooth_on_foreground);
                         counter.setBluetooth_drawabe(true);
                         is_open=false;

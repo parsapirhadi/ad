@@ -84,7 +84,7 @@ public class SendReceive extends Thread {
 
                 s=inputStream.read();
 
-            //    Log.e("22222222",""+s);
+
 
 
                 counter.setSignal_is_weak(false);
